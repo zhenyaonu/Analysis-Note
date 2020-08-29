@@ -1,0 +1,1431 @@
+\documentclass[11pt]{book}
+\pagestyle{plain}
+%\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{latexsym,amsmath,amssymb}
+\usepackage{amsthm}
+%\usepackage[notref,notcite]{showkeys}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+\usepackage{extarrows}
+\usepackage{breqn}
+\usepackage{physics}
+\usepackage{afterpage}
+%\usepackage{enumitem}
+\usepackage[inline]{enumitem}
+\usepackage{mathrsfs}
+\usepackage{scalerel}
+\usepackage{stackengine,wasysym}
+\usepackage{aligned-overset}
+\usepackage{stackengine}
+\usepackage{mathtools}
+\usepackage{nccmath}
+\usepackage{url}
+\usepackage{float}
+\usepackage{lipsum}
+\usepackage{appendix}
+\usepackage{chngcntr}
+\usepackage{etoolbox}
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{blindtext}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\graphicspath{{images/}}
+
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    linkcolor = black,
+    filecolor = black,      
+    urlcolor = black,
+    citecolor = black,
+    pdftitle = {Sharelatex Example},
+    bookmarks = true,
+    pdfpagemode = FullScreen,
+}
+
+\urlstyle{same}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+\title{Sections and Chapters}
+
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{exercise}{Exercise}[chapter]
+\newtheorem{remark}{Remark}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\numberwithin{equation}{chapter}
+
+
+\AtBeginEnvironment{subappendices}{%
+\chapter*{Appendix}
+\addcontentsline{toc}{chapter}{Appendices}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+}
+
+\newmdenv[
+  linewidth=1.5pt, 
+  topline=false, 
+  bottomline=false, 
+  rightline=false,
+  innerleftmargin=15pt,
+  leftmargin=10pt,
+  rightmargin=0pt,
+  innerrightmargin=0pt, 
+]{claim}
+
+\def\MM{\mathfrak{M}}
+\def\BB{\mathfrak{B}}
+\def\CC{\mathfrak{C}}
+\def\leb{{\mathcal L}}
+\def\H{{\mathcal H}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+\fancyhead[RO]{\thepage}
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+    
+\def\U{{\mathcal U}}
+
+\begin{document}
+\frontmatter
+
+\begin{titlepage}
+	\begin{center}
+	\textbf{\LARGE{}} \\
+	\vspace{40mm}
+    \textbf{\LARGE{Analysis}} \\
+    \vspace{2mm} %5mm vertical space
+    \large{\textsc{Zhen Yao, Department of Mathematics}}\\
+    \large{\textsc{University of Pittsburgh}}
+    \end{center}
+\end{titlepage}
+
+\tableofcontents{}
+\mainmatter
+
+\newpage
+
+\chapter{Measure Theory}
+
+Let $A \subset X$ be a subset of $X$, and we want to assign {\em measure} $\mu(A)$ to this set. Denote by $\MM \subset P(X)$ the class of sets for which the measure $\mu$ is defined, where $P(X)$ is the power set of $X$, that is the set of all subsets of $X$. Elements of $\MM$ are called {\em measurable sets}. What properties do we need to define measure?
+\begin{enumerate}[label=(\alph*)]
+    \item $X \subset \MM$;
+    
+    \item If $A \in \MM$, then $X \setminus A \in \MM$;
+    
+    \item If $A_1, A_2, \cdot \in \MM$, then $\bigcup^\infty_{i=1}A_i \in \MM$.
+\end{enumerate}
+
+\medskip
+
+\section{$\sigma$-algebra}
+
+\begin{definition}\label{definition_sigma_algebra}
+Let $X$ be a set. A collection $\MM$ of subsets of $X$ is $\sigma$-algebra if $\MM$ has the following properties:
+\begin{enumerate}[label=(\alph*)]
+    \item $X \in \MM$;
+    
+    \item If $A \in \MM$, then $X \setminus A \in \MM$;
+    
+    \item If $A_1, A_2, \cdots \in \MM$, then $\bigcup^\infty_{i=1}A_i \in \MM$.
+\end{enumerate}
+Then the $(X,\MM)$ is called measurable space and elements of $\MM$ are called measurable sets.
+\end{definition}
+
+\medskip
+
+\begin{exercise}\label{exercise_11} {\rm \cite{1}}
+Let $(X, \MM)$ be a measurable space. Show that
+\begin{enumerate}[label=(\alph*)]
+    \item $\emptyset \in \MM$;
+    
+    \item $A, B \in \MM$, then $A \setminus B \in \MM$;
+    
+    \item $\MM$ is closed under finite and countable unions and intersections.
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item $\emptyset = X \setminus X$, then $\emptyset \in \MM$.
+   
+    \item By Definition \ref{definition_sigma_algebra}(c), $A \cup B \cup \emptyset \cup \emptyset \cup \cdots \in \MM$, which implies $A \cup B \in \MM$. 
+    
+    By De Morgan's Laws, we have 
+    \begin{align*}
+        X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B),
+    \end{align*}
+    and since $X \setminus A, X \setminus B \in \MM$, $A \cap B \in \MM$.
+    
+    Now, $A \setminus B = A \cap (X \setminus B)$, then by the results above, we have $A \setminus B \in \MM$.
+    
+    \item Suppose $A_1, A_2, \cdots \in \MM$, by De Morgan's Laws, we have
+    \begin{align*}
+        X \setminus \bigcap^\infty_{i=1} A_i = \bigcup^\infty_{i=1} (X \setminus A_i),
+    \end{align*}
+    and since $X \setminus A_i \in \MM$, then $X \setminus \bigcap^\infty_{i=1} A_i \in \MM$, and thus $\bigcap^\infty_{i=1} A_i \in \MM$. 
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{example}[Examples of $\sigma$-algebra]
+~\begin{enumerate}[label=(\alph*)]
+    \item $P(X)$, or $2^X$, the family of all subsets of $X$ is a $\sigma$-algebra.
+    
+    \item $\MM = \{\emptyset, X\}$ is a $\sigma$-algebra.
+    
+    \item If $E \subset X$ is a fixed set, then $\MM = \{\emptyset, X, E, X\setminus E\}$ is a $\sigma$-algebra.
+\end{enumerate}
+\end{example}
+
+\medskip
+
+\begin{proposition}\label{prop_11}
+A family $\MM$ of subsets of $X$ is a $\sigma$-algebra if and only if
+\begin{enumerate}[label=(\alph*)]
+    \item $X \in \MM$;
+    
+    \item If $A,B \in \MM$, then $A \setminus B \in \MM$;
+    
+    \item If $A_1, A_2, \cdots \in \MM$ are pairwise disjoint, then $\bigcup^\infty_{i=1} A_i \in \MM$.
+\end{enumerate}
+\end{proposition}
+\begin{proof} 
+~\begin{enumerate}
+    \item[($\Rightarrow$)] (a) and (c) are obvious, it remains to show (b). By definition of $\sigma$-algebra, $A \cup B \cup \emptyset \cup \emptyset \cup \cdots \in \MM$, which implies $A \cup B \in \MM$. Also, by De Morgan's Laws, we have 
+    \begin{align*}
+        X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B),
+    \end{align*}
+    and since $X \setminus A, X \setminus B \in \MM$, $A \cap B \in \MM$. Now, $A \setminus B = A \cap (X \setminus B)$, then by the results above, we have $A \setminus B \in \MM$.
+    
+    \item[($\Leftarrow$)] It suffices to show that for any $A_1, A_2,\cdots \in \MM$, $\bigcup^\infty_{i=1}A_i \in \MM$. Let $B_1 = A_1$, $B_2 = A_2 \setminus A_1$, $B_3 = A_3 \setminus (B_1 \cup B_2)$ and so on. It gives a pairwise disjoint sequence of sets $B_1, B_2, \cdots \in \MM$. By the assumption, $\bigcup^\infty_{i=1}A_i = \bigcup^\infty_{i=1}B_i \in \MM$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{proposition}
+If $\{\MM_i\}_{i\in I}$ is a family of $\sigma$-algebras, then
+\begin{align*}
+    \MM = \bigcap_{i \in I} \MM_i
+\end{align*}
+is a $\sigma$-algebra. Note that $I$ can be uncountable.
+\end{proposition}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item For any $i \in I$, $\emptyset \in \MM_i$, then $\emptyset \in \bigcap_{i \in I} \MM_i$.
+    
+    \item If $A_i \in \bigcap_{i \in I} \MM_i$, then $A_i \in \MM_i$ for all $i \in I$, which implies $X\setminus A_i \in \MM_i$ for all $i \in I$. Hence, $X\setminus A_i \in \bigcap_{i \in I} \MM_i$.
+    
+    \item For $A_j \in \bigcap_{i \in I} \MM_i$, $j = 1, 2, \cdots$, it means that for all $j = 1, 2, \cdots$ and all $i \in I$, $A_j \in \MM_i$, and then for all $i \in I$, $\bigcup^\infty_{j=1} A_j \in \MM_i$. Thus, $\bigcup^\infty_{j=1} A_j \in \bigcap_{i \in I} \MM_i$.
+\end{enumerate}
+
+\end{proof}
+
+
+\medskip
+
+Let $\mathcal{R}$ be a family of subsets of $X$. Denote by $\sigma(\mathcal{R})$ the intersection of all $\sigma$-algebras that contain $\mathcal{R}$. Note that there is at least one $\sigma$-algebra that contains $\mathcal{R}$, namely the power set $P(X)$. We say that $\sigma(\mathcal{R})$ a {\em $\sigma$-algebra generated by $\mathcal{R}$}. Also, $\sigma(\mathcal{R})$ is the {\em smallest} $\sigma$-algebra that contains $\mathcal{R}$ in the sense that if $\MM$ is a $\sigma$-algebra that contains $\mathcal{R}$, then $\sigma(\mathcal{R}) \subset \MM$.
+
+\medskip
+
+\begin{example}
+If $\mathcal{R} = \{E\}$, then $\sigma(\mathcal{R}) = \{\emptyset, X, E, X\setminus E\}$.
+\end{example}
+
+\medskip
+
+\begin{theorem}{\rm \cite{2}}
+If $\mathcal{R}$ is any collection of subsets of $X$, there exists a smallest $\sigma$-algebra $\sigma(\mathcal{R})$ in $X$ such that $\mathcal{R} \in \sigma(\mathcal{R})$.
+\end{theorem}
+\begin{proof}
+Let $\Omega$ be the family of all $\sigma$-algebras $\MM$ in $X$ that contains $\mathcal{R}$. Since
+the collection of all subsets of $X$ is such a $\sigma$-algebra, then $\Omega$ is not empty. Let $\MM^*$ be the intersection of all $\MM \in \Omega$. It is clear that $\mathcal{R} \subset \MM^*$ and that $\MM^*$ lies in every $\sigma$-algebra in $X$ which contains $\mathcal{R}$. It suffices to show that $\MM^*$ is itself a $\sigma$-algebra.
+
+If $A_n \in \MM^*$ for $n = 1,2,3,\cdots$, and it $\MM \in \Omega$, then $A_n \in \MM$, so $\bigcup A_n \in \MM$, since $\MM$ is a $\sigma$-algebra. Since $\bigcup A_n \in \MM$ for every $\MM \in \Omega$, we conclude that $\bigcup A_n \in \MM^*$.
+\end{proof}
+
+\medskip
+
+\section{Borel sets}
+
+\begin{definition}
+Let $X$ be a metric space (or topological space). Denote by $\mathfrak{B}(X)$ the $\sigma$-algebra generated by the family of all open sets in $X$. Elements of $\mathfrak{B}(X)$ are called Borel sets and $\mathfrak{B}(X)$ is called $\sigma$-algebra of Borel sets. So,
+\begin{enumerate}[label=(\alph*)]
+    \item All closed sets are Borel sets;
+    
+    \item If $G_1, G_2, \cdots$ are open, then $\bigcap^\infty_{i=1}G_i$ is Borel, and such sets are called $G_\delta$ sets.
+    
+    \item If $F_1, F_2, \cdots$ are closed, then $\bigcup^\infty_{i=1}F_i$ is Borel, and such sets are called $F_\sigma$ sets.
+\end{enumerate}
+The notations $G_\delta$ and $F_\sigma$ is due to Hausdorff{\rm \cite{2}}.
+\end{definition}
+
+\medskip
+
+\begin{example}
+Every closed set is $G_\delta$. Indeed, suppose $F$ is closed, and let
+\begin{align*}
+    G_i = \left\{x\,|\, \operatorname{dist}(x,F) < \frac{1}{i}\right\},
+\end{align*}
+where $G_i$ are open, and then $F = \bigcap^\infty_{i=1} G_i$.
+
+Similarly, every open set is $F_\sigma$. Suppose $G$ is open set, and let $F = X \setminus E$, which is closed. Then,
+\begin{align*}
+    G = X \setminus F = X \setminus \bigcap^\infty_{i=1} G_i = \bigcup^\infty_{i=1} (X \setminus G_i),
+\end{align*}
+where $X \setminus G_i$ are closed.
+\end{example}
+
+\medskip
+
+\begin{proposition}
+Let $A \subset X$. $A$ is $F_\sigma$ set if and only if $X \setminus A$ is $G_\delta$.
+\end{proposition}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item ($\Rightarrow$) By assumption, $A = \bigcup^\infty_{i=1} F_i$, where $F_i$ are closed. Then, $X \setminus A = \bigcap^\infty_{i=1} (X \setminus F_i)$, where $X \setminus F_i$ are open. This implies $X \setminus A$ is $G_\delta$.
+    
+    \item ($\Leftarrow$) This direction is similar.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{example}
+$\mathbb{Q}$ is a $F_\delta$ set, where $\mathbb{Q}$ is the set of all rational number.
+\end{example}
+\begin{proof}
+Since $\mathbb{Q}$ is countable, we could write it as $\mathbb{Q} = \{q_1, q_2, \cdots\}$, and it is obvious that $\mathbb{Q} = \bigcup^\infty_{i=1} \{q_i\}$, where $\{q_i\}$ is closed. Thus, $\mathbb{Q}$ is $F_\delta$.
+\end{proof}
+
+\medskip
+
+\begin{theorem}[{\bf Baire Category}]
+Let $X$ be a complete metric space, $G_i \subset X, i = 1,2,\cdots$ are open and dense in $X$. Then, $\bigcap^\infty_{i=1} G_i$ is also dense.
+\end{theorem}
+\begin{proof}
+The proof is from Rudin's {\em Real and Complex Analysis}\cite{2}. Let $W$ be any open set in $X$, a subset is dense if and only if every nonempty open subset intersects it. Thus, to show that the intersection is dense it suffice to show that $\bigcap^\infty_{i=1} G_i$ has a point in $W$ if $W \neq \emptyset$.
+
+Since $G_1$ is dense, then $G_1 \cap W \neq \emptyset$, then there is a point $x_1$ and $0 < r_1 < 1$ such that
+\begin{align}\label{Baire_Category_1}
+    \overline{B}\left(x_1,r_1\right) \subset (G_1 \cap W),
+\end{align}
+where $\overline{B}(x,r)$ denotes the closure of $B(x,r)$. Since each $G_i$ is dense, continuing this process gives sequences $\{x_n\} \in X$ and $\{r_n\}$ such that 
+\begin{align}\label{Baire_Category_2}
+    B\left(x_n,r_n\right) \subset \left( B\left(x_{n-1},r_{n-1}\right) \cap G_n \right), \quad 0 < r_n < \frac{1}{n}.
+\end{align}
+Then, for $n > m$, we have $x_n \in B(x_m,r_m)$, and hence $\{x_n\}$ is a Cauchy sequence. By completeness of $X$, there exists some point $x$ in $X$ such that $\lim_{n\to\infty} x_n = x$.
+
+Since $x_n \in \overline{B}(x_m,r_m)$ for $n > m$, then $x \in \overline{B}(x_n,r_n)$ for each $n \in \mathbb{N}$ and by (\ref{Baire_Category_2}), $x \in G_i$ for $i = 1,2,\cdots$. By (\ref{Baire_Category_1}), $x \in W$, and thus $\bigcap^\infty_{i=1} G_i$ is dense. 
+\end{proof}
+
+\medskip
+
+\begin{example}
+$\mathbb{Q}$ is not a $G_\sigma$ set, i.e. $\mathbb{Q} \in F_\delta \setminus G_\sigma$.
+\end{example}
+\begin{proof}
+Suppose $\mathbb{Q}$ is $G_\sigma$, then $\mathbb{Q} = \bigcap^\infty_{i=1} G_i$, where $G_i$ is dense in $\mathbb{R}$. Let $\widetilde{G_i} = \mathbb{R} \setminus \{q_i\}$ for $i = 1,2,\cdots$, which are open and dense. Now,
+\begin{align*}
+    \left(\bigcap^\infty_{i=1}G_i\right) \cap \left(\bigcap^\infty_{i=1}\widetilde{G_i}\right) = \mathbb{Q} \cap (\mathbb{R} \setminus \mathbb{Q}) = \emptyset,
+\end{align*}
+and this is a contradiction to Baire Category theorem.
+\end{proof}
+
+\medskip
+
+Now what are Borel sets? Recall that open, closed sets, $G_\delta, F_\sigma$, intersections of countable many $F_\sigma$'s and union of countable many $G_\delta$'s are all in Borel sets $\mathfrak{B}(X)$, but these are only a small part of Borel sets. Let's introduce well-ordering, ordinal numbers, and Borel hierarchy in order to construct Borel sets.
+
+\medskip
+
+\subsection{Well ordering}
+
+\begin{theorem}[{\bf Axiom of choice}]
+Given a family of sets $\{X_i\}_{i \in I}$, where $X_i \cap X_j = \emptyset$ for $i \neq j$. Thus, there is a set $X$ such that for all $i \in I$, $X \cap X_i$ is a singleton set.
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+Ordering $<$ in a set $(A, <)$ is an ordering relation if the followings are satisfied:
+\begin{enumerate}[label=(\alph*)]
+    \item for any $a, b \in A$, $a \neq b$, then $a < b$ or $b < a$;
+    
+    \item for any $a, b \in A$, if $a < b$, then $b \nless a$, also $a \nless a$ (irreflexive);
+    
+    \item for any $a, b, c \in A$, if $a < b$ and $b < c$, then $a < c$ (transitive).
+\end{enumerate}
+\end{definition}
+
+\medskip
+
+\begin{example}
+$\mathbb{N}, \mathbb{Q}$ and $\mathbb{R}$.
+\end{example}
+
+\medskip
+
+\begin{definition}
+$(A, <)$ and $(A^*, <^*)$ are similar if there is a bijection $\Phi: A \to A^*$ such that if for any $a, b \in A$ and $a < b$, then $\Phi(a) <^* \Phi(b)$.
+\end{definition}
+
+\medskip
+
+\begin{example}
+$\mathbb{N}$ and $\{1 - 1/n\}_{n \in \mathbb{N}}$ are similar.
+\end{example}
+
+\medskip
+
+\begin{theorem}
+Every countable order set is similar to a subset of $\mathbb{Q}$.
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+An ordering $(A,<)$ is well-ordering if every subset has the first smallest element.
+\end{definition}
+
+\medskip
+
+\begin{example}
+~\begin{enumerate}[label=(\alph*)]
+    \item $\mathbb{N}$, $\{1 - 1/n\}_{n \in \mathbb{N}}$ is well-ordering.
+    
+    \item $\{1 - 1/n\} \cup \{1\}, n \in \mathbb{N}$ is well-ordering.
+    
+    \item $\{k - 1/n\}, k,n \in \mathbb{N}$ is well-ordering.
+\end{enumerate}
+\end{example}
+
+\medskip
+
+If $(A,<)$ is well-ordering, then every element $a$ in $A$ has a successor $a+1$, if $a$ is not the last element in $A$, where $a+1$ means the first element in $\{b \in A\, | \, a < b\}$. In general, $a$ does not necessarily need a predecessor $a-1$.
+
+\medskip
+
+\begin{definition}
+A subset $B$ of $A$ is an initial interval if $b < a \in B$, then $b \in A$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+$(A,<)$ and $(B,<)$ are well-ordering, then $A$ is similar to an initial interval in $B$ or $B$ is similar to an initial interval in $A$.
+\end{theorem}
+
+\begin{remark}
+In general, $A$ is not similar to any initial interval in $A$ that is different than $A$.
+\end{remark}
+
+\medskip
+
+\subsection{Ordinal number}
+
+An {\em ordinal number} is a generalization of the concept of a natural number that is used to describe a way to arrange a collection of objects in order, e.g., first, second, third, etc. The first {\em transfinite ordinal}, denoted $\omega$, is the order of the set of nonnegative integers. Ordinal numbers are a well ordered set. In order of increasing size, the ordinal numbers are $0, 1, 2, \cdots, \omega, \omega + 1, \omega + 2, \cdots, \omega + \omega, \omega + \omega + 1$.
+
+\medskip
+
+\begin{example}
+~\begin{enumerate}[label=(\alph*)]
+    \item The set of all finite ordinals: $\mathbb{N}$ is denoted by symbol $\omega$.
+    
+    \item $\{1 - 1/n\}_{n \in \mathbb{N}}$ can also be denoted by $\omega$.
+    
+    \item $\{1 - 1/n\}_{n \in \mathbb{N}} \cup \{1\}$ can be denoted by $\omega + 1$.
+    
+    \item $\{k - 1/n\}_{k,n \in \mathbb{N}}$ can be denoted by $\omega + \omega + \cdots + \omega = \omega^2$.
+\end{enumerate}
+\end{example}
+
+\medskip
+
+\begin{remark}
+$1 + \omega: \underbrace{\bullet}_{1} \underbrace{\bullet \cdots \bullet}_{\omega} = \omega$. However, $\omega + 1: \underbrace{\bullet \cdots \bullet}_{\omega}  \underbrace{\bullet}_{1} = \omega + 1 > 1 + \omega = \omega$.
+\end{remark}
+
+\medskip
+
+\begin{theorem}[{\bf Transfinite induction}]
+Let $(A,<)$ be a well-ordering set and $\varphi$ is the property of elements of $A$. We write $\varphi(x)$ if $x$ has property $\varphi$. If the following statement is true: every element $y < x$ has property $\varphi(y)$, then all elements $x \in A$ has property $\varphi$.
+\end{theorem}
+\begin{proof}
+Suppose $Z = \{x \, |\, \neg \varphi(x)\}$, and let $x_0$ be the first element in $Z$. If $y < x_0$, then $y \notin Z$, and hence $\varphi(y)$. By the assumption, $\varphi(x_0)$, hence $x \notin Z$, which is a contradiction.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+Every set has a well-ordering.
+\end{theorem}
+
+\medskip
+
+\subsection{Borel hierarchy}
+
+Let's introduce the {\em finite Borel hierarchy}.
+
+\begin{definition}[{\bf Borel sets of finite order}]
+Let
+\begin{align*}
+    \Sigma_1 & = \{G\,|\, G \subseteq X, G\,\, \text{is open}\}, \\
+    \Pi_1 & = \{F\,|\, F \subseteq X, F\,\, \text{is closed}\},
+\end{align*}
+and then inductively define the following collection of subsets of $X$
+\begin{align*}
+    \Sigma_{n+1} & = \left\{\bigcup^\infty_{i=1} F_i \,|\, F_i \in \Pi_{n}\right\}, \\
+    \Pi_{n+1} & = \left\{\bigcup^\infty_{i=1} G_i \,|\, G_i \in \Sigma_{n}\right\}.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+~\begin{enumerate}[label=(\alph*)]
+    \item If $S \subset \mathbb{R}$, then $S \subset \Sigma_{n}$ if and only if $\mathbb{R} \setminus S \in \Pi_{n}$.
+    
+    \item For any $n \in \mathbb{N}$, $\Sigma_{n} \subset \Sigma_{n+1}$, $\Pi_{n} \in \Pi_{n+1}$ and $\Sigma_{n} \in \Pi_{n+1}$, $\Pi_{n} \in \Sigma_{n+1}$. Also, 
+    \begin{align*}
+        \left(\Pi_{n} \cap \Sigma_{n}\right) \subset \left(\Pi_{n+1} \cap \Sigma_{n+1}\right).
+    \end{align*}
+\end{enumerate}
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+Let $B \subset \mathbb{R}$ be a Borel set. $B$ has Borel rank $n \in \mathbb{N}$ if $n$ is the least integer such that $$B \subset \left(\Sigma_n \cup \Pi_n \right) \setminus \left(\Sigma_{n-1} \cap \Pi_{n-1}\right).$$
+\end{definition}
+
+\medskip
+
+\begin{example}
+Open and closed subset of $\mathbb{R}$ has Borel rank $1$, $\mathbb{Q}$ has Borel rank $2$.
+\end{example}
+
+\medskip
+
+\begin{theorem}
+There are Borel sets of infinite rank.
+\end{theorem}
+
+\medskip
+
+We considered all Borel sets of finite rank, but how to construct a set belong to $\mathfrak{B}(X)$ but with infinite rank?
+
+Let $S_n \subset (n,n+1)$ with Borel rank $n$, then $S_1 \cup S_2 \cup \cdots$ is also Borel but with infinite rank. Now let $\Sigma_\omega$ be the unions of Borel sets of finite rank, and $\Pi_\omega$ be the intersections of Borel sets of finite rank. And we can define $\Sigma_{\omega+1}$ and $\Pi_{\omega+1}$ accordingly. 
+
+\medskip
+
+\begin{theorem}
+$\mathfrak{B}(\mathbb{R}) = \bigcup (\Sigma_\omega \cup \Pi_\omega)$, where $\omega$ is countable, ordinal number.
+\end{theorem}
+
+\medskip
+
+\section{Measure}
+
+\begin{definition}
+Let $(X, \MM)$ be a measurable space. A measure (also called positive measure) is a function $\mu: \MM \to [0,\infty]$ such that
+\begin{enumerate}[label=(\alph*)]
+    \item $\mu(\emptyset) = 0$;
+    
+    \item $\mu$ is countably additive, i.e. if $A_1, A_2, \cdots \in \MM$ are pairwise disjoint, then
+    \begin{align*}
+        \mu \left( \bigcup^\infty_{i=1} A_i \right) = \sum^\infty_{i=1} \mu(A_i).
+    \end{align*}
+\end{enumerate}
+And ``ordered triples'' $(X, \MM, \mu)$ is called a measure space. If $\mu(X) < \infty$, then $\mu$ is called finite measure. If $\mu(X) = 1$, then $\mu$ is called probability or probability measure. If $X = \bigcup^\infty_{i=1} A_i$, where $A_i \in \MM$ and $\mu(A_i) < \infty$ for all $i = 1,2,\cdots$, then we say $\mu$ is $\sigma$-finite. 
+\end{definition}
+
+\medskip
+
+\begin{example}
+If $X$ is an arbitrary set, and $\mu: P(X) \to [0,\infty]$ is defined by $\mu(E) = m$ if $E$ is finite and has $m$ elements, $\mu(E) = \infty$ if $E$ is infinite, then $\mu$ is a measure and called {\em counting measure}.
+\end{example}
+
+\begin{theorem}[{\bf Elementary properties of measures}]\label{theorem_15}
+Let $(X, \MM, \mu)$ be a measure space. Then
+\begin{enumerate}[label=(\alph*)]
+    \item If the sets $A_1, A_2, \cdots, A_n \in \MM$ are pairwise disjoint, then $\mu \left(\bigcup^n_{i=1} A_i \right) = \sum^n_{i=1} \mu(A_i)$.
+    
+    \item If $A, B \in \MM$, $A \subset B$, then $\mu(A) \leq \mu(B)$.
+    
+    \item If $A, B \in \MM$, $A \subset B$, $\mu(B) < \infty$, then $\mu(B\setminus A) = \mu(B) - \mu(A)$.
+    
+    \item If $A_1, A_2, \cdots \in \MM$, then 
+    \begin{align*}
+        \mu \left(\bigcup^\infty_{i=1} A_i \right) \leq \sum^\infty_{i=1} \mu(A_i).
+    \end{align*}
+    
+    \item If $A_1, A_2, \cdots \in \MM$, $\mu(A_i) = 0$ for $i = 1,2,\cdots$, then $\mu \left(\bigcup^\infty_{i=1} A_i \right) = 0$.
+    
+    \item If $A_1, A_2, \cdots \in \MM$, $A_1 \subset A_2 \subset \cdots$, then
+    \begin{align*}
+        \mu \left(\bigcup^\infty_{i=1} A_i \right) = \lim_{i\to\infty} \mu(A_i).
+    \end{align*}
+    
+    \item If $A_1, A_2, \cdots \in \MM$, $A_1 \supset A_2 \supset \cdots$ and $\mu(A_1) < \infty$, then
+    \begin{align*}
+        \mu \left(\bigcap^\infty_{i=1} A_i \right) = \lim_{i\to\infty} \mu(A_i).
+    \end{align*}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Considering the sequence $A_1, A_2, \cdots, A_n, \emptyset, \emptyset, \cdots$, which are pairwise disjoint, then by definition of measure, \begin{align*}
+        \mu(A_1 \cup A_2 \cup \cdots \cup A_n) & = \mu(A_1) + \cdots + \mu(A_n) + \mu(\emptyset) + \cdots + \mu(\emptyset) \\
+        & = \mu(A_1) + \cdots + \mu(A_n).
+    \end{align*}
+    
+    \item Since $B = A \cup (B)$ and $A \cap (B \setminus A) = \emptyset$, then $\mu(B) = \mu(A) + \mu(B \setminus A) \geq \mu(A)$.
+    
+    \item By $\mu(B) = \mu(A) + \mu(B \setminus A)$ in (b). Note that we need $\mu(B) < \infty$. Otherwise, it could happen that $\mu(A) = \mu(B) = \infty$ and then $\mu(B \setminus A) = \mu(B) - \mu(A) = \infty - \infty$.
+    
+    \item Since
+    \begin{align*}
+        \bigcup^\infty_{i=1} A_i = \underbrace{A_1}_{B_1} \cup \underbrace{(A_2\setminus A_1)}_{B_2} \cup \underbrace{(A_3 \setminus (A_1\cup A_2))}_{B_3} \cup \cdots,
+    \end{align*}
+    and $B_1, B_2, \cdots$ are pairwise disjoint, then 
+    \begin{align}\label{equaiton_11}
+        \mu(A) = \sum^\infty_{i=1} \mu(B_i) \leq \sum^\infty_{i=1} \mu(A_i).
+    \end{align}
+    
+    \item It follows from (\ref{equaiton_11}).
+    
+    \item Since $A_i \subset A_{i+1}$, then 
+    \begin{align*}
+        \bigcup^\infty_{i=1} A_i =  \underbrace{A_1}_{B_1} \cup \underbrace{(A_2\setminus A_1)}_{B_2} \cup \underbrace{(A_3 \setminus A_2)}_{B_3} \cup \underbrace{(A_4 \setminus A_3)}_{B_4} \cup \cdots,
+    \end{align*}
+    and $B_i$ are pairwise disjoint. Therefore,
+    \begin{align*}
+        \mu \left(\bigcup^\infty_{i=1} A_i \right) = \sum^\infty_{i=1} \mu(B_i) = \lim_{i\to\infty} \sum^i_{k=1} \mu(B_k) = \lim_{i\to\infty} \mu \left(\bigcup^i_{k=1} B_k \right) = \lim_{i\to\infty} \mu(A_i).
+    \end{align*}
+    The limit exists because $\mu(A_i) \leq \mu(A_{i+1})$.
+    
+    \item Apply (f) to the sets $A_1\setminus A_i$. Let $C_i = A_1 \setminus A_i$, then $C_1 \subset C_2 \subset \cdots$ and $\mu(C_i) = \mu(A_1) - \mu(A_i)$. Also, $A \setminus \left( \bigcap^\infty_{i=1} A_i\right) = \bigcup^\infty_{i=1} C_i$, then by (f), we have
+    \begin{align*}
+        \mu(A_1) - \mu \left(\bigcap^\infty_{i=1} A_i\right) = \mu\left(A_1 \setminus \bigcap^\infty_{i=1} A_i\right) = \lim_{i\to\infty} \mu(C_i) = \mu(A_1) - \lim_{i\to\infty} \mu(A_i),
+    \end{align*}
+    and this is where we used the fact that $\mu(A_1) < \infty$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\section{Outer measure and Carathéodory construction}
+
+Constructing a measure with desired properties is difficult, but it is much easier to construct {\em outer measure}, since it has less restrictive properties. Then the Carathéodory theorem shows how to construct a measure from an outer measure.
+
+\medskip
+
+\begin{definition}
+Let $X$ be a set. A function $\mu^*: P(X) \to [0,\infty]$ is called outer measure if 
+\begin{enumerate}[label=(\alph*)]
+    \item $\mu^*(\emptyset) = 0$;
+    
+    \item If $A \subset B$, the $\mu^*(A) \leq \mu^*(B)$;
+    
+    \item For all sets $A_1, A_2, \cdots \subset X$,
+    \begin{align*}
+        \mu^* \left( \bigcup^\infty_{i=1} A_i \right) \leq \sum^\infty_{i=1} \mu^*(A_i).
+    \end{align*}
+\end{enumerate}
+\end{definition}
+
+\medskip
+
+\begin{definition}
+A set $E$ is said to be $\mu^*$-measurable if for all $A \subset X$,
+\begin{align}\label{equation_14}
+    \mu^*(A) = \mu^*(A \cup E) + \mu^*(A \setminus E).
+\end{align}
+Condition (\ref{equation_14}) is called Carathéodory condition.
+\end{definition}
+
+\begin{remark}
+The inequality 
+\begin{align*}
+    \mu^*(A) \leq \mu^*(A \cup E) + \mu^*(A \setminus E)
+\end{align*}
+always holds. In order to verify measurability of a set $E$, it suffices to show that 
+\begin{align*}
+    \mu^*(A) \geq \mu^*(A \cup E) + \mu^*(A \setminus E).
+\end{align*}
+\end{remark}
+
+\medskip
+
+\begin{proposition}\label{prop_14}
+All sets with $\mu^*(E) = 0$ are $\mu^*$-measurable.
+\end{proposition}
+\begin{proof}
+If $\mu^*(E) = 0$, then for an arbitrary set $A \subset X$, we have
+\begin{align*}
+    \mu^*(A) \geq \mu^*(A \setminus E) = \mu^*(A \setminus E) + \underbrace{\mu^*(A \cap E)}_{0},
+\end{align*}
+where the last term follows from $(A \cap E) \subset E$.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+Let $\MM^*$ be the class of all $\mu^*$-measurable sets.
+\end{definition}
+
+\medskip
+
+\begin{theorem}[{\bf Carathéodory}]\label{caratheodory_theorem}
+$\MM^*$ is a $\sigma$-algebra and $\mu^*: \MM^* \to [0, \infty]$ is a measure.
+\end{theorem}
+\begin{proof}
+We will prove this theorem in seven steps.
+\begin{enumerate}[label=(\Roman*)]
+    \item $X \in \MM^*$. This is obvious. \label{Caratheodory_step1}
+    
+    \item If $E, F \in \MM^*$, then $E \cup F \in \MM^*$.
+    
+    For fixed subset $A \subset X$, we have
+    \begin{align*}
+        \mu^*(A) & = \mu^*(A \cap E) + \mu^*(A \setminus E) \\
+        & = \mu^*(A \cap E) + \mu^*((A \setminus E) \cap F) + \mu^*(A \setminus E) \setminus F).
+    \end{align*}
+    Since $A \cap E = A \cap (E \cup F) \cap F$ and $(A \setminus E)\cap F = (A \cap (E \cup F)) \setminus E$, then 
+    \begin{align*}
+        \mu^*(A) & = \mu^*(A \cap (E \cup F)) + \mu^*((A \cap (E \cup F)) \setminus E) + \mu^*(A \setminus (E \cup F)) \\
+        & = \mu^*(A \cap (E \cup F)) + \mu^*(A \setminus (E \cup F)),
+    \end{align*}
+    and hence $E \cup F \in \MM^*$. \label{Caratheodory_step2}
+    
+    \item If $E \in \MM^*$, then $X \setminus E \in \MM^*$. For any $A \subset X$, we have
+    \begin{align*}
+        \mu^*(A) & = \mu^*(A \cap E) + \mu^*(A \setminus E) \\
+        & = \mu^*(A \setminus (X \setminus E)) + \mu^*(A \cap (X \setminus E)),
+    \end{align*}
+    and hence $E \in \MM^*$. \label{Caratheodory_step3}
+    
+    \item If $E, F \in \MM^*$, then $E \setminus F \in \MM^*$. Since $E \setminus F = X \setminus ((X \setminus E) \cup F)$, the claim follows. \label{Caratheodory_step4}
+    
+    \item If $E_1, E_2, \cdots \in \MM^*$ are pairwise disjoint, then for any $A \subset X$,
+    \begin{align*}
+        \mu^* \left(A \cap \bigcup^\infty_{i=1} E_i\right) = \sum^\infty_{i=1} \mu^*(A \cap E_i).
+    \end{align*}
+    Indeed, suppose $E, F \in \MM^*$ are disjoint subsets, then for any $A \subset X$,
+    \begin{align*}
+        \mu^*(A \cap (E \cup F)) & = \mu^*(A \cap (E \cup F) \cap E) + \mu^*(A \cap (E \cup F) \setminus E) \\
+        & = \mu^*(A \cap E) + \mu^*(A \cap F).
+    \end{align*}
+    Step \ref{Caratheodory_step2} and induction imply that for every $n \in \mathbb{N}$,
+    \begin{align*}
+        \mu^* \left(A \cap \bigcup^n_{i=1} E_i\right) = \sum^n_{i=1} \mu^*(A \cap E_i).
+    \end{align*}
+    Then, 
+    \begin{align*}
+        \mu^* \left(A \cap \bigcup^\infty_{i=1} E_i\right) \geq \sum^n_{i=1} \mu^*(A \cap E_i),
+    \end{align*}
+    and letting $n \to \infty$ gives
+    \begin{align*}
+        \mu^* \left(A \cap \bigcup^\infty_{i=1} E_i\right) \geq \sum^\infty_{i=1} \mu^*(A \cap E_i).
+    \end{align*}
+    Since the opposite direction is obvious, then the claim follows. \label{Caratheodory_step5}
+    
+    \item If $E_i \in \MM^*, i = 1, 2, \cdots$ are pairwise disjoint, then $\bigcup^\infty_{i=1} E_i$ is $\mu^*$-measurable. 
+    
+    By Step \ref{Caratheodory_step2} and induction, we have $\bigcup^n_{i=1} E_i \in \MM^*$, and then
+    \begin{align*}
+        \mu^*(A) & = \mu^*\left( A \cap \bigcup^n_{i=1} E_i\right) + \mu^*\left( A \setminus \bigcup^n_{i=1} E_i\right) \\
+        & \geq \sum^n_{i=1} \mu^*(A \cap E_i) + \mu^*\left( A \setminus \bigcup^n_{i=1} E_i\right),
+    \end{align*}
+    letting $n \to \infty$ gives
+    \begin{align*}
+        \mu^*(A) & \geq \sum^\infty_{i=1} \mu^*(A \cap E_i) + \mu^*\left( A \setminus \bigcup^\infty_{i=1} E_i\right) \\
+        & = \mu^*\left( A \cap \bigcup^\infty_{i=1} E_i\right) + \mu^*\left( A \setminus \bigcup^\infty_{i=1} E_i\right).
+    \end{align*}
+    Since the opposite direction is obvious, then the claim follows. \label{Caratheodory_step6}
+    
+    \item By Step \ref{Caratheodory_step1}, \ref{Caratheodory_step4}, \ref{Caratheodory_step6} and Proposition \ref{prop_11}, $\MM^*$ is a $\sigma$-algebra. 
+    
+    Also, $\mu^*(\emptyset) = 0$ and applying Step \ref{Caratheodory_step5} by taking $A = X$ gives
+    \begin{align*}
+        \mu^* \left(\bigcup^\infty_{i=1} E_i\right) = \sum^\infty_{i=1} \mu^*(E_i),
+    \end{align*}
+    and thus $\mu^*|_{\MM^*}$ is a measure.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+For a measure $\mu: \MM \to [0,1]$, it may happen that $A \subset X$ is measurable, but $B \subset A$ is not. Now we introduce {\em complete measure}. 
+
+\medskip
+
+\begin{definition}
+A measure $\mu: \MM \to [0,1]$ is said to be complete if every subset of a set of measure zero is measurable (and hence has measure zero).
+\end{definition}
+
+\medskip
+
+It follows from Proposition \ref{prop_14} that the measure described in the Carathéodory theorem is complete.
+
+\medskip
+
+\begin{corollary}
+The measure $\mu^*: \MM^* \to [0,\infty]$ is complete.
+\end{corollary}
+\begin{proof}
+Suppose $A \in \MM^*$, $\mu^*(A) = 0$ and $B \subset A$, then $\mu^*(B) = 0$. By Proposition \ref{prop_14}, $B \in \MM^*$. 
+\end{proof}
+
+\medskip
+
+Now we want to ask can it happen that $\MM^* = \{\emptyset, X\}$? The answer is that we do not know if it does not happen. Fortunately, in some cases, we can prove that $\MM^*$ is large.
+
+Let $(X,d)$ be a metric space, and for $E, F \subset X$, we can define
+\begin{align*}
+    \operatorname{dist}(E,F) = \inf_{x\in E,y\in F} d(x,y),\quad \operatorname{diam}(E) = \sup_{x,y\in E} d(x,y).
+\end{align*}
+
+\medskip
+
+\begin{definition}
+An outer measure $\mu^*$ defined on subsets of a metric space $(X,d)$ is called metric outer measure if 
+\begin{align*}
+    \mu^*(E \cup F) = \mu^*(E) + \mu^*(F),
+\end{align*}
+whenever $\operatorname{dist}(E,F) > 0$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}\label{theorem_113}
+If $\mu^*$ is a metric outer measure, then all Borel sets are $\mu^*$-measurable, i.e. $\mathfrak{B}(X) \subset \MM^*$.
+\end{theorem}
+\begin{proof}
+Recall that $E \in \MM^*$ if for any $A \subset X$, $\mu^*(A) \geq \mu^*(A \cap E) + \mu^*(A \setminus E)$. Thus it suffice to show that for open $G$ , $\mu^*(A) \geq \mu^*(A \cap G) + \mu^*(A \setminus G)$, since $\mathfrak{B}(X)$ is the smallest $\sigma$-algebra that contains all open sets in $X$.
+
+Let $G_n = \left\{x \in G \, |\, \operatorname{dist}(x, X \setminus G) > 1/n \right\}$, and then 
+\begin{align*}
+    \operatorname{dist}(G_n, X \setminus G) \geq \frac{1}{n}.
+\end{align*}
+Also, we define 
+\begin{align*}
+    D_n = G_{n+1}\setminus G_n = \left\{x \in G \, \Bigg|\, \frac{1}{n+1} < \operatorname{dist}(x, X \setminus G) \leq \frac{1}{n} \right\}.
+\end{align*}
+Clearly, we have 
+\begin{align}\label{equation_15}
+    G \setminus G_n = \bigcup^\infty_{i=n} D_i,
+\end{align}
+and for $j \geq i + 2$, 
+\begin{align*}
+    \operatorname{dist}(D_j,D_i) \geq \frac{1}{i+1} - \frac{1}{j} > 0.
+\end{align*}
+Now we have sets $D_1, D_3, \cdots, D_{2n-1}$ that are pairwise disjoint, for any $A \subset X$ such that $\mu^*(A) < \infty$, we have
+\begin{align*}
+    \sum^{n-1}_{i=0}\mu^*\left(A \cap D_{2i+1}\right) = \mu^* \left(A \cap \bigcup^{n-1}_{i=0} D_{2i+1} \right) \leq \mu^*(A),
+\end{align*}
+since $\mu^*$ is a measure under $\MM^*$. If $\mu^*(A) = \infty$, then the theorem follows easily. Similarly, we have
+\begin{align*}
+    \sum^{n}_{i=1}\mu^*\left(A \cap D_{2i}\right) \leq \mu^*(A),
+\end{align*}
+and letting $n \to \infty$ implies 
+\begin{align*}
+    \sum^\infty_{i=1} \mu^* \left(A \cup D_i \right) < 2 \mu^*(A) < \infty.
+\end{align*}
+
+Now (\ref{equation_15}) implies
+\begin{align*}
+    \mu^*(A \cap (\underbrace{G \setminus G_n}_{\bigcup^\infty_{i=n}D_i})) \leq \sum^\infty_{i=n} \mu^*(A \cap D_i) \xrightarrow[]{n \to \infty} 0,
+\end{align*}
+and since $\operatorname{dist}(G_n, X \setminus G) \geq 1/n$, $\operatorname{dist}(A \cap G_n, A\setminus G) > 0$, and hence
+\begin{align*}
+    \mu^*(A \cap G_n) + \mu^*(A\setminus G) = \mu^*((A \cap G_n) \cup (A\setminus G)) \leq \mu^*(A).
+\end{align*}
+Thus,
+\begin{align*}
+    \mu^*(A \cap G) + \mu^*(A\setminus G) & \leq \mu^*(A \cap G_n) + \mu^*(A \cap (G \setminus G_n)) + \mu^*(A\setminus G) \\
+    & \leq \mu^*(A) + \mu^*(A \cap (G \setminus G_n)) \xrightarrow[]{n \to \infty} \mu^*(A),
+\end{align*}
+which proves the theorem.
+\end{proof}
+
+\medskip
+
+Outer measure can lead to following important results.
+
+\medskip
+
+\begin{theorem}\label{theorem_114}
+Let $X$ be a metric space and $\mu$ a measure in $\mathfrak{B}(X)$. Suppose that $X$ is a union of countable many open sets of finite measure. Then, for any $E \in \mathfrak{B}(X)$, 
+\begin{align*}
+    \mu(E) = \inf_{\substack{U \subset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{C \subset E\\ C - \text{closed}}} \mu(C).
+\end{align*}
+\end{theorem}
+
+
+This theorem gives a fantastic result to compute measure. For example, if there is a measure on $\mathfrak{B}(\mathbb{R})$ such that $\mu((a,b)) = b - a$, then it is easy to compute $\mu(U)$, where $U \subset \mathbb{R}$ is open and hence for $E \in \mathfrak{B}(\mathbb{R})$,
+\begin{align*}
+    \mu(E) = \inf_{\substack{U \subset E\\ U \in \mathbb{R} - \text{open}}} \mu(U).
+\end{align*}
+The existence of such a measure will be proved later.
+
+Before proving this theorem, we talk two of its corollaries. The first one shows that in a situation described by the above theorem, in order to prove that two measures are equal, it suffices to compare them on the class of open sets.
+
+\medskip
+
+\begin{corollary}
+If $\mu$ is a measure in the Theorem \ref{theorem_114}, and $\nu$ is another measure on $\mathfrak{B}(X)$ such that 
+$$\mu(U) = \nu(U),\,\, \text{for all open sets}\,\, U \subset X,$$ 
+ then 
+$$\mu(E) = \nu(E),\,\, \text{for all}\,\, E \subset \mathfrak{B}(X).$$
+\end{corollary}
+\begin{proof}
+\begin{align*}
+    \mu(E) = \inf_{U \supset E} \mu(U) = \inf_{U \supset E} \nu(U) = \nu(E),
+\end{align*}
+where the last step comes from the theorem above.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+Let $X$ be a metric space and $\mu$ is a measure defined on the $\sigma$-algebra of Borel sets. We say $\mu$ is a Radon measure if $\mu(K) < \infty$ for any compact set $K$ and 
+\begin{align*}
+    \mu(E) = \inf_{\substack{U \subset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{K \subset E\\ K - \text{compact}}} \mu(K), \,\, \text{for all}\,\, E \subset \mathfrak{B}(X).
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{corollary}
+If $X$ is a locally compact\footnote{A metric space $X$ is called {\em locally compact} if every point $x$ of $X$ has a compact neighbourhood, i.e. there exists an open set $U$ and a compact set $K$, such that $x\in U \subseteq K$. Also, there are other definitions as well, such as every point has a neighborhood whose closure is compact. For example, $\mathbb{R}^n$ is locally compact, as well as $\mathbb{R}^n \setminus \{0\}$. Note that being locally compact does not imply it is bounded and closed.} and separable metric space and $\mu$ is a measure on $\mathfrak{B}(X)$ such that $\mu(K) < \infty$ for any compact set $K$, then $X$ is a union of countable many open sets of finite measure and $\mu$ is a Radon measure. 
+\end{corollary}
+\begin{proof}
+Since $X$ is separable, then it has a countable, dense subsets. Also, since $X$ is locally compact, then there exists countable open sets $U_i$ such that $X = \bigcup^\infty_{i=1} U_i$, and each $\overline{U_i}$ is compact. By assumption, $\mu(U_i) \leq \mu(\overline{U_i}) < \infty$. By Theorem \ref{theorem_114},
+\begin{align*}
+    \mu(E) = \inf_{\substack{U \subset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{C \subset E\\ C - \text{closed}}} \mu(C), \,\, \text{for all}\,\, E \subset \mathfrak{B}(X).
+\end{align*}
+
+We need to show 
+\begin{align*}
+    \mu(E) =  \sup_{\substack{K \subset E\\ K - \text{compact}}} \mu(K), \,\, \text{for all}\,\, E \subset \mathfrak{B}(X).
+\end{align*}
+
+Let 
+\begin{align*}
+    C = \bigcup^\infty_{n=1} \left(C \cap \bigcup^n_{i=1} \overline{U_i} \right),
+\end{align*}
+and $K = C \cap \bigcup^n_{i=1} \overline{U_i}$ is compact. By Theorem \ref{theorem_15}(f), for any closed set $C \subset X$,
+\begin{align*}
+    \mu(C) = \sup_{K \subset C} \mu(K),
+\end{align*}
+then the proof is complete.
+\end{proof}
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_114}]
+~\begin{enumerate}[label=(\alph*)]
+    \item For $E \subset X$, we define
+    \begin{align*}
+        \mu^*(E) = \inf_{\substack{U \supset E\\ U - \text{open}}} \mu(U),
+    \end{align*}
+    It is easy to see that $\mu^*$ is a metric outer measure. By Carathéodory theorem \ref{caratheodory_theorem} and Theorem \ref{theorem_113}, $\mu^*$ on $\mathfrak{B}(X)$ is a measure. Then, 
+    \begin{align}\label{theorem_114_1}
+        \mu(U) = \mu^*(U), \,\, \text{for all open set} \,\, U \subset X,
+    \end{align}
+    and since $\mu^*(E) = \inf \mu(U)$, where $E \subset U$, then
+    \begin{align}\label{theorem_114_2}
+        \mu(E) \leq \mu^*(E), \,\, \text{for all} \,\, E \subset \mathfrak{B}(X).
+    \end{align}
+
+    $X$ can be a union of increasing sequence of open sets with finite measure, i.e. 
+    \begin{align*}
+        X = \bigcup^\infty_{i=1} V_i, \quad V_i \subset V_{i+1}, \quad \mu(V_i) < \infty.
+    \end{align*}
+    Indeed, since $X = \bigcup^\infty_{i=1} U_i$, where $U_i$ are open and $\mu(U_i) < \infty$, taking $V_n = \bigcup^n_{i=1} U_i$ will do. Now inequality (\ref{theorem_114_2}) implies that for any $E \subset \mathfrak{B}(X)$,
+    \begin{align}\label{theorem_114_3}
+        \mu(V_n \setminus E) \leq \mu^*(V_n \setminus E), \quad \mu(V_n \cap E) \leq \mu^*(V_n \cap E),
+    \end{align}
+    since $V_n \setminus E, V_n \cap E \subset \mathfrak{B}(X)$. However, inequalities (\ref{theorem_114_3}) are a contradiction to the equality (\ref{theorem_114_1}), since 
+    \begin{align*}
+        \mu(V_n) = \mu(V_n \setminus E) + \mu(V_n \cap E) < \mu^*(V_n \setminus E) + \mu^*(V_n \cap E) = \mu^*(V_n),
+    \end{align*}
+    then we could only have equalities in (\ref{theorem_114_3}). In particular, $\mu(V_n \cap E) = \mu^*(V_n \cap E)$. Letting $n \to \infty$ and by Theorem \ref{theorem_15}(f), 
+    \begin{align*}
+        \mu(E) \leftarrow \mu(V_n \cap E) = \mu^*(V_n \cap E) \rightarrow \mu^*(E).
+    \end{align*}
+    Then $\mu(E) = \mu^*(E)$ and thus
+    \begin{align*}
+        \mu(E) = \inf_{\substack{U \supset E\\ U - \text{open}}} \mu(U).
+    \end{align*}
+    
+    \item It remains to show that $\mu(E) = \sup \mu(C), C \subset E$ and $C$ is closed. Since $\mu(V_n \setminus E) < \infty$ and there exists an open set $G_n$ such that
+    \begin{align*}
+        \left(V_n \setminus E\right) \subset G_n, \quad \mu\left(G_n \setminus (V_n \setminus E)\right) < \frac{\varepsilon}{2^n},
+    \end{align*}
+    since we already proved that for any $E \subset \mathfrak{B}(X)$, $\mu(E)$ can be approximated by measure of open set that contains $E$ and clearly, $V_n \setminus E \in \mathfrak{B}(X)$ and can be approximated by the measure of open sets $G_n$. 
+    
+    Let $G = \bigcup^\infty_{n=1} G_n$, and then $G$ is open and $C = X \setminus G \in E$ is closed. Indeed, if $x \in C$, then $x \notin G$ and hence $x \notin G_n$ for all $n = 1, 2, \cdots$. By definition of $G_n$, $x \notin (V_n \setminus E)$ for all $n = 1, 2, \cdot$, and then $x \notin X\setminus E$, which implies $x \in E$.
+    
+    Now, 
+    \begin{align*}
+        E \setminus C = E \cap \left(\bigcup^\infty_{n=1} G_n\right) = \bigcup^\infty_{n=1}(E \cap G_n) \subset \bigcup^\infty_{n=1} \left( G_n\setminus (V_n \setminus E) \right).
+    \end{align*}
+    Indeed, if $x \in (E \cap G_n)$, then $x \in G_n$ or $x \in E$, which implies $x \in G_n$ or $x \notin (V_n \setminus E)$, and hence $x \in G_n\setminus (V_n \setminus E)$. Since $\mu\left(G_n \setminus (V_n \setminus E)\right) < \varepsilon / 2^n$, then 
+    \begin{align*}
+        \mu(E \setminus C) < \sum^\infty_{n=1} \frac{\varepsilon}{2^n} = \varepsilon,
+    \end{align*}
+    and since $C \subset E$, we have 
+    \begin{align*}
+        \mu(E) = \sup_{\substack{C \subset E\\ C - \text{closed}}} \mu(C).
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\section{Hausdroff measure}
+
+Let $\omega_s = \pi^{s/2} / \Gamma(1 + s/2)$, $s \geq 0$, $\Gamma$ is Euler gamma function defined by $\displaystyle \Gamma(s) = \int^\infty_0 x^{s-1} e^{-x}\, dx$. Note that $\omega_0 = 1$ and if $s = n \in \mathbb{N}$, then $\omega_n$ is volume of the unit ball in $\mathbb{R}^n$. And the volume of ball $B = B^n(x,r) \subset \mathbb{R}^n$ equals 
+\begin{align*}
+    \operatorname{vol}(B) = \omega_n r^n = \frac{\omega_n}{2^n} \left(\operatorname{diam} B\right)^n.
+\end{align*}
+
+Let $X$ be a metric space, $d \geq 0$. For any $\varepsilon > 0$ and any $E \subset X$, we define
+\begin{align*}
+    \mathcal{H}^s_{\varepsilon}(E) = \inf \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^s,
+\end{align*}
+where the infimum is taken over all possible coverings
+\begin{align*}
+    E \subset \bigcup^\infty_{i=1} A_i, \,\, \text{with} \,\, \operatorname{diam} A_i < \varepsilon.
+\end{align*}
+Note that the function $\varepsilon \mapsto \mathcal{H}^s_{\varepsilon}$ is nonincreasing. Indeed, if $\varepsilon_1 > \varepsilon_2$, then there are more $A_i$ in family $\{A_i\}$ with $\operatorname{diam} A_i < \varepsilon_1$ than that with $\operatorname{diam} A_i < \varepsilon_2$. Then $\mathcal{H}^s_{\varepsilon_1}(E)$ is the infimum over a bigger set of coverings than $\mathcal{H}^s_{\varepsilon_2}(E)$ and hence 
+\begin{align*}
+    \mathcal{H}^s_{\varepsilon_1}(E) \leq \mathcal{H}^s_{\varepsilon_2}(E).
+\end{align*}
+Since $\varepsilon \mapsto \mathcal{H}^s_{\varepsilon}$ is nonincreasing, then the limit
+\begin{align*}
+    \mathcal{H}^s(E) = \lim_{\varepsilon \to 0} \mathcal{H}^s_{\varepsilon}(E)
+\end{align*}
+exists.
+
+\medskip
+
+\begin{definition}
+$\mathcal{H}^s(E)$ is called ($s$-dimensional) Hausdorff measure and $\mathcal{H}^s: P(X) \to [0,\infty]$.
+\end{definition}
+
+\medskip
+
+\begin{remark}
+For any $\varepsilon > 0$, $\mathcal{H}^s_{\varepsilon}(E) \leq \mathcal{H}^s(E)$ and if $s = 0$, $\mathcal{H}^0$ is the counting measure. In particular, 
+\begin{align*}
+    \mathcal{H}^n_{\infty}(E) = \inf \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^s,
+\end{align*}
+where the infimum is taken over all possible coverings
+\begin{align*}
+    E \subset \bigcup^\infty_{i=1} A_i.
+\end{align*}
+
+\end{remark}
+
+\medskip
+
+\begin{example}
+Let $X = \mathbb{R}^n$, $B = B^n(x,r)$, then $\mathcal{H}^n_{\infty}(B) \leq \operatorname{vol}(B)$. Indeed,
+\begin{align*}
+    \mathcal{H}^n_{\infty}(B) = \inf \frac{\omega_n}{2^n} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^n \leq \frac{\omega_n}{2^n} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^n = \operatorname{vol}(B).
+\end{align*}
+\end{example}
+
+\medskip
+
+\begin{theorem}
+For any $0 < \varepsilon \leq \infty$, $\operatorname{vol}(B) = \mathcal{H}^n_{\varepsilon}(B) = \mathcal{H}^s(B)$.
+\end{theorem}
+
+\medskip
+
+We will prove this theorem later.
+
+\medskip
+
+\begin{theorem}
+$\mathcal{H}^s$ is a metric outer measure.
+\end{theorem}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item In order to prove $\mathcal{H}^s: P(X) \to [0,\infty]$ is an outer measure, it suffice to show that
+    \begin{enumerate}[label=\arabic*)]
+        \item $\mathcal{H}^s(\emptyset) = 0$, and this is obvious.
+    
+        \item If $A \subset B$, then $\mathcal{H}^s(A) \leq \mathcal{H}^s(B)$, and this is also obvious.
+    
+        \item For all $E_1, E_2, \cdots \in X$, 
+        \begin{align*}
+            \mathcal{H}^s\left(\bigcup^\infty_{n=1} E_n\right) \leq \sum^\infty_{n=1} \mathcal{H}^s(E_n).
+        \end{align*}
+    
+        Assume that the right hand side is finite. Then, for any $\varepsilon > 0$, by $\mathcal{H}^s_\varepsilon \leq \mathcal{H}^s$, we have
+        \begin{align*}
+            \sum^\infty_{n=1} \mathcal{H}^s_\varepsilon(E_n) < \infty.
+        \end{align*}
+        For fixed $\delta > 0$, there exists a covering for each $E_n$,
+        \begin{align*}
+            E_n \subset \bigcup^\infty_{i=1} A_{ni},  \operatorname{diam} A_{ni} < \varepsilon,
+        \end{align*}
+        such that
+        \begin{align*}
+            \mathcal{H}^s_\varepsilon(E_n) \geq \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_{ni}\right)^s - \frac{\delta}{2^n}.
+        \end{align*}
+        Then,
+        \begin{align*}
+            \sum^\infty_{n=1} \mathcal{H}^s_\varepsilon(E_n) \geq \frac{\omega_s}{2^s} \sum^\infty_{n,i=1} \left(\operatorname{diam} A_{ni}\right)^s - \delta \geq \mathcal{H}^s_\varepsilon \left(\bigcup^\infty_{n=1} E_n\right) - \delta,
+        \end{align*}
+        where the last step comes from $\bigcup^\infty_{n=1} E_n \subset \bigcup^\infty_{n,i=1} A_{ni}, \operatorname{diam} A_{ni} < \varepsilon$ and the definition of $\mathcal{H}^s_\varepsilon$. Letting $\delta \to 0$ yields
+        \begin{align*}
+            \sum^\infty_{n=1} \mathcal{H}^s(E_n) \geq \sum^\infty_{n=1} \mathcal{H}^s_\varepsilon (E_n) \geq \mathcal{H}^s_\varepsilon \left(\bigcup^\infty_{n=1} E_n\right).
+        \end{align*}
+        Also, letting $\varepsilon \to 0$ 
+        \begin{align*}
+            \sum^\infty_{n=1} \mathcal{H}^s(E_n) \geq \mathcal{H}^s \left(\bigcup^\infty_{n=1} E_n\right).
+        \end{align*}
+    \end{enumerate}
+    
+    \item 
+    It remains to show that $\mathcal{H}^s$ is a metric outer measure, that is, for any $E, F \subset X$ and $\operatorname{dist}(E,F) > 0$, \begin{align*}
+        \mathcal{H}^s(E \cup F) = \mathcal{H}^s(E) + \mathcal{H}^s(F).
+    \end{align*}
+    And it suffices to show that for any $\varepsilon < \operatorname{dist}(E,F)$,
+    \begin{align*}
+        \mathcal{H}^s_\varepsilon(E \cup F) = \mathcal{H}^s_\varepsilon(E) + \mathcal{H}^s_\varepsilon(F).
+    \end{align*}
+    
+    \begin{enumerate}[label=\arabic*)]
+        \item Let $\{A_i\}$ be a covering for $E \cup F$, such that
+        \begin{align*}
+            E \cup F \subset \bigcup^\infty_{i=1} A_i, \,\, \text{with} \,\, \operatorname{diam} A_i < \varepsilon,
+        \end{align*}
+        and assume that $A_i \cap (E \cup F) \neq \emptyset$ for all $i \in \mathbb{N}$, since otherwise we could remove this $A_i$ from the covering. Since $\operatorname{diam} A_i < \varepsilon < \operatorname{dist}(E,F)$, then each $A_i$ has a nonempty intersection with only one set $E$ or $F$. Then the family $\{A_i\}_i$ can be split into two disjoint subfamilies
+        \begin{align*}
+            \{B_j\}_j & = \{A_j\, |\, A_j \cap E \neq \emptyset\}, \\
+            \{C_j\}_j & = \{A_j\, |\, A_j \cap F \neq \emptyset\},
+        \end{align*}
+        and $E \subset \bigcup^\infty_{j=1} B_j$, $F \subset \bigcup^\infty_{j=1} C_j$. Hence,
+        \begin{align*}
+            \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^s & = \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} B_i\right)^s + \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} C_i\right)^s \\
+            & \geq \mathcal{H}^s_\varepsilon(E) + \mathcal{H}^s_\varepsilon(E).
+        \end{align*}
+        Since $\{A_i\}_i$ is an arbitrary covering of $E \cup F$, then taking infimum over coverings yields
+        \begin{align*}
+            \mathcal{H}^s_\varepsilon(E \cup F) \geq \mathcal{H}^s_\varepsilon(E) + \mathcal{H}^s_\varepsilon(E).
+        \end{align*}
+        
+        \item The opposite inequality is obvious. Suppose $\{B_j\}_j$ and $\{C_j\}_j$ are coverings for $E$ and $F$ respectively, with $\operatorname{diam}(B_j) < \varepsilon$ and $\operatorname{diam}(C_j) < \varepsilon$. Let $C_i$ be replaced by $D_i = C_i \cap F$ and $B_i$ remain the same. Then, $\operatorname{diam}(D_i) \leq \operatorname{diam}(C_i) < \varepsilon$.
+        
+        Now we can arrange $B_j$ and $D_j$ into a new family $\{A_i\}_i = \{B_i, D_i\}_i$, which is a covering of $E \cup F$. Hence,
+        \begin{align*}
+            \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} B_j\right)^s + \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} C_j\right)^s & \geq \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^s \geq \mathcal{H}^s_\varepsilon(E \cup F),
+        \end{align*}
+        then taking infimum over coverings yields
+        \begin{align*}
+            \mathcal{H}^s_\varepsilon(E) + \mathcal{H}^s_\varepsilon(E) \geq \mathcal{H}^s_\varepsilon(E \cup F).
+        \end{align*}
+    \end{enumerate}
+\end{enumerate}
+Thus, $\mathcal{H}^s$ is a metric outer measure.
+\end{proof}
+
+\medskip
+
+\begin{corollary}
+$\mathcal{H}^s$ is countable additive measure on the class of all Borel sets $\mathfrak{B}(X)$.
+\end{corollary}
+
+\medskip
+
+\begin{exercise}\label{exercise_12}
+Prove that
+\begin{enumerate}[label=(\alph*)]
+    \item if $\mathcal{H}^s(E) < \infty$, then $\mathcal{H}^t(E) = 0$ for all $t > s$;
+    
+    \item if $\mathcal{H}^s(E) > 0$, then $\mathcal{H}^t(E) = \infty$ for all $0 < t < s$.
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Since $\H^s(E) < \infty$, then for each $\varepsilon > 0$, there exists family $\{A_i\}$ of open sets $A_i$ with $\operatorname{diam} A_i < \varepsilon$, such that $E \subset \bigcup^\infty_{i=1} A_i$ and
+    \begin{align*}
+        \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\operatorname{diam} A_i)^s \leq \H^s(E) + 1.
+    \end{align*}
+    Thus, we have
+    \begin{align*}
+        \H^t_{\varepsilon}(E) & \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} (\operatorname{diam} A_i)^s (\operatorname{diam} A_i)^{t - s} \\
+        & \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} \varepsilon^{t - s} (\operatorname{diam} A_i)^s \\
+        & \leq \frac{\omega_t}{2^t} \frac{2^s}{\omega_s} \varepsilon^{t-s} \left( \H^s(E) + 1\right) \xrightarrow[]{\varepsilon \to 0} 0.
+    \end{align*}
+    
+    \item It follows the similar argument in (a)\footnote{This proof is based on: \url{https://www.math.cuhk.edu.hk/course_builder/1415/math5011/MATH5011_Chapter_3.2014.pdf}, with a different definition of $\mathcal{H}^s_{\varepsilon}$.}. Another way to prove this is interchanging the positions\footnote{Interchanging $s$ and $t$ is based on the proof in: \url{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2009/REUPapers/Shah.pdf}.} of $s$ and $t$ in the contrapositive of (b), which is 
+    \begin{align*}
+        \exists t \in (0,s), \H^t(E) < \infty \Longrightarrow \H^s(E) = 0,
+    \end{align*}
+    and it gives (a), and hence it proves (b).
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{remark}
+This exercise implies that at most one $s \geq 0$ such that $\mathcal{H}^s(E) < \infty$.
+\end{remark}
+
+\medskip
+
+\begin{definition}
+The Hausdorff dimension is defined as follows. If $\mathcal{H}^s(E) > 0$ for all $s \geq 0$, then $\dim_{\mathcal{H}}(E) = \infty$ (in this case, $\mathcal{H}^s(E) = \infty$ for all $s \geq 0$). Otherwise, we define
+\begin{align*}
+    \dim_{\mathcal{H}}(E) = \inf \{s \geq 0\, |\, \mathcal{H}^s(E) = 0 \}.
+\end{align*}
+\end{definition}
+
+It follows from the Exercise \ref{exercise_12} that there is $s \in [0,\infty]$ such that $\mathcal{H}^t(E) = 0$ for $t > s$ and $\mathcal{H}^t(E) = \infty$ for $0 < t < s$. Then, the Hausdorff dimension of $E$ equals $s$.
+
+\medskip
+
+\begin{example}[The Cantor set]
+The Cantor set is constructed as follows:
+\begin{enumerate}[label=(\alph*)]
+    \item Let $\CC_1$ be the interval $[0,1]$.
+    \item Remove the segment $\left(1/3,2/3\right)$, and let $\CC_2$ be the union of the interval of $\left[0,1/3\right],\left[1/3,1\right]$.
+    \item Remove the middle thirds of these two intervals and let $\CC_3$ be the union of $\left[0,1/9\right]$, $\left[2/9,1/3\right]$, $\left[6/9,7/9\right]$ and $\left[8/9,1\right]$.
+    \item Continue this way and we can get a sequence of compact sets $\CC_n$, such that $\CC_1\supset \CC_2\supset \CC_3\supset\cdots$ and $\CC_n$ is the union of $2^n$ intervals with length $3^{-n}$.
+\end{enumerate}
+Then the Cantor set is defined as $$\CC = \bigcap^\infty_{i=1}\CC_i.$$ and shown as below\footnote{Figure source: \url{https://en.wikipedia.org/wiki/File:Cantor_set_in_seven_iterations.svg}.}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Cantor_set_in_seven_iterations}
+    \caption{Cantor set in seven iterations}
+    \label{fig:Cantor_set}
+\end{figure}
+One can prove that the Cantor set is uncountable. 
+\end{example}
+
+\medskip
+
+\begin{theorem}
+Cantor set is uncountable.
+\end{theorem}
+\begin{proof}
+Instead of the diagonal proof directly, we use Cantor's first proof of uncountability\footnote{This proof is by Gerald Edgar: \url{https://math.stackexchange.com/a/250762}.}. Let $C$ be the cantor set, and let $E = \{u_1,u_2,\cdots\}$ be a countable set. We construct a point of $C$ but not in $E$. First, $C \subseteq [0,1/3] \cup [2/3,1]$, and point $u_1$ does not belong to both of those intervals, so there is an interval $I_1$of length $1/3$ (one of the ones in the first stage of the construction of the Cantor set) with $u_1 \notin I_1$. Now when we remove the middle third of $I_1$ we get two intervals of length $1/3^2$. As before, $u_2$ does not belong to both of these intervals, so there is an interval $I_2 \subset I_1$ of length $1/3^2$ (one of the ones in the second stage of the construction of the Cantor set) with $u_2 \notin I_2$. Continue in this way to get $I_1 \supset I_2 \supset I_3 \supset \cdots \supset I_k \supset \cdots$ where $I_k$ has length $1/3^k$ (one of the intervals in the kth stage of the construction of the Cantor set) and $u_k \notin I_k$. Finally, we get a point $x \in \bigcap^\infty_{k=1} I_k$ where $x \in C$ but $x \notin u_k$ for all $k$.
+\end{proof}
+
+\medskip
+
+Next, we show a result regarding to the Hausdorff  dimension of the Cantor set.
+
+\medskip
+
+\begin{exercise}
+Let $\CC \subset [0,1]$ be the ternary Cantor set. Prove that $\dim_{\H}(\CC) \leq \log 2/\log 3$.
+\end{exercise}
+\begin{proof}
+Cantor set $\CC$ can be covered by $1$ segment of length $1$, or $2$ segments of length $1/3$, or $4$ segments of length $1/3^2$, $\cdots$, or $2^n$ segments of length $3^{-n}$ and so on. Let $s = \log 2/\log 3$, then by the definition of $\H^s_{\varepsilon}$, we have
+\begin{align*}
+    \H^s_{3^{-n}}(\CC) \leq \frac{\omega_s}{2^s} 2^n \left(3^{-n}\right)^s.
+\end{align*}
+Note that $3^s = \left(e^{\log 3}\right)^{\log 2/\log 3} = 2$ and $\left(3^{-n}\right)^3 = 2^{-n}$, then 
+\begin{align*}
+    \H^s_{3^{-n}}(\CC) \leq \frac{\omega_s}{2^s} 2^n \left(3^{-n}\right)^s = \frac{\omega_s}{2^s},
+\end{align*}
+letting $n \to \infty$ implies $\H^s(\CC) \leq \omega_s / 2^s$. Thus, $\dim_{\H}(\CC) \leq \log 2/\log 3$.
+\end{proof}
+
+\medskip
+
+Furthermore, $\dim_{\H}(\CC) = \log 2/\log 3$. It follows from the following theorem.
+
+\medskip
+
+\begin{theorem}
+For the Cantor set $\CC$, then
+\begin{align*}
+    \H^s(\CC) = \frac{\omega_s}{2^s}, \quad s = \frac{\log 2}{\log 3}.
+\end{align*}
+\end{theorem}
+
+\medskip
+
+\begin{example}[Koch snowflak]
+Let's introduce von Koch snowflake $K$ show as below\footnote{Figure source: \url{https://en.wikipedia.org/wiki/File:KochFlake.svg}.}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{KochFlake}
+    \caption{The first four iterations of the Koch snowflake}
+    \label{fig:koch_snowflake}
+\end{figure}
+
+Then $K$ is homeomorphic to the circle $S^1$. For $s = \log/\log 3$, then we have $0 < \H^s(K) < \infty$ and in fact,
+\begin{align*}
+    \dim_{\H}(K) = \frac{\log 4}{\log 3}.
+\end{align*}
+\end{example}
+
+\medskip
+
+\begin{proposition}
+In the definition of the Hausdorff measure, we can always assume that
+\begin{enumerate}[label=(\alph*)]
+    \item all sets $A_i$ are closed;
+    
+    \item or all sets $A_i$ are open.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item It is obvious, since $\operatorname{diam} \overline{A_i} = \operatorname{diam} A_i$ and we can replace $A_i$ by its closure.
+    
+    \item For any $E$ and fixed $\delta > 0$, there exists a family $\{A_i\}$ such that
+    \begin{align*}
+        \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\operatorname{diam} A_i)^s \leq \H^s_{\varepsilon}(E) + \frac{\delta}{2}, \quad \operatorname{diam} A_i < \varepsilon.
+    \end{align*}
+    Let $U_i = \bigcup_{x \in A_i} B(x, r_i)$ such that $A_i \subset U_i$, and $U_i$ is open. Also, 
+    \begin{align*}
+        \operatorname{diam} U_i \leq \operatorname{diam} A_i + 2r_i < \varepsilon,
+    \end{align*}
+    for some $r_i$ small enough. And we can take $r_i$ small such that
+    \begin{align*}
+        \frac{\omega_s}{2^s} (\operatorname{diam} U_i)^s \leq \frac{\omega_s}{2^s} (\operatorname{diam} A_i)^s + \frac{\delta}{2^{i+1}}.
+    \end{align*}
+    
+    Then, since $\{U_i\}$ is also a covering of $E$ with $\operatorname{diam} U_i < \varepsilon$, then
+    \begin{align*}
+        \H^s_{\varepsilon}(E) \leq \frac{\omega_s}{2^s} (\operatorname{diam} U_i)^s \leq \frac{\omega_s}{2^s} (\operatorname{diam} A_i)^s + \frac{\delta}{2} \leq \H^s_{\varepsilon}(E) + \delta,
+    \end{align*}
+    which implies
+    \begin{align*}
+        \H^s_{\varepsilon}(E) = \inf \frac{\omega_s}{2^s} (\operatorname{diam} U_i)^s,
+    \end{align*}
+    and the infimum is taken over all open coverings $\{U_i\}$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{corollary}\label{coro_15}
+In the definition of $\H^s$ on $\mathbb{R}$, we can take coverings by open intervals.
+\end{corollary}
+\begin{proof}
+We can take coverings by open sets, but each open set is contained in an open interval of equal diameter.
+\end{proof}
+
+\medskip
+
+Recall that $\H^s$ is a metric outer measure on a metric space $X$. Also, $\H^s$ restricted to $\BB(X)$ is countably additive, i.e. $\H^s$ is a Borel measure\footnote{A {\em Borel measure} is any measure $\mu$  defined on the $\sigma$-algebra of Borel sets\cite{4}.}.
+
+\medskip
+
+\begin{theorem}\label{theorem_119}
+$\H^1$ is a measure on $\BB(\mathbb{R})$ such that
+\begin{align}\label{theorem_119_1}
+    \H^1((a,b)) = b - a,
+\end{align}
+if $- \infty < a < b < \infty$. Moreover, $\H^1$ is a unique measure with this property, that is, if $\mu$ is a measure on $\BB(\mathbb{R})$ such that $\mu((a,b)) = b - a$ if $- \infty < a < b < \infty$, then $\mu(E) = \H^1(E)$ for all $E \in \BB(\mathbb{R})$.
+\end{theorem}
+
+\medskip
+
+$\H^1$ is a measure on $\BB(\mathbb{R})$. Assuming condition (\ref{theorem_119_1}), the uniqueness is easy to prove. 
+
+\medskip
+
+\begin{theorem}\label{theorem_120}
+Let $X$ be a metric space, $\mu$ is a measure on $\BB(X)$, $X = \bigcup^\infty_{i=1}U_i$, where $U_i$ is open and $\mu(U_i) < \infty$. Suppose $\nu$ is another measure such that for any open set $U \subset X$, $\nu(U) = \mu(U)$, then for any $E \in \BB(X)$, $\nu(E) = \mu(E)$.
+\end{theorem}
+\begin{proof}
+Since $X$ is a countable union of open sets with finite measure, by Theorem \ref{theorem_114}, then
+\begin{align*}
+    \mu(E) = \inf_{\substack{U \subset E\\ U - \text{open}}} \mu(U) = \inf_{\substack{U \subset E\\ U - \text{open}}} \nu(U) = \nu(E).
+\end{align*}
+\end{proof}
+
+\medskip
+
+Now let's use this theorem to prove the uniqueness of the previous theorem.
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_119}]
+~\begin{enumerate}[label=(\alph*)]
+    \item Since $\H^1((a,b)) = \mu((a,b))$, by Corollary \ref{coro_15}, $\H^1(U) = \mu(U)$ for any open set $U \subset \mathbb{R}$. Thus, by Theorem \ref{theorem_120}, $\H^1(E) = \mu(E)$ for any $E \in \BB(\mathbb{R})$. Hence, the uniqueness is proved.
+    
+    \item It remains to prove that $\H^1((a,b)) = b - a$. 
+
+    First, for any $\varepsilon > 0$, divide $[a,b]$ into small intervals $I_1, I_2, \cdots$, such that $\operatorname{diam}(I_i) < \varepsilon$. Note that $\sum^\infty_{i=1}\operatorname{diam}(I_i) = b - a$. Then,
+    \begin{align*}
+        \H^1_{\varepsilon}([a,b]) \leq \frac{\omega_1}{2^1} \sum^\infty_{i=1}(\operatorname{diam} (I_i))^1 = b - a,
+    \end{align*}
+    since $\omega_1 = \operatorname{vol}\left(B^1(0,1)\right) = \operatorname{vol}\left((-1,1)\right) = 2$. Letting $\varepsilon \to 0$ gives $\H^1([a,b]) \leq b - a$.
+    
+    Second, taking infimum over coverings by open intervals $[a,b] \subset \bigcup^\infty_{i=1}U_i$, where $U_i$ is open interval and $\operatorname{diam}(U_i) < \varepsilon$ and then we have
+    \begin{align*}
+        \H^1_{\varepsilon}([a,b]) = \inf \sum^\infty_{i=1} \operatorname{diam}(U_i).
+    \end{align*}
+    Since $[a,b]$ is compact, then there exists finite coverings of $[a,b]$ by open intervals.
+\end{enumerate}
+\end{proof}
+
+
+
+
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+\end{document}
