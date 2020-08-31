@@ -39,6 +39,7 @@
 \usepackage{blindtext}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
+\usepackage[titletoc]{appendix}
 \graphicspath{{images/}}
 
 
@@ -591,7 +592,7 @@ And ``ordered triples'' $(X, \MM, \mu)$ is called a measure space. If $\mu(X) < 
 If $X$ is an arbitrary set, and $\mu: P(X) \to [0,\infty]$ is defined by $\mu(E) = m$ if $E$ is finite and has $m$ elements, $\mu(E) = \infty$ if $E$ is infinite, then $\mu$ is a measure and called {\em counting measure}.
 \end{example}
 
-\begin{theorem}[{\bf Elementary properties of measures}]\label{theorem_15}
+\begin{theorem}[{\bf Elementary properties of measures}]\label{theorem_111}
 Let $(X, \MM, \mu)$ be a measure space. Then
 \begin{enumerate}[label=(\alph*)]
     \item If the sets $A_1, A_2, \cdots, A_n \in \MM$ are pairwise disjoint, then $\mu \left(\bigcup^n_{i=1} A_i \right) = \sum^n_{i=1} \mu(A_i)$.
@@ -904,14 +905,14 @@ Outer measure can lead to following important results.
 \begin{theorem}\label{theorem_114}
 Let $X$ be a metric space and $\mu$ a measure in $\mathfrak{B}(X)$. Suppose that $X$ is a union of countable many open sets of finite measure. Then, for any $E \in \mathfrak{B}(X)$, 
 \begin{align*}
-    \mu(E) = \inf_{\substack{U \subset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{C \subset E\\ C - \text{closed}}} \mu(C).
+    \mu(E) = \inf_{\substack{U \supset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{C \subset E\\ C - \text{closed}}} \mu(C).
 \end{align*}
 \end{theorem}
 
 
 This theorem gives a fantastic result to compute measure. For example, if there is a measure on $\mathfrak{B}(\mathbb{R})$ such that $\mu((a,b)) = b - a$, then it is easy to compute $\mu(U)$, where $U \subset \mathbb{R}$ is open and hence for $E \in \mathfrak{B}(\mathbb{R})$,
 \begin{align*}
-    \mu(E) = \inf_{\substack{U \subset E\\ U \in \mathbb{R} - \text{open}}} \mu(U).
+    \mu(E) = \inf_{\substack{U \supset E\\ U \in \mathbb{R} - \text{open}}} \mu(U).
 \end{align*}
 The existence of such a measure will be proved later.
 
@@ -937,7 +938,7 @@ where the last step comes from the theorem above.
 \begin{definition}
 Let $X$ be a metric space and $\mu$ is a measure defined on the $\sigma$-algebra of Borel sets. We say $\mu$ is a Radon measure if $\mu(K) < \infty$ for any compact set $K$ and 
 \begin{align*}
-    \mu(E) = \inf_{\substack{U \subset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{K \subset E\\ K - \text{compact}}} \mu(K), \,\, \text{for all}\,\, E \subset \mathfrak{B}(X).
+    \mu(E) = \inf_{\substack{U \supset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{K \subset E\\ K - \text{compact}}} \mu(K), \,\, \text{for all}\,\, E \subset \mathfrak{B}(X).
 \end{align*}
 \end{definition}
 
@@ -949,7 +950,7 @@ If $X$ is a locally compact\footnote{A metric space $X$ is called {\em locally c
 \begin{proof}
 Since $X$ is separable, then it has a countable, dense subsets. Also, since $X$ is locally compact, then there exists countable open sets $U_i$ such that $X = \bigcup^\infty_{i=1} U_i$, and each $\overline{U_i}$ is compact. By assumption, $\mu(U_i) \leq \mu(\overline{U_i}) < \infty$. By Theorem \ref{theorem_114},
 \begin{align*}
-    \mu(E) = \inf_{\substack{U \subset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{C \subset E\\ C - \text{closed}}} \mu(C), \,\, \text{for all}\,\, E \subset \mathfrak{B}(X).
+    \mu(E) = \inf_{\substack{U \supset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{C \subset E\\ C - \text{closed}}} \mu(C), \,\, \text{for all}\,\, E \subset \mathfrak{B}(X).
 \end{align*}
 
 We need to show 
@@ -961,7 +962,7 @@ Let
 \begin{align*}
     C = \bigcup^\infty_{n=1} \left(C \cap \bigcup^n_{i=1} \overline{U_i} \right),
 \end{align*}
-and $K = C \cap \bigcup^n_{i=1} \overline{U_i}$ is compact. By Theorem \ref{theorem_15}(f), for any closed set $C \subset X$,
+and $K = C \cap \bigcup^n_{i=1} \overline{U_i}$ is compact. By Theorem \ref{theorem_111}(f), for any closed set $C \subset X$,
 \begin{align*}
     \mu(C) = \sup_{K \subset C} \mu(K),
 \end{align*}
@@ -997,7 +998,7 @@ then the proof is complete.
     \begin{align*}
         \mu(V_n) = \mu(V_n \setminus E) + \mu(V_n \cap E) < \mu^*(V_n \setminus E) + \mu^*(V_n \cap E) = \mu^*(V_n),
     \end{align*}
-    then we could only have equalities in (\ref{theorem_114_3}). In particular, $\mu(V_n \cap E) = \mu^*(V_n \cap E)$. Letting $n \to \infty$ and by Theorem \ref{theorem_15}(f), 
+    then we could only have equalities in (\ref{theorem_114_3}). In particular, $\mu(V_n \cap E) = \mu^*(V_n \cap E)$. Letting $n \to \infty$ and by Theorem \ref{theorem_111}(f), 
     \begin{align*}
         \mu(E) \leftarrow \mu(V_n \cap E) = \mu^*(V_n \cap E) \rightarrow \mu^*(E).
     \end{align*}
@@ -1031,9 +1032,9 @@ then the proof is complete.
 
 \medskip
 
-\section{Hausdroff measure}
+\section{Hausdroff measure}\label{hausdorff_measure}
 
-Let $\omega_s = \pi^{s/2} / \Gamma(1 + s/2)$, $s \geq 0$, $\Gamma$ is Euler gamma function defined by $\displaystyle \Gamma(s) = \int^\infty_0 x^{s-1} e^{-x}\, dx$. Note that $\omega_0 = 1$ and if $s = n \in \mathbb{N}$, then $\omega_n$ is volume of the unit ball in $\mathbb{R}^n$. And the volume of ball $B = B^n(x,r) \subset \mathbb{R}^n$ equals 
+Let $\omega_s = \pi^{s/2} / \Gamma(1 + s/2)$, $s \geq 0$, $\Gamma$ is Euler gamma function. Note that $\omega_0 = 1$ and if $s = n \in \mathbb{N}$, then $\omega_n$ is volume of the unit ball\footnote{See Appendix \ref{appendix_a}.} in $\mathbb{R}^n$. And the volume of ball $B = B^n(x,r) \subset \mathbb{R}^n$ equals 
 \begin{align*}
     \operatorname{vol}(B) = \omega_n r^n = \frac{\omega_n}{2^n} \left(\operatorname{diam} B\right)^n.
 \end{align*}
@@ -1119,7 +1120,7 @@ $\mathcal{H}^s$ is a metric outer measure.
         \end{align*}
         For fixed $\delta > 0$, there exists a covering for each $E_n$,
         \begin{align*}
-            E_n \subset \bigcup^\infty_{i=1} A_{ni},  \operatorname{diam} A_{ni} < \varepsilon,
+            E_n \subset \bigcup^\infty_{i=1} A_{ni},\quad  \operatorname{diam} A_{ni} < \varepsilon,
         \end{align*}
         such that
         \begin{align*}
@@ -1185,7 +1186,7 @@ Thus, $\mathcal{H}^s$ is a metric outer measure.
 
 \medskip
 
-\begin{corollary}
+\begin{corollary}\label{coro_14}
 $\mathcal{H}^s$ is countable additive measure on the class of all Borel sets $\mathfrak{B}(X)$.
 \end{corollary}
 
@@ -1319,7 +1320,7 @@ Then $K$ is homeomorphic to the circle $S^1$. For $s = \log/\log 3$, then we hav
 
 \medskip
 
-\begin{proposition}
+\begin{proposition}\label{prop_15}
 In the definition of the Hausdorff measure, we can always assume that
 \begin{enumerate}[label=(\alph*)]
     \item all sets $A_i$ are closed;
@@ -1407,22 +1408,312 @@ Now let's use this theorem to prove the uniqueness of the previous theorem.
     
     \item It remains to prove that $\H^1((a,b)) = b - a$. 
 
-    First, for any $\varepsilon > 0$, divide $[a,b]$ into small intervals $I_1, I_2, \cdots$, such that $\operatorname{diam}(I_i) < \varepsilon$. Note that $\sum^\infty_{i=1}\operatorname{diam}(I_i) = b - a$. Then,
+    First, for any $\varepsilon > 0$, divide $[a,b]$ into small intervals $I_1, I_2, \cdots$, such that $\operatorname{diam} I_i < \varepsilon$. Note that $\sum^\infty_{i=1}\operatorname{diam} I_i = b - a$. Then,
     \begin{align*}
-        \H^1_{\varepsilon}([a,b]) \leq \frac{\omega_1}{2^1} \sum^\infty_{i=1}(\operatorname{diam} (I_i))^1 = b - a,
+        \H^1_{\varepsilon}([a,b]) \leq \frac{\omega_1}{2^1} \sum^\infty_{i=1}(\operatorname{diam} I_i)^1 = b - a,
     \end{align*}
     since $\omega_1 = \operatorname{vol}\left(B^1(0,1)\right) = \operatorname{vol}\left((-1,1)\right) = 2$. Letting $\varepsilon \to 0$ gives $\H^1([a,b]) \leq b - a$.
     
-    Second, taking infimum over coverings by open intervals $[a,b] \subset \bigcup^\infty_{i=1}U_i$, where $U_i$ is open interval and $\operatorname{diam}(U_i) < \varepsilon$ and then we have
+    Second, taking infimum over coverings by open intervals $[a,b] \subset \bigcup^\infty_{i=1}U_i$, where $U_i$ is open interval and $\operatorname{diam} U_i < \varepsilon$ and then we have
     \begin{align*}
-        \H^1_{\varepsilon}([a,b]) = \inf \sum^\infty_{i=1} \operatorname{diam}(U_i).
+        \H^1_{\varepsilon}([a,b]) = \inf \sum^\infty_{i=1} \operatorname{diam} U_i.
     \end{align*}
-    Since $[a,b]$ is compact, then there exists finite coverings of $[a,b]$ by open intervals.
+    Since $[a,b]$ is compact, then there exists finite coverings of $[a,b]$ by open intervals. Choose a finite open covering $\{I_i\}$ from $\{U_i\}$ such that $[a,b] \subset \bigcup^k_{i=1} I_i$, then 
+    \begin{align*}
+        \sum^\infty_{i=1}\operatorname{diam} U_i \geq \sum^k_{i=1} \operatorname{diam}I_i \geq b - a.
+    \end{align*}
+    Taking infimum over all covering by open intervals with $\operatorname{diam}U_i < \varepsilon$ implies
+    \begin{align*}
+        \H^1([a,b]) = \inf \sum^\infty_{i=1} \operatorname{diam}U_i \geq b - a.
+    \end{align*}
+    
+    It follows that $\H^1([a,b]) = b - a$, and thus $\H^1((a,b)) = b - a$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+Let's talk more about properties of the Hausdorff measure.
+
+\medskip
+
+\begin{theorem}\label{theorem_121}
+For $0 \leq s < \infty$ and every $E \subset X$ (not necessarily measurable), there is a sequence of open sets $V_1 \supset V_2 \supset V_3 \supset \cdots \supset E$ such that 
+\begin{align*}
+    E \subset \widetilde{E} \coloneqq \bigcap^\infty_{i=1} V_i,
+\end{align*}
+and $\H^s(E) = \H^s (\widetilde{E})$.
+\end{theorem}
+\begin{proof}
+Note that $\widetilde{E}$ is $G_\delta$ set and hence Borel.
+
+If $\H^s(E) = \infty$, take $v_i = X$ for all $I \in \mathbb{N}$ would yield the statement.
+
+If $\H^s(E) < \infty$, by Proposition \ref{prop_15}, we can taking coverings by open sets in the definition of $\H^s$. So, we could find a covering $\{U_{i_j}\}$ such that
+\begin{align*}
+    E \subset \bigcup^\infty_{j=1} U_{i_j} \coloneqq U_i, \quad \operatorname{diam} U_{i_j} < \frac{1}{i}.
+\end{align*}
+and by the definition of $\H^s_{1/i} (E)$, we have
+\begin{align*}
+    \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} U_{i_j}\right)^s \leq \H^s_{1/i} (E) + \frac{1}{i}.
+\end{align*}
+
+Let $V_i = \bigcap^i_{k=1}U_k$ be open, and clearly, $V_1 \supset V_2 \supset V_3 \supset \cdots \supset E$. Also, 
+\begin{align*}
+    \widetilde{E} \coloneqq \bigcap^\infty_{i=1} V_i = \bigcap^\infty_{i=1} U_i.
+\end{align*}
+
+We need to prove that $\H^s(E) = \H^s (\widetilde{E})$, and since $E \subset \widetilde{E}$ implies $\H^s(E) \leq \H^s(\widetilde{E})$, it remains to prove that $\H^s(E) \geq \H^s(\widetilde{E})$. Clearly,
+\begin{align*}
+    \widetilde{E} \subset U_i = \bigcup^\infty_{j=1} U_{i_j},
+\end{align*}
+then $\{U_{i_j}\}$ is a covering of $\widetilde{E}$ with $\operatorname{diam} U_{i_j} < 1/i$. Therefore,
+\begin{align*}
+    \H^s_{1/i}(\widetilde{E}) \leq \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} U_{i_j}\right)^s \leq \H^s_{1/i}(E) + \frac{1}{i},
+\end{align*}
+and letting $i \to \infty$ gives
+\begin{align*}
+    \H^s(\widetilde{E}) \leq \H^s(E).
+\end{align*}
+Thus, $\H^s(E) = \H^s (\widetilde{E})$.
+\end{proof}
+
+\medskip
+
+\begin{corollary}
+If $0 \leq s < \infty$, $\H^s(X) < \infty$ and $E \subset X$ (not necessarily measurable), then \begin{align*}
+    \H^s(E) =  \inf_{\substack{U \supset E\\ U - \text{open}}} \H^s(U).
+\end{align*}
+\end{corollary}
+\begin{proof}
+Let $V_i$ be as in the previous theorem. Clearly, $\H^1(V_1) \leq \H^s(X) < \infty$ and then, by Theorem \ref{theorem_111}(g) and Corollary \ref{coro_14}, we have
+\begin{align*}
+    \lim_{i\to\infty} \H^1(V_i) = \H^s\left( \bigcap^\infty_{i=1} V_i\right) = \H^s(\widetilde{E}) = \H^s(E).
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{remark}
+Comparing this corollary with Theorem \ref{theorem_114}, we does not require $E$ being Borel set in the corollary.
+\end{remark}
+
+\medskip
+
+\begin{theorem}
+Let $E \subset X$ be any $\H^s$-measurable set, $0 \leq s < \infty$. If $\H^s(E) < \infty$, then \begin{align*}
+    \H^s(E) = \sup_{\substack{C \subset E\\ C - \text{closed}}} \H^s(C).
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is enough to prove that for any $\varepsilon > 0$, there exists a $F_\sigma$ subset of $E$ with $\H^s(F_\sigma) > \H^s(E) - \varepsilon$. For fixed $\varepsilon > 0$, by Theorem \ref{theorem_121}, let $\widetilde{E} = \bigcap^\infty_{i=1} V_i$, $V_i$ is open, such that $V_1 \supset V_2 \supset V_3 \supset \cdots \supset E$ and $\H^s(E) = \H^s(\widetilde{E})$. Hence, $\widetilde{E}$ is a $G_\delta$ set.
+
+Since $E$ has finite measure, so does $\widetilde{E}$. Also, since $E \subset \widetilde{E}$, we have $\H^s(\widetilde{E} \setminus E) = 0$. 
+
+We claim that each open set is a union of an increasing sequence of closed sets\footnote{Let $E \subset X$ be open. Define $C_i = \left\{x \,|\, \operatorname{dist}(x, (X\setminus E)) \geq 1/i\right\}$, then $C_1 \subset C_2 \subset \cdots$, and $E = \bigcup^\infty_{i=1}C_i$. This is based on an example in $\mathbb{R}^n$: \url{https://math.stackexchange.com/a/1620262}.}. Then, $V_i$ is a union of such closed sets $F_i$. Since $E \subset V_i$, then there exists a closed set $F_i \subset V_i$ such that $\H^s(E \setminus F_i) < \varepsilon / 2^i$. Define
+\begin{align*}
+    F \coloneqq \bigcap^\infty_{i=1} F_i \subset \bigcap^\infty_{i=1} V_i = \widetilde{E},
+\end{align*}
+then
+\begin{align*}
+    \H^s(E \setminus F) = \H^s \left(\bigcup^\infty_{i=1} (E \setminus F_i)\right) < \varepsilon.
+\end{align*}
+Also, $\H^s(F \setminus E) \leq \H^s(\widetilde{E} \setminus E) = 0$. Therefore, there is a $G_\delta$ set of $G$ such that $F \setminus E \subset G$ and $\H^s(G) = 0$. 
+
+Clearly, $F \setminus G$ is $F_\sigma$ set. Indeed, $G = \bigcap^\infty_{i=1} G_i$, and since $F \setminus G_i$ is closed, then
+\begin{align*}
+    F \setminus G = F \setminus \left(\bigcap^\infty_{i=1} G_i\right) = \bigcup^\infty_{i=1} (F \setminus G_i)
+\end{align*}
+is $F_\sigma$. Also, $F \setminus G \subset E$. Indeed, for $x \in F \setminus G$, we have $x \in F, x \notin G$. Since $F \setminus E \subset G$, then $x \in E$ and hence $F \setminus G \subset E$. Since $\H^s(G) = 0$, then 
+\begin{align*}
+    \H^s(F \setminus G) = \H^s(F) \geq \H^s(E \cap F) = \H^s(E) - \H^s(E \setminus F) > \H^s(E) - \varepsilon,
+\end{align*}
+and $F \setminus G$ is the subset we seek.
+\end{proof}
+
+\medskip
+
+\begin{remark}
+Comparing this theorem with Theorem \ref{theorem_114}, we does not require $X$ being of finite measure in this theorem.
+\end{remark}
+
+\medskip
+
+\begin{theorem}
+If $0 \leq s < \infty$ and $A_1 \subset A_2 \subset \cdots$ is an increasing sequence of not necessarily measurable sets, then
+\begin{align*}
+    \H^s \left(\bigcup^\infty_{i=1}A_i\right) = \lim_{i\to\infty} \H^s(A_i).
+\end{align*}
+\end{theorem}
+\begin{proof}
+It suffices to show $\H^s \left(\bigcup^\infty_{i=1}A_i\right) \geq \lim_{i\to\infty} \H^s(A_i)$, since the other direction is obvious by the fact that $\lim_{i\to\infty}A_i \subset \bigcup^\infty_{i=1}A_i$.
+
+Let $A_i \subset \widehat{A}_i$, where $\widehat{A}_i$ is a Borel set\footnote{This is possible by Theorem \ref{theorem_121} that any set (not necessarily measurable) is contained in a $G_\delta$ set of equal measure.} and $\H^s(A_i) = \H^s(\widehat{A}_i)$. Define $\widetilde{A}_i = \bigcap^\infty_{j=i} \widehat{A}_j$, and $\widetilde{A}_i$ is also Borel. Then, $A_i \subset \widetilde{A}_i$. Indeed,
+\begin{align*}
+    A_i \subset A_{i+1} & \subset \widehat{A}_{i+1}, \\
+    A_i \subset A_{i+2} & \subset \widehat{A}_{i+2}, \\
+    \vdots & 
+\end{align*}
+and hence $A_i \subset \bigcap^\infty_{j=i} \widehat{A}_i = \widetilde{A}_i$. Also, since $A_i \subset \widetilde{A}_i \subset \widehat{A}_i$ and $\H^s(A_i) = \H^s(\widehat{A}_i)$, then $\H^s(A_i) = \H^s(\widetilde{A}_i)$. Note that $\widetilde{A}_1 \subset \widetilde{A}_2 \subset \cdots$ are measurable sets, thus we have 
+\begin{align*}
+    \H^s\left(\bigcup^\infty_{i=1}A_i\right) \leq \H^s\left(\bigcup^\infty_{i=1}\widetilde{A}_i\right) = \lim_{i\to\infty} \H^s(\widetilde{A}_i) = \lim_{i\to\infty} \H^s(A_i),
+\end{align*}
+which is exactly the inequality we need.
+\end{proof}
+
+
+
+
+\begin{appendices}
+\chapter{Volume of the unit ball in $\mathbb{R}^n$}\label{appendix_a}
+
+We defined 
+\begin{align*}
+    \omega_s = \frac{\pi^{s/2}}{\Gamma(1 + s/2)},
+\end{align*}
+where $\Gamma$ is Euler gamma function in Section \ref{hausdorff_measure}. We want to prove that if $s = n \in \mathbb{N}$, then $\omega_n$ is volume of the unit ball in $\mathbb{R}^n$. First, the Euler gamma function is defined as
+\begin{align*}
+    \Gamma(x) = \int^\infty_{0} t^{x-1} e^{-t}\, dt, \quad 0 < x <\infty.
+\end{align*}
+Next, we discuss some properties of the gamma function.
+
+\medskip
+
+\begin{theorem}
+~\begin{enumerate}[label=(\alph*)]
+    \item $\Gamma(x+1) = x \Gamma(x)$,
+    
+    \item $\Gamma(n+1) = n!, n \in \mathbb{N}$,
+    
+    \item $\Gamma(1/2) = \sqrt{\pi}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item \begin{align*}
+        \Gamma(x+1) & = \int^\infty_{0} t^{x} e^{-t}\, dt = \underbrace{\left(-t^xe^t\right)\Big|^\infty_{t=0}}_{=\,0} + x \int^\infty_{0} t^{x-1} e^{-t}\, dt = x \Gamma(x).
+    \end{align*}
+    
+    \item Since $\displaystyle \Gamma(1) = \int^\infty_0 e^{-t}\, dt = 1$, then
+    \begin{align*}
+        \Gamma(2) = & 1 \cdot \Gamma(1) = 1, \\
+        \Gamma(3) = & 2 \cdot \Gamma(2) = 2, \\
+        \Gamma(4) = & 3 \cdot \Gamma(3) = 6,\\
+        & \vdots \\
+        \Gamma(n+1) & = n \cdot \Gamma(n) = n!.
+    \end{align*}
+    
+    \item We need a lemma to prove this part.
+    \begin{lemma} The integral of the Gaussian function $f(x) = e^{-x^2}$ is
+    $\displaystyle \int^\infty_{-\infty} e^{-x^2}\, dx = \sqrt{\pi}$ or $\displaystyle \int^\infty_0 e^{-x^2}\, dx = \frac{\sqrt{\pi}}{2}$.
+    \end{lemma}
+    \begin{proof}
+    A standard way to compute the Gaussian integral is to make use of the property that\footnote{Proof source: \url{https://www.wikiwand.com/en/Gaussian_integral}.}:
+    \begin{align*}
+        \left(\int^\infty_{-\infty} e^{-x^2}\, dx\right)^2 = \int^\infty_{-\infty} e^{-x^2}\, dx \int^\infty_{-\infty} e^{-y^2}\, dy = \int^\infty_{-\infty} \int^\infty_{-\infty} e^{-(x^2+y^2)}\, dxdy.
+    \end{align*}
+    Using polar coordinates gives
+    \begin{align*}
+        \int^\infty_{-\infty} \int^\infty_{-\infty} e^{-(x^2+y^2)}\, dxdy = \int^{2\pi}_0 \int^\infty_0 e^{-r^2} r \, dr d\theta = 2\pi \int^\infty_0 r e^{-r^2} \, dr = 2\pi \left(-\frac{1}{2} e^{-r^2}\right) \Bigg|^\infty_0 = \pi.
+    \end{align*}
+    \end{proof}
+    
+    Now for the gamma function, let $t = s^2$, then $\displaystyle \Gamma(x) = 2 \int^\infty_0 s^{2x-1} e^{-s^2}\, ds$, and by lemma, hence $\displaystyle \Gamma(1/2) = \int^\infty_{-\infty} e^{-s^2}\, ds = \sqrt{\pi}$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{remark}
+We can define $\Gamma(x) = \Gamma(x+1) / x$ even if $x < 0$ but $x \notin \mathbb{Z}$. For example, 
+\begin{align*}
+    \Gamma\left(-\frac{3}{2}\right) = \frac{\Gamma\left(-1/2\right)}{-3/2} = \frac{\Gamma\left(1/2\right)}{3/4} = \frac{4\sqrt{\pi}}{3}.
+\end{align*}
+Thus, we can extend the gamma function to $x \in (-\infty, \infty) \setminus \{0, -1, -2, \cdots\}$.
+\end{remark}
+
+\medskip
+
+\begin{lemma}
+$\displaystyle \int^{\pi/2}_0 \sin^n(\theta)\, d\theta = \frac{\sqrt{\pi} \, \Gamma\left(\frac{n+1}{2}\right)}{n \Gamma\left(\frac{n}{2}\right)}$, $n = 1,2,\cdots$.
+\end{lemma}
+\begin{proof}
+Denote the left hand side by $a_n$ and right hand side by $b_n$. For $a_n$,
+\begin{align*}
+    a_{n+2} & = \int^{\pi/2}_0 \sin^{n+1}(\theta) \sin (\theta)\, d\theta \\
+    & = \underbrace{\left( - \sin^{n+1}(\theta) \cos(\theta) \right)\Big|^{\pi/2}_0}_{=\, 0} + (n+1) \int^{\pi/2}_0 \sin^n(\theta) \underbrace{\cos^2(\theta)}_{=\, 1 - \sin^2(\theta)}\, d\theta \\
+    & = (n+1)(a_n - a_{n+2}),
+\end{align*}
+and then
+\begin{align*}
+    a_{n+2} = \frac{n+1}{n+2}a_n.
+\end{align*}
+
+For $b_n$,
+\begin{align*}
+    b_{n+2} = \frac{\sqrt{\pi} \, \Gamma\left(\frac{n+1}{2} + 1\right)}{(n+2) \Gamma\left(\frac{n}{2} + 1\right)} = \frac{\sqrt{\pi} \frac{n+1}{2} \Gamma\left(\frac{n+1}{2}\right)}{(n+2) \frac{n}{2} \Gamma\left(\frac{n}{2}\right)} = \frac{n+1}{n+2} b_n,
+\end{align*}
+and then
+\begin{align*}
+    b_{n+2} = \frac{n+1}{n+2}b_n.
+\end{align*}
+Also, since $a_1 = b_1 = 1$, $a_2 = b_2 = \pi/4$, the lemma follows.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+~\begin{enumerate}[label=(\alph*)]
+    \item The volume $\omega_n$ of the unit ball in $\mathbb{R}^n$ equals
+    \begin{align*}
+        \omega_n = \frac{2\pi^{n/2}}{n \Gamma(n/2)} = \frac{\pi^{n/2}}{\Gamma(n/2 + 1)}.
+    \end{align*}
+    
+    \item The surface area, or $(n-1)$-volume $S_{n-1}$ of boundary sphere $S^{n-1}(0,1)$ equals $n \omega_n$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Considering the unit ball in $3$ dimensional would be helpful, and the horizontal view is shown below:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \draw (0,0) circle (2);
+            \draw[-] (0,0)--(1.732,1) node[pos=.5, below right]{$1$};
+            \draw[-] (0,0) node[below left]{$0$}--(0, 2) node[pos=.1, above right]{$\theta$} node[pos=.7, left]{$h$};
+            \draw[dotted,-] (0,1) -- (1.732,1) node[pos=0.5, above]{$r(h)$};
+            \draw[dotted,-] (0,1) -- (-1.732,1);
+        \end{tikzpicture}
+        \caption{The horizontal view of unit ball in $\mathbb{R}^3$}
+        \label{fig:unit_ball}
+    \end{figure}
+    We have $r(h) = \sin(\theta)$, and $h = 1 - \cos(\theta)$. Using Fubini's theorem, consider the upper half of the unit ball, we have
+    \begin{align*}
+        \frac{1}{2}\omega_n & = \int^1_0 \omega_{n-1} r(h)^{n-1} \, dh \\
+        & = \omega_{n-1} \int^{\pi/2}_0 \sin^{n-1}(\theta) \underbrace{\sin(\theta)}_{dh}\, d\theta \\
+        & = \omega_{n-1} \frac{\sqrt{\pi} \, \Gamma\left(\frac{n+1}{2}\right)}{n \Gamma\left(\frac{n}{2}\right)},
+    \end{align*}
+    which implies
+    \begin{align*}
+        \omega_n = \frac{2 \sqrt{\pi}\, \Gamma\left(\frac{n+1}{2}\right)}{n \Gamma\left(\frac{n}{2}\right)} \omega_{n-1}.
+    \end{align*}
+    If $a_n = 2\pi^{n/2}/(n \Gamma(n/2))$, then $a_1 = 2 = \omega_1$, and $a_n$ satisfies the same recurrence as $\omega_n$. Thus, $\omega_n = a_n$ for all $n = 1,2,\cdots$.
+    
+    \item Representing the unit $n$-ball as a union of concentric $(n - 1)$-sphere gives
+    \begin{align*}
+        \omega_n = \int^1_0 S_{n-1} r^{n-1} \, dr = \frac{1}{n} S_{n-1},
+    \end{align*}
+    which proves the statemnt.
 \end{enumerate}
 \end{proof}
 
 
 
+
+
+
+
+\end{appendices}
 
 \newpage
 \bibliographystyle{unsrt}
