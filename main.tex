@@ -1596,15 +1596,16 @@ Next, we discuss some properties of the gamma function.
     
     \item Since $\displaystyle \Gamma(1) = \int^\infty_0 e^{-t}\, dt = 1$, then
     \begin{align*}
-        \Gamma(2) = & 1 \cdot \Gamma(1) = 1, \\
-        \Gamma(3) = & 2 \cdot \Gamma(2) = 2, \\
-        \Gamma(4) = & 3 \cdot \Gamma(3) = 6,\\
-        & \vdots \\
-        \Gamma(n+1) & = n \cdot \Gamma(n) = n!.
+        \Gamma(2) = 1 & \cdot \Gamma(1) = 1, \\
+        \Gamma(3) = 2 & \cdot \Gamma(2) = 2, \\
+        \Gamma(4) = 3 & \cdot \Gamma(3) = 6,\\
+        & \, \vdots \\
+        \Gamma(n+1) = n & \cdot \Gamma(n) = n!.
     \end{align*}
     
     \item We need a lemma to prove this part.
-    \begin{lemma} The integral of the Gaussian function $f(x) = e^{-x^2}$ is
+    \begin{lemma}\label{lemma_A2}
+    The integral of the Gaussian function $f(x) = e^{-x^2}$ is
     $\displaystyle \int^\infty_{-\infty} e^{-x^2}\, dx = \sqrt{\pi}$ or $\displaystyle \int^\infty_0 e^{-x^2}\, dx = \frac{\sqrt{\pi}}{2}$.
     \end{lemma}
     \begin{proof}
@@ -1618,7 +1619,7 @@ Next, we discuss some properties of the gamma function.
     \end{align*}
     \end{proof}
     
-    Now for the gamma function, let $t = s^2$, then $\displaystyle \Gamma(x) = 2 \int^\infty_0 s^{2x-1} e^{-s^2}\, ds$, and by lemma, hence $\displaystyle \Gamma(1/2) = \int^\infty_{-\infty} e^{-s^2}\, ds = \sqrt{\pi}$.
+    Now for the gamma function, let $t = s^2$, then $\displaystyle \Gamma(x) = 2 \int^\infty_0 s^{2x-1} e^{-s^2}\, ds$. Also by Lemma \ref{lemma_A2}, we have $\displaystyle \Gamma(1/2) = \int^\infty_{-\infty} e^{-s^2}\, ds = \sqrt{\pi}$, which proved the theorem.
 \end{enumerate}
 \end{proof}
 
@@ -1674,7 +1675,7 @@ Also, since $a_1 = b_1 = 1$, $a_2 = b_2 = \pi/4$, the lemma follows.
 \end{theorem}
 \begin{proof}
 ~\begin{enumerate}[label=(\alph*)]
-    \item Considering the unit ball in $3$ dimensional would be helpful, and the horizontal view is shown below:
+    \item Considering the unit ball in $\mathbb{R}^3$ would be helpful, and the horizontal view is shown below:
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[scale=1]
@@ -1697,13 +1698,13 @@ Also, since $a_1 = b_1 = 1$, $a_2 = b_2 = \pi/4$, the lemma follows.
     \begin{align*}
         \omega_n = \frac{2 \sqrt{\pi}\, \Gamma\left(\frac{n+1}{2}\right)}{n \Gamma\left(\frac{n}{2}\right)} \omega_{n-1}.
     \end{align*}
-    If $a_n = 2\pi^{n/2}/(n \Gamma(n/2))$, then $a_1 = 2 = \omega_1$, and $a_n$ satisfies the same recurrence as $\omega_n$. Thus, $\omega_n = a_n$ for all $n = 1,2,\cdots$.
+    If $\displaystyle a_n = \frac{2\pi^{n/2}}{n \Gamma(n/2)}$, then $a_1 = 2 = \omega_1$, and $a_n$ satisfies the same recurrence as $\omega_n$. Thus, $\omega_n = a_n$ for all $n = 1,2,\cdots$.
     
     \item Representing the unit $n$-ball as a union of concentric $(n - 1)$-sphere gives
     \begin{align*}
         \omega_n = \int^1_0 S_{n-1} r^{n-1} \, dr = \frac{1}{n} S_{n-1},
     \end{align*}
-    which proves the statemnt.
+    which proves the theorem.
 \end{enumerate}
 \end{proof}
 
