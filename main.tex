@@ -40,7 +40,13 @@
 \usepackage{xcolor}
 \usepackage{fancyhdr}
 \usepackage{appendix}
+\usepackage{titlesec}
 \graphicspath{{images/}}
+
+\titleformat{\chapter}[display]{\huge\bfseries\itshape}{Chapter \thechapter}{0.5ex}{}[]
+
+\titleformat{\section}[block]{\Large\bfseries\itshape}{\thesection}{0.5ex}{}[]
+
 
 
 \usepackage{hyperref}
@@ -115,6 +121,7 @@
 \fancyhead[RE]{\leftmark}
 \fancyhead[LO]{\rightmark}
 \fancyhead[RO]{\thepage}
+
 
 
 \def\dsp{\def\baselinestretch{1.35}\large
@@ -372,7 +379,7 @@ Since $x_n \in \overline{B}(x_m,r_m)$ for $n > m$, then $x \in \overline{B}(x_n,
 $\mathbb{Q}$ is not a $G_\sigma$ set, i.e. $\mathbb{Q} \in F_\delta \setminus G_\sigma$.
 \end{example}
 \begin{proof}
-Suppose $\mathbb{Q}$ is $G_\sigma$, then $\mathbb{Q} = \bigcap^\infty_{i=1} G_i$, where $G_i$ is dense in $\mathbb{R}$. Let $\widetilde{G_i} = \mathbb{R} \setminus \{q_i\}$ for $i = 1,2,\cdots$, which are open and dense. Now,
+Suppose $\mathbb{Q}$ is $G_\sigma$, then $\mathbb{Q} = \bigcap^\infty_{i=1} G_i$, where $G_i$ is dense in $\mathbb{R}$. Let $\widetilde{G_i} = \mathbb{R} \setminus \{q_i\}, q_i \in \mathbb{Q}$ for $i = 1,2,\cdots$, which are open and dense. Now,
 \begin{align*}
     \left(\bigcap^\infty_{i=1}G_i\right) \cap \left(\bigcap^\infty_{i=1}\widetilde{G_i}\right) = \mathbb{Q} \cap (\mathbb{R} \setminus \mathbb{Q}) = \emptyset,
 \end{align*}
@@ -1233,8 +1240,7 @@ Prove that
     \end{align*}
     Thus, we have
     \begin{align*}
-        \H^t_{\varepsilon}(E) & \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} (\operatorname{diam} A_i)^s (\operatorname{diam} A_i)^{t - s} \\
-        & \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} \varepsilon^{t - s} (\operatorname{diam} A_i)^s \\
+        \H^t_{\varepsilon}(E) & \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} (\operatorname{diam} A_i)^s (\operatorname{diam} A_i)^{t - s} \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} \varepsilon^{t - s} (\operatorname{diam} A_i)^s \\
         & \leq \frac{\omega_t}{2^t} \frac{2^s}{\omega_s} \varepsilon^{t-s} \left( \H^s(E) + 1\right) \xrightarrow[]{\varepsilon \to 0} 0.
     \end{align*}
     
