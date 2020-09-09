@@ -1,0 +1,123 @@
+\section{Well-ordering}
+\begin{theorem}[{\bf Axiom of choice}]
+Given a family of sets $\{X_i\}_{i \in I}$, where $X_i \cap X_j = \emptyset$ for $i \neq j$. Thus, there is a set $X$ such that for all $i \in I$, $X \cap X_i$ is a singleton set.
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+Ordering $<$ in a set $(A, <)$ is an ordering relation if the followings are satisfied:
+\begin{enumerate}[label=(\alph*)]
+    \item for any $a, b \in A$, $a \neq b$, then $a < b$ or $b < a$;
+    
+    \item for any $a, b \in A$, if $a < b$, then $b \nless a$, also $a \nless a$ (irreflexive);
+    
+    \item for any $a, b, c \in A$, if $a < b$ and $b < c$, then $a < c$ (transitive).
+\end{enumerate}
+\end{definition}
+
+\medskip
+
+\begin{example}
+$\mathbb{N}, \mathbb{Q}$ and $\mathbb{R}$.
+\end{example}
+
+\medskip
+
+\begin{definition}
+$(A, <)$ and $(A^*, <^*)$ are similar if there is a bijection $\Phi: A \to A^*$ such that if for any $a, b \in A$ and $a < b$, then $\Phi(a) <^* \Phi(b)$.
+\end{definition}
+
+\medskip
+
+\begin{example}
+$\mathbb{N}$ and $\{1 - 1/n\}_{n \in \mathbb{N}}$ are similar.
+\end{example}
+
+\medskip
+
+\begin{theorem}
+Every countable order set is similar to a subset of $\mathbb{Q}$.
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+An ordering $(A,<)$ is well-ordering if every subset has the first smallest element.
+\end{definition}
+
+\medskip
+
+\begin{example}
+~\begin{enumerate}[label=(\alph*)]
+    \item $\mathbb{N}$, $\{1 - 1/n\}_{n \in \mathbb{N}}$ is well-ordering.
+    
+    \item $\{1 - 1/n\} \cup \{1\}, n \in \mathbb{N}$ is well-ordering.
+    
+    \item $\{k - 1/n\}, k,n \in \mathbb{N}$ is well-ordering.
+\end{enumerate}
+\end{example}
+
+\medskip
+
+If $(A,<)$ is well-ordering, then every element $a$ in $A$ has a successor $a+1$, if $a$ is not the last element in $A$, where $a+1$ means the first element in $\{b \in A\, | \, a < b\}$. In general, $a$ does not necessarily need a predecessor $a-1$.
+
+\medskip
+
+\begin{definition}
+A subset $B$ of $A$ is an initial interval if $b < a \in B$, then $b \in A$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+$(A,<)$ and $(B,<)$ are well-ordering, then $A$ is similar to an initial interval in $B$ or $B$ is similar to an initial interval in $A$.
+\end{theorem}
+
+\begin{remark}
+In general, $A$ is not similar to any initial interval in $A$ that is different than $A$.
+\end{remark}
+
+\medskip
+
+
+\section{Ordinal numbers}
+
+An {\em ordinal number} is a generalization of the concept of a natural number that is used to describe a way to arrange a collection of objects in order, e.g., first, second, third, etc. The first {\em transfinite ordinal}, denoted $\omega$, is the order of the set of nonnegative integers. Ordinal numbers are a well ordered set. In order of increasing size, the ordinal numbers are $0, 1, 2, \cdots, \omega, \omega + 1, \omega + 2, \cdots, \omega + \omega, \omega + \omega + 1$.
+
+\medskip
+
+\begin{example}
+~\begin{enumerate}[label=(\alph*)]
+    \item The set of all finite ordinals: $\mathbb{N}$ is denoted by symbol $\omega$.
+    
+    \item $\{1 - 1/n\}_{n \in \mathbb{N}}$ can also be denoted by $\omega$.
+    
+    \item $\{1 - 1/n\}_{n \in \mathbb{N}} \cup \{1\}$ can be denoted by $\omega + 1$.
+    
+    \item $\{k - 1/n\}_{k,n \in \mathbb{N}}$ can be denoted by $\omega + \omega + \cdots + \omega = \omega^2$.
+\end{enumerate}
+\end{example}
+
+\medskip
+
+\begin{remark}
+$1 + \omega: \underbrace{\bullet}_{1} \underbrace{\bullet \cdots \bullet}_{\omega} = \omega$. However, $\omega + 1: \underbrace{\bullet \cdots \bullet}_{\omega}  \underbrace{\bullet}_{1} = \omega + 1 > 1 + \omega = \omega$.
+\end{remark}
+
+\medskip
+
+\begin{theorem}[{\bf Transfinite induction}]
+Let $(A,<)$ be a well-ordering set and $\varphi$ is the property of elements of $A$. We write $\varphi(x)$ if $x$ has property $\varphi$. If the following statement is true: every element $y < x$ has property $\varphi(y)$, then all elements $x \in A$ has property $\varphi$.
+\end{theorem}
+\begin{proof}
+Suppose $Z = \{x \, |\, \neg \varphi(x)\}$, and let $x_0$ be the first element in $Z$. If $y < x_0$, then $y \notin Z$, and hence $\varphi(y)$. By the assumption, $\varphi(x_0)$, hence $x \notin Z$, which is a contradiction.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+Every set has a well-ordering.
+\end{theorem}
+
+\medskip

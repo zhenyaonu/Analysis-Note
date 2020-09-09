@@ -1,0 +1,100 @@
+In order to prove that the Hausdorff measure of the Cantor set $\CC$ is 
+\begin{align*}
+    \H^s(\CC) = \frac{\omega_s}{2^s}, \quad s = \frac{\log 2}{\log 3},
+\end{align*}
+we need the following corollary.
+
+\medskip
+
+\begin{corollary}
+$\dim_{\H}(\CC) = \log 2 / \log 3$.
+\end{corollary}
+\begin{proof}
+By Exercise \ref{exe_13}, we already know that $\dim_{\H}(\CC) \leq \log 2 / \log 3$.  Indeed, note that $\CC$ can be covered by $2^n$ intervals, each of length $3^{-n}$, then
+\begin{align*}
+    \H^s_{3^{-n}}(\CC) \leq \frac{\omega_s}{2^s} \left(3^{-n}\right)^s 2^n = \frac{\omega_s}{2^s},
+\end{align*}
+letting $n\to\infty$ yields $\dim_{\H}(\CC) \leq \log 2 / \log 3$.
+
+It remains to prove the other direction, that is if $\CC \subset \bigcup^\infty_{i=1} E_i$, then 
+\begin{align*}
+    \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\operatorname{diam} E_i)^s \geq \frac{\omega_s}{2^s}.
+\end{align*}
+Then we need to prove $\sum^\infty_{i=1} (\operatorname{diam} E_i)^s \geq 1$. Suppose to the contrary that there exists an open covering $\CC \subset \bigcup^\infty_{i=1} E_i$ such that 
+\begin{align*}
+    \sum^\infty_{i=1} (\operatorname{diam} E_i)^s \leq 1.
+\end{align*}
+For each $E_i$, let $a_i = \inf E_i, b_i = \sup E_i$, then $E_i \subset [a_i,b_i]$ and $\operatorname{diam} E_i = \operatorname{diam} [a_i,b_i]$. Then, 
+\begin{align*}
+    \CC \subset \bigcup^\infty_{i=1} [a_i,b_i], \quad \sum^\infty_{i=1} \left|b_i - a_i\right| < 1.
+\end{align*}
+We can assume $E_i = [a_i,b_i]$. Then, there exists a covering $\CC \subset \bigcup^\infty_{i=1} [a_i,b_i]$ such that 
+\begin{align*}
+    \sum^\infty_{i=1} \left|b_i - a_i\right| < 1 - \varepsilon.
+\end{align*}
+Take $\delta$ small enough, then 
+\begin{align*}
+    \CC \subset \bigcup^\infty_{i=1} \left(a_i-\frac{\delta}{2^i},b_i+\frac{\delta}{2^i}\right), \quad \sum^\infty_{i=1} \left|\left(a_i-\frac{\delta}{2^i},b_i+\frac{\delta}{2^i}\right)\right| < 1.
+\end{align*}
+Denote $U_i$ by the open interval $\left(a_i-\delta/2^i,b_i+\delta/2^i\right)$, then we can assume $E_i = U_i$. Since $\CC$ is compact, then every covering of $\CC$ has a finite subcovering, that is
+\begin{align*}
+    \CC \subset \bigcup^k_{i=1} U_i, \quad \sum^k_{i=1} \left|U_i\right| < 1.
+\end{align*}
+
+\medskip
+
+Now we need a lemma.
+
+\medskip
+
+\begin{lemma}
+If $X = \bigcup_{i\in I} U_i$ is a covering of a compact metric space by open intervals, then there exists a $r > 0$ (called the Lebesgue number of the covering) such that for all $x \in X$, there exists $i \in I$ such that $B(x,r) \subset U_i$.
+\end{lemma}
+\begin{proof}
+Suppose to the contrary that for all $r > 0$, there exists $x \in X$ such that for all $i \in I$, $B(x,r) \not\subset U_i$. 
+
+For $r = 1/n$, we can find a sequence $\{x_n\}$ such that $B(x_n,1/n)$ is not contained in any of $U_i$. Since $X$ is compact, then $\{x_n\}$ has a convergent subsequence $\{x_{n_k}\}$ converging to $x_0 \in U_{i_0}$ for some $i_0 \in I$. Then, by the definition of open set, there exists $\varepsilon > 0$ such that $B(x_0,\varepsilon) \subset U_{i_0}$. Since $x_{n_k} \to x_0$, $1/n_k \to 0$, then there exists $k_0 > 0$ such that
+\begin{align*}
+    B\left(x_{n_k},\frac{1}{n_k}\right) \subset B(x_0,\varepsilon) \subset U_{i_0},
+\end{align*}
+which is a contradiction.
+\end{proof}
+
+\medskip
+
+Now we resume the proof of corollary. We have 
+\begin{align*}
+    \CC \subset \bigcup^k_{i=1} U_i, \quad \sum^k_{i=1} \left|U_i\right| < 1,
+\end{align*}
+where $U_i$ are open. Then the lemma implies there exists $r > 0$, for all $x \in \CC$, there exists $i \in I$ such that $B(x,r) \subset U_i$.
+
+Since $\CC$ is covered by $2^n$ intervals $\{I^n_j\}^{2^n}_{j=1}$, each of length $3^{-n}$. If $3^{-n} < r$, then
+\begin{align*}
+    \bigcup^{2^n}_{i=1} I^n_i \subset \bigcup^k_{i=1} U_i,
+\end{align*}
+so $\{U_i\}^k_{i=1}$ covers all intervals in $\CC_n$, where $\CC_n$ is the $n$-th iteration in the Cantor set.
+
+
+Now we can assume that for all $i$, $U_i \cap \CC_i \neq \emptyset$. Replace $U_i$ by its closure $\overline{U}_i$. If the endpoint of $\overline{U}_i$ does not belong to $\CC_n$, then we can ``shrink'' $\overline{U}_i$ until its endpoints belongs to $\CC_n$. More preciously, replace $\overline{U}_i$ by $[a_i,b_i]$, where $a_i = \inf \left(\overline{U}_i \cap \CC_n\right), b_i = \sup (\overline{U}_i \cap \CC_n)$, then
+\begin{align*}
+    \CC_n \subset \bigcup^k_{i=1} [a_i,b_i], \quad \sum^k_{i=1} \left|b_i - a_i\right| < 1.
+\end{align*}
+This means either $[a_i,b_i]$ is one of the sets $I^n_j$ or it contains at least two intervals $I^n_{j_1}, I^n_{j_2}$ and the gap between them. Denote the largest gap in $[a_i,b_i]$ by $K$, and let $A = [a_i,\inf K], B = [\sup K,b_i]$. Note that $A$ and $B$ contain intervals $I^n_j$ and possibly some gaps. 
+
+We claim $\left|K\right| \geq \left|A\right|, \left|B\right|$. Then,
+\begin{align*}
+    \left|b_i - a_i\right|^s & = \left(\left|A\right| + \left|K\right| + \left|B\right|\right)^s \\
+    & \geq \left(\frac{3}{2}\left|A\right| + \frac{3}{2}\left|B\right|\right)^s \\
+    & = 2 \left(\frac{\left|A\right| + \left|B\right|}{2}\right)^s \\
+    & \geq 2 \left(\frac{\left|A\right|^s + \left|B\right|^s}{2}\right) = \left|A\right| + \left|B\right|,
+\end{align*}
+where the last follows concavity of $x^s$. Now we remove $K$ in $[a_i,b_i]$, then
+\begin{align*}
+    \CC_n \subset \bigcup_{j\neq i} [a_j,b_j] \cup A \cup B,\quad \sum_{j\neq i} \left|b_i - a_i\right|^s + \left|A\right|^s + \left|B\right|^s < 1.
+\end{align*}
+After finite steps of removing gaps, there will be no gaps, and then
+\begin{align*}
+    \CC_n = \bigcup^{2^n}_{j=1} I^n_j, \quad \bigcup^{2^n}_{j=1} \left|I^n_j\right|^s < 1.
+\end{align*}
+Since $\bigcup^{2^n}_{j=1} \left|I^n_j\right|^s = 1$, we have a contradiction.
+\end{proof}
