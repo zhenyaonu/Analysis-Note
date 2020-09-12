@@ -1555,7 +1555,7 @@ Then, we have
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{closed_interval_covering.png}
-    \caption{Example of a set covered by intervals.(From \cite{6})}
+    \caption{Example of a set covered by intervals(From \cite{6}).}
     \label{fig:closed_intervals}
 \end{figure}
 
@@ -1676,7 +1676,7 @@ An arbitrary open set in $\mathbb{R}^n$ is a union of closed dyadic cubes with p
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{dyadic_cube.png}
-    \caption{Example of open set represented by the dyadic cubes in $\mathbb{R}^2$.(From \cite{6})}
+    \caption{Example of open set represented by the dyadic cubes in $\mathbb{R}^2$(From \cite{6}).}
     \label{fig:dyadic_cube}
 \end{figure}
 
@@ -1686,7 +1686,7 @@ Recall that by a $G_\delta$ set we mean a set of the form $G = \bigcap^\infty_{i
 
 \medskip
 
-\begin{theorem}
+\begin{theorem}\label{theorem_124}
 Let $A \subset \mathbb{R}^n$, then the following conditions are equivalent:
 \begin{enumerate}[label=(\alph*)]
     \item $A$ is Lebesgue measurable;
@@ -1791,13 +1791,41 @@ Lebesgue measure is in a sense the only natural way of measuring length, area, v
 
 \medskip
 
-\begin{theorem}
+\begin{theorem}\label{theorem_126}
 If $\mu$ is a measure on $\BB(\mathbb{R}^n)$ such that $\mu(a+E) = \mu(E)$ for all $a \in \mathbb{R}^n$ and $E \subset \BB(\mathbb{R}^n)$ and $\mu([0,1]^n) = 1$, then $\mu(E) = \L_n(E)$ on $\BB(\mathbb{R}^n)$.
 \end{theorem}
 \begin{proof}
 By Corollary \ref{coro_191}, it suffice to prove that $\mu(U) = \L_n(U)$ for all open set $U$. 
 
-Let $K$ be a face of the boundary $\partial Q$ of a unit cube $Q = [0,1]^n$, and there are $2^n$ faces. There are infinitely many pairwise parallel copies of $K$ inside $Q$, denoted by $K_1, K_2, \cdots$. Since $\mu$ is translation invariant, then 
+Let $K$ be a face of the boundary $\partial Q$ of a unit cube $Q = [0,1]^n$, and there are $2^n$ faces. There are infinitely many pairwise parallel copies of $K$ inside $Q$, denoted by $K_1, K_2, \cdots$, shown in the following
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=2.5]
+        \draw[-] (0,0)--(1,0)node[pos=.5,below]{$Q$};
+        \draw[-] (1,0)--(1,1);
+        \draw[-] (1,1)--(0,1);
+        \draw[-] (0,1)--(0,0);
+        \draw[-] (0,1)--(0.424,1.424);
+        \draw[-] (0.424,1.424)--(1.424,1.424);
+        \draw[-] (1.424,0.424)--(1.424,1.424);
+        \draw[dotted,-] (0,0)--(0.424,0.424);
+        \draw[dotted,-] (0.424,0.424)--(1.424,0.424);
+        \draw[dotted,-] (0.424,0.424)--(0.424,1.424);
+        \draw[fill=gray] (1,0)--(1,1)--(1.424,1.424)--(1.424,0.424);
+        \filldraw[black] (1.106,0.7) circle (0pt) node[anchor=west]{$K$};
+        \draw[-] (1,0)--(1.424,0.424);
+        \draw[-] (1,1)--(1.424,1.424);
+        
+        \draw[-] (0.5,0)--(0.5,1);
+        \draw[-] (0.5,1)--(0.912,1.424);
+        \draw[dotted,-] (0.912,1.424)--(0.912,0.424);
+        \draw[dotted,-] (0.912,0.424)--(0.5,0);
+        \filldraw[black] (0.606,0.7) circle (0pt) node[anchor=west]{$K_1$};
+    \end{tikzpicture}
+    \caption{Parallel copy $K_1$ of face $K$ inside a $3$-dimensional unit cube.}
+    \label{fig:unit_cube_cut}
+\end{figure}
+Since $\mu$ is translation invariant, then 
 \begin{align*}
     \mu(K_1) = \mu(K_2) = \cdots = \mu(K).
 \end{align*}
@@ -1876,7 +1904,7 @@ A function between metric spaces $f:(X,d_X) \to (Y,d_Y)$ is Lipschitz continuous
 
 \medskip
 
-\begin{proposition}
+\begin{proposition}\label{proposition_19}
 If $f:\mathbb{R}^n \to \mathbb{R}^n$ is Lipschitz and $E \subset \mathbb{R}^n$ has measure zero, then $f(E)$ has measure zero.
 \end{proposition}
 \begin{proof}
@@ -1884,12 +1912,12 @@ Since $\L_n(E) = 0$, then there is a covering $E \subset \bigcup^\infty_{i=1} B(
 \begin{align*}
     f(E) \subset \bigcup^\infty_{i=1} f(B(x_i,r_i)) \subset \bigcup^\infty_{i=1} B(f(x_i),Lr_i), \quad \sum^\infty_{i=1} (Lr_i)^n < \varepsilon.
 \end{align*}
-Therefore, $f(E)$ can be covered by balls of radius $\rho_i = Lr_i$, and $\sum^\infty_{i=1} \rho)^n < \varepsilon$. Thus, $\L_n(f(E)) = 0$.
+Therefore, $f(E)$ can be covered by balls of radius $\rho_i = Lr_i$, $\sum^\infty_{i=1} \rho_i^n < \varepsilon$. Thus, $\L_n(f(E)) = 0$.
 \end{proof}
 
 \medskip
 
-\begin{proposition}
+\begin{proposition}\label{proposition_110}
 If $f:\mathbb{R}^n \to \mathbb{R}^n$ is a homeomorphism, then $A \subset \mathbb{R}^n$ is Borel set if and only if $f(A)$ is a Borel set.
 \end{proposition}
 \begin{proof}\footnote{This proof is based on the result in: \url{https://math.stackexchange.com/a/2833250}.}
@@ -1913,6 +1941,85 @@ Also, for any $V \in \widetilde{\mathfrak{B}}$, there exists an open set $U \in 
 It may happen for a homeomorphism $f:\mathbb{R}^n \to \mathbb{R}^n$ that $A \subset \mathbb{R}^n$ is Lebesgue measurable, but $f(A)$ is not.
 \end{remark}
 
+\medskip
+
+As we know, $\L_n([0,1]^n) = 1$, now $Q$ is a rotation of the unit cube $[0,1]^n$, i.e. $Q = L([0,1]^n)$, where $L$ is a rotation. Then how do we know that $\L_n(Q) = 1$? This is absolutely not trivial. To show this, we need the following theorem.
+
+\medskip
+
+\begin{theorem}
+If $L:\mathbb{R}^n\to\mathbb{R}^n$ is a non-degenerate, linear transformation represented by a matrix $A$ ($\det A \neq 0$), then $L(E)$ is Borel (Lebesgue measurable) set if and only if $E$ is Borel (Lebesgue measurable) set. Moreover,
+\begin{align*}
+    \L_n(L(E)) = \left|\det A\right| \L_n(E).
+\end{align*}
+\end{theorem}
+\begin{proof}
+Since $L$ is a homeomorphism, by Proposition \ref{proposition_110}, $E$ is Borel if and only is $L(E)$ is Borel. Also, by continuity, $L$ and $L^{-1}$ are Lipschitz continuous. Moreover, by Proposition \ref{proposition_19}, $\L_n(E) = 0$ implies that $\L_n(L(E)) = 0$ and if $\L_n(L(E)) = 0$, the $\L_n(E) = \L_n(L^{-1}(L(E))) = 0$. Therefore, $E$ has measure zero if and only if $L(E)$ has measure zero, that is $L$ preserves the class of sets of measure zero.
+
+By Theorem \ref{theorem_124}(e), $E$ is Lebesgue measurable if and only if $E$ can be written as a disjoint union of a Borel set $F$ and a set $K$ of measure zero. Then, $L(E) = L(F) + L(K)$ and $L(F)$ is Borel, hence $L(E)$ is Lebesgue measurable. Therefore, $L$ preserves the class of Lebesgue measurable sets.
+
+It remains to prove that $\L_n(L(E)) = \left|\det A\right| \L_n(E)$. Define a new measure $\mu$ on $\BB(\mathbb{R}^n)$ such that $\mu(E)= \L_n(L(E))$. Clearly, $\mu$ is translation invariant by the continuity of $L$. Let $a = \mu([0,1]^n) = \L_n(L([0,1]^n))$, then $a > 0$ because $L([0,1]^n)$ has nonempty interior. Consider the measure $E \mapsto a^{-1} \mu(E)$, then this map is translation invariant and $a^{-1} \mu([0,1]^n) = 1$. By Theorem \ref{theorem_126}, $a^{-1} \mu(E) = \L_n(E)$ on $\BB(\mathbb{R}^n)$. Then, $\L_n(L(E)) = a \L_n(E)$ for $E \subset \BB(\mathbb{R}^n)$. 
+
+Now we need to prove that $a = \left|\det A\right|$. Note that $a:{\rm GL}(n) \to (0,\infty)$ is a function defined on the class of invertible matrices. This function has following properties:
+\begin{enumerate}[label=(\alph*)]
+    \item\label{theorem_128_a} $a(A_1A_2) = a(A_1)a(A_2)$. Indeed, if $A_1$ and $A_2$ are matrices representing linear transformations $L_1$ and $L_2$, then
+    \begin{align*}
+        a(A_1A_2)\L_n(E) = \L_n(L_1(L_2(E))) = a(A_1) \L_n(L_2(E)) = a(A_1) a(A_2) \L_n(E).
+    \end{align*}
+    \item $a(sI) = s^n, s > 0$. Indeed, let $L = sI$, then $L(E) = sE = \{sx\,|\,x\in E\}$. And by the definition of the Lebesgue measure and the fact that $E$ is stretched $s$ times under $L$, $\L_n(L(E)) = s^n \L_n(E)$, since each dyadic cube covering $E$ is stretches $s$ times in $n$ dimension.\label{theorem_128_b}
+\end{enumerate}
+Now it remains to prove the following fact.
+\begin{proposition}
+Let $a:{\rm GL}(n) \to (0,\infty)$ be a function satisfying \ref{theorem_128_a} and \ref{theorem_128_b} above, then $a(A) = \left|\det A\right|$.
+\end{proposition}
+\begin{proof}
+For $k \neq l$, let $B_{kl}(s) = (a_{ij})_{n\times n}$, where $a_{kl} = s, a_{ii} = 1, i = 1,2,\cdots,n$ and all other entries equal zero. Multiplication by the matrix $B_{kl}(s)$ from the right (left) is equivalent to adding $k$th column ($\ell$th row) multiplied by $s$ to $\ell$th column ($k$th row).
+
+Applying this operation to any invertible matrix $A$ can transform $A$ into a matrix of the form
+\begin{align*}
+    T_1 = \begin{pmatrix}
+        t & & & \\
+        & t & & \\
+        & & \ddots & \\
+        & & & t
+    \end{pmatrix} \,\, {\rm or}\,\, 
+    T_2 = \begin{pmatrix}
+        t & & & \\
+        & \ddots & & \\
+        & & t & \\
+        & & & -t
+    \end{pmatrix}, t > 0.
+\end{align*}
+Let
+\begin{align*}
+    A_k(s) = \begin{pmatrix}
+        s & & & & \\
+        & \ddots & & &\\
+        & & -s & &\\
+        & & & \ddots & \\
+        & & & & s
+    \end{pmatrix},
+\end{align*}
+where $-s$ appears at $k$th row and $s > 0$. Now, we have
+\begin{align*}
+    a\left(A_k(s)\right)^2 = a\left(A_k(s)^2\right) = a(s^2I) = s^{2n},
+\end{align*}
+which implies $a\left(A_k(s)\right) = s^n$. Therefore, $a(T_1) = a(T_2) = t^n$. Since multiplication by $B_{kl}(s)$ does not change determinant, then $\left|\det A\right| = t^n$. 
+
+It remains to prove that $a(B_{kl}(s)) = 1$. Since $B_{kl}(-s) = A_k(1)B_{kl}(s)A_k(1)$, then we have $a(B_{kl}(-s)) = a(B_{kl}(s))$. On the other hand, $B_{kl}(s)B_{kl}(-s) = I$ and hence $a(B_{kl}(s))^2 = 1$. Thus, $a(B_{kl}(s)) = 1$.
+\end{proof}
+The theorem follows from the proposition easily.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1929,16 +2036,6 @@ It may happen for a homeomorphism $f:\mathbb{R}^n \to \mathbb{R}^n$ that $A \sub
 \chapter{Hausdorff measure of the Cantor set}\label{appendix_c}
 
 \input{appendix_c}
-
-
-
-
-
-
-
-
-
-
 
 
 \end{appendices}
