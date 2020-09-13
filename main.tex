@@ -42,11 +42,11 @@
 \usepackage{titlesec}
 \graphicspath{{images/}}
 
-\titleformat{\chapter}[block]{\huge\bfseries\itshape}{\chaptertitlename\  \thechapter.}{0.5ex}{}[]
+\titleformat{\chapter}[block]{\huge\bfseries\itshape\raggedleft}{\chaptertitlename\  \thechapter.}{0.5ex}{}[]
 
-\titleformat{\section}[block]{\Large\bfseries\itshape}{\thesection}{0.5ex}{}[]
+\titleformat{\section}[block]{\Large\bfseries\itshape}{\thesection\ }{0.5ex}{}[]
 
-\titleformat{\subsection}[block]{\large\bfseries\itshape}{\thesubsection}{0.5ex}{}[]
+\titleformat{\subsection}[block]{\large\bfseries\itshape}{\thesubsection\ }{0.5ex}{}[]
 
 \usepackage{hyperref}
 \hypersetup{
@@ -174,7 +174,7 @@ Let $A \subset X$ be a subset of $X$, and we want to assign {\em measure} $\mu(A
 
 \section{$\sigma$-algebra}
 
-\begin{definition}\label{definition_sigma_algebra}
+\begin{definition}\label{definition_11}
 Let $X$ be a set. A collection $\MM$ of subsets of $X$ is $\sigma$-algebra if $\MM$ has the following properties:
 \begin{enumerate}[label=(\alph*)]
     \item $X \in \MM$;
@@ -202,7 +202,7 @@ Let $(X, \MM)$ be a measurable space. Show that
 ~\begin{enumerate}[label=(\alph*)]
     \item $\emptyset = X \setminus X$, then $\emptyset \in \MM$.
    
-    \item By Definition \ref{definition_sigma_algebra}(c), $A \cup B \cup \emptyset \cup \emptyset \cup \cdots \in \MM$, which implies $A \cup B \in \MM$. 
+    \item By Definition \ref{definition_11}(c), $A \cup B \cup \emptyset \cup \emptyset \cup \cdots \in \MM$, which implies $A \cup B \in \MM$. 
     
     By De Morgan's Laws, we have 
     \begin{align*}
@@ -1948,10 +1948,7 @@ As we know, $\L_n([0,1]^n) = 1$, now $Q$ is a rotation of the unit cube $[0,1]^n
 \medskip
 
 \begin{theorem}
-If $L:\mathbb{R}^n\to\mathbb{R}^n$ is a non-degenerate, linear transformation represented by a matrix $A$ ($\det A \neq 0$), then $L(E)$ is Borel (Lebesgue measurable) set if and only if $E$ is Borel (Lebesgue measurable) set. Moreover,
-\begin{align*}
-    \L_n(L(E)) = \left|\det A\right| \L_n(E).
-\end{align*}
+If $L:\mathbb{R}^n\to\mathbb{R}^n$ is a non-degenerate, linear transformation represented by a matrix $A$ ($\det A \neq 0$), then $L(E)$ is Borel (Lebesgue measurable) set if and only if $E$ is Borel (Lebesgue measurable) set. Moreover, $\L_n(L(E)) = \left|\det A\right| \L_n(E)$.
 \end{theorem}
 \begin{proof}
 Since $L$ is a homeomorphism, by Proposition \ref{proposition_110}, $E$ is Borel if and only is $L(E)$ is Borel. Also, by continuity, $L$ and $L^{-1}$ are Lipschitz continuous. Moreover, by Proposition \ref{proposition_19}, $\L_n(E) = 0$ implies that $\L_n(L(E)) = 0$ and if $\L_n(L(E)) = 0$, the $\L_n(E) = \L_n(L^{-1}(L(E))) = 0$. Therefore, $E$ has measure zero if and only if $L(E)$ has measure zero, that is $L$ preserves the class of sets of measure zero.
@@ -2009,6 +2006,162 @@ which implies $a\left(A_k(s)\right) = s^n$. Therefore, $a(T_1) = a(T_2) = t^n$. 
 It remains to prove that $a(B_{kl}(s)) = 1$. Since $B_{kl}(-s) = A_k(1)B_{kl}(s)A_k(1)$, then we have $a(B_{kl}(-s)) = a(B_{kl}(s))$. On the other hand, $B_{kl}(s)B_{kl}(-s) = I$ and hence $a(B_{kl}(s))^2 = 1$. Thus, $a(B_{kl}(s)) = 1$.
 \end{proof}
 The theorem follows from the proposition easily.
+\end{proof}
+
+
+
+\chapter{Integration}
+
+\section{Measurable functions}
+
+\begin{definition}\label{def_21}
+Let $(X,\mathfrak{M})$ be a measurable space and $Y$ a metric space. We say that a function $f:X \to Y$ is measurable if $f^{-1}(U) \in \mathfrak{M}$ for every open set $U \subset Y$.
+
+If $E \subset \mathfrak{M}$,\footnote{By Definition \ref{definition_11}, the elements of $\mathfrak{M}$ are called measurable sets. In this case, we assume that $E$ is measurable.}then we say that $f:E \to Y$ is measurable if $f^{-1}(U) \in \mathfrak{M}$ for every open set $U \subset Y$.
+\end{definition}
+
+\medskip
+
+\begin{remark}
+If $E \subset \mathfrak{M}$, then $f:E \to Y$ is measurable if and only if $f = F|_E$ for some measurable function $F: X \to Y$. 
+
+There is another point of view, let
+\begin{align*}
+    \mathfrak{M}_E = \{A \subset E\,|\, A \in \mathfrak{M} \} = \{B \cap E\,|\, B \in \mathfrak{M}\},
+\end{align*}
+and clearly $\mathfrak{M}_E$ is a $\sigma$-algebra of subsets of $E$. So, $f:E \to Y$ if and only if it is measurable with respect to $\mathfrak{M}_E$, i.e. measurable as a function defined on the measurable space $(E,\mathfrak{M}_E)$.
+\end{remark}
+
+\medskip
+
+\begin{theorem}\label{theorem_21}
+Let $(X,\mathfrak{M})$ be a measurable space, $Y,Z$ metric spaces, $f:X \to Y$ a measurable function and $g:Y \to Z$ a continuous function. Then, the function $g\circ f: X \to Z$ is measurable.
+\end{theorem}
+\begin{proof}
+For every open set $U \subset Z$, by continuity of $g$, $g^{-1}(U)$ is open in $Y$, and hence
+\begin{align*}
+    (g\circ f)^{-1}(U) = f^{-1} \left(g^{-1}(U)\right) \in \mathfrak{M},
+\end{align*}
+which proved the theorem.
+\end{proof}
+
+\medskip
+
+\begin{theorem}\label{theorem_22}
+Let $(X,\mathfrak{M})$ be a measurable space and $Y$ a metric space. Let $f_i: X \to \mathbb{R}, i = 1,2,\cdots,n$ be measurable functions. Then, $f = (f_1,\cdots,f_n):X\to\mathbb{R}^n$ is measurable.
+\end{theorem}
+\begin{proof}
+If $P = (a_1,b_1)\times\cdots\times(a_n,b_n)$, then $f^{-1}(P) = \bigcap^n_{i=1} f_i^{-1}((a_i,b_i))$. Since $f_i$ are measurable, then $f_i^{-1}((a_i,b_i)) \in \mathfrak{M}$, and hence $f^{-1}(P) \in \mathfrak{M}$. 
+
+Any open set $U \subset \mathbb{R}^n$ is a union of countable many intervals $P_i$ as above, that is $U = \bigcup^\infty_{i=1} P_i$. Thus, 
+\begin{align*}
+    f^{-1}(U) = \bigcup^\infty_{i=1} f^{-1}(P_i) \in \mathfrak{M}.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{corollary}
+Let $(X,\mathfrak{M})$ be a measurable space and $Y$ a metric space. If the functions $u,v:X\to\mathbb{R}$ are measurable and $\Phi:\mathbb{R}^2 \to Y$ is continuous, then the function
+$$h(x) = \Phi(u(x),v(x)): X \to Y$$
+is measurable.
+\end{corollary}
+\begin{proof}
+Let $f(x) = (u(x),v(x))$, and by Theorem \ref{theorem_21}, it suffices to prove that $f$ is measurable. Let $P = (a,b) \times (c,d)$ be open rectangle. Since $u$ and $v$ are measurable, then
+\begin{align*}
+    f^{-1}(P) = u^{-1}((a,b)) \cap v^{-1}((c,d)) \in \mathfrak{M}.
+\end{align*}
+
+Similar to Theorem \ref{theorem_22}, any open set $U \subset \mathbb{R}^2$ is a union of countable many open rectangles, and hence $U \in \mathfrak{M}$.
+\end{proof}
+
+\medskip
+
+This theorem has many applications:
+\begin{enumerate}[label=(\alph*)]
+    \item If $f = u + iv: X \to \mathbb{C}$, where $u,v:X\to\mathbb{R}$ are measurable, then $f$ is measurable. Indeed, we can take $\Phi:\mathbb{R}^2 \to \mathbb{C}$ as $\Phi(u,v) = u + iv$.
+    
+    \item If $f = u + iv: X \to \mathbb{C}$, is measurable, then $u,v,\left|f\right|: X \to \mathbb{R}$ are measurable. Indeed, we can take $\Phi_1(u+iv) = u$, and then $\Phi_1\circ f(u+iv) = u$, which is measurable. Similarly, we can take $\Phi_2(u+iv) = v$ and $\Phi_3(u+iv) = \left|u+iv\right|$.
+    
+    \item If $f,g: X \to \mathbb{C}$ are measurable, then $f+g,fg: X \to \mathbb{C}$ are measurable. Indeed, if $f = f_1 + if_2$, $g = g_1 + ig_2$, where $f_1,f_2,g_1,g_2$ are measurable. Then, by Theorem \ref{theorem_22}, $F = (f_1,f_2,g_1,g_2): X \to \mathbb{R}^4$ is measurable. Let $\Phi:\mathbb{R}^4 \to \mathbb{C}^2$ be defined as
+    \begin{align*}
+        \Phi(u,v,w,z) = (u+iv,w+iz),
+    \end{align*}
+    and $\Phi$ is continuous. Then, $h = \Phi\circ F = (f_1+if_2,g_1+ig_2) = (f,g): X \to \mathbb{C}^2$ is measurable. Now define $\Phi_1, \Phi_2: \mathbb{C}^2 \to \mathbb{C}$ be defined as
+    \begin{align*}
+        \Phi_1(z_1,z_2) = z_1 + z_2, \quad \Phi_1(z_1,z_2) = z_1 z_2,
+    \end{align*}
+    and $\Phi_1, \Phi_2$ are continuous. Thus, $\Phi_1\circ h = f+g$, $\Phi_2 \circ h = fg$ are measurable.
+    
+    \item A set $E \subset X$ is measurable if and only if the characteristic function $\chi_E$ of $E$ is measurable.\footnote{The characteristic function $\chi_E$ is defined as: $\chi_E(x) = 1$ if $x \in E$ and $\chi_E(x) = 0$ if $x \notin E$.}Indeed, for any open set $U \subset \mathbb{R}$,
+    \begin{align*}
+        \chi_E^{-1}(U) = \begin{cases}
+            \emptyset, & {\rm if}\,\, 0 \notin U, 1 \notin U, \\
+            E, & {\rm if}\,\, 0 \notin U, 1 \in U, \\
+            X \setminus E, & {\rm if}\,\, 0 \in U, 1 \notin U,\\
+            X, & {\rm if}\,\, 0 \in U, 1 \in U.
+        \end{cases}
+    \end{align*}
+    If $E$ is measurable, then $\chi_E^{-1}$ is measurable, and hence $\chi_E$ is measurable. If $\chi_E$ is measurable, then $\chi_E^{-1}(U) \in \mathfrak{M}$ and this holds for $0 \notin U, 1 \in U$, where $\chi_E^{-1}(U) = E \in \mathfrak{M}$.
+    
+    \item If $f:X \to \mathbb{C}$ is a measurable function, then there is a measurable function $\alpha: X \to \mathbb{C}$ such that $\left|\alpha\right| = 1$ and $f = \alpha \left|f\right|$. Indeed, the set $E = f^{-1}(0)$ is measurable, since
+    \begin{align*}
+        E = \bigcap^\infty_{i=1} f^{-1}\left(B\left(0,1/i\right)\right),
+    \end{align*}
+    and $B\left(0,1/i\right)$ is open. Now define a function $h(x) = f(x) + \chi_E(x)$, clearly,
+    \begin{align*}
+        h(x) = \begin{cases}
+            f(x), & f(x) \neq 0, \\
+            1, & f(x) = 0,
+        \end{cases}
+    \end{align*}
+    and also, $h(x)$ is measurable. Also, $h(x) \neq 0$ for all $x$. Therefore, $h:X \to \mathbb{C} \setminus \{0\}$ is a measurable function. Since $\varphi:\mathbb{C} \setminus \{0\} \to S^1$, $\varphi(z) = z/|z|$ is continuous, then 
+    \begin{align*}
+        \alpha(x) = (\varphi\circ h)(x) = \varphi(f(x) + \chi_E(x)).
+    \end{align*}
+    is measurable. If $x \in E$, then $\alpha(x) = 1$, if $x \notin E$, $\varphi(x) = f(x)/|f(x)|$. Thus, $f(x) = \alpha(x) |f(x)|$ for all $x \in X$.
+\end{enumerate}
+
+\medskip
+
+\begin{definition}
+Let $X,Y$ be two metric spaces. We say that $f:X\to Y$ is a Borel mapping (or Borel measurable mapping) if it is measurable with respect to the $\sigma$-algebra of Borel sets in $X$, i.e. $f^{-1}(U) \in \BB(X)$ for all open set $U \subset Y$.
+\end{definition}
+
+\medskip
+
+\begin{example}
+Every continuous mapping is Borel.
+\end{example}
+
+\medskip
+
+\begin{theorem}
+Let $(X,\mathfrak{M})$ be a measurable space and $Y$ a metric space. Let $f:X\to Y$ be a measurable mapping.
+\begin{enumerate}[label=(\alph*)]
+    \item If $E \subset Y$ is a Borel set, then $f^{-1}(E) \in \mathfrak{M}$.\label{theorem_23_a}
+    
+    \item It $Z$ is another metric space and $g:Y\to Z$ is a Borel mapping, then $g\circ f:X \to Z$ is measurable.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Let $\mathcal{R} = \{A \subset Y\,|\, f^{-1}(A) \in \mathfrak{M}\}$. Clearly, by Definition \ref{def_21}, $\mathcal{R}$ contains all open sets. It suffices to prove that $\mathcal{R}$ is a $\sigma$-algebra, since then we will have $\BB(Y) \subset \mathcal{R}$.\footnote{Indeed, any $\sigma$-algebra that contains open sets contains Borel set $\BB(Y)$.}Indeed, 
+    \begin{enumerate}[label=\arabic*)]
+        \item $Y \subset \mathcal{R}$. Indeed, $f^{-1}(Y) = X \in \mathfrak{M}$.
+        
+        \item If $A \in \mathcal{R}$, then $Y \setminus A \in \mathcal{R}$. Indeed, $f^{-1}(Y\setminus A) = X \setminus f^{-1}(A) \in \mathfrak{M}$.
+        
+        \item If $A_1, A_2, \cdots \in \mathcal{R}$, then $\bigcup^\infty_{i=1}A_i \in \mathcal{R}$. Indeed, $f^{-1}\left(\bigcup^\infty_{i=1}A_i\right) = \bigcup^\infty_{i=1} f^{-1}(A_i) \in \mathfrak{M}$.
+    \end{enumerate}
+    Thus, $\mathcal{R}$ is a $\sigma$-algebra and hence $\BB(Y) \subset \mathcal{R}$.
+    
+    \item It suffices to prove that for any open set $U \subset Z$, $(g\circ f)^{-1}(U) \in \mathfrak{M}$. Thus, we have
+    \begin{align*}
+        (g\circ f)^{-1}(U) = f^{-1} \left(g^{-1}(U)\right) \in \mathfrak{M},
+    \end{align*}
+    since $g^{-1}(U)$ is open and the rest comes from \ref{theorem_23_a}.
+\end{enumerate}
 \end{proof}
 
 
