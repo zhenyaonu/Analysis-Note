@@ -42,6 +42,11 @@
 \usepackage{titlesec}
 \graphicspath{{images/}}
 
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}[chapter]
+%\numberwithin{problem}{chapter}
+\renewcommand\theproblem{\arabic{problem}}
+
 \titleformat{\chapter}[block]{\huge\bfseries\itshape\raggedleft}{\chaptertitlename\  \thechapter.}{0.5ex}{}[]
 
 \titleformat{\section}[block]{\Large\bfseries\itshape}{\thesection\ }{0.5ex}{}[]
@@ -390,7 +395,7 @@ and this is a contradiction to Baire Category theorem.
 
 \medskip
 
-Now what are Borel sets? Recall that open, closed sets, $G_\delta, F_\sigma$, intersections of countable many $F_\sigma$'s and union of countable many $G_\delta$'s are all in Borel sets $\mathfrak{B}(X)$, but these are only a small part of Borel sets. We need well-ordering and ordinal numbers\footnote{See Appendix \ref{appendix_a}.} to introduce Borel hierarchy, and then to construct Borel sets.
+Now what are Borel sets? Recall that open, closed sets, $G_\delta, F_\sigma$, intersections of countable many $F_\sigma$'s and union of countable many $G_\delta$'s are all in Borel sets $\mathfrak{B}(X)$, but these are only a small part of Borel sets. We need well-ordering and ordinal numbers\footnote{See Appendix \ref{appendix_a}.}to introduce Borel hierarchy, and then to construct Borel sets.
 
 \medskip
 
@@ -829,10 +834,13 @@ Let $X$ be a metric space and $\mu$ is a measure defined on the $\sigma$-algebra
 \medskip
 
 \begin{corollary}
-If $X$ is a locally compact\footnote{A metric space $X$ is called {\em locally compact} if every point $x$ of $X$ has a compact neighbourhood, i.e. there exists an open set $U$ and a compact set $K$, such that $x\in U \subseteq K$. Also, there are other definitions as well, such as every point has a neighborhood whose closure is compact. For example, $\mathbb{R}^n$ is locally compact, as well as $\mathbb{R}^n \setminus \{0\}$. Note that being locally compact does not imply it is bounded and closed.}and separable metric space and $\mu$ is a measure on $\mathfrak{B}(X)$ such that $\mu(K) < \infty$ for any compact set $K$, then $X$ is a union of countable many open sets of finite measure and $\mu$ is a Radon measure. 
+If $X$ is a locally compact\footnote{A metric space $X$ is called {\em locally compact} if every point $x$ of $X$ has a compact neighbourhood, i.e. there exists an open set $U$ and a compact set $K$, such that $x\in U \subseteq K$. Also, there are other definitions as well, such as every point has a neighborhood whose closure is compact. For example, $\mathbb{R}^n$ is locally compact, as well as $\mathbb{R}^n \setminus \{0\}$. Note that being locally compact does not imply it is bounded and closed.}and separable metric space\footnote{A collection $\{V_\alpha\}$ of open subsets of $X$ is said to be a {\em base} for $X$ if for every $x\in 
+X$ and every open set $G \subset X$ such that $x \in G$, there exists $\alpha$ such that $x \in V_\alpha \subset G$. Then we have a lemma for separable space.
+
+{\bf Lemma}. Every separable metric space has a countable base (From: \url{https://ocw.mit.edu/courses/mathematics/18-100b-analysis-i-fall-2010/readings-notes/MIT18_100BF10_compactness.pdf}).}and $\mu$ is a measure on $\mathfrak{B}(X)$ such that $\mu(K) < \infty$ for any compact set $K$, then $X$ is a union of countable many open sets of finite measure and $\mu$ is a Radon measure.
 \end{corollary}
 \begin{proof}
-Since $X$ is separable, then it has a countable, dense subsets. Also, since $X$ is locally compact, then there exists countable open sets $U_i$ such that $X = \bigcup^\infty_{i=1} U_i$, and each $\overline{U_i}$ is compact. By assumption, $\mu(U_i) \leq \mu(\overline{U_i}) < \infty$. By Theorem \ref{theorem_114},
+Since $X$ is separable, then it has a countable, dense subsets. Also, since $X$ is locally compact, then there exists countable open sets $U_i$ such that $X = \bigcup^\infty_{i=1} U_i$, and each $\overline{U_i}$ is compact.\footnote{Indeed, since $X$ is locally compact, then for every point $x \in X$, there is a compact set $K_x$ that contains an open neighborhood $U_x$ of $x$, that is $x \in U_x \subset K_x$. Also, since $X$ is separable, then it has a countable base $\{V_n \}^\infty_{n=1}$. Then for any $x \in U_x \subset X$, there is a $n_x$ such that $x \in V_{n_x} \subset U_x \subset K_x$. Taking closure yields $x \in \overline{V}_{n_x}$, where $\overline{V}_{n_x}$ is compact since $\overline{V}_{n_x} \subset \overline{K}_x = K_x$. Thus, $X = \bigcup_{n_x} V_{n_x}$, which is a countable union since $\{n_x\}$ is a subsequence of $\{n\}$ and $\overline{V}_{n_x}$ is compact.} By assumption, $\mu(U_i) \leq \mu(\overline{U_i}) < \infty$. By Theorem \ref{theorem_114},
 \begin{align*}
     \mu(E) = \inf_{\substack{U \supset E\\ U - \text{open}}} \mu(U) = \sup_{\substack{C \subset E\\ C - \text{closed}}} \mu(C), \,\, \text{for all}\,\, E \subset \mathfrak{B}(X).
 \end{align*}
@@ -971,14 +979,14 @@ Also, it is easy to see that $\mathcal{H}^s(E) = 0$ if and only if $\mathcal{H}_
 \begin{proposition}
 If $0 < s < \infty$ and $E \subset X$ is a subset of a metric space, then $\mathcal{H}^s(E) = 0$ if and only if $\mathcal{H}_\infty^s(E) = 0$.
 \end{proposition}
-\begin{proof}
+\begin{proof}\footnote{This proof is in: \url{https://www.math.stonybrook.edu/~rdhough/mat639-spring17/lectures/lecture20.pdf}.}
 ~\begin{enumerate}
     \item[($\Rightarrow$)] If $\H^s(E) = 0$, then  $\H^s_\infty(E) = 0$ follows easily. Indeed, \begin{align*}
         \H^s_\infty(E) \leq \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\operatorname{diam} A_i)^s = \H^s_\varepsilon(E) \xrightarrow[]{\varepsilon \to 0} \H^s(E),
     \end{align*}  
     since the infimum is taken over all coverings $E \subset \bigcup^\infty_{i=1} A_i$ with $\operatorname{diam} A_i < \varepsilon$, which is a smaller collection of coverings.
     
-    \item[($\Leftarrow$)] If $\H^s_\infty(E) = 0$, then for any $\varepsilon > 0$, there exists a covering $\{G^\varepsilon_i\}$ of $E$ with $\operatorname{diam} G^\varepsilon_i < \varepsilon^{1/s}, i = 1,2,\cdots$. Otherwise, there exists $\varepsilon > 0$ such that for all coverings $\{G_i\}$ of $E$ with $\operatorname{diam} G_i \geq \varepsilon^{1/s}$, $\H^s_\infty(E) = 0$, which is a contradiction.\footnote{This proof is in: \url{https://www.math.stonybrook.edu/~rdhough/mat639-spring17/lectures/lecture20.pdf}.}Letting $\varepsilon \to 0$ implies
+    \item[($\Leftarrow$)] If $\H^s_\infty(E) = 0$, then for any $\varepsilon > 0$, there exists a covering $\{G^\varepsilon_i\}$ of $E$ with $\operatorname{diam} G^\varepsilon_i < \varepsilon^{1/s}, i = 1,2,\cdots$. Otherwise, there exists $\varepsilon > 0$ such that for all coverings $\{G_i\}$ of $E$ with $\operatorname{diam} G_i \geq \varepsilon^{1/s}$, $\H^s_\infty(E) = 0$, which is a contradiction. Letting $\varepsilon \to 0$ implies
     \begin{align*}
         \H^s(E) = \lim_{\varepsilon^{1/s} \to 0}\H^s_{\varepsilon^{1/s}}(E) \leq \lim_{\varepsilon^{1/s} \to 0} \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\operatorname{diam} G^\varepsilon_i)^s = 0, \quad \operatorname{diam} G^\varepsilon_i < \varepsilon^{1/s}.
     \end{align*}
@@ -1109,7 +1117,7 @@ Prove that
     \item if $\mathcal{H}^s(E) > 0$, then $\mathcal{H}^t(E) = \infty$ for all $0 < t < s$.
 \end{enumerate}
 \end{exercise}
-\begin{proof}
+\begin{proof}\footnote{This proof is based on: \url{https://www.math.cuhk.edu.hk/course_builder/1415/math5011/MATH5011_Chapter_3.2014.pdf}, with a different definition of $\mathcal{H}^s_{\varepsilon}$.}
 ~\begin{enumerate}[label=(\alph*)]
     \item Since $\H^s(E) < \infty$, then for each $\varepsilon > 0$, there exists family $\{A_i\}$ of open sets $A_i$ with $\operatorname{diam} A_i < \varepsilon$, such that $E \subset \bigcup^\infty_{i=1} A_i$ and
     \begin{align*}
@@ -1121,7 +1129,7 @@ Prove that
         & \leq \frac{\omega_t}{2^t} \frac{2^s}{\omega_s} \varepsilon^{t-s} \left( \H^s(E) + 1\right) \xrightarrow[]{\varepsilon \to 0} 0.
     \end{align*}
     
-    \item It follows the similar argument in (a).\footnote{This proof is based on: \url{https://www.math.cuhk.edu.hk/course_builder/1415/math5011/MATH5011_Chapter_3.2014.pdf}, with a different definition of $\mathcal{H}^s_{\varepsilon}$.}Another way to prove this is interchanging the positions of $s$ and $t$ in the contrapositive of (b),\footnote{Interchanging $s$ and $t$ is based on the proof in: \url{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2009/REUPapers/Shah.pdf}.} which is 
+    \item It follows the similar argument in (a). Another way to prove this is interchanging the positions of $s$ and $t$ in the contrapositive of (b),\footnote{Interchanging $s$ and $t$ is based on the proof in: \url{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2009/REUPapers/Shah.pdf}.}which is 
     \begin{align*}
         \exists t \in (0,s), \H^t(E) < \infty \Longrightarrow \H^s(E) = 0,
     \end{align*}
@@ -1764,7 +1772,7 @@ Then $\{x\} = \{y\}$ if and only if $x \sim y$. Also, $\mathbb{F} = \{\{x\}\,|\,
 \begin{align*}
     (0,1) = \bigcup_{\{x\} \in \mathcal{F}} \{x\}.
 \end{align*}
-By the axiom of choice,\footnote{The construction of $V$ involves the axiom of choice, see Theorem \ref{axiom_of_choice}.} there is a set $V \subset (0,1)$ such that $V$ contains exactly one element from each equivalence class. Then, $V$ has following properties:
+By the axiom of choice,\footnote{The construction of $V$ involves the axiom of choice, see Theorem \ref{axiom_of_choice}.}there is a set $V \subset (0,1)$ such that $V$ contains exactly one element from each equivalence class. Then, $V$ has following properties:
 \begin{enumerate}[label=(\alph*)]
     \item If $x,y \in V, x \neq y$, then $x - y \notin \mathbb{Q}$. Otherwise, $\{x\} = \{y\}$.
     
@@ -1831,7 +1839,7 @@ Since $\mu$ is translation invariant, then
 \end{align*}
 Since $\mu(Q) = 1$, then $\mu(K) = 0$. Indeed, otherwise $\mu(K) > 0$, then $1 = \mu(Q) \geq \mu\left(\bigcup_i K_i\right) = \sum_i \mu(K_i) = \infty$, which is a contradiction. This implies that $\mu(\partial Q) = 0$. 
 
-Let $k \in \mathbb{N}$, $k > 0$ and let $Q_k = (0,2^{-k})^n$, then $\mu(\partial Q_k) = 0$. Note there are $2^{kn}$ open cubes contained in $Q$, denoted by $A_1, A_2, \cdots, A_{2^{kn}}$,\footnote{These are the dyadic cubes.} each being a translation of $Q_k$. Then, 
+Let $k \in \mathbb{N}$, $k > 0$ and let $Q_k = (0,2^{-k})^n$, then $\mu(\partial Q_k) = 0$. Note there are $2^{kn}$ open cubes contained in $Q$, denoted by $A_1, A_2, \cdots, A_{2^{kn}}$,\footnote{These are the dyadic cubes.}each being a translation of $Q_k$. Then, 
 \begin{align*}
     2^{kn} \mu(Q_k) = \sum^{2^{kn}}_{i=1} \mu(A_i) \leq \mu(Q) = 1,
 \end{align*}
@@ -2008,6 +2016,424 @@ It remains to prove that $a(B_{kl}(s)) = 1$. Since $B_{kl}(-s) = A_k(1)B_{kl}(s)
 The theorem follows from the proposition easily.
 \end{proof}
 
+\medskip
+
+\section{Exercise}
+\setcounter{exercise}{0}
+
+\begin{exercise}
+Prove that $\MM$ is a $\sigma$-algebra of subsets of $X$ if and only is
+\begin{enumerate}
+    \item[(a)] $X\in\MM$,
+    
+    \item[(b)] If $A,B\in\MM$, then $A\setminus B\in \MM$,
+    
+    \item[(c)] If $A_1,A_2,A_3\ldots\in\MM$ are pairwise disjoint, then $\bigcup_{i=1}^\infty A_i\in\MM$.
+\end{enumerate}
+\end{exercise}
+\begin{proof} 
+~\begin{enumerate}
+    \item[($\Rightarrow$)] (a) and (c) are obvious, it remains to show (b). By definition of $\sigma$-algebra, $A \cup B \cup \emptyset \cup \emptyset \cup \cdots \in \mathfrak{M}$, which implies $A \cup B \in \mathfrak{M}$. Also, by De Morgan's Laws, we have 
+    \begin{align*}
+        X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B),
+    \end{align*}
+    and since $X \setminus A, X \setminus B \in \mathfrak{M}$, $A \cap B \in \mathfrak{M}$. Now, $A \setminus B = A \cap (X \setminus B)$, then by the results above, we have $A \setminus B \in \mathfrak{M}$.
+    
+    \item[($\Leftarrow$)] It suffices to show that for any $A_1, A_2,\cdots \in \mathfrak{M}$, $\bigcup^\infty_{i=1}A_i \in \mathfrak{M}$. Let $B_1 = A_1$, $B_2 = A_2 \setminus A_1$, $B_3 = A_3 \setminus (B_1 \cup B_2)$ and so on. It gives a pairwise disjoint sequence of sets $B_1, B_2, \cdots \in \mathfrak{M}$. By the assumption, $\bigcup^\infty_{i=1}A_i = \bigcup^\infty_{i=1}B_i \in \mathfrak{M}$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Use counting measure $\mu$ to show that it can happen that $A_1\subset A_2\subset A_3\subset\ldots$, but
+$$
+\mu\left(\bigcap_{i=1}^\infty A_i\right) \neq \lim_{i\to\infty}\mu(A_i).
+$$
+\end{exercise}
+\begin{proof}
+Let $A_1 = \mathbb{N}$, $A_2 = \mathbb{N} \setminus \{0\}$, $A_3 = \mathbb{N} \setminus \{0,1\}$, $A_4 = \mathbb{N} \setminus \{0,1,2\}$ and so on. Letting $i \to \infty$, $A_i$ contains infinitely many elements and then $\lim_{i\to\infty} \mu(A_0) = \infty$.
+
+On the other hand, $\bigcap_{i=1}^\infty A_i = \emptyset$. Indeed, if $\bigcap_{i=1}^\infty A_i \neq \emptyset$, then there exists $k \in \mathbb{N}$ such that $k \in \bigcap_{i=1}^\infty A_i$. However, $k \notin A_{k+2}$, which is a contradiction. Thus, $\mu\left(\bigcap_{i=1}^\infty A_i\right) = 0$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Let $X$ be a metric space and let $\mu$ be a measure in $\BB(X)$. Prove that
+$$
+\mu^*(E) =
+\inf_{\substack{U\supset E \\ U - {\rm open}}}\mu(U)
+$$
+defines a metric outer measure.
+\end{exercise}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item First, we prove that $\mu^*$ defined above is an outer measure.
+    \begin{enumerate}[label=\arabic*)]
+        \item Since $\emptyset \subseteq \emptyset$, $\mu^*(\emptyset) = \inf_{\substack{U\supset E \\ U - {\rm open}}}\mu(U) \leq \mu(\emptyset) = 0$.
+        
+        \item For any $A \subset B$, where $A, B \in \mathfrak{B}(X)$, then
+        \begin{align*}
+            \mu^*(B) = \inf_{\substack{U\supset B \\ U - {\rm open}}}\mu(U) = \inf (\mu(A) + \mu(U \setminus A)) \geq \mu(A) \geq \mu^*(A).
+        \end{align*}
+        
+        \item For any $\varepsilon > 0$ and for each $A_i \subset X$, choose $U_i \subset X$ be open such that $A_i \subset U_i$ and
+        \begin{align*}
+            \mu(U_i) \leq \mu^*(A_i) + \frac{\varepsilon}{2^i}.
+        \end{align*}
+        Note that $\bigcup^\infty_{i=1} U_i$ is an open covering of $\bigcup^\infty_{i=1} A_i$, then 
+        \begin{align*}
+            \mu^*\left(\bigcup^\infty_{i=1} A_i\right) \leq \mu \left( \bigcup^\infty_{i=1} U_i\right) \leq \sum^\infty_{i=1} \mu(U_i) \leq \sum^\infty_{i=1} \mu^*(A_i) + \varepsilon,
+        \end{align*}
+        and letting $\varepsilon \to 0$ gives subadditivity
+        \begin{align*}
+            \mu^*\left(\bigcup^\infty_{i=1} A_i\right) \leq \sum^\infty_{i=1} \mu^*(A_i).
+        \end{align*}
+    \end{enumerate}
+    Hence, $\mu^*$ is an outer measure.
+    
+    \item Second, we prove $\mu^*$ is a metric outer measure. For any $E, F \subset X$ and $\operatorname{dist}(E,F) > 0$, then there exists $\delta > 0$ such that $\operatorname{dist}(E,F) \geq \delta$. Also, for any $0 < \varepsilon < \delta$, there exist two open disjoint sets $U, V \subset X$ such that $E \subset U, F \subset V$ and 
+    \begin{align*}
+        \mu(U \cup V) \leq \mu^*(E \cup F) + \varepsilon.
+    \end{align*}
+    Then, we have
+    \begin{align*}
+        \mu^*(E) + \mu^*(F) \leq \mu(U) + \mu(V) = \mu(U \cup V) \leq \mu^*(E \cup F) + \varepsilon,
+    \end{align*}
+    and letting $\varepsilon \to 0$ gives
+    \begin{align*}
+        \mu^*(E) + \mu^*(F) \leq \mu^*(E \cup F).
+    \end{align*}
+    Since the other direction is obvious, then $\mu^*(E) + \mu^*(F) = \mu^*(E \cup F)$.
+\end{enumerate}
+Thus, $\mu^*$ is a metric outer measure.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Show that
+\begin{enumerate}[label=(\alph*)]
+    \item If $\H^s(E) < \infty$, then $\H^t(E) = 0$ for all $t > s$;
+    \item If $\H^s(E) > 0$, then $\H^t(E) = \infty$ for all $0 < t < s$.
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+It has been proved in Exercise \ref{exercise_12}, section \ref{hausdorff_measure}.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Let $f:\mathbb{R}^n\to\mathbb{R}^n$ be a homeomorphism. Prove that $A\subset\mathbb{R}^n$ is Borel if and only if $f(A)$ is Borel.
+\end{exercise}
+\begin{proof}\footnote{This proof is based on \url{https://math.stackexchange.com/a/2833250}.}
+Let $\mathfrak{B}(\mathbb{R}^n)$ be the $\sigma$-algebra generated by the family of all open sets in $\mathbb{R}^n$. Now define $\widetilde{\mathfrak{B}} = \{f(E)\,|\,E \in \mathfrak{B}(\mathbb{R}^n)\}$. Note that $\widetilde{\mathfrak{B}}$ is also a $\sigma$-algebra. Indeed,
+\begin{enumerate}[label=(\alph*)]
+    \item Since $f$ is honeomorphism, then $f(\mathbb{R}^n) = \mathbb{R}^n$, and hence $\mathbb{R}^n \in \widetilde{\mathfrak{B}}$.
+        
+    \item For any $f(E) \in \widetilde{\mathfrak{B}}$, we have $\mathbb{R}^n \setminus f(E) = f(\mathbb{R}^n) \setminus f(E) = f(\mathbb{R}^n \setminus E) \in \widetilde{\mathfrak{B}}$, since $f$ is a honeomorphism and $\mathbb{R}^n \setminus E \in \mathfrak{B}(\mathbb{R}^n)$.
+        
+    \item For any $f(E_i) \in \widetilde{\mathfrak{B}}$, then $\bigcup^\infty_{i=1} f(E_i) = f \left( \bigcup^\infty_{i=1} E_i\right) \in \widetilde{\mathfrak{B}}$, since $f$ is a honeomorphism.
+\end{enumerate}
+
+We claim that $\widetilde{\mathfrak{B}}$ contains all open sets. Indeed, if an open set $U \in \mathbb{R}^n$, then $f^{-1}(U) \in \mathbb{R}^n$ is also open by the continuity of $f^{-1}$. Hence, $U = f\left(f^{-1}(U)\right) \in \widetilde{\mathfrak{B}}$, which implies $\mathfrak{B}(\mathbb{R}^n) \subset \widetilde{\mathfrak{B}}$. Therefore, if $A \in \mathfrak{B}(\mathbb{R}^n)$, then $f(A) \in \mathfrak{B}(\mathbb{R}^n) \subset \widetilde{\mathfrak{B}}$, and thus $f(A)$ is Borel.
+
+Also, for any $V \in \widetilde{\mathfrak{B}}$, there exists an open set $U \in \mathfrak{B}(\mathbb{R}^n) \subset \widetilde{\mathfrak{B}}$ such that $V = f(U)$. By continuity of $f^{-1}$, $U = f^{-1}(f(U)) = f^{-1}(V)$, which implies $V \in \mathfrak{B}(\mathbb{R}^n)$, and hence $\widetilde{\mathfrak{B}} \subset \mathfrak{B}(\mathbb{R}^n)$. Thus, if $f(A)$ is Borel, then $A$ is also Borel.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Let $\CC \subset [0,1]$ be the ternary Cantor set. Prove that $\dim_{\H}(\CC) \leq \log 2/\log 3$.
+\end{exercise}
+\begin{proof}
+Cantor set $C$ can be covered by $1$ segment of length $1$, or $2$ segments of length $1/3$, or $4$ segments of length $1/3^2$, $\cdots$, or $2^n$ segments of length $3^{-n}$ and so on. Let $s = \log 2/\log 3$, then by the definition of $\H^s_{\varepsilon}$, we have
+\begin{align*}
+    \H^s_{3^{-n}}(C) \leq \frac{\omega_s}{2^s} 2^n \left(3^{-n}\right)^s.
+\end{align*}
+Note that $3^s = \left(e^{\log 3}\right)^{\log 2/\log 3} = 2$ and $\left(3^{-n}\right)^3 = 2^{-n}$, then 
+\begin{align*}
+    \H^s_{3^{-n}}(C) \leq \frac{\omega_s}{2^s} 2^n \left(3^{-n}\right)^s = \frac{\omega_s}{2^s},
+\end{align*}
+letting $n \to \infty$ implies $\H^s(C) \leq \omega_s / 2^s$. Thus, $\dim_{\H}(\CC) \leq \log 2/\log 3$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that the set of irrational numbers $\mathbb{R} \setminus \mathbb{Q}$ is a Borel set.
+\end{exercise}
+\begin{proof}
+Since $\mathbb{Q}$ is countable, then $\mathbb{Q}$ can be written as $\mathbb{Q} = \bigcup^\infty_{i \in \mathbb{Q}}\{i\}$, where $\{i\}$ is closed. Then,
+\begin{align*}
+    \mathbb{R} \setminus \mathbb{Q} & = \mathbb{R} \setminus \bigcup^\infty_{i \in \mathbb{Q}}\{i\} = \bigcap_{i \in \mathbb{Q}} \left(\mathbb{R} \setminus \{i\} \right),
+\end{align*}
+where $\mathbb{R} \setminus \{i\}$ are open. Thus, $\mathbb{R} \setminus \mathbb{Q}$ is $G_\delta$ set and therefore Borel set.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Let $\mathcal{C}$ be the collection of all uncountable sets in $\mathbb{R}$. Prove that the $\sigma$-algebra generated by $\mathcal{C}$ is the power set $\mathcal{P}(\mathbb{R})$.
+\end{exercise}
+\begin{proof} 
+~\begin{enumerate}[label=(\alph*)]
+    \item First, $\sigma(\mathcal{C}) \subset \mathcal{P}(\mathbb{R})$.
+    
+    \item Second, for any set $A \subset \mathbb{R}$. If $A$ is uncountable, then clearly, $A \in \sigma(\mathcal{C})$. If $A$ is countable, then there exists an uncountable set $C \subset \mathbb{R}$ such that $A \cap C = \emptyset$. Then, $A \cup C$ is an uncountable subset, and hence $A = (A \cup C) \setminus C \in \sigma(\mathcal{C})$. Therefore, $\mathcal{P}(\mathbb{R}) \subset \sigma(\mathcal{C})$.
+\end{enumerate}
+Thus, $\mathcal{P}(\mathbb{R}) = \sigma(\mathcal{C})$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that the $\sigma$-algebra generated by intervals $(a,\infty)$, $a\in\mathbb{R}$ coincides with the $\sigma$-algebra of all Borel sets $\BB(\mathbb{R})$.
+\end{exercise}
+\begin{proof}
+~\begin{enumerate}
+    \item[(a)] Denote $\sigma(G)$ by the $\sigma$-algebra generated by intervals $(a,\infty)$, $a\in\mathbb{R}$. For any interval $(a,\infty)$, we have
+    \begin{align*}
+        (a,\infty) = \bigcup^\infty_{i=1} \left[a + \frac{1}{i}, a + i\right] \coloneqq \bigcup^\infty_{i=1} F_i, i = 1,2,\cdots,
+    \end{align*}
+    and since $F_i$ are closed, then $(a,\infty)$ is Borel, and hence $\sigma(G) \subset \BB(\mathbb{R})$.
+    
+    \item[(b)] For any open set $(a,b)$, $a < b$, we need to show that $(a,b) \in \sigma(G)$. Since $(a,\infty) \in \sigma(G)$, then $(-\infty,a] \in \sigma(G)$, and hence $(a,b] = (a,\infty) \setminus ((a,\infty) \setminus (-\infty,b]) \in \sigma(G)$. Now for any open set $(a,b)$, we have
+    \begin{align*}
+        (a,b) = \bigcup^\infty_{i=1} \left(a,b-\frac{1}{i}\right], i = 1,2,\cdots,
+    \end{align*}
+    and hence $(a,b) \in \sigma(G)$. Since $\BB(\mathbb{R})$ is the $\sigma$-algebra generated by all open sets, therefore, $\BB(\mathbb{R}) \subset \sigma(G)$.
+\end{enumerate}
+Thus, $\BB(\mathbb{R}) = \sigma(G)$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that the intersection of two $F_\sigma$-sets is $F_\sigma$.
+\end{exercise}
+\begin{proof}
+Suppose $A$ and $B$ are two $F_\sigma$ sets, such that $A = \bigcup^\infty_{i=1} A_i$ and $B = \bigcup^\infty_{i=1} B_i$, where $A_i, B_i$ are all closed sets. Then,
+\begin{align*}
+    A \cap B = \left(\bigcup^\infty_{i=1} A_i\right) \cap \left(\bigcup^\infty_{i=1} B_i\right) = \bigcup^\infty_{i=1} \bigcup^\infty_{j=1} (A_i \cap B_j),
+\end{align*}
+where $A_i \cap B_j$ are also closed, hence $A \cap B$ is a countable union of closed sets. Thus, $A \cap B$ is $F_\sigma$-set.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that the set of rational numbers is not $G_\delta$.
+\end{exercise}
+\begin{proof}
+Suppose $\mathbb{Q}$ is $G_\sigma$, then $\mathbb{Q} = \bigcap^\infty_{i=1} G_i$, where $G_i$ is dense in $\mathbb{R}$. Let $\widetilde{G_i} = \mathbb{R} \setminus \{q_i\}, q_i \in \mathbb{Q}$ for $i = 1,2,\cdots$, which are open and dense. Now,
+\begin{align*}
+    \left(\bigcap^\infty_{i=1}G_i\right) \cap \left(\bigcap^\infty_{i=1}\widetilde{G_i}\right) = \mathbb{Q} \cap (\mathbb{R} \setminus \mathbb{Q}) = \emptyset,
+\end{align*}
+and this is a contradiction to Baire Category theorem.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $0 < s < \infty$ and $E \subset X$ is a subset of a metric space, then $\mathcal{H}^s(E) = 0$ if and only if $\mathcal{H}_\infty^s(E) = 0$. ({\em Remark}: Recall that $\mathcal{H}^s_\infty(E) = \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\operatorname{diam} A_i)^s$, where the infimum is taken over all coverings $E \subset \bigcup_{i=1}^\infty A_i$, $\operatorname{diam} A_i < \infty$.)
+\end{exercise}
+\begin{proof}
+~\begin{enumerate}
+    \item[($\Rightarrow$)] If $\H^s(E) = 0$, then  $\H^s_\infty(E) = 0$ follows easily. Indeed, \begin{align*}
+        \H^s_\infty(E) \leq \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\operatorname{diam} A_i)^s = \H^s_\varepsilon(E) \xrightarrow[]{\varepsilon \to 0} \H^s(E),
+    \end{align*}  
+    since the infimum is taken over all coverings $E \subset \bigcup^\infty_{i=1} A_i$ with $\operatorname{diam} A_i < \varepsilon$, which is a smaller collection of coverings.
+    
+    \item[($\Leftarrow$)] If $\H^s_\infty(E) = 0$, then for any $\varepsilon > 0$, there exists a covering $\{G^\varepsilon_i\}$ of $E$ with $\operatorname{diam} G^\varepsilon_i < \varepsilon^{1/s}, i = 1,2,\cdots$. Otherwise, there exists $\varepsilon > 0$ such that for all coverings $\{G_i\}$ of $E$ with $\operatorname{diam} G_i \geq \varepsilon^{1/s}$, $\H^s_\infty(E) = 0$, which is a contradiction. Letting $\varepsilon \to 0$ implies
+    \begin{align*}
+        \H^s(E) = \lim_{\varepsilon^{1/s} \to 0}\H^s_{\varepsilon^{1/s}}(E) \leq \lim_{\varepsilon^{1/s} \to 0} \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\operatorname{diam} G^\varepsilon_i)^s = 0, \quad \operatorname{diam} G^\varepsilon_i < \varepsilon^{1/s}.
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+%https://www.math.stonybrook.edu/~rdhough/mat639-spring17/lectures/lecture20.pdf
+\medskip
+
+\begin{exercise}\label{exeercise_112}
+Show an example of a set such that $\mathcal{H}^s(E) > \mathcal{H}^s_\varepsilon(E)$ for some $s > 0$ and all $\varepsilon > 0$.
+\end{exercise}
+\begin{proof}
+For the interval $(0,1)$, we know that $\mathcal{H}^1((0,1)) = 1 - 0 = 1$. Then, for any $0 < s < 1$, $\mathcal{H}^s((0,1)) = \infty$. For a fixed $s$ and any $\varepsilon > 0$, there always exists a finite covering $(0,1) \subset \bigcup^k_{i=1} A_i$, such that $\operatorname{diam} A_i < \varepsilon$. Thus, for any $\varepsilon> 0$,
+\begin{align*}
+    \mathcal{H}^s_{\varepsilon}((0,1)) = \frac{\omega_s}{2^s} \sum^k_{i=1} (\operatorname{diam} A_i)^s < \infty = \mathcal{H}^1((0,1)).
+\end{align*}
+\end{proof}
+
+\begin{proof}[Second Possible Proof of Exercise \ref{exeercise_112}]\footnote{I try to use the definition of Hausdorff measure $\mathcal{H}^s$, but currently I do not know if this proof is valid.}Let $E = [0,1] \times \{1,2,\cdots, n\} \in \mathbb{R}^2$. Then,
+\begin{align*}
+    \mathcal{H}^1_{1/n} = \frac{\omega_1}{2} n^2 \frac{1}{n} = \frac{\omega_1}{2} n,
+\end{align*}
+and $\mathcal{H}^1(E) = \lim_{n\to\infty} \mathcal{H}^1_{1/n} = \infty$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $X$ is a locally compact separable metric space, then there are open sets $\{U_i\}_{i=1}^\infty$ such that
+$$
+X=\bigcup_{i=1}^\infty U_i
+\quad
+\text{and}
+\quad
+\text{$\overline{U}_i$ is compact.}
+$$
+\end{exercise}
+\begin{proof}
+Since $X$ is locally compact, then for every point $x \in X$, there is a compact set $K_x$ that contains an open neighborhood $U_x$ of $x$, that is $x \in U_x \subset K_x$. Also, since $X$ is separable, then it has a countable base $\{V_n \}^\infty_{n=1}$. Then for any $x \in U_x \subset X$, there is a $n_x$ such that $x \in V_{n_x} \subset U_x \subset K_x$. Taking closure yields $x \in \overline{V}_{n_x}$, where $\overline{V}_{n_x}$ is compact since $\overline{V}_{n_x} \subset \overline{K}_x = K_x$. Thus, $$X = \bigcup_{n_x} V_{n_x},$$ which is a countable union since $\{n_x\}$ is a subsequence of $\{n\}$ and $\overline{V}_{n_x}$ is compact.
+\end{proof}
+
+\medskip
+
+\begin{exercise}\label{exercise_115}\footnote{The problem comes from Chapter 1, {\em Real Analysis: Measure Theory, Integration, and Hilbert Spaces}\cite{8}.} Does there exist an enumeration $\{ r_n\}^\infty_{n=1}$ of the rationals, such that the complement of
+$$
+\bigcup^\infty_{n=1}\biggr(r_n-\frac{1}{n},r_n+\frac{1}{n}\biggr)
+$$
+in $\mathbb{R}$ is non-empty? ({\em Hint}: Find an enumeration where the only rationals outside of a fixed bounded interval take the form $r_n$, with $n = m^2$ for some integer $m$.)
+\end{exercise}
+\begin{proof}\footnote{This proof is by Brian Scott: \url{https://math.stackexchange.com/a/119322/825116}.} Fixed an irrational number $\alpha$, we want to build a new enumeration $\{q_n\}^\infty_{n=1}$ of $\mathbb{Q}$ such that for any $n \in \mathbb{Z}^+$, $\alpha \notin \left(q_n - 1/n, q_n + 1/n\right)$.
+
+Let $n_1 = \min\{n \in \mathbb{Z}^+ \,:\, \left|r_n - \alpha\right| \geq 1 \}$ and let $q_1 = r_{n_1}$, then clearly, $\alpha \notin (q_1 - 1, q_1 + 1)$. Let $Z_1 = \mathbb{Z}^+ \setminus \{n_1\}$. Continue this process and now suppose we found $q_1,\cdot,q_m$ and defined $Z_m$. Let 
+\begin{align*}
+    n_{m+1} = \min \left\{n \in Z_m \,:\, \left|r_n - \alpha\right| \geq \frac{1}{m+1}\right\},
+\end{align*}
+and set $q_{m+1} = r_{n_{m+1}}$, also, $Z_{m+1} = Z_m\setminus \{n_{m+1}\}$. Clearly, $q_{m+1}$ is different from $q_1,q_2,\cdot,q_m$, and 
+\begin{align*}
+    \alpha \notin \left(q_n - \frac{1}{n}, q_n + \frac{1}{n}\right).
+\end{align*}
+At each stage we took the first available rational in the original enumeration, then every rational number is eventually enumerated as $q_n$ for some $n \in \mathbb{Z}^+$. Thus, 
+\begin{align*}
+    \alpha \notin \bigcup^\infty_{n=1}\left(q_n - \frac{1}{n}, q_n + \frac{1}{n}\right).
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{proof}[Second Proof of Exercise \ref{exercise_115}]\footnote{This proof is in: \url{https://math.stackexchange.com/a/732072/825116}.} Denote all rational numbers in $[0,1]$ by $\{p_n\}$ and those in $\mathbb{R} \setminus [0,1]$ by $\{q_n\}$. Now let's construct $\{r_n\}$ as follows: if $n$ is a square of some integer, we take the next one in $\{q_n\}$, otherwise we take the next one in $\{q_n\}$. Clearly, 
+\begin{align*}
+    \bigcup^\infty_{n=1}\left(r_n - \frac{1}{n}, r_n + \frac{1}{n}\right) \subset [-1,2] \cup \bigcup^\infty_{n=1} \left(r_{n^2} - \frac{1}{n^2}, r_{n^2} + \frac{1}{n^2}\right),
+\end{align*}
+and thus 
+\begin{align*}
+    \L_n\left(\bigcup^\infty_{n=1}\left(r_n - \frac{1}{n}, r_n + \frac{1}{n}\right)\right) \leq 3 + \sum^\infty_{n=1} \frac{2}{n^2} < \infty,
+\end{align*}
+which yields the statement.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Let $A$ be the subset of $[0,1]$ which consists of all numbers which do not have the digit 4 appearing in their decimal expansion. Find $\mathcal{L}_1(A)$.
+\end{exercise}
+\begin{proof} (Write your solution here.)
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Suppose $\{E_k\}^\infty_{k=1}$ is a countable family of measurable subsets of $\mathbb{R}^n$ such that
+$\sum^\infty_{k=1} \mathcal{L}_n(E_k)<\infty$ and let
+$$
+E=\{ x\in\mathbb{R}^n:x\in E_k\text{ for infinitely many }k\}.
+$$
+Show that $E$ is measurable and that $\mathcal{L}_n(E)=0$.
+\end{exercise}
+\begin{proof} (Write your solution here.)
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Let $K\subset\mathbb{R}^2$ be a compact set and let $\pi:\mathbb{R}^2\to\mathbb{R}$ be the orthogonal projection onto the $x$-axis. Prove that if $\pi(K)=[0,1]$, then
+$\H^1(K)\geq 1$.
+\end{exercise}
+\begin{proof} (Write your solution here.)
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+You can use the fact that if $S^1\subset\mathbb{R}^2$ is the unit circle, then $\H^1(S^1)=2\pi$.
+Assume that $\phi:S^1\to\mathbb{R}^2$ is a map such that for some $L\geq 1$ and $0<s<1$ we have
+$$
+\frac{1}{L}\left|x-y\right|^s\leq \left|\phi(x)-\phi(y)\right|\leq L\left|x-y\right|^s,
+\quad
+\text{for all $x,y\in S^1$.}
+$$
+Find $\dim_H(\phi(S^1))$.
+\end{exercise}
+\begin{proof} (Write your solution here.)
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Regard $\mathbb{R}$ as a subset of $\mathbb{R}^2$ (the $x$-axis). Prove that $A\subset\mathbb{R}$ is Borel as a subset of $\mathbb{R}$ if and only if it is Borel as a subset of $\mathbb{R}^2$.
+\end{exercise}
+\begin{proof}
+~\begin{enumerate}
+    \item[($\Rightarrow$)] Let $\mathcal{C}$ be the $\sigma$-algebra generated by sets of form $F \times \{0\}$, where $F \subset \mathbb{R}$ is closed. Clearly, $\mathcal{C} \subset \mathfrak{B}(\mathbb{R}^2)$ since the sets that generating $\mathcal{C}$ are all closed. Suppose that $A \subset \mathbb{R}$ is Borel, since $\mathfrak{B}(\mathbb{R})$ is generated by closed subsets of $\mathbb{R}$, then $A \times \{0\} \in \mathcal{C} \subset \mathfrak{B}(\mathbb{R}^2)$. Hence, $A$ is Borel in $\mathbb{R}^2$.
+    
+    \item[($\Leftarrow$)] If $A$ is Borel in $\mathbb{R}^2$, then $A$ can be a slice of Borel set $E$ in $\mathbb{R}^2$. Assume $E$ is a Borel subset of $\mathbb{R}^2$, let $\widetilde{E} = \{x \in \mathbb{R}\,|\, (x,y) \in E\}$ be a slice of $E$ in $\mathbb{R}$. Let $\mathcal{F} = \{E \subset \mathbb{R}^2\,|\, \widetilde{E}\,\,\text{is Borel in $\mathbb{R}$}\}$. Clearly, $\mathcal{F}$ is a $\sigma$-algebra.
+    
+    It remains to prove that $\mathcal{F}$ contains all open sets. If $U \subset \mathbb{R}^2$ is open, then it is easy to see that $\widetilde{U}$ is also open. Indeed, if $x \in \widetilde{U}$, then there is an open ball containing $(x,y) \in U$, and the slice of this open ball is an open interval containing $x$.\footnote{This part is based on Milo Brandt's work: \url{https://math.stackexchange.com/a/3398378/825116}.} Therefore, $\widetilde{U}$ is Borel and hence $\mathcal{F}$ contains open sets. Thus, $\mathfrak{B}(\mathbb{R}^2) \subset \mathcal{F}$, and hence $E \subset \mathcal{F}$, which implies its slice $A$ is Borel.
+    
+    \begin{proof}[Second Proof]
+    Let $f(x): \mathbb{R} \to \mathbb{R}^2$ be defined as $f(x) = (x,0) \in \mathbb{R}^2$. Clearly, $f$ is a Borel mapping.
+    \end{proof}
+    %Let $f(x): \mathbb{R} \to \mathbb{R}^2$ be defined as $f(x) = (x,0) \in \mathbb{R}^2$. Clearly, $f$ is a Borel mapping. For any 
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that there is an $\mathcal{L}_2$ measurable set $A\subset\mathbb{R}^2$ that is not Borel.
+\end{exercise}
+\begin{proof}
+Let $E \subset [0,1]$ be nonmeasuarable, and since $[0,1] \subset \mathbb{R}$, then $\mathcal{L}_2([0,1]) \leq \mathcal{L}_2(\mathbb{R}) = 0$, and hence $\mathcal{L}_2(E) = 0$. Therefore, $E$ is $\mathcal{L}^*_2$-measurbale and hence Lebesgue measurable. However, by the previous problem, $E$ is not a Borel set.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $A\subset\mathbb{R}^n$ and $B\subset\mathbb{R}^m$ are $\mathcal{L}_n$ and $\mathcal{L}_m$ measurable respectively, then $A\times B$ is $\mathcal{L}_{n+m}$ measurable.
+\end{exercise}
+\begin{proof} (Write your solution here.)
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $A\subset\mathbb{R}^n$ satisfies $\mathcal{L}_n(A)=0$ and $B\subset\mathbb{R}^m$ is any set, then
+$\mathcal{L}_{n+m}(A\times B)=0$.
+\end{exercise}
+\begin{proof} (Write your solution here.)
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that the graph
+$$
+G_f=\{(x,f(x)):\, y=f(x)\}\subset\mathbb{R}^2
+$$
+of a continuous function $f:\mathbb{R}\to\mathbb{R}$ satisfies $\mathcal{L}_2(G_f)=0$.
+\end{exercise}
+\begin{proof} (Write your solution here.)
+\end{proof}
+
+
+
+
+
 
 
 \chapter{Integration}
@@ -2163,6 +2589,16 @@ Let $(X,\mathfrak{M})$ be a measurable space and $Y$ a metric space. Let $f:X\to
     since $g^{-1}(U)$ is open and the rest follows \ref{theorem_23_a}.
 \end{enumerate}
 \end{proof}
+
+
+
+
+
+
+
+
+
+
 
 
 
