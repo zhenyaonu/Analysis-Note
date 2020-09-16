@@ -42,10 +42,6 @@
 \usepackage{titlesec}
 \graphicspath{{images/}}
 
-\theoremstyle{definition}
-\newtheorem{problem}{Problem}[chapter]
-%\numberwithin{problem}{chapter}
-\renewcommand\theproblem{\arabic{problem}}
 
 \titleformat{\chapter}[block]{\huge\bfseries\itshape\raggedleft}{\chaptertitlename\  \thechapter.}{0.5ex}{}[]
 
@@ -2386,9 +2382,8 @@ Regard $\mathbb{R}$ as a subset of $\mathbb{R}^2$ (the $x$-axis). Prove that $A\
     It remains to prove that $\mathcal{F}$ contains all open sets. If $U \subset \mathbb{R}^2$ is open, then it is easy to see that $\widetilde{U}$ is also open. Indeed, if $x \in \widetilde{U}$, then there is an open ball containing $(x,y) \in U$, and the slice of this open ball is an open interval containing $x$.\footnote{This part is based on Milo Brandt's work: \url{https://math.stackexchange.com/a/3398378/825116}.} Therefore, $\widetilde{U}$ is Borel and hence $\mathcal{F}$ contains open sets. Thus, $\mathfrak{B}(\mathbb{R}^2) \subset \mathcal{F}$, and hence $E \subset \mathcal{F}$, which implies its slice $A$ is Borel.
     
     \begin{proof}[Second Proof]
-    Let $f(x): \mathbb{R} \to \mathbb{R}^2$ be defined as $f(x) = (x,0) \in \mathbb{R}^2$. Clearly, $f$ is a Borel mapping.
+    Let $f(x): \mathbb{R} \to \mathbb{R}^2$ be defined as $f(x) = (x,0) \in \mathbb{R}^2$. Clearly, $f$ is a Borel mapping. By Definition \ref{def_borel_map}, $f^{-1}(E)$ is Borel if $E$ is Borel.
     \end{proof}
-    %Let $f(x): \mathbb{R} \to \mathbb{R}^2$ be defined as $f(x) = (x,0) \in \mathbb{R}^2$. Clearly, $f$ is a Borel mapping. For any 
 \end{enumerate}
 \end{proof}
 
@@ -2550,7 +2545,7 @@ This theorem has many applications:
 
 \medskip
 
-\begin{definition}
+\begin{definition}\label{def_borel_map}
 Let $X,Y$ be two metric spaces. We say that $f:X\to Y$ is a Borel mapping (or Borel measurable mapping) if it is measurable with respect to the $\sigma$-algebra of Borel sets in $X$, i.e. $f^{-1}(U) \in \BB(X)$ for all open set $U \subset Y$.
 \end{definition}
 
@@ -2590,23 +2585,165 @@ Let $(X,\mathfrak{M})$ be a measurable space and $Y$ a metric space. Let $f:X\to
 \end{enumerate}
 \end{proof}
 
+\medskip
 
+\begin{definition}
+Let $(X,\mathfrak{M})$ be a measurable space. Let $\overline{\mathbb{R}} = \mathbb{R} \cup \{-\infty, \infty\}$. We say that a function $f: X \to \overline{\mathbb{R}}$ is measurable if 
+\begin{enumerate}[label=(\alph*)]
+    \item $f^{-1}(U) \in \mathfrak{M}$ for every open set $U \subset \mathbb{R}$,
+    
+    \item $f^{-1}(-\infty), f^{-1}(+\infty) \in \mathfrak{M}$.
+\end{enumerate}
+Similarly, for $E \in \mathfrak{M}$, we can define measurable function $f: E \to \overline{\mathbb{R}}$.
+\end{definition}
 
+\medskip
 
+\begin{theorem}\label{theprem_24}\footnote{Actually, we could prove that the followings are equivalent\cite{9}:
+\begin{enumerate}[label=(\alph*)]
+    \item $f$ is measurable.
+    
+    \item $f^{-1}((a,\infty]) \in \mathfrak{M}$ for all $a \in \mathbb{R}$.
+    
+    \item $f^{-1}([a,\infty]) \in \mathfrak{M}$ for all $a \in \mathbb{R}$.
+    
+    \item $f^{-1}([-\infty,a)) \in \mathfrak{M}$ for all $a \in \mathbb{R}$.
+    
+    \item $f^{-1}([-\infty,a]) \in \mathfrak{M}$ for all $a \in \mathbb{R}$.
+\end{enumerate}}
+Let $(X,\mathfrak{M})$ be a measurable space. Prove that a function $f: X \to \overline{\mathbb{R}}$ is measurable if and only if $f^{-1}((a,\infty]) \in \mathfrak{M}$ for all $a \in \mathbb{R}$.
+\end{theorem}
+\begin{proof}
+~\begin{enumerate}
+    \item[($\Rightarrow$)] Note that for any $a \in \mathbb{R}$, $(a,\infty]$ is an open set in $\overline{\mathbb{R}}$, and $\{x \in X\,|\, f(x) > a\} = f^{-1}((a,\infty]) \in \mathfrak{M}$. Also,
+    \begin{align*}
+        (a,\infty] = \bigcup^\infty_{n=1} (a, a + n),
+    \end{align*}
+    then we have
+    \begin{align*}
+        f^{-1}((a,\infty]) = \bigcup^\infty_{n=1} f^{-1}((a,a + n)),
+    \end{align*}
+    where $f^{-1}((a,a + n)) \in \mathfrak{M}$ since $f$ is measurable. By the property of $\sigma$-algebra, we have $f^{-1}((a,\infty]) \in \mathfrak{M}$.
+    
+    \item[($\Leftarrow$)] Note that
+    \begin{align*}
+        (a,\infty] = \bigcup^\infty_{n=1} (a, a + n), \quad [-\infty,b] = \overline{\mathbb{R}} \setminus (b,\infty],
+    \end{align*}
+    and hence for $a < b$, the open set $(a,b)$ can be written as
+    \begin{align*}
+        (a,b) = (a,\infty] \cap [-\infty,b].
+    \end{align*}
+    Since $\{x \in X\,|\, f(x) > a\} = f^{-1}((a,\infty]) \in \mathfrak{M}$, then $[-\infty,b] = f^{-1}(\overline{\mathbb{R}}) \setminus f^{-1}((a,\infty]) \in \mathfrak{M}$. By the property of $\sigma$-algebra, we have $f^{-1}((a,b)) \in \mathfrak{M}$.
+\end{enumerate}
+\end{proof}
 
+\medskip
 
+Let $\{x_n\}$ be a sequence in $\overline{\mathbb{R}}$. For $k = 1,2,\cdots$, let
+\begin{align*}
+    b_k = \sup \{x_k,x_{k+1},x_{k+2}\cdots\}, \quad \beta = \inf \{b_1,b_2,b_3,\cdots\}.
+\end{align*}
+We call $\beta$ {\em upper limit} of $\{x_n\}$ and write
+\begin{align*}
+    \beta = \limsup_{n\to\infty} x_n = \lim_{k\to\infty} \sup\{x_k, x_{k+1}, x_{k+2}\cdots\}.
+\end{align*}
+Clearly, $\{b_k\}$ is a decreasing sequence, so $\lim_{k\to\infty} b_k$ exists and $\beta = \inf_k b_k = \lim_{k\to\infty} b_k$.
 
+Any sequence $\{x_n\}$ in $\overline{\mathbb{R}}$ has subsequence that has limit. Among all limits of such subsequences of $\{x_n\}$, there is a largest limit, that is, there is $\beta \in \overline{\mathbb{R}}$ such that there exists a subsequence $\{x_{n_k}\}$ such that $\lim_{k\to\infty} x_{n_k} = \beta$, and if another subsequence $\{x_{m_l}\}$ with limit $g$, then $g \leq \beta$.
 
+The {\em lower limit} is defined by 
+\begin{align*}
+    \liminf_{n\to\infty} x_n = - \limsup_{n\to\infty} (-x_n).
+\end{align*}
+The natural way to define the lower limit is that let
+\begin{align*}
+    a_k = \inf\{x_k,x_{k+1},x_{k+2},\cdots\}, \quad \alpha = \sup \{a_1,a_2,a_3,\cdots\}.
+\end{align*}
+Then $\alpha$ is called {\em lower limit} of $\{x_n\}$ and write
+\begin{align*}
+    \alpha = \liminf_{n\to\infty} x_n = \lim_{k\to\infty} \inf \{x_k,x_{k+1},x_{k+2},\cdots\}.
+\end{align*}
+Similarly, $\alpha$ is the smallest limit among all limits of subsequences of $\{x_n\}$ that have limit.
 
+For a sequence $f_n:X \to \overline{\mathbb{R}}$, we define new functions $\sup_n f_n$, $\lim_n f_n$, $\limsup_n f_n$, $\liminf_n f_n: X \to \overline{\mathbb{R}}$ in a pointwise way that for every $x \in X$,
+\begin{align*}
+    \left(\sup_n f_n\right)(x) & = \sup_n f_n(x),\\
+    \left(\limsup_n f_n\right)(x) & = \limsup_n f_n(x),
+\end{align*}
+$\lim_n f_n$ and $\liminf_n f_n: X \to \overline{\mathbb{R}}$ are defined similarly.
 
+If $f(x) = \lim_{n\to\infty} f_n(x)$ for all $x \in X$, the we say that $f$ is a {\em pointwise limit} of $\{f_n\}$. Observe, that in the case the pointwise limit exists, we have
+\begin{align*}
+    f(x) = \liminf_{n\to\infty} f_n(x).
+\end{align*}
 
+\medskip
 
+\begin{theorem}
+Suppose that $f_n: X \to \overline{\mathbb{R}}$ is a sequence of measurable functions, then the functions $\sup_n f_n$, $\lim_n f_n$, $\limsup_n f_n$, $\liminf_n f_n: X \to \overline{\mathbb{R}}$ are measurable.
+\end{theorem}
+\begin{proof}
+Suppose $\sup_n f_n(x) \in (a,\infty]$, then there is a $n \in \mathbb{N}$ such that $f_n(x) \in (a,\infty]$, which implies $x \in f_n^{-1}((a,\infty])$. Then, $x \in \bigcup^\infty_{n=1} f_n^{-1}((a,\infty])$, which implies\footnote{Indeed, if $x \in \left(\sup_n f_n\right)^{-1}((a,\infty])$, then there is $n$ such that $x \in f_n^{-1}((a,\infty]) \subset \bigcup^\infty_{n=1} f_n^{-1}((a,\infty])$. On the other hand, if $x \in \bigcup^\infty_{n=1} f_n^{-1}((a,\infty])$, then $f_n(x) > a$ for all $n \in \mathbb{N}$. Then $\sup_n f_n(x) \geq f_n(x) > a$, which implies $x \in \left(\sup_n f_n\right)^{-1}((a,\infty])$.}
+\begin{align*}
+    \left(\sup_n f_n\right)^{-1}((a,\infty]) = \bigcup^\infty_{n=1} f_n^{-1}((a,\infty]).
+\end{align*}
+By Theorem \ref{theprem_24}, $f_n^{-1}((a,\infty]) \in \mathfrak{M}$, and hence $\left(\sup_n f_n\right)^{-1}((a,\infty]) \in \mathfrak{M}$. Similarly, $\inf_n f_n$ is measurable.
 
+The two facts imply that $\limsup_n f_n, \liminf_n f_n$ are measurable because
+\begin{align*}
+    \limsup_n f_n = \inf_{k\geq 1} \left\{\sup_{i\geq k}f_i\right\}, \quad \liminf_n f_n = \sup_k \left\{\inf_{i\geq k}f_i\right\}.
+\end{align*}
+\end{proof}
 
+\medskip
 
+\begin{corollary}\label{coro_251}
+If $f(x) = \liminf_n f_n(x)$ is a pointwise limit of the measurable function $f_n: X \to \overline{\mathbb{R}}$ (or $f_n: X \to \overline{\mathbb{C}}$), then $f$ is measurable.
+\end{corollary}
 
+\medskip
 
+\begin{corollary}
+If $f,g: X \to \overline{\mathbb{R}}$ are measurable, then the functions $\max\{f,g\}, \min\{f,g\}$ are measurable. In particular, $f^+ = \max\{f,0\}, f^- = - \min\{f,0\}$ are also measurable.
+\end{corollary}
+\begin{proof}
+Note that $\max\{f,g\} = \sup\{f,g,g,g,\cdots\}$ and $\min\{f,g\} = \inf\{f,g,g,g,\cdots\}$, then the result is obvious.
+\end{proof}
 
+\medskip
+
+\begin{remark}
+The functions $f^+$ and $f^-$ are called positive part and negative part of $f$, and $f = f^+ + f^-, \left|f\right| = f^+ + f^-$.
+\end{remark}
+
+\medskip
+
+Corollary \ref{coro_251} has generalization to the case of arbitrary metric spaces.
+
+\medskip
+
+\begin{theorem}
+Let $f_n: X \to Y$ be a sequence of measurable mappings with values in a separable metric space $Y$. If $\lim_{n\to\infty}f_n(x) = f(x)$ for every $x \in X$,\footnote{$f_n$ pointwise converges to $f$.}then $f: X \to Y$ is measurable.
+\end{theorem}
+\begin{proof}
+Since $Y$ is separable metric space, then $Y$ contains a countable dense subset. Let $\{y_i\}^\infty_{i=1}$ be a countable dense subset of $Y$. Then the functions $d_i: Y \to \overline{\mathbb{R}}, d_i(y) = d(y_i,y)$ are continuous. By Themreom \ref{theorem_21}, $d_i \circ f_n: X \to \overline{\mathbb{R}}$ is measurable. Since $d_i \circ f_n \to d_i \circ f$ pointwisely, then the functions $d_i \circ f: X \to \overline{\mathbb{R}}$ are measurable by Corollary \ref{coro_251}. 
+
+It suffices to prove that $f^{-1}(F) \in \mathfrak{M}$ for every closed subset $F \in Y$. It follows from the equality
+\begin{align*}
+    f^{-1}(F) = \bigcap^\infty_{i=1} \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}.
+\end{align*}
+Indeed, if $x \in ^{-1}(F)$, we have $f(x) \in F$, and hence $d(y_i,f(x)) \geq d(y_i,F)$ for all $i \in \mathbb{N}$. Then, for all $i \in \mathbb{N}$, $x \in \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}$, therefore, $x \in \bigcap^\infty_{i=1} \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}$. If $x$ belongs to the right hand side, then $d(y_i,f(x)) \geq d(y_i,F)$ for all $i \in \mathbb{N}$. Since $\{y_i\}$ is dense subset, then there exists a subsequence $\{y_{i_j}\}$ such that $y_{i_j} \to f(x)$, which implies $d(y_{i_j},f(x)) \geq d(y_{i_j},F)$. Therefore,
+\begin{align*}
+    0 = d(f(x),f(x)) \leftarrow	d(y_{i_j},f(x)) \geq d(y_{i_j},F) \to \geq d(f(x),F),
+\end{align*}
+and since $F$ is closed, then $f(x) \in F$. Hence, $x \in f^{-1}(F)$.
+
+It remains to show that the sets $\{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}$ are measurable. Indeed,
+\begin{align*}
+    \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\} = (d_i \circ f)^{-1} ([d(y_i,F), \infty)),
+\end{align*}
+which are measurable. Thus, $f^{-1}(F)$ is measurable and $f$ is a measurable mapping.
+\end{proof}
 
 
 
