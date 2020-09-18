@@ -830,10 +830,8 @@ Let $X$ be a metric space and $\mu$ is a measure defined on the $\sigma$-algebra
 \medskip
 
 \begin{corollary}
-If $X$ is a locally compact\footnote{A metric space $X$ is called {\em locally compact} if every point $x$ of $X$ has a compact neighbourhood, i.e. there exists an open set $U$ and a compact set $K$, such that $x\in U \subseteq K$. Also, there are other definitions as well, such as every point has a neighborhood whose closure is compact. For example, $\mathbb{R}^n$ is locally compact, as well as $\mathbb{R}^n \setminus \{0\}$. Note that being locally compact does not imply it is bounded and closed.}and separable metric space\footnote{A collection $\{V_\alpha\}$ of open subsets of $X$ is said to be a {\em base} for $X$ if for every $x\in 
-X$ and every open set $G \subset X$ such that $x \in G$, there exists $\alpha$ such that $x \in V_\alpha \subset G$. Then we have a lemma for separable space.
-
-{\bf Lemma}. Every separable metric space has a countable base (From: \url{https://ocw.mit.edu/courses/mathematics/18-100b-analysis-i-fall-2010/readings-notes/MIT18_100BF10_compactness.pdf}).}and $\mu$ is a measure on $\mathfrak{B}(X)$ such that $\mu(K) < \infty$ for any compact set $K$, then $X$ is a union of countable many open sets of finite measure and $\mu$ is a Radon measure.
+If $X$ is a locally compact\footnote{A metric space $X$ is called {\em locally compact} if every point $x$ of $X$ has a compact neighbourhood, i.e. there exists an open set $U$ and a compact set $K$, such that $x\in U \subseteq K$. Also, there are other definitions as well, such as every point has a neighborhood whose closure is compact. For example, $\mathbb{R}^n$ is locally compact, as well as $\mathbb{R}^n \setminus \{0\}$. Note that being locally compact does not imply it is bounded and closed.}and separable metric space\footnote{{\bf Lemma}. Every separable metric space has a countable base\cite{10}. A collection $\{V_\alpha\}$ of open subsets of $X$ is said to be a {\em base} for $X$ if for every $x\in 
+X$ and every open set $G \subset X$ such that $x \in G$, there exists $\alpha$ such that $x \in V_\alpha \subset G$. Then we have a lemma for separable space.}and $\mu$ is a measure on $\mathfrak{B}(X)$ such that $\mu(K) < \infty$ for any compact set $K$, then $X$ is a union of countable many open sets of finite measure and $\mu$ is a Radon measure.
 \end{corollary}
 \begin{proof}
 Since $X$ is separable, then it has a countable, dense subsets. Also, since $X$ is locally compact, then there exists countable open sets $U_i$ such that $X = \bigcup^\infty_{i=1} U_i$, and each $\overline{U_i}$ is compact.\footnote{Indeed, since $X$ is locally compact, then for every point $x \in X$, there is a compact set $K_x$ that contains an open neighborhood $U_x$ of $x$, that is $x \in U_x \subset K_x$. Also, since $X$ is separable, then it has a countable base $\{V_n \}^\infty_{n=1}$. Then for any $x \in U_x \subset X$, there is a $n_x$ such that $x \in V_{n_x} \subset U_x \subset K_x$. Taking closure yields $x \in \overline{V}_{n_x}$, where $\overline{V}_{n_x}$ is compact since $\overline{V}_{n_x} \subset \overline{K}_x = K_x$. Thus, $X = \bigcup_{n_x} V_{n_x}$, which is a countable union since $\{n_x\}$ is a subsequence of $\{n\}$ and $\overline{V}_{n_x}$ is compact.} By assumption, $\mu(U_i) \leq \mu(\overline{U_i}) < \infty$. By Theorem \ref{theorem_114},
@@ -975,7 +973,7 @@ Also, it is easy to see that $\mathcal{H}^s(E) = 0$ if and only if $\mathcal{H}_
 \begin{proposition}
 If $0 < s < \infty$ and $E \subset X$ is a subset of a metric space, then $\mathcal{H}^s(E) = 0$ if and only if $\mathcal{H}_\infty^s(E) = 0$.
 \end{proposition}
-\begin{proof}\footnote{This proof is in: \url{https://www.math.stonybrook.edu/~rdhough/mat639-spring17/lectures/lecture20.pdf}.}
+\begin{proof}\cite{11}
 ~\begin{enumerate}
     \item[($\Rightarrow$)] If $\H^s(E) = 0$, then  $\H^s_\infty(E) = 0$ follows easily. Indeed, \begin{align*}
         \H^s_\infty(E) \leq \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\operatorname{diam} A_i)^s = \H^s_\varepsilon(E) \xrightarrow[]{\varepsilon \to 0} \H^s(E),
@@ -1113,7 +1111,7 @@ Prove that
     \item if $\mathcal{H}^s(E) > 0$, then $\mathcal{H}^t(E) = \infty$ for all $0 < t < s$.
 \end{enumerate}
 \end{exercise}
-\begin{proof}\footnote{This proof is based on: \url{https://www.math.cuhk.edu.hk/course_builder/1415/math5011/MATH5011_Chapter_3.2014.pdf}, with a different definition of $\mathcal{H}^s_{\varepsilon}$.}
+\begin{proof}\footnote{This proof is based on \cite{12}, with a different definition of $\mathcal{H}^s_{\varepsilon}$.}
 ~\begin{enumerate}[label=(\alph*)]
     \item Since $\H^s(E) < \infty$, then for each $\varepsilon > 0$, there exists family $\{A_i\}$ of open sets $A_i$ with $\operatorname{diam} A_i < \varepsilon$, such that $E \subset \bigcup^\infty_{i=1} A_i$ and
     \begin{align*}
@@ -1125,11 +1123,11 @@ Prove that
         & \leq \frac{\omega_t}{2^t} \frac{2^s}{\omega_s} \varepsilon^{t-s} \left( \H^s(E) + 1\right) \xrightarrow[]{\varepsilon \to 0} 0.
     \end{align*}
     
-    \item It follows the similar argument in (a). Another way to prove this is interchanging the positions of $s$ and $t$ in the contrapositive of (b),\footnote{Interchanging $s$ and $t$ is based on the proof in: \url{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2009/REUPapers/Shah.pdf}.}which is 
+    \item It follows the similar argument in (a). Another way to prove this is interchanging the positions of $s$ and $t$ in the contrapositive of (b), which is 
     \begin{align*}
         \exists t \in (0,s), \H^t(E) < \infty \Longrightarrow \H^s(E) = 0,
     \end{align*}
-    and it gives (a), and hence it proves (b).
+    and it gives (a), and hence it proves (b). (Interchanging $s$ and $t$ is from \cite{13}.)
 \end{enumerate}
 \end{proof}
 
@@ -1175,7 +1173,7 @@ One can prove that the Cantor set is uncountable.
 \begin{theorem}
 Cantor set is uncountable.
 \end{theorem}
-\begin{proof}\footnote{This proof is by Gerald Edgar: \url{https://math.stackexchange.com/a/250762}.}Instead of the diagonal proof directly, we use Cantor's first proof of uncountability. Let $C$ be the cantor set, and let $E = \{u_1,u_2,\cdots\}$ be a countable set. We construct a point of $\CC$ but not in $E$. First, $\CC \subseteq [0,1/3] \cup [2/3,1]$, and point $u_1$ does not belong to both of those intervals, so there is an interval $I_1$of length $1/3$ (one of the ones in the first stage of the construction of the Cantor set) with $u_1 \notin I_1$. Now when we remove the middle third of $I_1$ we get two intervals of length $1/3^2$. As before, $u_2$ does not belong to both of these intervals, so there is an interval $I_2 \subset I_1$ of length $1/3^2$ (one of the ones in the second stage of the construction of the Cantor set) with $u_2 \notin I_2$. Continue in this way to get $I_1 \supset I_2 \supset I_3 \supset \cdots \supset I_k \supset \cdots$ where $I_k$ has length $1/3^k$ (one of the intervals in the kth stage of the construction of the Cantor set) and $u_k \notin I_k$. Finally, we get a point $x \in \bigcap^\infty_{k=1} I_k$ where $x \in \CC$ but $x \neq u_k$ for all $k$.
+\begin{proof}\cite{14} Instead of the diagonal proof directly, we use Cantor's first proof of uncountability. Let $C$ be the cantor set, and let $E = \{u_1,u_2,\cdots\}$ be a countable set. We construct a point of $\CC$ but not in $E$. First, $\CC \subseteq [0,1/3] \cup [2/3,1]$, and point $u_1$ does not belong to both of those intervals, so there is an interval $I_1$of length $1/3$ (one of the ones in the first stage of the construction of the Cantor set) with $u_1 \notin I_1$. Now when we remove the middle third of $I_1$ we get two intervals of length $1/3^2$. As before, $u_2$ does not belong to both of these intervals, so there is an interval $I_2 \subset I_1$ of length $1/3^2$ (one of the ones in the second stage of the construction of the Cantor set) with $u_2 \notin I_2$. Continue in this way to get $I_1 \supset I_2 \supset I_3 \supset \cdots \supset I_k \supset \cdots$ where $I_k$ has length $1/3^k$ (one of the intervals in the kth stage of the construction of the Cantor set) and $u_k \notin I_k$. Finally, we get a point $x \in \bigcap^\infty_{k=1} I_k$ where $x \in \CC$ but $x \neq u_k$ for all $k$.
 \end{proof}
 
 \medskip
@@ -1421,7 +1419,7 @@ It is enough to prove that for any $\varepsilon > 0$, there exists a $F_\sigma$ 
 
 Since $E$ has finite measure, so does $\widetilde{E}$. Also, since $E \subset \widetilde{E}$, we have $\H^s(\widetilde{E} \setminus E) = 0$. 
 
-We claim that each open set is a union of an increasing sequence of closed sets.\footnote{Let $E \subset X$ be open. Define $C_i = \left\{x \,|\, \operatorname{dist}(x, (X\setminus E)) \geq 1/i\right\}$, then $C_1 \subset C_2 \subset \cdots$, and $E = \bigcup^\infty_{i=1}C_i$. This is based on an example in $\mathbb{R}^n$: \url{https://math.stackexchange.com/a/1620262}.}Then, $V_i$ is a union of such closed sets $F_i$. Since $E \subset V_i$, then there exists a closed set $F_i \subset V_i$ such that $\H^s(E \setminus F_i) < \varepsilon / 2^i$. Define
+We claim that each open set is a union of an increasing sequence of closed sets.\footnote{Let $E \subset X$ be open. Define $C_i = \left\{x \,|\, \operatorname{dist}(x, (X\setminus E)) \geq 1/i\right\}$, then $C_1 \subset C_2 \subset \cdots$, and $E = \bigcup^\infty_{i=1}C_i$. This is based on an example in $\mathbb{R}^n$ \cite{15}.}Then, $V_i$ is a union of such closed sets $F_i$. Since $E \subset V_i$, then there exists a closed set $F_i \subset V_i$ such that $\H^s(E \setminus F_i) < \varepsilon / 2^i$. Define
 \begin{align*}
     F \coloneqq \bigcap^\infty_{i=1} F_i \subset \bigcap^\infty_{i=1} V_i = \widetilde{E},
 \end{align*}
@@ -1615,8 +1613,8 @@ Let $P$ ba an open interval.
 \begin{corollary}\label{coro_19161}
 If $k < n$, then $\mathcal{L}_n (\mathbb{R}^k) = 0$.
 \end{corollary}
-\begin{proof}
-It suffice to show that $[-k,k]^{k} \times \{0\}^{n-k}$ has Lebesgue measure zero for all $k \in \mathbb{N}$.\footnote{It is based on the proof of  $\mathbb{R}^n\times\{0\}$ has measure zero in $\mathbb{R}^{n+1}$: \url{https://math.stackexchange.com/a/524155}.} 
+\begin{proof}\footnote{It is based on the proof of  $\mathbb{R}^n\times\{0\}$ has measure zero in $\mathbb{R}^{n+1}$\cite{16}.} 
+It suffice to show that $[-k,k]^{k} \times \{0\}^{n-k}$ has Lebesgue measure zero for all $k \in \mathbb{N}$.
 
 For any $\varepsilon > 0$, choose $\delta > 0$ such that
 \begin{align*}
@@ -1891,7 +1889,7 @@ $E \subset \mathbb{R}^n$ has measure zero if and only if for any $\varepsilon > 
     \end{align*}
     letting $\varepsilon \to 0$ proves this direction.
     
-    \item[($\Rightarrow$)] Since $\L_n(E) = 0$, then there is an open set $U$ such that $E \subset U$, $\L_n(U) < 2^{-n}n^{-n/2} \varepsilon$. Also, by Theorem \ref{theorem_123}, $U$ is a union of the closed dyadic cubes $\overline{D}_i$ with disjoint interiors $D_i$, that is $U = \bigcup^\infty_{i=1} \overline{D}_i$. Any cube $\overline{D}$ of sidelength $\ell$ is contained in a ball of radius $r = 2\sqrt{n}\ell$,\footnote{See: \url{https://math.stackexchange.com/a/1603122}.}and $r^n = 2^nn^{n/2}|\overline{D}|$. 
+    \item[($\Rightarrow$)] Since $\L_n(E) = 0$, then there is an open set $U$ such that $E \subset U$, $\L_n(U) < 2^{-n}n^{-n/2} \varepsilon$. Also, by Theorem \ref{theorem_123}, $U$ is a union of the closed dyadic cubes $\overline{D}_i$ with disjoint interiors $D_i$, that is $U = \bigcup^\infty_{i=1} \overline{D}_i$. Any cube $\overline{D}$ of sidelength $\ell$ is contained in a ball of radius $r = 2\sqrt{n}\ell$\cite{17}, and $r^n = 2^nn^{n/2}|\overline{D}|$. 
     
     Therefore, $\overline{D}_i \subset B(x_i,r_i)$ of radius $r_i$ similar to the above. Thus, $U \subset \bigcup^\infty_{i=1} B(x_i,r_i)$, and
     \begin{align*}
@@ -1924,7 +1922,7 @@ Therefore, $f(E)$ can be covered by balls of radius $\rho_i = Lr_i$, $\sum^\inft
 \begin{proposition}\label{proposition_110}
 If $f:\mathbb{R}^n \to \mathbb{R}^n$ is a homeomorphism, then $A \subset \mathbb{R}^n$ is Borel set if and only if $f(A)$ is a Borel set.
 \end{proposition}
-\begin{proof}\footnote{This proof is based on the result in: \url{https://math.stackexchange.com/a/2833250}.}
+\begin{proof}\footnote{This proof is based on the result in \cite{18}.}
 Let $\mathfrak{B}(\mathbb{R}^n)$ be the $\sigma$-algebra generated by the family of all open sets in $\mathbb{R}^n$. Now define $\widetilde{\mathfrak{B}} = \{f(E)\,|\,E \in \mathfrak{B}(\mathbb{R}^n)\}$. Note that $\widetilde{\mathfrak{B}}$ is also a $\sigma$-algebra. Indeed, since $f$ is honeomorphism,
 \begin{enumerate}[label=(\alph*)]
     \item $f(\mathbb{R}^n) = \mathbb{R}^n$, and hence $\mathbb{R}^n \in \widetilde{\mathfrak{B}}$.
@@ -2124,19 +2122,8 @@ It has been proved in Exercise \ref{exercise_12}, section \ref{hausdorff_measure
 \begin{exercise}
 Let $f:\mathbb{R}^n\to\mathbb{R}^n$ be a homeomorphism. Prove that $A\subset\mathbb{R}^n$ is Borel if and only if $f(A)$ is Borel.
 \end{exercise}
-\begin{proof}\footnote{This proof is based on \url{https://math.stackexchange.com/a/2833250}.}
-Let $\mathfrak{B}(\mathbb{R}^n)$ be the $\sigma$-algebra generated by the family of all open sets in $\mathbb{R}^n$. Now define $\widetilde{\mathfrak{B}} = \{f(E)\,|\,E \in \mathfrak{B}(\mathbb{R}^n)\}$. Note that $\widetilde{\mathfrak{B}}$ is also a $\sigma$-algebra. Indeed,
-\begin{enumerate}[label=(\alph*)]
-    \item Since $f$ is honeomorphism, then $f(\mathbb{R}^n) = \mathbb{R}^n$, and hence $\mathbb{R}^n \in \widetilde{\mathfrak{B}}$.
-        
-    \item For any $f(E) \in \widetilde{\mathfrak{B}}$, we have $\mathbb{R}^n \setminus f(E) = f(\mathbb{R}^n) \setminus f(E) = f(\mathbb{R}^n \setminus E) \in \widetilde{\mathfrak{B}}$, since $f$ is a honeomorphism and $\mathbb{R}^n \setminus E \in \mathfrak{B}(\mathbb{R}^n)$.
-        
-    \item For any $f(E_i) \in \widetilde{\mathfrak{B}}$, then $\bigcup^\infty_{i=1} f(E_i) = f \left( \bigcup^\infty_{i=1} E_i\right) \in \widetilde{\mathfrak{B}}$, since $f$ is a honeomorphism.
-\end{enumerate}
-
-We claim that $\widetilde{\mathfrak{B}}$ contains all open sets. Indeed, if an open set $U \in \mathbb{R}^n$, then $f^{-1}(U) \in \mathbb{R}^n$ is also open by the continuity of $f^{-1}$. Hence, $U = f\left(f^{-1}(U)\right) \in \widetilde{\mathfrak{B}}$, which implies $\mathfrak{B}(\mathbb{R}^n) \subset \widetilde{\mathfrak{B}}$. Therefore, if $A \in \mathfrak{B}(\mathbb{R}^n)$, then $f(A) \in \mathfrak{B}(\mathbb{R}^n) \subset \widetilde{\mathfrak{B}}$, and thus $f(A)$ is Borel.
-
-Also, for any $V \in \widetilde{\mathfrak{B}}$, there exists an open set $U \in \mathfrak{B}(\mathbb{R}^n) \subset \widetilde{\mathfrak{B}}$ such that $V = f(U)$. By continuity of $f^{-1}$, $U = f^{-1}(f(U)) = f^{-1}(V)$, which implies $V \in \mathfrak{B}(\mathbb{R}^n)$, and hence $\widetilde{\mathfrak{B}} \subset \mathfrak{B}(\mathbb{R}^n)$. Thus, if $f(A)$ is Borel, then $A$ is also Borel.
+\begin{proof}
+It has been proved in Proposition \ref{proposition_110}.
 \end{proof}
 
 \medskip
@@ -2288,13 +2275,14 @@ Since $X$ is locally compact, then for every point $x \in X$, there is a compact
 
 \medskip
 
-\begin{exercise}\label{exercise_115}\footnote{The problem comes from Chapter 1, {\em Real Analysis: Measure Theory, Integration, and Hilbert Spaces}\cite{8}.} Does there exist an enumeration $\{ r_n\}^\infty_{n=1}$ of the rationals, such that the complement of
+\begin{exercise}\label{exercise_115}\footnote{The problem comes from Chapter 1, {\em Real Analysis: Measure Theory, Integration, and Hilbert Spaces} \cite{8}.} Does there exist an enumeration $\{ r_n\}^\infty_{n=1}$ of the rationals, such that the complement of
 $$
 \bigcup^\infty_{n=1}\biggr(r_n-\frac{1}{n},r_n+\frac{1}{n}\biggr)
 $$
 in $\mathbb{R}$ is non-empty? ({\em Hint}: Find an enumeration where the only rationals outside of a fixed bounded interval take the form $r_n$, with $n = m^2$ for some integer $m$.)
 \end{exercise}
-\begin{proof}\footnote{This proof is by Brian Scott: \url{https://math.stackexchange.com/a/119322/825116}.} Fixed an irrational number $\alpha$, we want to build a new enumeration $\{q_n\}^\infty_{n=1}$ of $\mathbb{Q}$ such that for any $n \in \mathbb{Z}^+$, $\alpha \notin \left(q_n - 1/n, q_n + 1/n\right)$.
+\begin{proof}\cite{19}
+Fixed an irrational number $\alpha$, we want to build a new enumeration $\{q_n\}^\infty_{n=1}$ of $\mathbb{Q}$ such that for any $n \in \mathbb{Z}^+$, $\alpha \notin \left(q_n - 1/n, q_n + 1/n\right)$.
 
 Let $n_1 = \min\{n \in \mathbb{Z}^+ \,:\, \left|r_n - \alpha\right| \geq 1 \}$ and let $q_1 = r_{n_1}$, then clearly, $\alpha \notin (q_1 - 1, q_1 + 1)$. Let $Z_1 = \mathbb{Z}^+ \setminus \{n_1\}$. Continue this process and now suppose we found $q_1,\cdot,q_m$ and defined $Z_m$. Let 
 \begin{align*}
@@ -2312,7 +2300,8 @@ At each stage we took the first available rational in the original enumeration, 
 
 \medskip
 
-\begin{proof}[Second Proof of Exercise \ref{exercise_115}]\footnote{This proof is in: \url{https://math.stackexchange.com/a/732072/825116}.} Denote all rational numbers in $[0,1]$ by $\{p_n\}$ and those in $\mathbb{R} \setminus [0,1]$ by $\{q_n\}$. Now let's construct $\{r_n\}$ as follows: if $n$ is a square of some integer, we take the next one in $\{q_n\}$, otherwise we take the next one in $\{q_n\}$. Clearly, 
+\begin{proof}[Second Proof of Exercise \ref{exercise_115}]\cite{20} 
+Denote all rational numbers in $[0,1]$ by $\{p_n\}$ and those in $\mathbb{R} \setminus [0,1]$ by $\{q_n\}$. Now let's construct $\{r_n\}$ as follows: if $n$ is a square of some integer, we take the next one in $\{q_n\}$, otherwise we take the next one in $\{q_n\}$. Clearly, 
 \begin{align*}
     \bigcup^\infty_{n=1}\left(r_n - \frac{1}{n}, r_n + \frac{1}{n}\right) \subset [-1,2] \cup \bigcup^\infty_{n=1} \left(r_{n^2} - \frac{1}{n^2}, r_{n^2} + \frac{1}{n^2}\right),
 \end{align*}
@@ -2328,12 +2317,13 @@ which yields the statement.
 \begin{exercise}
 Let $A$ be the subset of $[0,1]$ which consists of all numbers which do not have the digit 4 appearing in their decimal expansion. Find $\mathcal{L}_1(A)$.
 \end{exercise}
-\begin{proof} (Write your solution here.)
+\begin{proof}\footnote{This proof is by Austin Mohr\cite{22}.}
+Let $x \in A$. For any $\varepsilon > 0$, there exists $N > 0$ such that $k/10^N < \varepsilon$ for $k = 1,2,\cdots,9$. Then, $x + k/10^N \in B(x,\varepsilon)$ for all $k = 1,2,\cdots,9$. Now, we can find a $k$ such that the $N$-th digit in the decimal expansion of $x + k/10^N$ is $4$. Therefore, $x$ is a singleton set and $A$ is an uncountable union of singleton sets. Thus, $\mathcal{L}_1(A) = 0$.
 \end{proof}
 
 \medskip
 
-\begin{exercise}
+\begin{exercise}\footnote{This is called Borel-Cantelli Lemma, and a simple proof is provided in\cite{22}.}
 Suppose $\{E_k\}^\infty_{k=1}$ is a countable family of measurable subsets of $\mathbb{R}^n$ such that
 $\sum^\infty_{k=1} \mathcal{L}_n(E_k)<\infty$ and let
 $$
@@ -2341,7 +2331,22 @@ E=\{ x\in\mathbb{R}^n:x\in E_k\text{ for infinitely many }k\}.
 $$
 Show that $E$ is measurable and that $\mathcal{L}_n(E)=0$.
 \end{exercise}
-\begin{proof} (Write your solution here.)
+\begin{proof}
+Note that 
+\begin{align*}
+    E = \bigcap_{k\in \mathbb{N}} \bigcup_{j\geq k} E_j.
+\end{align*}
+Let $A_k \coloneqq \bigcup_{j\geq k} E_j$ and $A_k$ is measurable since it is union of measurable sets, and hence $E$ is also measurable.
+
+Since $\sum^\infty_{k=1} \mathcal{L}_n(E_k) < \infty$, then for any $\varepsilon > 0$, there exists $N > 0$ such that for all $K > N$,
+\begin{align*}
+    \sum^\infty_{k=K} \mathcal{L}_n(E_k) < \infty.
+\end{align*}
+Note that $E \subset \bigcup^\infty_{k=K} E_k$, then
+\begin{align*}
+    \mathcal{L}_n(E) \leq \mathcal{L}_n\left(\bigcup^\infty_{k=K} E_k\right) \sum^\infty_{k=K} \mathcal{L}_n(E_k) < \infty.
+\end{align*}
+Thus, $\mathcal{L}_n(E)=0$.
 \end{proof}
 
 \medskip
@@ -2370,20 +2375,25 @@ Find $\dim_H(\phi(S^1))$.
 
 \medskip
 
-\begin{exercise}
+\begin{exercise}\label{exe_120}
 Regard $\mathbb{R}$ as a subset of $\mathbb{R}^2$ (the $x$-axis). Prove that $A\subset\mathbb{R}$ is Borel as a subset of $\mathbb{R}$ if and only if it is Borel as a subset of $\mathbb{R}^2$.
 \end{exercise}
 \begin{proof}
+~\begin{enumerate}
+    \item[($\Rightarrow$)] Let $\pi:\mathbb{R}^2 \to \mathbb{R}$ be an orthogonal projection, defined as $\pi(x,y) = x$. Clearly, $\pi$ is continuous, then $\pi$ is a Borel mapping. For any Borel set $E \subset \mathbb{R}$, we have $\pi^{-1}(E) = E \times \mathbb{R}$, which is Borel. Since $E = (E \times \mathbb{R}) \cap (\mathbb{R} \times \{0\})$ and both sets are Borel, then $E$ is Borel.
+    
+    \item[($\Leftarrow$)] Let $i:\mathbb{R} \to \mathbb{R}^2$ be an embedding, defined as $i(x) = x$, the identify. Clearly, $i$ is continuous, then $i$ is a Borel mapping. For any set $E \subset \mathbb{R}$ and $E$ is Borel in $\mathbb{R}^2$, then $i^{-1}(E) = E \cap (\mathbb{R} \times \{0\}) = E$ is Borel in $\mathbb{R}$.\footnote{My first thought is that let $f(x): \mathbb{R} \to \mathbb{R}^2$ be defined as $f(x) = (x,0) \in \mathbb{R}^2$. Clearly, $f$ is a Borel mapping. By Definition \ref{def_borel_map}, $f^{-1}(E)$ is Borel if $E$ is Borel. This is similar to the proof in\cite{23}.}
+\end{enumerate}
+\end{proof}
+
+
+\begin{proof}[Second Proof of Exercise \ref{exe_120}]
 ~\begin{enumerate}
     \item[($\Rightarrow$)] Let $\mathcal{C}$ be the $\sigma$-algebra generated by sets of form $F \times \{0\}$, where $F \subset \mathbb{R}$ is closed. Clearly, $\mathcal{C} \subset \mathfrak{B}(\mathbb{R}^2)$ since the sets that generating $\mathcal{C}$ are all closed. Suppose that $A \subset \mathbb{R}$ is Borel, since $\mathfrak{B}(\mathbb{R})$ is generated by closed subsets of $\mathbb{R}$, then $A \times \{0\} \in \mathcal{C} \subset \mathfrak{B}(\mathbb{R}^2)$. Hence, $A$ is Borel in $\mathbb{R}^2$.
     
     \item[($\Leftarrow$)] If $A$ is Borel in $\mathbb{R}^2$, then $A$ can be a slice of Borel set $E$ in $\mathbb{R}^2$. Assume $E$ is a Borel subset of $\mathbb{R}^2$, let $\widetilde{E} = \{x \in \mathbb{R}\,|\, (x,y) \in E\}$ be a slice of $E$ in $\mathbb{R}$. Let $\mathcal{F} = \{E \subset \mathbb{R}^2\,|\, \widetilde{E}\,\,\text{is Borel in $\mathbb{R}$}\}$. Clearly, $\mathcal{F}$ is a $\sigma$-algebra.
     
-    It remains to prove that $\mathcal{F}$ contains all open sets. If $U \subset \mathbb{R}^2$ is open, then it is easy to see that $\widetilde{U}$ is also open. Indeed, if $x \in \widetilde{U}$, then there is an open ball containing $(x,y) \in U$, and the slice of this open ball is an open interval containing $x$.\footnote{This part is based on Milo Brandt's work: \url{https://math.stackexchange.com/a/3398378/825116}.} Therefore, $\widetilde{U}$ is Borel and hence $\mathcal{F}$ contains open sets. Thus, $\mathfrak{B}(\mathbb{R}^2) \subset \mathcal{F}$, and hence $E \subset \mathcal{F}$, which implies its slice $A$ is Borel.
-    
-    \begin{proof}[Second Proof]
-    Let $f(x): \mathbb{R} \to \mathbb{R}^2$ be defined as $f(x) = (x,0) \in \mathbb{R}^2$. Clearly, $f$ is a Borel mapping. By Definition \ref{def_borel_map}, $f^{-1}(E)$ is Borel if $E$ is Borel.
-    \end{proof}
+    It remains to prove that $\mathcal{F}$ contains all open sets. If $U \subset \mathbb{R}^2$ is open, then it is easy to see that $\widetilde{U}$ is also open. Indeed, if $x \in \widetilde{U}$, then there is an open ball containing $(x,y) \in U$, and the slice of this open ball is an open interval containing $x$.\footnote{This part is based on Milo Brandt's proof \cite{24}.} Therefore, $\widetilde{U}$ is Borel and hence $\mathcal{F}$ contains open sets. Thus, $\mathfrak{B}(\mathbb{R}^2) \subset \mathcal{F}$, and hence $E \subset \mathcal{F}$, which implies its slice $A$ is Borel.
 \end{enumerate}
 \end{proof}
 
@@ -2401,7 +2411,23 @@ Let $E \subset [0,1]$ be nonmeasuarable, and since $[0,1] \subset \mathbb{R}$, t
 \begin{exercise}
 Prove that if $A\subset\mathbb{R}^n$ and $B\subset\mathbb{R}^m$ are $\mathcal{L}_n$ and $\mathcal{L}_m$ measurable respectively, then $A\times B$ is $\mathcal{L}_{n+m}$ measurable.
 \end{exercise}
-\begin{proof} (Write your solution here.)
+\begin{proof}\cite{25}
+Since $A\subset\mathbb{R}^n$ and $B\subset\mathbb{R}^m$ are measurable, then for any $\varepsilon > 0$, there exist open sets $G_1 \subset \mathbb{R}^n,G_2 \subset \mathbb{R}^m$ and closed sets $F_1 \subset \mathbb{R}^n,F_2 \subset \mathbb{R}^m$ such that $F_1 \subset A \subset G_1$, $F_2 \subset B \subset G_2$ and
+\begin{align*}
+    \mathcal{L}_n(G_1\setminus F_1) < \frac{\varepsilon}{2M},\quad \mathcal{L}_m(G_2\setminus F_2) < \frac{\varepsilon}{2M}
+\end{align*}
+where $M = \max\{\mathcal{L}_n(F_1), \mathcal{L}_m(F_2)\}$. 
+
+Now, $F_1 \times F_2 \subset A \times B \subset G_1 \times G_2$ and $F_1 \times F_2$ is closed, $G_1 \times G_2$ is open. Since
+\begin{align*}
+    G_1 \times G_2 & = \left(G_1 \times F_2\right) \cup (G_1 \times (G_1 \setminus F_2)) \\
+    & = \left(F_1 \times F_2\right) \cup \left((G_1 \setminus F_1) \times F_2\right) \cup (G_1 \times (G_1 \setminus F_2)),
+\end{align*}
+then 
+\begin{align*}
+    \mathcal{L}_{n+m}\left((G_1 \times G_2) \setminus (F_1 \times F_2)\right) = \mathcal{L}_{n+m}\left((G_1 \setminus F_1) \times F_2\right) + \mathcal{L}_{n+m} (G_1 \times (G_1 \setminus F_2)) < \varepsilon.
+\end{align*}
+Thus, $A\times B$ is $\mathcal{L}_{n+m}$ measurable.
 \end{proof}
 
 \medskip
@@ -2410,7 +2436,16 @@ Prove that if $A\subset\mathbb{R}^n$ and $B\subset\mathbb{R}^m$ are $\mathcal{L}
 Prove that if $A\subset\mathbb{R}^n$ satisfies $\mathcal{L}_n(A)=0$ and $B\subset\mathbb{R}^m$ is any set, then
 $\mathcal{L}_{n+m}(A\times B)=0$.
 \end{exercise}
-\begin{proof} (Write your solution here.)
+\begin{proof}
+Since $\mathcal{L}_n(A)=0$, then for any $\varepsilon > 0$, there exists a family of closed intervals $\{P_i\}$ in $\mathbb{R}^n$ such that 
+\begin{align*}
+    A \subset \bigcup^\infty_{i=1} P_i, \quad \sum^\infty \mathcal{L}_n(P_i) < \varepsilon.
+\end{align*}
+Also, for any $B \subset \mathbb{R}^m$, $B$ is contained in a closed interval $P \subset \mathbb{R}^m$. Then, $A \times B \subset \bigcup^\infty_{i=1}(P_i \times P)$, and hence
+\begin{align*}
+    \mathcal{L}^*_{m+n}(A \times B) \leq \sum^\infty_{i=1} \mathcal{L}^*_{m+n}(A_i \times P) = \sum^\infty_{i=1} \mathcal{L}_{m}(A_i) \mathcal{L}_{n}(P) = \mathcal{L}_{n}(P) \varepsilon.
+\end{align*}
+Thus, $\mathcal{L}_{n+m}(A\times B)=0$.
 \end{proof}
 
 \medskip
@@ -2422,7 +2457,16 @@ G_f=\{(x,f(x)):\, y=f(x)\}\subset\mathbb{R}^2
 $$
 of a continuous function $f:\mathbb{R}\to\mathbb{R}$ satisfies $\mathcal{L}_2(G_f)=0$.
 \end{exercise}
-\begin{proof} (Write your solution here.)
+\begin{proof}\cite{26}
+It suffices to show that $\mathcal{L}_2(G_f)=0$ on the interval $[0,1]$. Since $f$ is continuous, then $f$ is uniformly continuous on compact set $[0,1]$, that is, for any $\varepsilon > 0$, there is a $\delta > 0$ such that for any $x, y \in [0,1]$, if $\left|x - y\right| < \delta$, $\left|f(x) - f(y)\right| < \varepsilon/2$. Now, let $n > 1/\delta$ and divide $[0,1]$ into $n$ intervals with the same length $1/n < \delta$. Then, for the graph of $f$ over $[0,1]$, we have
+\begin{align*}
+    G_f|_{[0,1]} \subset \bigcup^{n-1}_{k=0} \left[\frac{k}{n},\frac{k+1}{n}\right] \times \left[f\left(\frac{k}{n}\right) - \frac{\varepsilon}{2},f\left(\frac{k}{n}\right) + \frac{\varepsilon}{2}\right] \coloneqq \bigcup^{n-1}_{k=0} P_i,
+\end{align*}
+and hence
+\begin{align*}
+    \mathcal{L}_2\left(G_f|_{[0,1]}\right) \leq \sum^{n-1}_{k=0} \mathcal{L}_2\left(P_i\right) = n \cdot \frac{\varepsilon}{n} = \varepsilon.
+\end{align*}
+Thus, $\mathcal{L}_2(G_f)=0$ on $[0,1]$ and hence $\mathcal{L}_2(G_f)=0$ on $\mathbb{R}$.
 \end{proof}
 
 
