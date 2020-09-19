@@ -1,4 +1,7 @@
 \section{Well-ordering}
+
+The axiom of choice is used in the construction of Vitali set (see Theorem \ref{Vitali_theorem}), a set that is not Lebesgue measurable. However, we discuss a different consequence of the axiom of choice, the existence of well ordering of sets.
+
 \begin{theorem}[{\bf Axiom of choice}]\label{axiom_of_choice}
 Given a family of sets $\{X_i\}_{i \in I}$, where $X_i \cap X_j = \emptyset$ for $i \neq j$. Thus, there is a set $X$ such that for all $i \in I$, $X \cap X_i$ is a singleton set.
 \end{theorem}
@@ -10,7 +13,7 @@ Ordering $<$ in a set $(A, <)$ is an ordering relation if the followings are sat
 \begin{enumerate}[label=(\alph*)]
     \item for any $a, b \in A$, $a \neq b$, then $a < b$ or $b < a$;
     
-    \item for any $a, b \in A$, if $a < b$, then $b \nless a$, also $a \nless a$ (irreflexive);
+    \item for any $a, b \in A$, if $a < b$, then $b \nless a$ (irreflexive);\label{def_A1_b}
     
     \item for any $a, b, c \in A$, if $a < b$ and $b < c$, then $a < c$ (transitive).
 \end{enumerate}
@@ -18,14 +21,20 @@ Ordering $<$ in a set $(A, <)$ is an ordering relation if the followings are sat
 
 \medskip
 
+\begin{remark}
+Note that \ref{def_A1_b} implies that $a \nless a$.
+\end{remark}
+
+\medskip
+
 \begin{example}
-$\mathbb{N}, \mathbb{Q}$ and $\mathbb{R}$.
+$\mathbb{N}, \mathbb{Q}$ and $\mathbb{R}$ are ordered by the standard inequality ``$<$''.
 \end{example}
 
 \medskip
 
 \begin{definition}
-$(A, <)$ and $(A^*, <^*)$ are similar if there is a bijection $\Phi: A \to A^*$ such that if for any $a, b \in A$ and $a < b$, then $\Phi(a) <^* \Phi(b)$.
+We say that the ordered sets $(A, <)$ and $(B, \prec)$ are similar if there is a bijection $\Phi: A \to B$ such that if for any $a, b \in A$ and $a < b$, then $\Phi(a) \prec \Phi(b)$.
 \end{definition}
 
 \medskip
@@ -60,7 +69,7 @@ An ordering $(A,<)$ is well-ordering if every subset has the first smallest elem
 
 \medskip
 
-If $(A,<)$ is well-ordering, then every element $a$ in $A$ has a successor $a+1$, if $a$ is not the last element in $A$, where $a+1$ means the first element in $\{b \in A\, | \, a < b\}$. In general, $a$ does not necessarily need a predecessor $a-1$.
+If $(A,<)$ is well-ordering, then every element $a$ in $A$ has a successor $a+1$, if $a$ is not the last element in $A$, where $a+1$ means the first element in $\{b \in A\, | \, a < b\}$. In general, $a$ does not necessarily need a predecessor $a-1$, i.e. not every element $a \in A$ is a successor of another element. For example, in the set $A = \{1 - 1/n\,|\, n\in \mathbb{N}\} \cup \{1\}$, element $1$ is not a successor of any other element.
 
 \medskip
 
@@ -84,26 +93,62 @@ In general, $A$ is not similar to any initial interval in $A$ that is different 
 \section{Ordinal numbers}
 
 An {\em ordinal number} is a generalization of the concept of a natural number that is used to describe a way to arrange a collection of objects in order, e.g., first, second, third, etc. The first {\em transfinite ordinal}, denoted $\omega$, is the order of the set of nonnegative integers. Ordinal numbers are a well ordered set. In order of increasing size, the ordinal numbers are $0, 1, 2, \cdots, \omega, \omega + 1, \omega + 2, \cdots, \omega + \omega, \omega + \omega + 1$.
+\medskip
+
+\begin{definition}
+The ordinal number of ordered sets $(A, <)$ and $(B, \prec)$ are $\alpha$ and $\beta$, we write $\alpha < \beta$ if $A$ is similar to a proper initial interval in $B$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+If $\alpha$ and $\beta$ are ordinal numbers, then only one of the following condition will be satisfied:
+\begin{align*}
+    \alpha = \beta, \quad \alpha < \beta, \quad \alpha > \beta.
+\end{align*}
+\end{theorem}
+
+\medskip
+
+We can also add ordinal numbers, suppose the ordinal number of ordered sets $(A, <)$ and $(B, \prec)$ are $\alpha$ and $\beta$, then the ordinal number of the set $\underbracket{A} \underbracket{B}$ is $\alpha + \beta$, where $A$ and $B$ have their original ordering and every element of $A$ is less than any element of $B$.
 
 \medskip
 
 \begin{example}
 ~\begin{enumerate}[label=(\alph*)]
-    \item The set of all finite ordinals: $\mathbb{N}$ is denoted by symbol $\omega$.
+    \item The set of all finite ordinals: the ordinal number of $\mathbb{N}$ is denoted by symbol $\omega$.
     
-    \item $\{1 - 1/n\}_{n \in \mathbb{N}}$ can also be denoted by $\omega$.
+    \item The ordinal number of $\{1 - 1/n\}_{n \in \mathbb{N}}$ is $\omega$.
     
-    \item $\{1 - 1/n\}_{n \in \mathbb{N}} \cup \{1\}$ can be denoted by $\omega + 1$.
+    \item The ordinal number of $\{1 - 1/n\}_{n \in \mathbb{N}} \cup \{1\}$ is $\omega + 1$.
     
-    \item $\{k - 1/n\}_{k,n \in \mathbb{N}}$ can be denoted by $\omega + \omega + \cdots + \omega = \omega^2$.
+    \item The ordinal number of $\{k - 1/n\}_{k,n \in \mathbb{N}}$ is $\omega + \omega + \cdots + \omega = \omega^2$.
 \end{enumerate}
+\end{example}
+\medskip
+
+\begin{example}
+$1 + \omega: \underbrace{\bullet}_{1} \underbrace{\bullet \cdots \bullet}_{\omega} = \omega$. However, $\omega + 1: \underbrace{\bullet \cdots \bullet}_{\omega}  \underbrace{\bullet}_{1} = \omega + 1 > 1 + \omega = \omega$. Indeed, $\mathbb{N}$ and $\{1 - 1/n\,|\,n \in \mathbb{N}\}$ are similar and they have the same ordinal number $\omega$. Let $A = \{1 - 1/n\,|\,n \in \mathbb{N}\}$, $B = \{1 - 1/n\,|\,n \in \mathbb{N}\} \cup \{1\}$. Then $A$ is similar to a proper interval of $B$, so $\omega < \omega + 1$. Now let $C = \{0\} \cup \{1 - 1/n\,|\,n \in \mathbb{N}\}$, then $A$ is similar to $C$, which implies $1 + \omega = \omega$. Thus, $1 + \omega = \omega < \omega + 1$.
 \end{example}
 
 \medskip
 
+In general, we can define multiplication of ordinal numbers $\alpha \cdot \beta$ (as a natural ordering of the set $A \times B$) and powers $\alpha^\beta$, then we can create the arithmetic of ordinal numbers.
+
+In all examples above, we have well ordering of countable sets and it is hard to imagine a well ordering of uncountable sets. However, the following theorem is surprising and is equivalent to the axiom of choice.
+
+\medskip
+
+\begin{theorem}
+Every set has a well-ordering.
+\end{theorem}
+
+\medskip
+
 \begin{remark}
-$1 + \omega: \underbrace{\bullet}_{1} \underbrace{\bullet \cdots \bullet}_{\omega} = \omega$. However, $\omega + 1: \underbrace{\bullet \cdots \bullet}_{\omega}  \underbrace{\bullet}_{1} = \omega + 1 > 1 + \omega = \omega$.
+In particular, the set of all real numbers can be well ordered.
 \end{remark}
+
 
 \medskip
 
@@ -113,11 +158,5 @@ Let $(A,<)$ be a well-ordering set and $\varphi$ is the property of elements of 
 \begin{proof}
 Suppose $Z = \{x \, |\, \neg \varphi(x)\}$, and let $x_0$ be the first element in $Z$. If $y < x_0$, then $y \notin Z$, and hence $\varphi(y)$. By the assumption, $\varphi(x_0)$, hence $x \notin Z$, which is a contradiction.
 \end{proof}
-
-\medskip
-
-\begin{theorem}
-Every set has a well-ordering.
-\end{theorem}
 
 \medskip

@@ -314,7 +314,7 @@ Let $X$ be a metric space (or topological space). Denote by $\mathfrak{B}(X)$ th
     
     \item If $F_1, F_2, \cdots$ are closed, then $\bigcup^\infty_{i=1}F_i$ is Borel, and such sets are called $F_\sigma$ sets.
 \end{enumerate}
-The notations $G_\delta$ and $F_\sigma$ is due to Hausdorff{\rm \cite{2}}.
+The notations $G_\delta$ and $F_\sigma$ is due to Hausdorff {\rm \cite{2}}.
 \end{definition}
 
 \medskip
@@ -391,14 +391,12 @@ and this is a contradiction to Baire Category theorem.
 
 \medskip
 
-Now what are Borel sets? Recall that open, closed sets, $G_\delta, F_\sigma$, intersections of countable many $F_\sigma$'s and union of countable many $G_\delta$'s are all in Borel sets $\mathfrak{B}(X)$, but these are only a small part of Borel sets. We need well-ordering and ordinal numbers\footnote{See Appendix \ref{appendix_a}.}to introduce Borel hierarchy, and then to construct Borel sets.
+Now what are Borel sets? Recall that open, closed sets, $G_\delta, F_\sigma$, intersections of countable many $F_\sigma$'s and union of countable many $G_\delta$'s are all in Borel sets $\mathfrak{B}(X)$, but these are only a small part of Borel sets. We need well-ordering and ordinal numbers\footnote{See Appendix \ref{appendix_a}.}to construct Borel sets.
 
 \medskip
 
 
-Let's introduce the {\em finite Borel hierarchy}.
-
-\begin{definition}[{\bf Borel sets of finite order}]
+\begin{definition}[{\bf Borel sets of finite order}]\footnote{This is called {\em finite Borel hierarchy}.}
 Let
 \begin{align*}
     \Sigma_1 & = \{G\,|\, G \subseteq X, G\,\, \text{is open}\}, \\
@@ -406,8 +404,7 @@ Let
 \end{align*}
 and then inductively define the following collection of subsets of $X$
 \begin{align*}
-    \Sigma_{n+1} & = \left\{\bigcup^\infty_{i=1} F_i \,|\, F_i \in \Pi_{n}\right\}, \\
-    \Pi_{n+1} & = \left\{\bigcup^\infty_{i=1} G_i \,|\, G_i \in \Sigma_{n}\right\}.
+    \Sigma_{n+1} = \left\{\bigcup^\infty_{i=1} F_i \,|\, F_i \in \Pi_{n}\right\}, \quad \Pi_{n+1} = \left\{\bigcup^\infty_{i=1} G_i \,|\, G_i \in \Sigma_{n}\right\}.
 \end{align*}
 \end{definition}
 
@@ -448,11 +445,49 @@ We considered all Borel sets of finite rank, but how to construct a set belong t
 
 Let $S_n \subset (n,n+1)$ with Borel rank $n$, then $S_1 \cup S_2 \cup \cdots$ is also Borel but with infinite rank. Now let $\Sigma_\omega$ be the unions of Borel sets of finite rank, and $\Pi_\omega$ be the intersections of Borel sets of finite rank. And we can define $\Sigma_{\omega+1}$ and $\Pi_{\omega+1}$ accordingly. 
 
+Clearly, the sets in 
+\begin{align}\label{equation_13}
+    \bigcup^\infty_{n=1} (\Sigma_n \cup \Pi_n)
+\end{align}
+are Borel. Note that the sets in (\ref{equation_13}) are obtained by applying countable number of operations of union, intersection and taking complement to open sets, so it seems that (\ref{equation_13}) should be closed under such operations and therefore (\ref{equation_13}) should be equal to the class of all Borel sets. However, this is not true.
+
+Indeed, if 
+\begin{align*}
+    A_n \in (\Sigma_n \cup \Pi_n), n = 1,2,\cdots,
+\end{align*}
+the set $A = \bigcup^\infty_{n=1} A_n$ is still Borel, but it is not necessarily of finite type, i.e. it may happen that for all $n \in \mathbb{N}$, $A \notin (\Sigma_n \cup \Pi_n)$, so $A \notin \bigcup^\infty_{n=1} (\Sigma_n \cup \Pi_n)$. So, how can we construct Borel sets? To do this, we need to extend the construction of $\Sigma_n$ and $\Pi_n$ to indices $n$ being ordinal numbers. 
+
+Recall that $\omega$ is the ordinal number of $\mathbb{N}$ and we define $\Sigma_{\omega}$ and $\Pi_{\omega}$ as
+\begin{align*}
+    \Sigma_{\omega} = \left\{\bigcup^\infty_{i=1} F_i \,|\, F_i \in \bigcup^\infty_{n=1} \Pi_n\right\}, \quad \Pi_{\omega} = \left\{\bigcup^\infty_{i=1} G_i \,|\, G_i \in \bigcup^\infty_{n=1} \Sigma_n\right\},
+\end{align*}
+so the set $A$ belongs to $\Sigma_{\omega}$. Also, we can define $\Sigma_{\omega + 1}$ and $\Pi_{\omega + 1}$ as
+\begin{align*}
+    \Sigma_{\omega+1} = \left\{\bigcup^\infty_{i=1} F_i \,|\, F_i \in \bigcup^\infty_{n=1} \Pi_{\omega}\right\},\quad \Pi_{\omega+1} = \left\{\bigcup^\infty_{i=1} G_i \,|\, G_i \in \bigcup^\infty_{n=1} \Sigma_{\omega}\right\}.
+\end{align*}
+In general, we define $\Pi_{\alpha}$ and $\Sigma_{\omega}$, where $\alpha$ is an ordinal number by the transfinite induction: $A \in \Sigma_{\alpha}, \alpha > 1$ if there are sets $A_i \in \Pi_{\alpha_i}, \alpha_i < \alpha$, $A = \bigcup^\infty_{i=1} A_i$; $A \in \Pi_{\alpha}, \alpha > 1$ if there are sets $A_i \in \Pi_{\alpha_i}, \alpha_i < \alpha$, $A = \bigcap^\infty_{i=1} A_i$.
+
+Any set of ordinal numbers is well ordered. In particular, the set $S$ of all countable ordinal numbers is well ordered. Is the set $S$ countable? The ordinal number of $S$ is denoted by $\omega_1$. Every countable ordinal $\alpha$ corresponds to an initial interval in $S$ and it follows that $\alpha \leq \omega_1$ for every countable ordinal $\alpha$. Now suppose $\alpha_1$ is countable, then $\alpha = \omega_1 + 1$ is countable and hence $\omega_1 + 1 \leq \omega_1$, but clearly $\omega_1 < \omega_1 + 1$, which is a contradiction. 
+
+The ordinal number $\omega_1$ is the smallest uncountable ordinal number. The cardinality of the set is less than or equal to that of the set $\mathbb{R}$ (as the smallest uncountable cardinal number) and a continuum hypothesis claimed that it equals to the cardinality of $\mathbb{R}$. Paul Cohen proved that the continuum hypothesis is independent of the axiom of the set theory (ZFC), so we can build models in which the continuum hypothesis is true and models where it is false.
+
+Again, $\omega_1$ is the ordinal number of the set of all countable ordinal numbers so an ordinal number $\alpha$ is countable if and only if $\alpha < \omega_1$. 
+
+\medskip
+
+
+
 \medskip
 
 \begin{theorem}
-$\mathfrak{B}(\mathbb{R}) = \bigcup (\Sigma_\omega \cup \Pi_\omega)$, where $\omega$ is countable, ordinal number.
+\begin{align*}
+    \mathfrak{B}(\mathbb{R}) = \bigcup_{\alpha<\omega_1} \Sigma_\alpha = \bigcup_{\alpha<\omega_1} \Pi_\alpha = \bigcup_{\alpha<\omega_1} \left(\Sigma_\alpha \cap \Pi_\alpha\right).
+\end{align*}
 \end{theorem}
+
+\medskip
+
+This gives a complete description of the class of Borel sets.
 
 \medskip
 
@@ -1474,7 +1509,7 @@ which is exactly the inequality we need.
 
 \section{Lebesgue measure}
 
-Consider a closed interval in $\mathbb{R}$,
+Consider a closed interval in $\mathbb{R}^n$,
 \begin{align}\label{closed_interval}
     P = [a_1,b_1] \times \cdots [a_n,b_n] \subset \mathbb{R}^n,
 \end{align}
@@ -1613,7 +1648,7 @@ Let $P$ ba an open interval.
 \begin{corollary}\label{coro_19161}
 If $k < n$, then $\mathcal{L}_n (\mathbb{R}^k) = 0$.
 \end{corollary}
-\begin{proof}\footnote{It is based on the proof of  $\mathbb{R}^n\times\{0\}$ has measure zero in $\mathbb{R}^{n+1}$\cite{16}.} 
+\begin{proof}\footnote{This proof is based on that $\mathbb{R}^n\times\{0\}$ has measure zero in $\mathbb{R}^{n+1}$\cite{16}.} 
 It suffice to show that $[-k,k]^{k} \times \{0\}^{n-k}$ has Lebesgue measure zero for all $k \in \mathbb{N}$.
 
 For any $\varepsilon > 0$, choose $\delta > 0$ such that
@@ -1732,7 +1767,7 @@ The Lebesgue measure has an important property of being invariant under translat
 
 \medskip
 
-\begin{theorem}[\bf Vitali]
+\begin{theorem}[\bf Vitali]\label{Vitali_theorem}
 There is a set $E \in \mathbb{R}^n$ which is not Lebesgue measurable.
 \end{theorem}
 \begin{proof}[``Idea'']
@@ -1922,7 +1957,7 @@ Therefore, $f(E)$ can be covered by balls of radius $\rho_i = Lr_i$, $\sum^\inft
 \begin{proposition}\label{proposition_110}
 If $f:\mathbb{R}^n \to \mathbb{R}^n$ is a homeomorphism, then $A \subset \mathbb{R}^n$ is Borel set if and only if $f(A)$ is a Borel set.
 \end{proposition}
-\begin{proof}\footnote{This proof is based on the result in \cite{18}.}
+\begin{proof}\footnote{This proof is based on the result in\cite{18}.}
 Let $\mathfrak{B}(\mathbb{R}^n)$ be the $\sigma$-algebra generated by the family of all open sets in $\mathbb{R}^n$. Now define $\widetilde{\mathfrak{B}} = \{f(E)\,|\,E \in \mathfrak{B}(\mathbb{R}^n)\}$. Note that $\widetilde{\mathfrak{B}}$ is also a $\sigma$-algebra. Indeed, since $f$ is honeomorphism,
 \begin{enumerate}[label=(\alph*)]
     \item $f(\mathbb{R}^n) = \mathbb{R}^n$, and hence $\mathbb{R}^n \in \widetilde{\mathfrak{B}}$.
@@ -2250,7 +2285,7 @@ For the interval $(0,1)$, we know that $\mathcal{H}^1((0,1)) = 1 - 0 = 1$. Then,
 \end{align*}
 \end{proof}
 
-\begin{proof}[Second Possible Proof of Exercise \ref{exeercise_112}]\footnote{I try to use the definition of Hausdorff measure $\mathcal{H}^s$, but currently I do not know if this proof is valid.}Let $E = [0,1] \times \{1,2,\cdots, n\} \in \mathbb{R}^2$. Then,
+\begin{proof}[Second Possible Proof of Exercise \ref{exeercise_112}]\footnote{I try to use the definition of Hausdorff measure $\mathcal{H}^s$, but currently I do not know if this proof is valid.} Let $E = [0,1] \times \{1,2,\cdots, n\} \in \mathbb{R}^2$. Then,
 \begin{align*}
     \mathcal{H}^1_{1/n} = \frac{\omega_1}{2} n^2 \frac{1}{n} = \frac{\omega_1}{2} n,
 \end{align*}
@@ -2317,7 +2352,7 @@ which yields the statement.
 \begin{exercise}
 Let $A$ be the subset of $[0,1]$ which consists of all numbers which do not have the digit 4 appearing in their decimal expansion. Find $\mathcal{L}_1(A)$.
 \end{exercise}
-\begin{proof}\footnote{This proof is by Austin Mohr\cite{22}.}
+\begin{proof}\cite{22}
 Let $x \in A$. For any $\varepsilon > 0$, there exists $N > 0$ such that $k/10^N < \varepsilon$ for $k = 1,2,\cdots,9$. Then, $x + k/10^N \in B(x,\varepsilon)$ for all $k = 1,2,\cdots,9$. Now, we can find a $k$ such that the $N$-th digit in the decimal expansion of $x + k/10^N$ is $4$. Therefore, $x$ is a singleton set and $A$ is an uncountable union of singleton sets. Thus, $\mathcal{L}_1(A) = 0$.
 \end{proof}
 
@@ -2355,7 +2390,17 @@ Thus, $\mathcal{L}_n(E)=0$.
 Let $K\subset\mathbb{R}^2$ be a compact set and let $\pi:\mathbb{R}^2\to\mathbb{R}$ be the orthogonal projection onto the $x$-axis. Prove that if $\pi(K)=[0,1]$, then
 $\H^1(K)\geq 1$.
 \end{exercise}
-\begin{proof} (Write your solution here.)
+\begin{proof}
+We have $\H^1([0,1]) = 1$ and it suffices to prove that $\H^1(K) \geq \H^1([0,1])$. For any $x_1, x_2 \in K \subset \mathbb{R}^2$, since $\pi$ is an orthogonal projection, then $\left|x_1,x_2\right| \geq \left|\pi(x_1),\pi(x_2)\right|$, which implies for any open set $A \subset \mathbb{R}^2$, $\operatorname{diam} A \geq \operatorname{diam} \pi(A)$. 
+
+For any $\varepsilon > 0$, suppose that the covering $K \subset \bigcup^\infty_{i=1} A_i$ satisfies \begin{align*}
+    \H^1_{\varepsilon} = \frac{\omega_1}{2} \sum^\infty_{i=1}\operatorname{diam} A_i, \quad \operatorname{diam} A_i < \varepsilon.
+\end{align*}
+Since $K$ is compact, then $\{A_i\}$ has a finite subcovering $\bigcup^K_{j=1}A_{i_j}$. Then for any $\varepsilon > 0$, $\left\{\pi(A_{i_j})\right\}$ is a covering of $[0,1]$, and then we have
+\begin{align*}
+    H^1_\varepsilon(K) \geq \frac{\omega_1}{2} \sum^K_{j=1} \operatorname{diam} A_{i_j} \geq \frac{\omega_1}{2} \sum^K_{j=1} \operatorname{diam} \pi(A_{i_j}) \geq \inf \frac{\omega_1}{2} \sum^\infty_{i=1} \operatorname{diam} B_i = \H^1_{\varepsilon}([0,1]),
+\end{align*}
+where $\{B_i\}$ is any covering of $[0,1]$ with $\operatorname{diam} B_i < \varepsilon$. Letting $\varepsilon \to 0$ yields the result.
 \end{proof}
 
 \medskip
@@ -2368,9 +2413,20 @@ $$
 \quad
 \text{for all $x,y\in S^1$.}
 $$
-Find $\dim_H(\phi(S^1))$.
+Find $\dim_{\H}(\phi(S^1))$.
 \end{exercise}
-\begin{proof} (Write your solution here.)
+\begin{proof}
+We claim that $\dim_{\H}(\phi(S^1)) = 1/s$. It suffices to prove that $\H^1(\phi(S^1)) = 0$.
+
+For any $\varepsilon > 0$, there is a covering $S^1 \subset \bigcup^\infty_{i=1} A_i$, with $\operatorname{diam} A_i < \varepsilon$. And $\{\phi(A_i)\}$ is a covering of $\{\phi(S^1)\}$ with $\varepsilon^s/L \leq \operatorname{diam} \phi(A_i) \leq L \varepsilon^s$. Then we have
+\begin{align*}
+    \frac{\varepsilon^s}{L}\frac{\omega_1}{2} \sum^\infty_{i=1} \operatorname{diam} A_i \leq\frac{\omega_1}{2} \sum^\infty_{i=1} \operatorname{diam} \phi(A_i) \leq L \varepsilon^s \frac{\omega_1}{2} \sum^\infty_{i=1} \operatorname{diam} A_i,
+\end{align*}
+taking infimum of all coverings $\{a_i\}$ with $\operatorname{diam} A_i < \varepsilon$ yields
+\begin{align*}
+    \frac{\varepsilon^s}{L} \H^1_{\varepsilon}(S^1) \leq \H^1_{L\varepsilon^s}(\phi(S^1)) \leq L \varepsilon^s \H^1_{\varepsilon}(S^1).
+\end{align*}
+Now letting $\varepsilon \to 0$ gives $\H^1(\phi(S^1)) = 0$, and thus $\dim_{\H}(\phi(S^1)) = 1/s$.
 \end{proof}
 
 \medskip
@@ -2414,7 +2470,7 @@ Prove that if $A\subset\mathbb{R}^n$ and $B\subset\mathbb{R}^m$ are $\mathcal{L}
 \begin{proof}\cite{25}
 Since $A\subset\mathbb{R}^n$ and $B\subset\mathbb{R}^m$ are measurable, then for any $\varepsilon > 0$, there exist open sets $G_1 \subset \mathbb{R}^n,G_2 \subset \mathbb{R}^m$ and closed sets $F_1 \subset \mathbb{R}^n,F_2 \subset \mathbb{R}^m$ such that $F_1 \subset A \subset G_1$, $F_2 \subset B \subset G_2$ and
 \begin{align*}
-    \mathcal{L}_n(G_1\setminus F_1) < \frac{\varepsilon}{2M},\quad \mathcal{L}_m(G_2\setminus F_2) < \frac{\varepsilon}{2M}
+    \mathcal{L}_n(G_1\setminus F_1) < \frac{\varepsilon}{2M},\quad \mathcal{L}_m(G_2\setminus F_2) < \frac{\varepsilon}{2M},
 \end{align*}
 where $M = \max\{\mathcal{L}_n(F_1), \mathcal{L}_m(F_2)\}$. 
 
@@ -2778,7 +2834,7 @@ It suffices to prove that $f^{-1}(F) \in \mathfrak{M}$ for every closed subset $
 \end{align*}
 Indeed, if $x \in ^{-1}(F)$, we have $f(x) \in F$, and hence $d(y_i,f(x)) \geq d(y_i,F)$ for all $i \in \mathbb{N}$. Then, for all $i \in \mathbb{N}$, $x \in \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}$, therefore, $x \in \bigcap^\infty_{i=1} \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}$. If $x$ belongs to the right hand side, then $d(y_i,f(x)) \geq d(y_i,F)$ for all $i \in \mathbb{N}$. Since $\{y_i\}$ is dense subset, then there exists a subsequence $\{y_{i_j}\}$ such that $y_{i_j} \to f(x)$, which implies $d(y_{i_j},f(x)) \geq d(y_{i_j},F)$. Therefore,
 \begin{align*}
-    0 = d(f(x),f(x)) \leftarrow	d(y_{i_j},f(x)) \geq d(y_{i_j},F) \to \geq d(f(x),F),
+    0 = d(f(x),f(x)) \leftarrow	d(y_{i_j},f(x)) \geq d(y_{i_j},F) \to d(f(x),F),
 \end{align*}
 and since $F$ is closed, then $f(x) \in F$. Hence, $x \in f^{-1}(F)$.
 
@@ -2788,6 +2844,196 @@ It remains to show that the sets $\{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}$ are measu
 \end{align*}
 which are measurable. Thus, $f^{-1}(F)$ is measurable and $f$ is a measurable mapping.
 \end{proof}
+
+\medskip
+
+\section{Integral}
+
+\begin{definition}
+Let $(X,\mathfrak{M})$ be a measurable space. A measurable function $s: X \to \mathbb{R}$ is a simple function if it has only a finite number of values. Simple function can be represented in the form
+\begin{align*}
+    S = \sum^n_{i=1} \alpha_i \chi_{A_i},
+\end{align*}
+where $\alpha_i \neq \alpha_j$ for $i \neq j$, $A_i$ are pairwise disjoint measurable sets and $\bigcup^n_{i=1} A_i = X$.
+\end{definition}
+
+\medskip
+
+To see why {\em simple function} is so important, see the following theorem.
+
+\medskip
+
+\begin{theorem}
+Let $(X,\mathfrak{M})$ be a measurable space. If $f: X \to [0,1]$ is measurable, then there is a sequence of simple functions $s_n$ on $X$ such that 
+\begin{enumerate}[label=(\alph*)]
+    \item $0 \leq s_1 \leq s_2 \leq \cdots \leq f$;
+    
+    \item $\lim_{n\to\infty} s_n(x) = f(x)$ for every $x \in X$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Define
+\begin{align*}
+    s_n(x) = \begin{cases}
+        n, & \text{if}\,\, f(x) \geq n, \\
+        \frac{k}{2^n}, & \text{if}\,\, \frac{k}{2^n} \leq f(x) \leq \frac{k+1}{2^n} \leq n,
+    \end{cases}
+\end{align*}
+and then $s_n$ has finite number of values. Also, $s_n$ is measurable as constant on measurable sets, since $s_n$ is defined on the set
+\begin{align*}
+    f^{-1}([n,\infty]) \cup \bigcup^n_{k=1} f^{-1}\left(\left[\frac{k}{2^n},\frac{k+1}{2^n}\right)\right),
+\end{align*}
+which is measurable. Thus, $s_n$ is a simple function.
+
+It remains to show that $s_n$ converges pointwise to $f$. For any $x \in X$, if $f(x) = +\infty$, then $s_n(x) = n \to \infty$ as $n \to \infty$. If $f(x) < \infty$, then for $n > f(x)$, there exists a unique $k$ such that $k/2^n \leq f(x) \leq (k+1)/2^n$, and then
+\begin{align*}
+    \left|f(x) - s_n(x)\right| < \frac{1}{2^n} \xrightarrow[]{n\to\infty} 0.
+\end{align*}
+Thus, $s_n$ converges pointwise to $f$.\footnote{It is easy to see that $0 \leq s_1 \leq s_2 \leq \cdots \leq f$. Indeed, for any $x \in X$, there is a unique $k$ such that $k/2^n \leq f(x) \leq (k+1)/2^n$. If $f(x)\in [k/2^n,(2k+1)/2^{n+1})$, then $s_{n+1}(x) = s_n(x) \leq f(x)$. If $f(x)\in [(2k+1)/2^{n+1},(k+1)/2^n)$, then $s_n(x) < s_{n+1}(x) = (2k+1)/2^{n+1} \leq f(x)$. Thus, $s_n \leq s_{n+1} \leq f$.}
+\end{proof}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{simple_function.png}
+    \caption{Example of simple functions $s_1$ and $s_2$(From \cite{27}).}
+    \label{fig:simple_functions}
+\end{figure}
+
+\medskip
+
+In the integration theory, we assume $\infty\cdot 0 = 0 \cdot \infty = 0$. And from now on, $(X,\mu,\mathfrak{M})$ is a measure space.
+
+\medskip
+
+\begin{definition}
+If $s:X \to [0,\infty)$ is a simple function of the form 
+\begin{align*}
+    S = \sum^n_{i=1} \alpha_i \chi_{A_i},
+\end{align*}
+where $\alpha_i \neq \alpha_j$ for $i \neq j$, $A_i$ are pairwise disjoint measurable sets, then for any $E \in \mathfrak{M}$, we define
+\begin{align*}
+    \int_E s\, d\mu \coloneqq \sum^n_{i=1} \alpha_i \mu(A_i \cap E).
+\end{align*}
+Even if $\mu(A_i \cap E) = \infty$, but $\alpha_i = 0$, then $\alpha_i \cdot \mu(A_i \cap E) = 0$.
+\end{definition}
+
+\medskip
+
+\begin{definition}
+If $f:X \to [0,\infty]$ is measurable, and $E \in \mathfrak{M}$, we define the Lebesgue integral of $f$ over $E$ by
+\begin{align*}
+    \int_E f\,d\mu = \sup \int_E s\, d\mu,
+\end{align*}
+where the supremum is taken over all simple functions $s$ such that $0 \leq s \leq f$.
+\end{definition}
+
+\medskip
+
+\begin{proposition}
+Suppose $f,g:X \to [0,\infty]$ are measurable, and $A,B,E \in \mathfrak{M}$. Then,
+\begin{enumerate}[label=(\alph*)]
+    \item If $0 \leq f \leq g$, then $\int_E f\,d\mu \leq \int_E g\,d\mu$.
+    
+    \item If $A\subset B$ and $f \geq 0$, then $\int_A f\,d\mu \leq \int_B f\,d\mu$.
+    
+    \item If $f \geq 0$ and $c$ is a constant $0 \leq c < \infty$, then $\int_E cf\,d\mu = c \int_E f\,d\mu$.
+    
+    \item If $f(x) = 0$ for all $x \in E$, then $\int_E f\,d\mu = 0$ even if $\mu(E) = \infty$.
+    
+    \item If $\mu(E) = 0$, then $\int_E f\,d\mu = 0$ even if $f(x) = \infty$ for all $x\in E$.
+    
+    \item If $f \geq 0$, then $\int_E f\,d\mu = \int_X f \chi_E \,d\mu$.
+\end{enumerate}
+\end{proposition}
+
+\medskip
+
+\begin{lemma}\label{lemma_28}
+Let $s$ and $t$ be nonnegative measurable simple functions $X$. Then the function
+\begin{align*}
+    \varphi(E)_s \coloneqq \int_E s\,d\mu, \quad E\in \mathfrak{M}
+\end{align*}
+defines a measure in $\mathfrak{M}$. Moreover,
+\begin{align*}
+    \int_X (s + t)\, d\mu = \int_X s\,d\mu + \int_X t\,d\mu.
+\end{align*}
+\end{lemma}
+\begin{proof}
+Denote $\varphi_s$ by $\varphi$. First, $\varphi(\emptyset) = 0$. Second, suppose $E_1, E_2, \cdots \in \mathfrak{M}$, $E_i \cap E_j = \emptyset$ for all $i \neq j$, then
+\begin{align*}
+    \varphi\left(\bigcup^\infty_{k=1} E_k\right) & = \int_{\bigcup E_k} s\, d\mu = \sum^n_{i=1} \alpha_i \mu \left(A_i \cap \bigcup^\infty_{k=1} E_k\right) = \sum^n_{i=1} \alpha_i \sum^\infty_{k=1} \mu(A_i \cap E_k) \\
+    & = \sum^\infty_{k=1} \sum^n_{i=1} \alpha_i \mu(A_i \cap E_k) = \sum^\infty_{k=1} \int_{E_k} S\,d\mu = \sum^\infty_{k=1} \varphi(E_k),
+    \end{align*}
+which implies that $\varphi$ is countable additive. Therefore, $\varphi$ is a measure. 
+    
+It remains to prove that $\int_X (s + t)\, d\mu = \int_X s\,d\mu + \int_X t\,d\mu$, i.e. $\varphi_{s+t}(X) = \varphi_s(X) + \varphi_t(X)$. Since $s$ and $t$ are simple function, then they can be written in form
+\begin{align*}
+    s = \sum^n_{i=1} \alpha_i \chi_{A_i}, \quad t = \sum^m_{j=1} \beta_j \chi_{B_j}.
+\end{align*}
+Let $E_{ij} = A_i \cap B_j$, which are pairwise disjoint, then $s + t = \alpha_i + \beta_j$ on $E_{ij}$ and $X = \bigcup_{i,j} E_{ij}$. Now,
+\begin{align*}
+    \varphi_{s+t}(E_{ij}) = \int_{E_{ij}} (s + t)\,d\mu = (\alpha_i + \beta_j) \mu(E_{ij}) = \int_{E_{ij}}s\,d\mu + \int_{E_{ij}}t\,d\mu = \varphi_s(E_{ij}) + \varphi_t(E_{ij}),
+\end{align*}
+and hence
+\begin{align*}
+    \varphi_{s+t}(X) = \varphi_{s+t}\left(\bigcup_{i,j} E_{ij}\right) = \sum_{i,j} \varphi_{s+t}(E_{ij}) = \sum_{i,j}\varphi_s(E_{ij}) + \sum_{i,j}\varphi_t(E_{ij}) = \varphi_s(X) + \varphi_t(X),
+\end{align*}
+where we used the fact that $\varphi$ is countable additive.
+\end{proof}
+
+\medskip
+
+The following theorem is one of the most important results of the theory of integration.
+
+\medskip
+
+\begin{theorem}[{\bf Lebesgue monotone convergence theorem}]
+Let $\{f_n\}$ be sequence of measurable functions on $X$ such that
+\begin{enumerate}[label=(\alph*)]
+    \item $0 \leq f_1 \leq f_2 \leq \cdots \leq \infty$ for every $x \in X$;
+    
+    \item $\lim_{n\to\infty} f_n(x) = f(x)$ for every $x \in X$.
+\end{enumerate}
+Then $f$ is measurable and 
+\begin{align*}
+    \lim_{n\to\infty} \int_X f_n\,d\mu = \int_X f\,d\mu.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Measurability of $f$ follows from Corollary \ref{coro_251}.
+
+The sequence $\int_X f_n\,d\mu$ is increasing and hence it has a limit $\alpha = \lim_{n\to\infty} \int_X f_n\,d\mu$.\footnote{It may happen that the limit is infinity, but the limit exists.}Since $f_n \leq f$, then $\int_X f_n\,d\mu \leq \int_X f\,d\mu$ and hence $\alpha \leq \int_X f\,d\mu$. It remains to prove the opposite inequality. 
+Let $0 \leq s \leq f$ be a simple function. Fix a constant $0 < c < 1$, and define
+\begin{align*}
+    E_n = \{x \in X \,|\, f_n(x) \geq cs(x)\}, \quad n = 1,2,3,\cdots
+\end{align*}
+Clearly, $E_1 \subset E_2 \subset \cdots$ and $\bigcup^\infty_{n=1} E_n = X$.\footnote{Indeed, for any $x \in X$, if $f(x) = 0$, then $f_n(x) = cs(x) = f(x) = 0$, and hence $x \in E_n$ for all $n$. If $f(x) > 0$, then $f(x) > cs(x)$. Since $f_n(x) \to f(x)$, then there is $n_0 > 0$ such that $f_n(x) > cs(x)$ for all $n \geq n_0$, and hence $x \in E_{n_0}$.}Then, we have
+\begin{align*}
+    \int_X f_n\,d\mu \geq \int_{E_n} f_n\,d\mu \geq c \int_{E_n} s\,d\mu.
+\end{align*}
+By Lemma \ref{lemma_28}, $\varphi(E) = \int_E s\, d\mu$ is a measure, and by Theorem \ref{theorem_111}(f), we have
+\begin{align*}
+    \int_{E_n} s\,d\mu = \varphi(E_n) \to \varphi\left(\bigcup^\infty_{n=1} E_n\right) = \varphi(X) = \int_X s\,d\mu.
+\end{align*}
+Then, letting $n \to \infty$ yields
+\begin{align*}
+    \alpha \leftarrow \int_X f_n\,d\mu \geq c \int_{E_n} s\,d\mu \to c\int_X s\,d\mu,
+\end{align*}
+then $\alpha \geq c\int_X s\,d\mu$. Therefore,
+\begin{align*}
+    \int_X f\,d\mu \geq \alpha \geq \int_X s\,d\mu,
+\end{align*}
+since $0 < c < 1$ is arbitrary. Taking supremum over all simple functions $0 \leq s \leq f$  yields
+\begin{align*}
+    \int_X f\,d\mu \geq \alpha \geq \int_X f\,d\mu,
+\end{align*}
+and thus $\alpha = \int_X f\,d\mu$.
+\end{proof}
+
+
+
+
+
 
 
 
