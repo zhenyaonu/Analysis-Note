@@ -147,7 +147,7 @@
 	\begin{center}
 	\textbf{\LARGE{}} \\
 	\vspace{40mm}
-    \textbf{\Huge{Analysis}} \\
+    \textbf{\Huge{Real Analysis}} \\
     \medskip
     \vspace{2mm} %5mm vertical space
     \large{\textsc{Zhen Yao}}\\
@@ -2779,7 +2779,7 @@ If $f(x) = \lim_{n\to\infty} f_n(x)$ for all $x \in X$, the we say that $f$ is a
 
 \medskip
 
-\begin{theorem}
+\begin{theorem}\label{theorem_25}
 Suppose that $f_n: X \to \overline{\mathbb{R}}$ is a sequence of measurable functions, then the functions $\sup_n f_n$, $\lim_n f_n$, $\limsup_n f_n$, $\liminf_n f_n: X \to \overline{\mathbb{R}}$ are measurable.
 \end{theorem}
 \begin{proof}
@@ -2863,7 +2863,7 @@ To see why {\em simple function} is so important, see the following theorem.
 
 \medskip
 
-\begin{theorem}
+\begin{theorem}\label{theorem_27}
 Let $(X,\mathfrak{M})$ be a measurable space. If $f: X \to [0,1]$ is measurable, then there is a sequence of simple functions $s_n$ on $X$ such that 
 \begin{enumerate}[label=(\alph*)]
     \item $0 \leq s_1 \leq s_2 \leq \cdots \leq f$;
@@ -2908,7 +2908,7 @@ In the integration theory, we assume $\infty\cdot 0 = 0 \cdot \infty = 0$. And f
 \begin{definition}
 If $s:X \to [0,\infty)$ is a simple function of the form 
 \begin{align*}
-    S = \sum^n_{i=1} \alpha_i \chi_{A_i},
+    s = \sum^n_{i=1} \alpha_i \chi_{A_i},
 \end{align*}
 where $\alpha_i \neq \alpha_j$ for $i \neq j$, $A_i$ are pairwise disjoint measurable sets, then for any $E \in \mathfrak{M}$, we define
 \begin{align*}
@@ -2987,7 +2987,7 @@ The following theorem is one of the most important results of the theory of inte
 
 \medskip
 
-\begin{theorem}[{\bf Lebesgue monotone convergence theorem}]
+\begin{theorem}[{\bf Lebesgue monotone convergence theorem}]\label{theorem_29}
 Let $\{f_n\}$ be sequence of measurable functions on $X$ such that
 \begin{enumerate}[label=(\alph*)]
     \item $0 \leq f_1 \leq f_2 \leq \cdots \leq \infty$ for every $x \in X$;
@@ -2996,7 +2996,7 @@ Let $\{f_n\}$ be sequence of measurable functions on $X$ such that
 \end{enumerate}
 Then $f$ is measurable and 
 \begin{align*}
-    \lim_{n\to\infty} \int_X f_n\,d\mu = \int_X f\,d\mu.
+    \lim_{n\to\infty} \int_X f_n\,d\mu = \int_X \lim_{n\to\infty}  f_n\,d\mu = \int_X f\,d\mu.
 \end{align*}
 \end{theorem}
 \begin{proof}
@@ -3029,6 +3029,273 @@ since $0 < c < 1$ is arbitrary. Taking supremum over all simple functions $0 \le
 \end{align*}
 and thus $\alpha = \int_X f\,d\mu$.
 \end{proof}
+
+\medskip
+
+\begin{lemma}
+If $f,g: X \to [0,\infty]$ be measurable functions. Then,
+\begin{align*}
+    \int_X (f + g)\,d\mu = \int_X f\,d\mu + \int_X g\,d\mu.
+\end{align*}
+\end{lemma}
+\begin{proof}
+According to Theorem \ref{theorem_27}, there are increasing sequences $\{s_n\}, \{t_n\}$ of simple functions such that $s_n \to f$ and $t_n \to g$ for every point $x \in X$. Then, $0 \leq s_1 + t_1 \leq s_2 + t_2 \leq \cdots$, and $s_n + t_n$ converges pointwise to $f + g$.
+
+By Lemma \ref{lemma_28}, for simple functions $s_n, t_n$,
+\begin{align*}
+    \int_X(s_n + t_n)\,d\mu = \int_X s_n\,d\mu + \int_X t_n\,d\mu,
+\end{align*}
+then, by Theorem \ref{theorem_29},
+\begin{align*}
+    \int_X(f + g)\,d\mu \leftarrow \int_X(s_n + t_n)\,d\mu = \int_X s_n\,d\mu + \int_X t_n\,d\mu \to \int_X f\,d\mu + \int_X g\,d\mu,
+\end{align*}
+which proves the lemma.
+\end{proof}
+
+\medskip
+
+Applying an induction argument to this lemma, we obtain
+\begin{align*}
+    \int_X \sum^N_{n=1} f_n\,d\mu = \sum^N_{n=1}\int_X f_n\,d\mu.
+\end{align*}
+
+\medskip
+
+\begin{theorem}\label{theorem_211}
+If $f_n: X \to [0,\infty]$ are measurable functions for $n = 1,2,3,\cdots$, then for every $x \in X$,
+\begin{align*}
+    f(x) = \sum^\infty_{n=1} f_n(x)
+\end{align*}
+is measurable and 
+\begin{align*}
+    \int_X f\,d\mu = \int_X \sum^\infty_{n=1} f_n(x)\,d\mu = \sum^\infty_{n=1} \int_X f_n\,d\mu.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe that $f$ is a limit of measurable functions, so $f$ is measurable. Indeed, $\sum^N_{n=1} f_n$ converges pointwise to $f$. Since $\sum^N_{n=1} f_n$ is an increasing sequence of measurables functions and it converges pointwise to $f$, by Theorem \ref{theorem_29}, we have
+\begin{align*}
+    \int_X f\,d\mu \xleftarrow[]{N \to \infty} \int_X \sum^N_{n=1} f_n\,d\mu = \sum^N_{n=1}\int_X f_n\,d\mu \xrightarrow[]{N \to \infty} \sum^\infty_{n=1}\int_X f_n\,d\mu,
+\end{align*}
+which proves the theorem.
+\end{proof}
+
+\medskip
+
+\begin{theorem}[{\bf Fatou's lemma}]\label{theorem_212}
+If $f_n: X \to [0,\infty]$ are measurable functions for $n = 1,2,3,\cdots$,\footnote{We do not assume that $f_n$ is convergent.}then
+\begin{align*}
+    \int_X \left(\liminf_{n\to\infty} f_n\right)\,d\mu \leq \liminf_{n\to\infty} \int_X f_n\,d\mu.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $g_n = \inf\{f_n,f_{n+1},f_{n+1},\cdots\}$, by Theorem \ref{theorem_25}, $g_n$ are measurable. Clearly, $g_1 \leq g_2 \leq g_3 \cdots$ and $g_n$ converges pointwise to $\liminf_{n\to\infty} f_n$. Also, $g_n \leq f_n$ for all $n \in \mathbb{N}$, then
+\begin{align*}
+    \int_X g_n\,d\mu \leq \int_X f_n\,d\mu.
+\end{align*}
+Taking $\liminf$ on both sides gives
+\begin{align}\label{theorem_212_equ_1}
+    \liminf_{n\to\infty} \int_X g_n\,d\mu \leq \liminf_{n\to\infty} \int_X f_n\,d\mu,
+\end{align}
+since $g_n$ is increasing, then the left hand side equals to $\lim_{n\to\infty} \int_X g_n\,d\mu$. By the monotone convergence theorem \ref{theorem_29}, 
+\begin{align*}
+    \lim_{n\to\infty} \int_X g_n\,d\mu = \int_X \left(\liminf_{n\to\infty} f_n\right)\,d\mu,
+\end{align*}
+and thus, by \eqref{theorem_212_equ_1}, 
+\begin{align*}
+    \int_X \left(\liminf_{n\to\infty} f_n\right)\,d\mu \leq \liminf_{n\to\infty} \int_X f_n\,d\mu.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{remark}
+In general, we do not have equality.
+\end{remark}
+\begin{proof}
+Now we construct a sequence of measurable functions $f_n: \mathbb{R} \to [0,\infty]$ such that the inequality in Fatou’s lemma is strict. Let
+\begin{align*}
+    f_n(x) = \begin{cases}
+        n, & -\frac{1}{n} \leq x \leq \frac{1}{n}, \\
+        0, & \text{otherwise}.
+    \end{cases}
+\end{align*}
+Then, we have 
+\begin{align*}
+    0 = \int_X \left(\liminf_{n\to\infty} f_n\right)\,d\mu < \liminf_{n\to\infty} \int_X f_n\,d\mu = n \cdot \frac{2}{n} = 2.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{theorem}\label{theorem_213}
+Let $f: X \to [0,\infty]$ be measurable function. Then, for $E \in \mathfrak{M}$,
+\begin{align}\label{theorem_213_equ1}
+    \varphi(E) = \int_E f\,d\mu
+\end{align}
+defines a measure in $\mathfrak{M}$. Moreover, for every measurable function $g: X \to [0,\infty]$,
+\begin{align}\label{theorem_213_equ2}
+    \int_X g\,d\varphi = \int_X gf\, d\mu.
+\end{align}
+\end{theorem}
+
+\begin{remark}
+~\begin{enumerate}[label=(\alph*)]
+    \item It is natural to think $d\varphi = f\,d\mu$ and regard $f\,d\mu$ as a measure.
+    
+    \item We already proved \eqref{theorem_213_equ1} when $f$ is a simple function in Lemma \ref{lemma_28}.
+\end{enumerate}
+\end{remark}
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_213}]
+Clearly, $\varphi(\emptyset) = 0$. To prove that $\varphi$ is a measure, it suffices to prove that $\varphi$ is countable additive. Let $E_1,E_2,\cdots \in \mathfrak{M}$ be pairwise disjoint and $E = \bigcup^\infty_{n=1} E_n$. Observe that
+\begin{align*}
+    \chi_E f = \sum^\infty_{n=1} \chi_{E_n}f,
+\end{align*}
+and by Theorem \ref{theorem_211}, we have
+\begin{align*}
+    \varphi(E) = \int_X \chi_Ef\,d\mu = \int_X \sum^\infty_{n=1} \chi_{E_n}f\,d\mu = \sum^\infty_{n=1} \int_X \chi_{E_n}f\,d\mu = \sum^\infty_{n=1} \varphi(E_n),
+\end{align*}
+which implies the countable additivity of $\varphi$. Hence, $\varphi$ is a measure.
+
+Now it remains to prove that
+\begin{align*}
+    \int_X g\,d\varphi = \int_X gf\, d\mu.
+\end{align*}
+If $g = \chi_E, E \in \mathfrak{M}$, then
+\begin{align*}
+    \int_X g\,d\varphi = \int_X \chi_E\,d\varphi = \varphi(E) = \int_X \chi_Ef\,d\mu,
+\end{align*}
+which implies that \eqref{theorem_213_equ2} holds if $g = \chi_E$. Hence, it also holds for any simple functions, since simple function is a linear combination of the characteristic functions. If $g$ is any measurable function, then there are simple functions $0 \leq g_1 \leq g_2 \leq \cdots$ and $g_n \to g$, by the monotone convergence theorem \ref{theorem_29},
+\begin{align*}
+    \int_X g\,d\varphi \leftarrow \int_X g_n\,d\varphi = \int_X g_nf\,d\mu \to \int_X gf\,d\mu.
+\end{align*}
+\end{proof}
+
+\medskip
+
+Recall that $f^+ = \max\{f,0\}, f^- = - \min\{f,0\}$ are measurable, and $f^+$ and $f^-$ are called positive part and negative part of $f$. Also $f = f^+ + f^-, \left|f\right| = f^+ + f^-$.
+
+If $f: X \to \overline{\mathbb{R}}$ is measurable and each of the integrals $\int_X f^+\,d\mu$ and $\int_X f^-\,d\mu$ is finite, then we define
+\begin{align*}
+    \int_X f\,d\mu = \int_X f^+\,d\mu - \int_X f^-\,d\mu.
+\end{align*}
+
+\medskip
+
+Now we can extend the measurable function $f:X \to \overline{\mathbb{R}}$ to complex valued measurable function $f: X \to \mathbb{C}$.
+
+\medskip
+
+\begin{definition}
+Let $(X,\mathfrak{M},\mu)$ be a measurable space. The space $L^1(\mu)$ of all measurable function $f: X \to \mathbb{C}$ such that
+\begin{align*}
+    \left\|f\right\|_1 = \int_X \left|f\right|\,d\mu < \infty.
+\end{align*}
+Elements of $L^1(\mu)$ is called Lebesgue integral functions or summable functions.
+\end{definition}
+
+\medskip
+
+If $f = u + iv$ is Lebesgue integral, then the functions $u^+, n^-, v^+, v^-$ are measurable and Lebesgue integral as bounded by $\left|f\right|$. For any $E \in \mathfrak{E}$, we define
+\begin{align*}
+    \int_X f\,d\mu = \left(\int_X u^+\,d\mu - \int_X u^-\,d\mu\right) + i \left(\int_X v^+\,d\mu - \int_X v^-\,d\mu\right).
+\end{align*}
+
+\medskip
+
+\begin{theorem}
+$L^1(\mu)$ is a linear space and if $\alpha,\beta \in \mathbb{C}$, then $\alpha f + \beta g \in L^1(\mu)$ and
+\begin{align*}
+    \int_X (\alpha f + \beta g)\,d\mu = \alpha \int_X f\,d\mu + \beta \int_X g\,d\mu.
+\end{align*}
+\end{theorem}
+
+\medskip
+
+\begin{remark}
+In other words, $f \mapsto \int_X f\,d\mu$ is a linear functional in $L^1(\mu)$.
+\end{remark}
+
+\medskip
+
+\begin{definition}
+Similarly, we define $L^1(\mu,\mathbb{R}^n)$ be the class of all measurable functions $f = (f_1,\cdots,f_n): X \to \mathbb{R}^n$ such that
+\begin{align*}
+    \left\|f\right\|_1 = \int_X \left|f\right|\,d\mu < \infty.
+\end{align*}
+Then we define 
+\begin{align*}
+    \int_X f\,d\mu = \left(\int_X f_1\,d\mu,\cdots,\int_X f_n\,d\mu\right).
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{theorem}\label{theorem_215}
+If $f \in L^1(\mu,\mathbb{R}^n)$, then
+\begin{align*}
+    \left|\int_X f\,d\mu\right| \leq \int_X \left|f\right|\,d\mu.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $\alpha = (\alpha_1,\cdots,\alpha_n) \in \mathbb{R}^n$ be a unit vector and $\left|\int_X f\,d\mu\right| = \left\langle \alpha,\int_X f\,d\mu \right\rangle$. Then, by Cauchy Schwarz inequality,
+\begin{align*}
+    \left|\int_X f\,d\mu\right| & = \left\langle \alpha,\int_X f\,d\mu \right\rangle = \sum^n_{i=1} \alpha_i \int_X f_i\,d\mu = \int_X \sum^n_{i=1} \alpha_i f_i\,d\mu = \int_X \left\langle \alpha,f\mu \right\rangle \leq \int_X \left|f\right|\,d\mu.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{theorem}[{\bf Lebesgue dominated convergence theorem}]
+Suppose $\{f_n\}$ is a sequence of complex valued functions on $X$ such that $f_n$ converges pointwise to $f$ for every $x\in X$, that is $f(x) = \lim_{n\to\infty}f_n(x)$ for every $x\in X$. If there is a function $g \in L^1(\mu)$ ($g$ is real valued) such that $\left|f_n(x)\right| \leq g(x)$ for every $x \in X$ and all $n = 1,2,\cdots$, then $f \in L^1(\mu)$,
+\begin{align*}
+    \lim_{n\to\infty} \int_X \left|f - f_n\right|\,d\mu = 0,
+\end{align*}
+and
+\begin{align*}
+    \lim_{n\to\infty} \int_X f_n\,d\mu = \int_X f\,d\mu.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Clearly, $f$ is measurable and $\left|f\right| \leq g$. Hence, $f \in L^1(\mu)$. Since $\left|f - f_n\right| \leq \left|f\right| + \left|f_n\right| \leq 2g$, then $2g - \left|f - f_n\right| \geq 0$. Also, 
+\begin{align*}
+    \int_X 2g\,d\mu = \int_X \lim_{n\to\infty} \left(2g - \left|f - f_n\right|\right)\, d\mu = \int_X \liminf_{n\to\infty} \left(2g - \left|f - f_n\right|\right)\, d\mu
+\end{align*}
+and by Fatou's lemma \ref{theorem_212}, we have
+\begin{align*}
+    \int_X 2g\,d\mu \leq \liminf_{n\to\infty} \int_X \left(2g - \left|f - f_n\right|\right)\, d\mu = \int_X 2g\,d\mu - \limsup_{n\to\infty} \int_X \left|f - f_n\right|\, d\mu.
+\end{align*}
+Since $\int_X 2g\,d\mu$ is finite, $\limsup_{n\to\infty} \int_X \left|f - f_n\right|\, d\mu \leq 0$, and this implies that
+\begin{align*}
+    \lim_{n\to\infty} \int_X \left|f - f_n\right|\, d\mu = 0.
+\end{align*}
+
+Now, by Theorem \ref{theorem_215}, we have
+\begin{align*}
+    \left|\int_X f\,d\mu - \int_X f_n\,d\mu\right| \leq \int_X \left|f - f_n\right|\, d\mu \to 0,
+\end{align*}
+and thus,
+\begin{align*}
+    \lim_{n\to\infty} \int_X f_n\,d\mu = \int_X f\,d\mu.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\section{Almost everywhere}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
