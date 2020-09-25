@@ -727,7 +727,7 @@ For a measure $\mu: \MM \to [0,1]$, it may happen that $A \subset X$ is measurab
 
 \medskip
 
-\begin{definition}
+\begin{definition}\label{def_19}
 A measure $\mu: \MM \to [0,1]$ is said to be complete if every subset of a set of measure zero is measurable (and hence has measure zero).
 \end{definition}
 
@@ -737,7 +737,7 @@ It follows from Proposition \ref{prop_14} that the measure described in the Cara
 
 \medskip
 
-\begin{corollary}
+\begin{corollary}\label{coro_171}
 The measure $\mu^*: \MM^* \to [0,\infty]$ is complete.
 \end{corollary}
 \begin{proof}
@@ -3286,11 +3286,147 @@ and thus,
 
 \section{Almost everywhere}
 
+\begin{definition}
+Given measurable space $(X,\mathfrak{M},\mu)$, a property holds almost everywhere (a.e.) if there is a set $N \in \mathfrak{M}$, $\mu(N) = 0$ such that the property holds for all $x \in X \setminus N$.
+\end{definition}
+
+\medskip
+
+\begin{example}
+$f_n \to f$ a.e. if there is a set $N \in \mathfrak{M}$, $\mu(N) = 0$ such that $f_n(x) \to f(x)$ for all $x \in X \setminus N$.
+\end{example}
+
+\medskip
+
+\begin{example}
+$f = g$ a.e. if $f(x) = g(x)$ for all $x \in X \setminus N$, $N \in \mathfrak{M}$, $\mu(N) = 0$. Note that if $f = g$ a.e, then for every $E \in \mathfrak{M}$,
+\begin{align*}
+    \int_E f\,d\mu = \int_E g\,d\mu.
+\end{align*}
+Therefore from the point of view of the integration theory, functions which are equal a.e. cannot be distinguished.
+\end{example}
+
+\medskip
+
+\begin{theorem}\label{theorem_217}
+~\begin{enumerate}[label=(\alph*)]
+    \item If $f: X \to [0,\infty]$ is measurable, $E \in \mathfrak{M}$ and $\int_E f\,d\mu = 0$, then $f = 0$ a.e. in $E$.
+    
+    \item If $f \in L^1(\mu)$ and $\int_E f\,d\mu = 0$ for every $E \in \mathfrak{M}$, then $f = 0$ a.e. in $X$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Let $A_n = \left\{x \in E \,|\, f(x) \geq 1/n \right\}$. Then,
+    \begin{align*}
+        0 \leq \frac{1}{n} \mu(A_n) \leq \int_{A_n} f\,d\mu \leq \int_E f\,d\mu = 0,
+    \end{align*}
+    which implies $\mu(A_n) = 0$. Therefore,
+    \begin{align*}
+        \mu\left(\{x \in E \,|\, f(x) > 0 \}\right) = \mu\left(\bigcup^\infty_{n=1} A_n \right) \leq \sum^\infty_{n=1} \mu(A_n) = 0.
+    \end{align*}
+    Hence, $f = 0$ a.e. in $E$.
+    
+    \item Let $f = u + iv$. Define $E = \{x \in X \,|\, u(x) \geq 0 \}$, then 
+    \begin{align*}
+        0 = \int_E f\,d\mu = \int_E u\,d\mu + i \int_E v\,d\mu = \int_X u^+\,d\mu + i \int_E v\,d\mu,
+    \end{align*}
+    which implies $u^+ = 0$ a.e. in $X$. Similarly, $u^-, v^+, v^- = 0$ a.e. in $X$. Thus, $f = (u^+ - u^-) + i(v^+ - v^-) = 0$ a.e. in $X$.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+If $f,g \in L^1(\mu)$ and for every $E \in \mathfrak{M}$, $\int_E f\,d\mu = \int_E g\,d\mu$, then $f = g$ a.e.
+\end{corollary}
+\begin{proof}
+It follows from Theorem \ref{theorem_217}(b) applied to $f - g$.
+\end{proof}
+
+\medskip
 
 
+Recall Definition \ref{def_19} that a measure $\mu$ is {\em complete} if every subset of a set of measure zero is measurable (and hence has measure zero). All the measures obtained through the Carathéodory construction are complete by Proposition \ref{prop_14}, e.g. the Hausforff measure and the Lebesgue measure are complete. However, the Lebesgue measure on $\mathfrak{B}(\mathbb{R}^n)$ is not complete, i.e. there are sets of Lebesgue measure zero that are not Borel. However, we can assume that any measure is complete, because we can add all subsets of sets of measure zero to the $\sigma$-algebra.
+
+\medskip
+
+\begin{theorem}{\rm \cite{2}}
+Let $(X,\mathfrak{M},\mu)$ be a measure space, let $\mathfrak{M}^*$ be a collection of all $E \subset X$ for which there exist sets $A, B \in \mathfrak{M}$ such that $A \subset E \subset B$ and $\mu(B\setminus A) = 0$ and define $\mu(E) = \mu(A)$ in this situation. Then $\mathfrak{M}^*$ is a $\sigma$-algebra and $\mu$ is a complete measure on $\mathfrak{M}^*$.
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+Suppose now that $(X,\mathfrak{M},\mu)$ is a complete space. $Y$ is any metric space, $N \in \mathfrak{M}$ and $\mu(N) = 0$. We say the function $f: X\setminus N \to Y$ is measurable if there is $y_0 \in Y$ such that
+\begin{align*}
+    \widetilde{f}(x) = \begin{cases}
+        f(x), & x \in X \setminus N, \\
+        y_0, & x \in N,
+    \end{cases}
+\end{align*}
+is measurable. 
+\end{definition}
 
 
+It follows from the assumption that $\mu$ is complete, then if $\bar{f}(x): X \to Y$ is any function such that $\widetilde{f} = \bar{f}$ a.e., then $\bar{f}$ is measurable too. In particular, we can take $\bar{f}(x)$ as
+\begin{align*}
+    \bar{f}(x) = \begin{cases}
+        f(x), & x \in X \setminus N, \\
+        y, & x \in N,
+    \end{cases}
+\end{align*}
+where $y$ is arbitrary.
 
+Now if $f = g$ a.e., we write $f \sim g$. Clearly, $f \sim g$ is an equivalence relation. In particular functions in $L^1(\mu)$ need to be defined a.e. only. Since we identify functions in $L^1(\mu)$ that are equal a.e., we identify $L^1(\mu)$ with the quotient space $L^1(\mu)/\sim$. Therefore, $f \in L^1(\mu)$, $f = 0$ a.e. if and only if $\left\|f\right\| = \int_X|f|\,d\mu = 0$.
+
+\medskip
+
+
+\begin{theorem}[{\bf Lebesgue dominated convergence theorem}]
+Suppose that $\{f_n\}$ is a sequence of complex valued functions on $X$ defined a.e. If $f(x) = \lim_{n\to\infty} f_n(x)$ for almost all $x \in X$, and if there is a function $g \in L^1(\mu)$ such that $\left|f_n(x)\right| \leq g(x)$ for all $n = 1,2,3,\cdots$, then $f \in L^1(\mu)$,
+\begin{align*}
+    \lim_{n\to\infty} \int_X \left|f - f_n\right|\,d\mu = 0,
+\end{align*}
+and
+\begin{align*}
+    \lim_{n\to\infty} \int_X f_n\,d\mu = \int_X f\,d\mu.
+\end{align*}
+\end{theorem}
+
+\medskip
+
+Recall that if $Y$ is a metric space, then a mapping $f: X \to Y$ is Borel if it is measurable with respect to $\mathfrak{B}(X)$, that is for every open set $U \subset Y$, $f^{-1}(U) \in \mathfrak{B}(X)$. Since $\sigma$-algebra of Lebesgue measurable sets is larger, then not every Lebesgue measurable mapping $f: \mathbb{R}^n \to Y$ is Borel. However, we could have the following result.
+
+\medskip
+
+\begin{theorem}
+If $Y$ is a separable metric space and $f: \mathbb{R}^n \to Y$ is Lebesgue measurable, then there is a Borel mapping $g: \mathbb{R}^n \to Y$ such that $f = g$ a.e.
+\end{theorem}
+\begin{proof}
+Since $Y$ is separable, then there is a countable family of open sets $\{U_i\}^\infty_{i=1}$ such that every open set in $Y$ is a union of open sets from this family. Indeed, it suffices to take the family of open balls with rational length radii and centers in a countable dense set in $Y$.
+
+For $i = 1,2,3,\cdots$, let $M_i \subset \mathbb{R}^n$ be a $F_\sigma$ set such that 
+\begin{align*}
+    M_i \subset f^{-1}(U_i), \quad \mathcal{L}_n\left(f^{-1}(U_i) \setminus M_i\right) = 0,
+\end{align*}
+see Theorem \ref{theorem_124}(e). Let $E = \bigcup^\infty_{i=1} \left(f^{-1}(U_i) \setminus M_i\right)$, then clearly $E$ has Lebesgue measure zero and hence by Theorem \ref{theorem_124}(c), there is a $G_\delta$ set $H$ such that $E \subset H$ and $\mathcal{L}_n(H) = 0$. 
+
+Now fix $y_0 \in Y$ and define 
+\begin{align*}
+    g(x) = \begin{cases}
+        f(x), & x \notin H,\\
+        y_0, & x \in H.
+    \end{cases}
+\end{align*}
+Clearly $f = g$ a.e., because $f = g$ on $\mathbb{R}^n \setminus H$ and $\mathcal{L}_n(H) = 0$. 
+
+It remains to prove that $g$ is Borel. It is easy to see that if $y_0 \notin U_i$, then $g^{-1}(U_i) = M_i \setminus H$, and if $y_0 \in U_i$, then $g^{-1}(U_i) = M_i \cup H$. In each case, $g^{-1}(U_i)$ is a Borel set.\footnote{Drawing a picture would be clear.} Since every open set $U \subset Y$ can be represented as $U = \bigcup^\infty_{j=1} U_{i_j}$, then the set 
+$$g^{-1}(U) = \bigcup^\infty_{j=1} g^{-1}(U_{i_j})$$ 
+is Borel.
+\end{proof}
+
+\medskip
+
+\section{Theorems of Lusin and Egorov}
 
 
 
