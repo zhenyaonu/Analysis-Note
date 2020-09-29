@@ -322,7 +322,7 @@ The notations $G_\delta$ and $F_\sigma$ is due to Hausdorff {\rm \cite{2}}.
 \begin{example}
 Every closed set is $G_\delta$. Indeed, suppose $F$ is closed, and let
 \begin{align*}
-    G_i = \left\{x\,|\, \operatorname{dist}(x,F) < \frac{1}{i}\right\},
+    G_i = \left\{x\,:\, \operatorname{dist}(x,F) < \frac{1}{i}\right\},
 \end{align*}
 where $G_i$ are open, and then $F = \bigcap^\infty_{i=1} G_i$.
 
@@ -399,12 +399,12 @@ Now what are Borel sets? Recall that open, closed sets, $G_\delta, F_\sigma$, in
 \begin{definition}[{\bf Borel sets of finite order}]\footnote{This is called {\em finite Borel hierarchy}.}
 Let
 \begin{align*}
-    \Sigma_1 & = \{G\,|\, G \subseteq X, G\,\, \text{is open}\}, \\
-    \Pi_1 & = \{F\,|\, F \subseteq X, F\,\, \text{is closed}\},
+    \Sigma_1 & = \{G\,:\, G \subseteq X, G\,\, \text{is open}\}, \\
+    \Pi_1 & = \{F\,:\, F \subseteq X, F\,\, \text{is closed}\},
 \end{align*}
 and then inductively define the following collection of subsets of $X$
 \begin{align*}
-    \Sigma_{n+1} = \left\{\bigcup^\infty_{i=1} F_i \,|\, F_i \in \Pi_{n}\right\}, \quad \Pi_{n+1} = \left\{\bigcup^\infty_{i=1} G_i \,|\, G_i \in \Sigma_{n}\right\}.
+    \Sigma_{n+1} = \left\{\bigcup^\infty_{i=1} F_i \,:\, F_i \in \Pi_{n}\right\}, \quad \Pi_{n+1} = \left\{\bigcup^\infty_{i=1} G_i \,:\, G_i \in \Sigma_{n}\right\}.
 \end{align*}
 \end{definition}
 
@@ -459,11 +459,11 @@ the set $A = \bigcup^\infty_{n=1} A_n$ is still Borel, but it is not necessarily
 
 Recall that $\omega$ is the ordinal number of $\mathbb{N}$ and we define $\Sigma_{\omega}$ and $\Pi_{\omega}$ as
 \begin{align*}
-    \Sigma_{\omega} = \left\{\bigcup^\infty_{i=1} F_i \,|\, F_i \in \bigcup^\infty_{n=1} \Pi_n\right\}, \quad \Pi_{\omega} = \left\{\bigcup^\infty_{i=1} G_i \,|\, G_i \in \bigcup^\infty_{n=1} \Sigma_n\right\},
+    \Sigma_{\omega} = \left\{\bigcup^\infty_{i=1} F_i \,:\, F_i \in \bigcup^\infty_{n=1} \Pi_n\right\}, \quad \Pi_{\omega} = \left\{\bigcup^\infty_{i=1} G_i \,:\, G_i \in \bigcup^\infty_{n=1} \Sigma_n\right\},
 \end{align*}
 so the set $A$ belongs to $\Sigma_{\omega}$. Also, we can define $\Sigma_{\omega + 1}$ and $\Pi_{\omega + 1}$ as
 \begin{align*}
-    \Sigma_{\omega+1} = \left\{\bigcup^\infty_{i=1} F_i \,|\, F_i \in \bigcup^\infty_{n=1} \Pi_{\omega}\right\},\quad \Pi_{\omega+1} = \left\{\bigcup^\infty_{i=1} G_i \,|\, G_i \in \bigcup^\infty_{n=1} \Sigma_{\omega}\right\}.
+    \Sigma_{\omega+1} = \left\{\bigcup^\infty_{i=1} F_i \,:\, F_i \in \bigcup^\infty_{n=1} \Pi_{\omega}\right\},\quad \Pi_{\omega+1} = \left\{\bigcup^\infty_{i=1} G_i \,:\, G_i \in \bigcup^\infty_{n=1} \Sigma_{\omega}\right\}.
 \end{align*}
 In general, we define $\Pi_{\alpha}$ and $\Sigma_{\omega}$, where $\alpha$ is an ordinal number by the transfinite induction: $A \in \Sigma_{\alpha}, \alpha > 1$ if there are sets $A_i \in \Pi_{\alpha_i}, \alpha_i < \alpha$, $A = \bigcup^\infty_{i=1} A_i$; $A \in \Pi_{\alpha}, \alpha > 1$ if there are sets $A_i \in \Pi_{\alpha_i}, \alpha_i < \alpha$, $A = \bigcap^\infty_{i=1} A_i$.
 
@@ -512,7 +512,7 @@ And ``ordered triples'' $(X, \MM, \mu)$ is called a measure space. If $\mu(X) < 
 If $X$ is an arbitrary set, and $\mu: P(X) \to [0,\infty]$ is defined by $\mu(E) = m$ if $E$ is finite and has $m$ elements, $\mu(E) = \infty$ if $E$ is infinite, then $\mu$ is a measure and called {\em counting measure}.
 \end{example}
 
-\begin{theorem}[{\bf Elementary properties of measures}]\label{theorem_111}
+\begin{theorem}[{\bf Elementary properties of measures}]\label{theorem_16}
 Let $(X, \MM, \mu)$ be a measure space. Then
 \begin{enumerate}[label=(\alph*)]
     \item If the sets $A_1, A_2, \cdots, A_n \in \MM$ are pairwise disjoint, then $\mu \left(\bigcup^n_{i=1} A_i \right) = \sum^n_{i=1} \mu(A_i)$.
@@ -630,7 +630,7 @@ All sets with $\mu^*(E) = 0$ are $\mu^*$-measurable.
 \begin{proof}
 If $\mu^*(E) = 0$, then for an arbitrary set $A \subset X$, we have
 \begin{align*}
-    \mu^*(A) \geq \mu^*(A \setminus E) = \mu^*(A \setminus E) + \underbrace{\mu^*(A \cap E)}_{0},
+    \mu^*(A) \geq \mu^*(A \setminus E) = \mu^*(A \setminus E) + \underbrace{\mu^*(A \cap E)}_{=\,0},
 \end{align*}
 where the last term follows from $(A \cap E) \subset E$.
 \end{proof}
@@ -771,13 +771,13 @@ If $\mu^*$ is a metric outer measure, then all Borel sets are $\mu^*$-measurable
 \begin{proof}
 Recall that $E \in \MM^*$ if for any $A \subset X$, $\mu^*(A) \geq \mu^*(A \cap E) + \mu^*(A \setminus E)$. Thus it suffice to show that for open $G$ , $\mu^*(A) \geq \mu^*(A \cap G) + \mu^*(A \setminus G)$, since $\mathfrak{B}(X)$ is the smallest $\sigma$-algebra that contains all open sets in $X$.
 
-Let $G_n = \left\{x \in G \, |\, \operatorname{dist}(x, X \setminus G) > 1/n \right\}$, and then 
+Let $G_n = \left\{x \in G \,:\, \operatorname{dist}(x, X \setminus G) > 1/n \right\}$, and then 
 \begin{align*}
     \operatorname{dist}(G_n, X \setminus G) \geq \frac{1}{n}.
 \end{align*}
 Also, we define 
 \begin{align*}
-    D_n = G_{n+1}\setminus G_n = \left\{x \in G \, \Bigg|\, \frac{1}{n+1} < \operatorname{dist}(x, X \setminus G) \leq \frac{1}{n} \right\}.
+    D_n = G_{n+1}\setminus G_n = \left\{x \in G \, :\, \frac{1}{n+1} < \operatorname{dist}(x, X \setminus G) \leq \frac{1}{n} \right\}.
 \end{align*}
 Clearly, we have 
 \begin{align}\label{equation_15}
@@ -865,8 +865,7 @@ Let $X$ be a metric space and $\mu$ is a measure defined on the $\sigma$-algebra
 \medskip
 
 \begin{corollary}
-If $X$ is a locally compact\footnote{A metric space $X$ is called {\em locally compact} if every point $x$ of $X$ has a compact neighbourhood, i.e. there exists an open set $U$ and a compact set $K$, such that $x\in U \subseteq K$. Also, there are other definitions as well, such as every point has a neighborhood whose closure is compact. For example, $\mathbb{R}^n$ is locally compact, as well as $\mathbb{R}^n \setminus \{0\}$. Note that being locally compact does not imply it is bounded and closed.}and separable metric space\footnote{{\bf Lemma}. Every separable metric space has a countable base\cite{10}. A collection $\{V_\alpha\}$ of open subsets of $X$ is said to be a {\em base} for $X$ if for every $x\in 
-X$ and every open set $G \subset X$ such that $x \in G$, there exists $\alpha$ such that $x \in V_\alpha \subset G$. Then we have a lemma for separable space.}and $\mu$ is a measure on $\mathfrak{B}(X)$ such that $\mu(K) < \infty$ for any compact set $K$, then $X$ is a union of countable many open sets of finite measure and $\mu$ is a Radon measure.
+If $X$ is a locally compact\footnote{A metric space $X$ is called {\em locally compact} if every point $x$ of $X$ has a compact neighbourhood, i.e. there exists an open set $U$ and a compact set $K$, such that $x\in U \subseteq K$. Also, there are other definitions as well, such as every point has a neighborhood whose closure is compact. For example, $\mathbb{R}^n$ is locally compact, as well as $\mathbb{R}^n \setminus \{0\}$. Note that being locally compact does not imply it is bounded and closed.}and separable metric space\footnote{{\bf Lemma}. Every separable metric space has a countable base\cite{10}. A collection $\{V_\alpha\}$ of open subsets of $X$ is said to be a {\em base} for $X$ if for every $x\in X$ and every open set $G \subset X$ such that $x \in G$, there exists $\alpha$ such that $x \in V_\alpha \subset G$.}and $\mu$ is a measure on $\mathfrak{B}(X)$ such that $\mu(K) < \infty$ for any compact set $K$, then $X$ is a union of countable many open sets of finite measure and $\mu$ is a Radon measure.
 \end{corollary}
 \begin{proof}
 Since $X$ is separable, then it has a countable, dense subsets. Also, since $X$ is locally compact, then there exists countable open sets $U_i$ such that $X = \bigcup^\infty_{i=1} U_i$, and each $\overline{U_i}$ is compact.\footnote{Indeed, since $X$ is locally compact, then for every point $x \in X$, there is a compact set $K_x$ that contains an open neighborhood $U_x$ of $x$, that is $x \in U_x \subset K_x$. Also, since $X$ is separable, then it has a countable base $\{V_n \}^\infty_{n=1}$. Then for any $x \in U_x \subset X$, there is a $n_x$ such that $x \in V_{n_x} \subset U_x \subset K_x$. Taking closure yields $x \in \overline{V}_{n_x}$, where $\overline{V}_{n_x}$ is compact since $\overline{V}_{n_x} \subset \overline{K}_x = K_x$. Thus, $X = \bigcup_{n_x} V_{n_x}$, which is a countable union since $\{n_x\}$ is a subsequence of $\{n\}$ and $\overline{V}_{n_x}$ is compact.} By assumption, $\mu(U_i) \leq \mu(\overline{U_i}) < \infty$. By Theorem \ref{theorem_114},
@@ -883,7 +882,7 @@ Let
 \begin{align*}
     C = \bigcup^\infty_{n=1} \left(C \cap \bigcup^n_{i=1} \overline{U_i} \right),
 \end{align*}
-and $K = C \cap \bigcup^n_{i=1} \overline{U_i}$ is compact. By Theorem \ref{theorem_111}(f), for any closed set $C \subset X$,
+and $K = C \cap \bigcup^n_{i=1} \overline{U_i}$ is compact. By Theorem \ref{theorem_16}(f), for any closed set $C \subset X$,
 \begin{align*}
     \mu(C) = \sup_{K \subset C} \mu(K),
 \end{align*}
@@ -919,7 +918,7 @@ then the proof is complete.
     \begin{align*}
         \mu(V_n) = \mu(V_n \setminus E) + \mu(V_n \cap E) < \mu^*(V_n \setminus E) + \mu^*(V_n \cap E) = \mu^*(V_n),
     \end{align*}
-    then we could only have equalities in (\ref{theorem_114_3}). In particular, $\mu(V_n \cap E) = \mu^*(V_n \cap E)$. Letting $n \to \infty$ and by Theorem \ref{theorem_111}(f), 
+    then we could only have equalities in (\ref{theorem_114_3}). In particular, $\mu(V_n \cap E) = \mu^*(V_n \cap E)$. Letting $n \to \infty$ and by Theorem \ref{theorem_16}(f), 
     \begin{align*}
         \mu(E) \leftarrow \mu(V_n \cap E) = \mu^*(V_n \cap E) \rightarrow \mu^*(E).
     \end{align*}
@@ -1102,8 +1101,8 @@ $\mathcal{H}^s$ is a metric outer measure.
         \end{align*}
         and assume that $A_i \cap (E \cup F) \neq \emptyset$ for all $i \in \mathbb{N}$, since otherwise we could remove this $A_i$ from the covering. Since $\operatorname{diam} A_i < \varepsilon < \operatorname{dist}(E,F)$, then each $A_i$ has a nonempty intersection with only one set $E$ or $F$. Then the family $\{A_i\}_i$ can be split into two disjoint subfamilies
         \begin{align*}
-            \{B_j\}_j & = \{A_j\, |\, A_j \cap E \neq \emptyset\}, \\
-            \{C_j\}_j & = \{A_j\, |\, A_j \cap F \neq \emptyset\},
+            \{B_j\}_j & = \{A_j\, :\, A_j \cap E \neq \emptyset\}, \\
+            \{C_j\}_j & = \{A_j\, :\, A_j \cap F \neq \emptyset\},
         \end{align*}
         and $E \subset \bigcup^\infty_{j=1} B_j$, $F \subset \bigcup^\infty_{j=1} C_j$. Hence,
         \begin{align*}
@@ -1177,7 +1176,7 @@ This exercise implies that at most one $s \geq 0$ such that $\mathcal{H}^s(E) < 
 \begin{definition}
 The Hausdorff dimension is defined as follows. If $\mathcal{H}^s(E) > 0$ for all $s \geq 0$, then $\dim_{\mathcal{H}}(E) = \infty$ (in this case, $\mathcal{H}^s(E) = \infty$ for all $s \geq 0$). Otherwise, we define
 \begin{align*}
-    \dim_{\mathcal{H}}(E) = \inf \{s \geq 0\, |\, \mathcal{H}^s(E) = 0 \}.
+    \dim_{\mathcal{H}}(E) = \inf \{s \geq 0\, :\, \mathcal{H}^s(E) = 0 \}.
 \end{align*}
 \end{definition}
 
@@ -1430,7 +1429,7 @@ If $0 \leq s < \infty$, $\H^s(X) < \infty$ and $E \subset X$ (not necessarily me
 \end{align*}
 \end{corollary}
 \begin{proof}
-Let $V_i$ be as in the previous theorem. Clearly, $\H^1(V_1) \leq \H^s(X) < \infty$ and then, by Theorem \ref{theorem_111}(g) and Corollary \ref{coro_1111}, we have
+Let $V_i$ be as in the previous theorem. Clearly, $\H^1(V_1) \leq \H^s(X) < \infty$ and then, by Theorem \ref{theorem_16}(g) and Corollary \ref{coro_1111}, we have
 \begin{align*}
     \lim_{i\to\infty} \H^1(V_i) = \H^s\left( \bigcap^\infty_{i=1} V_i\right) = \H^s(\widetilde{E}) = \H^s(E).
 \end{align*}
@@ -1751,7 +1750,7 @@ Let $A \subset \mathbb{R}^n$, then the following conditions are equivalent:
     
     Now for $\mathbb{R}^n \setminus A$, by (c), there exists a $G_\delta$ set $H$ such that $(\mathbb{R}^n \setminus A) \subset H$ and $\L_n^*(H \setminus (\mathbb{R}^n \setminus A)) = 0$. Let $M \coloneqq \mathbb{R}^n \setminus H \subset A$, then $M$ is a $F_\sigma$ set. Since $A \setminus M = H \setminus (\mathbb{R}^n \setminus A$, then $\L_n(A \setminus M) = 0$, which indicates (e).
     
-    \item[(a)] $\Rightarrow$ (f) By (d), there is a closed set $F \subset A$ such that $\L_n(A \setminus F) < \varepsilon/2$. By (b), there is an open set $G \supset A$ such that  $\L_n(G \setminus A) < \varepsilon/2$. Hence, $F \subset A \subset G$ and $\L_n(G \subset F) < \varepsilon/2 + \varepsilon/2 = \varepsilon$.
+    \item[(a)] $\Rightarrow$ (f) By (d), there is a closed set $F \subset A$ such that $\L_n(A \setminus F) < \varepsilon/2$. By (b), there is an open set $G \supset A$ such that  $\L_n(G \setminus A) < \varepsilon/2$. Hence, $F \subset A \subset G$ and $\L_n(G \setminus F) < \varepsilon/2 + \varepsilon/2 = \varepsilon$.
     
     \item[(f)] $\Rightarrow$ (a) There exists a closed set $F_i$ and an open set $G_i$ such that $\L_n(G_i\setminus F_i) < 1/i$. Let $H \coloneqq \bigcap^\infty_{i=1} G_i$, then $H$ is a $G_\delta$ set and $A \subset H$. Then,
     \begin{align*}
@@ -1795,7 +1794,7 @@ Now let's construct such $V$ properly.
 \begin{proof}[Proof of Vitali Theorem]
 Consider the following equivalence relation among point in $(0,1)$, $x \sim y$ if $x - y \in \mathbb{Q}$. Therefore, $(0,1)$ is the union of a family $\mathcal{F}$ of pairwise disjoint equivalent classes 
 \begin{align*}
-    \{x\} = \{y \in (0,1)\,|\, x - y \in \mathbb{Q}\}.
+    \{x\} = \{y \in (0,1)\,:\, x - y \in \mathbb{Q}\}.
 \end{align*}
 Then $\{x\} = \{y\}$ if and only if $x \sim y$. Also, $\mathbb{F} = \{\{x\}\,|\, x \in (0,1)\}$, then 
 \begin{align*}
@@ -1812,7 +1811,7 @@ Next we will prove that $V$ is not Lebesgue measurable. Let
 \begin{align*}
     E = \bigcup_{a\in\mathbb{Q}\cap(-1,1)} V_a,
 \end{align*}
-where $V_a = V + a = \{x+a\,|\, x\in V\}$. Clearly,
+where $V_a = V + a = \{x+a\,:\, x\in V\}$. Clearly,
 \begin{enumerate}[label=(\roman*)]
     \item $V_a \cap V_b = \emptyset$, if $a,b \in \mathbb{Q}, a \neq b$. Indeed, suppose $x \in (V_a \cap V_b)$, then $x = x_1 + a$ and $x = x_2 + b$, then $x_1 - x_2 = b - a \in \mathbb{Q}$. Therefore, $\{x_1\} = \{x_2\}, x_1 \neq x_2$. Hence, $x_1, x_2 \in V$ are two different points from the same equivalence class, which is a contradiction.
     
@@ -1958,7 +1957,7 @@ Therefore, $f(E)$ can be covered by balls of radius $\rho_i = Lr_i$, $\sum^\inft
 If $f:\mathbb{R}^n \to \mathbb{R}^n$ is a homeomorphism, then $A \subset \mathbb{R}^n$ is Borel set if and only if $f(A)$ is a Borel set.
 \end{proposition}
 \begin{proof}\footnote{This proof is based on the result in\cite{18}.}
-Let $\mathfrak{B}(\mathbb{R}^n)$ be the $\sigma$-algebra generated by the family of all open sets in $\mathbb{R}^n$. Now define $\widetilde{\mathfrak{B}} = \{f(E)\,|\,E \in \mathfrak{B}(\mathbb{R}^n)\}$. Note that $\widetilde{\mathfrak{B}}$ is also a $\sigma$-algebra. Indeed, since $f$ is honeomorphism,
+Let $\mathfrak{B}(\mathbb{R}^n)$ be the $\sigma$-algebra generated by the family of all open sets in $\mathbb{R}^n$. Now define $\widetilde{\mathfrak{B}} = \{f(E)\,:\,E \in \mathfrak{B}(\mathbb{R}^n)\}$. Note that $\widetilde{\mathfrak{B}}$ is also a $\sigma$-algebra. Indeed, since $f$ is honeomorphism,
 \begin{enumerate}[label=(\alph*)]
     \item $f(\mathbb{R}^n) = \mathbb{R}^n$, and hence $\mathbb{R}^n \in \widetilde{\mathfrak{B}}$.
         
@@ -2349,11 +2348,28 @@ which yields the statement.
 
 \medskip
 
-\begin{exercise}
+\begin{exercise}\label{exe_116}
 Let $A$ be the subset of $[0,1]$ which consists of all numbers which do not have the digit 4 appearing in their decimal expansion. Find $\mathcal{L}_1(A)$.
 \end{exercise}
 \begin{proof}\cite{22}
 Let $x \in A$. For any $\varepsilon > 0$, there exists $N > 0$ such that $k/10^N < \varepsilon$ for $k = 1,2,\cdots,9$. Then, $x + k/10^N \in B(x,\varepsilon)$ for all $k = 1,2,\cdots,9$. Now, we can find a $k$ such that the $N$-th digit in the decimal expansion of $x + k/10^N$ is $4$. Therefore, $x$ is a singleton set and $A$ is an uncountable union of singleton sets. Thus, $\mathcal{L}_1(A) = 0$.
+\end{proof}
+
+\medskip
+
+\begin{proof}[Second Proof of Exercise \ref{exe_116}]
+Let $A_n = \{x \in [0,1] \,:\, \text{first $n$ digits of } x \neq 4 \}$. Clearly, $A_1 \supset A_2 \supset A_3 \supset \cdots$ is a decreasing sequence of sets. Also, since $\L_1(A_1) < \L_1([0,1]) = 1$, then by Theorem \ref{theorem_16}(g), we have
+\begin{align*}
+    L_1(A) = \L_1\left(\bigcap^\infty_{i=1} A_i\right) = \lim_{i\to\infty} \L_1(A_i).
+\end{align*}
+Observe that $A_1 = [0,0.4) \cup [0.5,1]$ and then $\L_1(A_1) = 9/10$. Consider $A_2$, then
+\begin{align*}
+    A_2 = A_1 \setminus \bigcup^8_{k=1,k\neq 4}[0.k4,0.k5),
+\end{align*}
+and note that $\L_1(A_2) = 9/10 \L_1(A_1)$. By induction, we have
+\begin{align*}
+    L_1(A) = \L_1\left(\bigcap^\infty_{i=1} A_i\right) = \lim_{i\to\infty} \L_1(A_i) = \lim_{i\to\infty} \frac{9^i}{10^i} = 0.
+\end{align*}
 \end{proof}
 
 \medskip
@@ -2447,7 +2463,7 @@ Regard $\mathbb{R}$ as a subset of $\mathbb{R}^2$ (the $x$-axis). Prove that $A\
 ~\begin{enumerate}
     \item[($\Rightarrow$)] Let $\mathcal{C}$ be the $\sigma$-algebra generated by sets of form $F \times \{0\}$, where $F \subset \mathbb{R}$ is closed. Clearly, $\mathcal{C} \subset \mathfrak{B}(\mathbb{R}^2)$ since the sets that generating $\mathcal{C}$ are all closed. Suppose that $A \subset \mathbb{R}$ is Borel, since $\mathfrak{B}(\mathbb{R})$ is generated by closed subsets of $\mathbb{R}$, then $A \times \{0\} \in \mathcal{C} \subset \mathfrak{B}(\mathbb{R}^2)$. Hence, $A$ is Borel in $\mathbb{R}^2$.
     
-    \item[($\Leftarrow$)] If $A$ is Borel in $\mathbb{R}^2$, then $A$ can be a slice of Borel set $E$ in $\mathbb{R}^2$. Assume $E$ is a Borel subset of $\mathbb{R}^2$, let $\widetilde{E} = \{x \in \mathbb{R}\,|\, (x,y) \in E\}$ be a slice of $E$ in $\mathbb{R}$. Let $\mathcal{F} = \{E \subset \mathbb{R}^2\,|\, \widetilde{E}\,\,\text{is Borel in $\mathbb{R}$}\}$. Clearly, $\mathcal{F}$ is a $\sigma$-algebra.
+    \item[($\Leftarrow$)] If $A$ is Borel in $\mathbb{R}^2$, then $A$ can be a slice of Borel set $E$ in $\mathbb{R}^2$. Assume $E$ is a Borel subset of $\mathbb{R}^2$, let $\widetilde{E} = \{x \in \mathbb{R}\,:\, (x,y) \in E\}$ be a slice of $E$ in $\mathbb{R}$. Let $\mathcal{F} = \{E \subset \mathbb{R}^2\,:\, \widetilde{E}\,\,\text{is Borel in $\mathbb{R}$}\}$. Clearly, $\mathcal{F}$ is a $\sigma$-algebra.
     
     It remains to prove that $\mathcal{F}$ contains all open sets. If $U \subset \mathbb{R}^2$ is open, then it is easy to see that $\widetilde{U}$ is also open. Indeed, if $x \in \widetilde{U}$, then there is an open ball containing $(x,y) \in U$, and the slice of this open ball is an open interval containing $x$.\footnote{This part is based on Milo Brandt's proof \cite{24}.} Therefore, $\widetilde{U}$ is Borel and hence $\mathcal{F}$ contains open sets. Thus, $\mathfrak{B}(\mathbb{R}^2) \subset \mathcal{F}$, and hence $E \subset \mathcal{F}$, which implies its slice $A$ is Borel.
 \end{enumerate}
@@ -2548,7 +2564,7 @@ If $E \subset \mathfrak{M}$, then $f:E \to Y$ is measurable if and only if $f = 
 
 There is another point of view, let
 \begin{align*}
-    \mathfrak{M}_E = \{A \subset E\,|\, A \in \mathfrak{M} \} = \{B \cap E\,|\, B \in \mathfrak{M}\},
+    \mathfrak{M}_E = \{A \subset E\,:\, A \in \mathfrak{M} \} = \{B \cap E\,:\, B \in \mathfrak{M}\},
 \end{align*}
 and clearly $\mathfrak{M}_E$ is a $\sigma$-algebra of subsets of $E$. So, $f:E \to Y$ if and only if it is measurable with respect to $\mathfrak{M}_E$, i.e. measurable as a function defined on the measurable space $(E,\mathfrak{M}_E)$.
 \end{remark}
@@ -2667,7 +2683,7 @@ Let $(X,\mathfrak{M})$ be a measurable space and $Y$ a metric space. Let $f:X\to
 \end{theorem}
 \begin{proof}
 ~\begin{enumerate}[label=(\alph*)]
-    \item Let $\mathcal{R} = \{A \subset Y\,|\, f^{-1}(A) \in \mathfrak{M}\}$. Clearly, by Definition \ref{def_21}, $\mathcal{R}$ contains all open sets. It suffices to prove that $\mathcal{R}$ is a $\sigma$-algebra, since then we will have $\BB(Y) \subset \mathcal{R}$.\footnote{Indeed, any $\sigma$-algebra that contains open sets contains Borel set $\BB(Y)$.}Indeed, 
+    \item Let $\mathcal{R} = \{A \subset Y\,:\, f^{-1}(A) \in \mathfrak{M}\}$. Clearly, by Definition \ref{def_21}, $\mathcal{R}$ contains all open sets. It suffices to prove that $\mathcal{R}$ is a $\sigma$-algebra, since then we will have $\BB(Y) \subset \mathcal{R}$.\footnote{Indeed, any $\sigma$-algebra that contains open sets contains Borel set $\BB(Y)$.}Indeed, 
     \begin{enumerate}[label=\arabic*)]
         \item $Y \subset \mathcal{R}$. Indeed, $f^{-1}(Y) = X \in \mathfrak{M}$.
         
@@ -2699,7 +2715,8 @@ Similarly, for $E \in \mathfrak{M}$, we can define measurable function $f: E \to
 
 \medskip
 
-\begin{theorem}\label{theprem_24}\footnote{Actually, we could prove that the followings are equivalent\cite{9}:
+\begin{theorem}\label{theprem_24}
+Let $(X,\mathfrak{M})$ be a measurable space. Prove that a function $f: X \to \overline{\mathbb{R}}$ is measurable if and only if $f^{-1}((a,\infty]) \in \mathfrak{M}$ for all $a \in \mathbb{R}$.\footnote{Actually, we could prove that the followings are equivalent\cite{9}:
 \begin{enumerate}[label=(\alph*)]
     \item $f$ is measurable.
     
@@ -2711,11 +2728,10 @@ Similarly, for $E \in \mathfrak{M}$, we can define measurable function $f: E \to
     
     \item $f^{-1}([-\infty,a]) \in \mathfrak{M}$ for all $a \in \mathbb{R}$.
 \end{enumerate}}
-Let $(X,\mathfrak{M})$ be a measurable space. Prove that a function $f: X \to \overline{\mathbb{R}}$ is measurable if and only if $f^{-1}((a,\infty]) \in \mathfrak{M}$ for all $a \in \mathbb{R}$.
 \end{theorem}
 \begin{proof}
 ~\begin{enumerate}
-    \item[($\Rightarrow$)] Note that for any $a \in \mathbb{R}$, $(a,\infty]$ is an open set in $\overline{\mathbb{R}}$, and $\{x \in X\,|\, f(x) > a\} = f^{-1}((a,\infty]) \in \mathfrak{M}$. Also,
+    \item[($\Rightarrow$)] Note that for any $a \in \mathbb{R}$, $(a,\infty]$ is an open set in $\overline{\mathbb{R}}$, and $\{x \in X\,:\, f(x) > a\} = f^{-1}((a,\infty]) \in \mathfrak{M}$. Also,
     \begin{align*}
         (a,\infty] = \bigcup^\infty_{n=1} (a, a + n),
     \end{align*}
@@ -2733,7 +2749,7 @@ Let $(X,\mathfrak{M})$ be a measurable space. Prove that a function $f: X \to \o
     \begin{align*}
         (a,b) = (a,\infty] \cap [-\infty,b].
     \end{align*}
-    Since $\{x \in X\,|\, f(x) > a\} = f^{-1}((a,\infty]) \in \mathfrak{M}$, then $[-\infty,b] = f^{-1}(\overline{\mathbb{R}}) \setminus f^{-1}((a,\infty]) \in \mathfrak{M}$. By the property of $\sigma$-algebra, we have $f^{-1}((a,b)) \in \mathfrak{M}$.
+    Since $\{x \in X\,:\, f(x) > a\} = f^{-1}((a,\infty]) \in \mathfrak{M}$, then $[-\infty,b] = f^{-1}(\overline{\mathbb{R}}) \setminus f^{-1}((a,\infty]) \in \mathfrak{M}$. By the property of $\sigma$-algebra, we have $f^{-1}((a,b)) \in \mathfrak{M}$.
 \end{enumerate}
 \end{proof}
 
@@ -2822,7 +2838,7 @@ Corollary \ref{coro_251} has generalization to the case of arbitrary metric spac
 
 \medskip
 
-\begin{theorem}
+\begin{theorem}\label{theorem_26}
 Let $f_n: X \to Y$ be a sequence of measurable mappings with values in a separable metric space $Y$. If $\lim_{n\to\infty}f_n(x) = f(x)$ for every $x \in X$,\footnote{$f_n$ pointwise converges to $f$.}then $f: X \to Y$ is measurable.
 \end{theorem}
 \begin{proof}
@@ -2830,17 +2846,17 @@ Since $Y$ is separable metric space, then $Y$ contains a countable dense subset.
 
 It suffices to prove that $f^{-1}(F) \in \mathfrak{M}$ for every closed subset $F \in Y$. It follows from the equality
 \begin{align*}
-    f^{-1}(F) = \bigcap^\infty_{i=1} \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}.
+    f^{-1}(F) = \bigcap^\infty_{i=1} \{x\,:\,d(y_i,f(x)) \geq d(y_i,F)\}.
 \end{align*}
-Indeed, if $x \in ^{-1}(F)$, we have $f(x) \in F$, and hence $d(y_i,f(x)) \geq d(y_i,F)$ for all $i \in \mathbb{N}$. Then, for all $i \in \mathbb{N}$, $x \in \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}$, therefore, $x \in \bigcap^\infty_{i=1} \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}$. If $x$ belongs to the right hand side, then $d(y_i,f(x)) \geq d(y_i,F)$ for all $i \in \mathbb{N}$. Since $\{y_i\}$ is dense subset, then there exists a subsequence $\{y_{i_j}\}$ such that $y_{i_j} \to f(x)$, which implies $d(y_{i_j},f(x)) \geq d(y_{i_j},F)$. Therefore,
+Indeed, if $x \in ^{-1}(F)$, we have $f(x) \in F$, and hence $d(y_i,f(x)) \geq d(y_i,F)$ for all $i \in \mathbb{N}$. Then, for all $i \in \mathbb{N}$, $x \in \{x\,:\,d(y_i,f(x)) \geq d(y_i,F)\}$, therefore, $x \in \bigcap^\infty_{i=1} \{x\,:\,d(y_i,f(x)) \geq d(y_i,F)\}$. If $x$ belongs to the right hand side, then $d(y_i,f(x)) \geq d(y_i,F)$ for all $i \in \mathbb{N}$. Since $\{y_i\}$ is dense subset, then there exists a subsequence $\{y_{i_j}\}$ such that $y_{i_j} \to f(x)$, which implies $d(y_{i_j},f(x)) \geq d(y_{i_j},F)$. Therefore,
 \begin{align*}
     0 = d(f(x),f(x)) \leftarrow	d(y_{i_j},f(x)) \geq d(y_{i_j},F) \to d(f(x),F),
 \end{align*}
 and since $F$ is closed, then $f(x) \in F$. Hence, $x \in f^{-1}(F)$.
 
-It remains to show that the sets $\{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\}$ are measurable. Indeed,
+It remains to show that the sets $\{x\,:\,d(y_i,f(x)) \geq d(y_i,F)\}$ are measurable. Indeed,
 \begin{align*}
-    \{x\,|\,d(y_i,f(x)) \geq d(y_i,F)\} = (d_i \circ f)^{-1} ([d(y_i,F), \infty)),
+    \{x\,:\,d(y_i,f(x)) \geq d(y_i,F)\} = (d_i \circ f)^{-1} ([d(y_i,F), \infty)),
 \end{align*}
 which are measurable. Thus, $f^{-1}(F)$ is measurable and $f$ is a measurable mapping.
 \end{proof}
@@ -3005,13 +3021,13 @@ Measurability of $f$ follows from Corollary \ref{coro_251}.
 The sequence $\int_X f_n\,d\mu$ is increasing and hence it has a limit $\alpha = \lim_{n\to\infty} \int_X f_n\,d\mu$.\footnote{It may happen that the limit is infinity, but the limit exists.}Since $f_n \leq f$, then $\int_X f_n\,d\mu \leq \int_X f\,d\mu$ and hence $\alpha \leq \int_X f\,d\mu$. It remains to prove the opposite inequality. 
 Let $0 \leq s \leq f$ be a simple function. Fix a constant $0 < c < 1$, and define
 \begin{align*}
-    E_n = \{x \in X \,|\, f_n(x) \geq cs(x)\}, \quad n = 1,2,3,\cdots
+    E_n = \{x \in X \,:\, f_n(x) \geq cs(x)\}, \quad n = 1,2,3,\cdots
 \end{align*}
 Clearly, $E_1 \subset E_2 \subset \cdots$ and $\bigcup^\infty_{n=1} E_n = X$.\footnote{Indeed, for any $x \in X$, if $f(x) = 0$, then $f_n(x) = cs(x) = f(x) = 0$, and hence $x \in E_n$ for all $n$. If $f(x) > 0$, then $f(x) > cs(x)$. Since $f_n(x) \to f(x)$, then there is $n_0 > 0$ such that $f_n(x) > cs(x)$ for all $n \geq n_0$, and hence $x \in E_{n_0}$.}Then, we have
 \begin{align*}
     \int_X f_n\,d\mu \geq \int_{E_n} f_n\,d\mu \geq c \int_{E_n} s\,d\mu.
 \end{align*}
-By Lemma \ref{lemma_28}, $\varphi(E) = \int_E s\, d\mu$ is a measure, and by Theorem \ref{theorem_111}(f), we have
+By Lemma \ref{lemma_28}, $\varphi(E) = \int_E s\, d\mu$ is a measure, and by Theorem \ref{theorem_16}(f), we have
 \begin{align*}
     \int_{E_n} s\,d\mu = \varphi(E_n) \to \varphi\left(\bigcup^\infty_{n=1} E_n\right) = \varphi(X) = \int_X s\,d\mu.
 \end{align*}
@@ -3317,17 +3333,17 @@ Therefore from the point of view of the integration theory, functions which are 
 \end{theorem}
 \begin{proof}
 ~\begin{enumerate}[label=(\alph*)]
-    \item Let $A_n = \left\{x \in E \,|\, f(x) \geq 1/n \right\}$. Then,
+    \item Let $A_n = \left\{x \in E \,:\, f(x) \geq 1/n \right\}$. Then,
     \begin{align*}
         0 \leq \frac{1}{n} \mu(A_n) \leq \int_{A_n} f\,d\mu \leq \int_E f\,d\mu = 0,
     \end{align*}
     which implies $\mu(A_n) = 0$. Therefore,
     \begin{align*}
-        \mu\left(\{x \in E \,|\, f(x) > 0 \}\right) = \mu\left(\bigcup^\infty_{n=1} A_n \right) \leq \sum^\infty_{n=1} \mu(A_n) = 0.
+        \mu\left(\{x \in E \,:\, f(x) > 0 \}\right) = \mu\left(\bigcup^\infty_{n=1} A_n \right) \leq \sum^\infty_{n=1} \mu(A_n) = 0.
     \end{align*}
     Hence, $f = 0$ a.e. in $E$.
     
-    \item Let $f = u + iv$. Define $E = \{x \in X \,|\, u(x) \geq 0 \}$, then 
+    \item Let $f = u + iv$. Define $E = \{x \in X \,:\, u(x) \geq 0 \}$, then 
     \begin{align*}
         0 = \int_E f\,d\mu = \int_E u\,d\mu + i \int_E v\,d\mu = \int_X u^+\,d\mu + i \int_E v\,d\mu,
     \end{align*}
@@ -3349,13 +3365,13 @@ Recall Definition \ref{def_19} that a measure $\mu$ is {\em complete} if every s
 
 \medskip
 
-\begin{theorem}{\rm \cite{2}}
+\begin{theorem}{\rm \cite{2}}\label{theorem_218}
 Let $(X,\mathfrak{M},\mu)$ be a measure space, let $\mathfrak{M}^*$ be a collection of all $E \subset X$ for which there exist sets $A, B \in \mathfrak{M}$ such that $A \subset E \subset B$ and $\mu(B\setminus A) = 0$ and define $\mu(E) = \mu(A)$ in this situation. Then $\mathfrak{M}^*$ is a $\sigma$-algebra and $\mu$ is a complete measure on $\mathfrak{M}^*$.
 \end{theorem}
 
 \medskip
 
-\begin{definition}
+\begin{definition}\label{def_210}
 Suppose now that $(X,\mathfrak{M},\mu)$ is a complete space. $Y$ is any metric space, $N \in \mathfrak{M}$ and $\mu(N) = 0$. We say the function $f: X\setminus N \to Y$ is measurable if there is $y_0 \in Y$ such that
 \begin{align*}
     \widetilde{f}(x) = \begin{cases}
@@ -3398,7 +3414,7 @@ Recall that if $Y$ is a metric space, then a mapping $f: X \to Y$ is Borel if it
 
 \medskip
 
-\begin{theorem}
+\begin{theorem}\label{theorem_220}
 If $Y$ is a separable metric space and $f: \mathbb{R}^n \to Y$ is Lebesgue measurable, then there is a Borel mapping $g: \mathbb{R}^n \to Y$ such that $f = g$ a.e.
 \end{theorem}
 \begin{proof}
@@ -3419,7 +3435,7 @@ Now fix $y_0 \in Y$ and define
 \end{align*}
 Clearly $f = g$ a.e., because $f = g$ on $\mathbb{R}^n \setminus H$ and $\mathcal{L}_n(H) = 0$. 
 
-It remains to prove that $g$ is Borel. It is easy to see that if $y_0 \notin U_i$, then $g^{-1}(U_i) = M_i \setminus H$, and if $y_0 \in U_i$, then $g^{-1}(U_i) = M_i \cup H$. In each case, $g^{-1}(U_i)$ is a Borel set.\footnote{Drawing a picture would be clear.} Since every open set $U \subset Y$ can be represented as $U = \bigcup^\infty_{j=1} U_{i_j}$, then the set 
+It remains to prove that $g$ is Borel. It is easy to see that if $y_0 \notin U_i$, then $g^{-1}(U_i) = M_i \setminus H$, and if $y_0 \in U_i$, then $g^{-1}(U_i) = M_i \cup H$.\footnote{Drawing a picture would be clear.}In each case, $g^{-1}(U_i)$ is a Borel set. Since every open set $U \subset Y$ can be represented as $U = \bigcup^\infty_{j=1} U_{i_j}$, then the set 
 $$g^{-1}(U) = \bigcup^\infty_{j=1} g^{-1}(U_{i_j})$$ 
 is Borel.
 \end{proof}
@@ -3428,13 +3444,160 @@ is Borel.
 
 \section{Theorems of Lusin and Egorov}
 
+\begin{theorem}[{\bf Lusin}]
+Let $X$ be a metric space and $\mu$ a measure in $\mathfrak{B}(X)$ such that $X$ is a union of countable many open sets of finite measure. Let $Y$ be a separable metric space, if $f: X \to Y$ is a Borel mapping, then for any $\varepsilon > 0$, there is a closed set $F \subset X$ such that $\mu(X \setminus F) < \varepsilon$ and $f|_{F}$ is continuous.
+\end{theorem}
+\begin{proof}
+Since $X$ is a union of countable many open sets of finite measure, by Theorem \ref{theorem_114}, for any $E \in \mathfrak{B}(X)$,
+\begin{align*}
+    \mu(E) = \inf_{\substack{U \supset E\\ U \in \mathbb{R} - \text{open}}} \mu(U).
+\end{align*}
+In fact, we can choose $U$ such that $\mu(U \setminus E) < \varepsilon$. Indeed, $E = \bigcup^\infty_i E_i$, $\mu(E_i) < \infty$, and according to Theorem \ref{theorem_124}(b), let $V_i \supset E_i$ be open such that $\mu(V_i \setminus E_i) < \varepsilon/2^i$. Then, $E \subset \bigcup^\infty_{i=1} V_i \coloneqq V$, and $V \setminus E \subset \left(\bigcup_{i} V_i\right) \setminus \left(\bigcup_{i} E_i\right) \subset \bigcup_i(V_i \setminus E_i)$, and hence
+\begin{align*}
+    \mu(V \setminus E) \leq \sum^\infty_{i=1} \mu(V_i \setminus E_i) < \varepsilon.
+\end{align*}
 
+Let $\{U_i\}^\infty_{i=1}$ be a countable collection of open sets such that every open set in $Y$ is a union of open sets from this collection, that is for any open set $U \subset Y$, $U = \bigcup^\infty_{j=1}U_{i_j}$. For any open set $U_i \subset Y$, since $f$ is a Borel mapping, then there is open set $V_i \subset X$ such that
+\begin{align*}
+    f^{-1}(U_i) \subset V_i, \quad \mu\left(V_i\setminus f^{-1}(U_i)\right) < \frac{\varepsilon}{2^{i+1}}.
+\end{align*}
+Let
+\begin{align*}
+    E \coloneqq \bigcup^\infty_{i=1} \left(V_i\setminus f^{-1}(U_i)\right),
+\end{align*}
+and clearly, $\mu(E) < \varepsilon/2$. 
 
+Now we want to prove that $g = f|_{X \setminus E}$ is continuous. Note that\footnote{Indeed, $g^{-1}(U_i) \subset f^{-1}(U_i) \subset V_i$, also since $g$ is defined on $X \setminus E$, then $g^{-1}(U_i) \subset X \setminus E$. Hence, $g^{-1}(U_i) \subset V_i \cap (X \setminus E)$. For the other direction, since $V_i\setminus f^{-1}(U_i) \subset E$ is a smaller set compared with $E$, $V_i \cap (X \setminus E) \subset V_i \cap \left(X \setminus (V_i\setminus f^{-1}(U_i))\right) = f^{-1}(U_i)$ (drawing a picture would yield the last equality). And since $f = g$ on $X \setminus E$, $V_i \cap (X \setminus E) \subset f^{-1}(U_i) \cap (X \setminus E) = g^{-1}(U_i)$. Thus, the equality holds.}
+\begin{align*}
+    g^{-1}(U_i) = V_i \cap (X \setminus E).
+\end{align*}
+In order to prove that $g$ is continuous, it suffices to prove that for every open set $U \subset Y$, there is an open set $V \subset X$ such that $g^{-1}(U) = V \cap (X \setminus E)$.\footnote{{\bf Theorem 4.8} in Rudin's {\em Principles of Mathematical Analysis}: A mapping $f$ of a metric space $X$ into a metric space $Y$ is continuous on $X$ if and only if $F^{-1}(V)$ is open in $X$ for every set $V$ in $Y$ \cite{28}. (Note that the class of open sets in the metric space $X \setminus E$ is exactly the class of sets of the form $V \cap (X \setminus E)$, where $V \subset X$ is open.)}Since $U = \bigcup^\infty_{j=1} U_{i_j}$, we have
+\begin{align*}
+    g^{-1}(U) = \bigcup^\infty_{j=1} g^{-1}(U_{i_j}) = \bigcup^\infty_{j=1}\left(V_{i_j} \cap (X \setminus E)\right) = \left(\bigcup^\infty_{j=1} V_{i_j} \right) \cap (X \setminus E),
+\end{align*}
+which proves the continuity of $g$ in $X \setminus E$. Again, by Theorem \ref{theorem_114}, there is an open set $G \subset X$ such that $E \subset G$ and $\mu(G \setminus E) < \varepsilon/2$. Then, 
+\begin{align*}
+    \mu(G) = \mu(E) + \mu(G \setminus E) < \varepsilon.
+\end{align*}
+Thus, $F = X \setminus G \subset X \setminus E$ is closed, which implies $f|_F$ is continuous, and $\mu(X \setminus F) = \mu(G) < \varepsilon$.
+\end{proof} 
 
+\medskip
+As a corollary we will prove the following characterization of Lebesgue measurable functions also known as the Lusin theorem. Recall that let $E \subset \mathbb{R}^n$ be Lebesgue measurable, we say $f: E \to \mathbb{R}$ is Lebesgue measurable if $f^{-1}(U)$ is Lebesgue measurable for every open set $U \subset \mathbb{R}$.
 
+\medskip
 
+\begin{theorem}[{\bf Lusin}]
+Let $E \subset \mathbb{R}^n$ be Lebesgue measurable. Then a function $f: E \to \mathbb{R}$ is Lebesgue measurable if and only if for any $\varepsilon > 0$, there is a closed set $F \subset E$ such that $f|_F$ is continuous and $\mathcal{L}_n(E \setminus F) < \varepsilon$.
+\end{theorem}
+\begin{proof}
+~\begin{enumerate}
+    \item[($\Rightarrow$)] By Theorem \ref{theorem_220}, there is a set $N \subset E$, $\mathcal{L}_n(N) = 0$ such that
+    \begin{align*}
+        \widetilde{f}(x) = \begin{cases}
+            f(x), & x \in E \setminus N, \\
+            y_0, & x \in N,
+        \end{cases}
+    \end{align*}
+    is Borel. Observe that $f = \widetilde{f}$ a.e. By previous theorem, there is a closed set $\widetilde{F} \subset E$ such that $\mathcal{L}_n(E \setminus \widetilde{F}) < \varepsilon/2$ and $\widetilde{f}|_{\widetilde{F}}$ is continuous. Since $f = \widetilde{f}$ on $E \setminus N$, $f|_{\widetilde{F} \setminus N}$ is continuous.
+    
+    Also, $\mathcal{L}_n(N) = 0$, then $N$ is measurable, and hence there is an open set $G$ such that $N \subset G$ and $\mathcal{L}_n(G \setminus N) < \varepsilon/2$ (see Theorem \ref{theorem_124}(b)). Clearly, $f|_{\widetilde{F} \setminus G}$ is continuous, and $F \coloneqq \widetilde{F} \setminus G$ is closed. Observe that $E \setminus F = E \setminus (\widetilde{F} \setminus G) \subset ((E \setminus \widetilde{F}) \cup G)$, and then
+    \begin{align*}
+        \mathcal{L}_n(E \setminus F) \leq \mathcal{L}_n(E \setminus \widetilde{F}) + \mathcal{L}_n(G) < \varepsilon,
+    \end{align*}
+    also, we have $f|_F$ is continuous, hence this direction is proved.
+    
+    \item[($\Leftarrow$)] It suffices to prove that $E_a = \{x \in E \,:\, f(x) \geq a \}$ is Lebesgue measurable for any $a \in \mathbb{R}$ (see Theorem \ref{theprem_24}). By assumption, there is a closed subset $F_m \subset E$ such that $\mathcal{L}_n(E \setminus F_m) < 1/m$ and $f|_{F_m}$ is continuous. 
+    
+    Let $F_m' = \{x \in F_m \,:\, \left(f|_{F_m}\right)(x) \geq a \}$, and clearly, $F_m' = E_a \cap F_m$. Observe that $F_m'$ is closed, since $F_m$ is closed and $f|_{F_m}$ is continuous. Also, since $E_a \setminus F_m' = E_a \setminus F_m$ and $E_a \setminus F_m \subset E \setminus F_m$, we have
+    \begin{align*}
+        \mathcal{L}_n^*(E_a \setminus F_m') \leq \mathcal{L}_n^*(E \setminus F_m) < \frac{1}{m},
+    \end{align*}
+    which implies
+    \begin{align*}
+        \mathcal{L}_n^*\left(E_a \setminus \bigcup_m F_m'\right) = 0.
+    \end{align*}
+    Since
+    \begin{align*}
+        E_a = \underbrace{\left(E_a \setminus \bigcup_m F_m'\right)}_{\text{measure zero}}  \cup \underbrace{\left(\bigcup_m F_m'\right)}_{F_\sigma},
+    \end{align*}
+    then $E_a$ is measurable, which proves this direction.
+\end{enumerate}
+\end{proof}
 
+\medskip
 
+\begin{theorem}[{\bf Egorov}]
+Let $\mu$ be a complete finite measure on a set $X$. Let $f_n: X \to Y$ be a sequence of measurable mappings with values in a separable metric space $Y$. If $f_n \to f$ a.e., then $f$ is measurable and for any $\varepsilon > 0$, there is a measurable set $E \subset X$ such that $\mu(X \setminus E) < \varepsilon$ and $f_n$ uniformly converges to $f$ on $E$.
+\end{theorem}
+\begin{proof}
+Measurability of $f$ follows from Theorem \ref{theorem_26}.\footnote{Now we show how to transfer from $f_n \to f$ everywhere to $f_n \to f$ almost everywhere. $f_n \to f$ a.e. means that $f_n(x) \to f(x)$ for $x \in X \setminus N$, $\mu(N) = 0$. Then, $\widetilde{f}_n \to \widetilde{f}$ everywhere, where
+\begin{align*}
+    \widetilde{f}_n(x) = \begin{cases}
+        f_n(x), & x \in X \setminus N,\\
+        y_0, & x \in N,
+    \end{cases} \quad 
+    \widetilde{f}(x) = \begin{cases}
+        f(x), & x \in X \setminus N,\\
+        y_0, & x \in N.
+    \end{cases}
+\end{align*}
+Since $f_n$ is measurable, by Definition \ref{def_210}, $\widetilde{f}_n$ is measurable. Also, $\widetilde{f}_n \to \widetilde{f}$ everywhere, and then $\widetilde{f}$ is measurable. Since $\widetilde{f}$ and $f$ differ on a set of measure zero, $f$ is measurable.}Let
+\begin{align*}
+    C_{i,j} = \bigcup^\infty_{n=j} \left\{x \in X \,:\, d(f_n(x),f(x)) \geq \frac{1}{2^i}\right\}.
+\end{align*}
+We want to prove that $C_{i,j}$ is measurable. First, observe that the mapping $F \coloneqq (f_n,f): X \to Y \times Y$ is measurable. Indeed, if $\{U_i\}^\infty_{i=1}$ is a countable base of open sets in $Y$, that is every open set in $Y$ is a countable union of open sets from $\{U_i\}$. Then, $\{U_i \times U_j\}_{i,j}$ is a countable base of open sets in $Y \times Y$. Therefore,
+\begin{align*}
+    F^{-1}(U_i \times U_j) = f_n^{-1}(U_i) \cup f^{-1}(U_j),
+\end{align*}
+which is measurable, since $f_n, f$ are measurable. Every open set $U \subset Y \times Y$ can be written as $U = \bigcup^\infty_{k=1} U_{i_k} \times U_{j_k}$, then
+\begin{align*}
+    F^{-1}(U) = \bigcup^\infty_k F^{-1}\left(U_{i_k} \times U_{j_k}\right),
+\end{align*}
+which is measurable. Hence, $F$ is measurable.
+
+Now, $d: Y \times Y \to \mathbb{R}$ is continuous, by Theorem \ref{theorem_21}, $d \circ F: X \to \mathbb{R}$ defined as $d\circ F(x) = d(f_n(x),f(x))$ is measurable. Hence,
+\begin{align*}
+    \left\{x \in X \,:\, d(f_n(x),f(x)) \geq \frac{1}{2^i}\right\} & = F^{-1} \left\{(y_1,y_2) \in Y \times Y \,:\, d(y_1,y_2) \geq \frac{1}{2^i}\right\} \\
+    & = F^{-1} \left(d^{-1}([2^{-i},\infty))\right) \\
+    & = (d \circ F)^{-1} ([2^{-i},\infty))
+\end{align*}
+is measurable, and therefore $C_{i,j}$ is measurable. 
+
+Observe that for fixed $i$, $C_{i,1} \supset C_{i,2} \supset C_{i,3} \supset \cdots$ is a decreasing sequence of sets. Also, $\mu(C_{i,1}) < \mu(X) < \infty$, and then by Theorem \ref{theorem_16}(g), we have
+\begin{align}\label{theorem_223_equ1}
+    \lim_{j\to\infty} \mu\left(C_{i,j}\right) = \mu \left(\bigcap^\infty_{j=1} C_{i,j}\right) = 0.
+\end{align}
+Indeed, the intersection has measure zero because if $x \in \bigcap^\infty_{j=1} C_{i,j}$, then
+\begin{align*}
+    x \in \bigcap^\infty_{j=1} \bigcup^\infty_{n=j} \left\{x \in X \,:\, d(f_n(x),f(x)) \geq \frac{1}{2^i}\right\},
+\end{align*}
+which implies for all $j$, there exists $n \geq j$ such that $d(f_n(x),f(x)) \geq 2^{-i}$. And this means that $f_n$ does not converge to $f$, and this can only happen in a set of measure zero according to the definition of $f_n$.
+
+Now it follows from \eqref{theorem_223_equ1} that for every $i \in \mathbb{N}$, there is an integer $J(i)$ such that $\mu(C_{i,J(i)}) < \varepsilon/2^i$. Clearly, 
+\begin{align*}
+    \mu\left(\bigcup^\infty_{i=1} C_{i,J(i)}\right) < \varepsilon.
+\end{align*}
+
+Let $E = X \setminus \bigcup^\infty_{i=1} C_{i,J(i)}$, and clearly $\mu(X \setminus E) < \varepsilon$. It remains to prove that $f_n$ converges uniformly on $E$. Take any $i$, let $n \geq J(i)$ and $x \in E$ be arbitrary. Then, 
+\begin{align*}
+    x \notin C_{i,J(i)} & = \bigcup^\infty_{k=J(i)} \left\{x \in X \,:\, d(f_k(x),f(x)) \geq \frac{1}{2^i} \right\} \\
+    & = \bigcap^\infty_{k=J(i)} \left\{x \in X \,:\, d(f_k(x),f(x)) < \frac{1}{2^i} \right\}.
+\end{align*}
+Since $n \geq J(i)$, $d(f_n(x),f(x)) < 2^{-i}$. Now we have for all $i \in \mathbb{N}$ and all $n \geq J(i)$, take any $x \in E$, and we have $d(f_n(x),f(x)) < 2^{-i}$, which proves the uniform convergence of $f_n$.
+\end{proof}
+
+\medskip
+
+\begin{remark}
+This theorem does not hold if $\mu(X) = \infty$. $(X,\mathfrak{M},\mu)$ is an arbitrary measure space, in Lusin theorem, it requires $X$ to be a metric space. Also, $\mu$ need to be complete in order to talk about almost everywhere (see Theorem \ref{theorem_218}). In particular, if $f$ is measurable, $\widetilde{f} = f$ a.e., then $\widetilde{f}$ is measurable.
+\end{remark}
+
+\medskip
+
+\begin{remark}
+If $X$ is a metric space, $\mu$ is a measure on Borel set and $\mu(X) < \infty$, then we can take $E$ to be closed. 
+\end{remark}
 
 
 
