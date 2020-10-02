@@ -1670,6 +1670,25 @@ Finite intervals in $\mathbb{R}^k$ are contained in $\partial P$ for some interv
 
 \medskip
 
+\begin{theorem}[{\bf Steinhaus}]
+Prove that is a set $E \subset \mathbb{R}$ has positive measure $\mathcal{L}_1(E) > 0$, then the set $E -E = \{x - y \,:\, x,y\in E\}$ contains an interval.
+\end{theorem}
+\begin{proof}
+The following is a simple proof by Karl Stromberg \cite{30}. For any $\varepsilon > 0$, there exist a closed set $F$ and an open set $G$ such that $F \subset E \subset G$ and
+\begin{align*}
+    \mu(G) - \varepsilon < \mu(E) < \mu(F) + \varepsilon,
+\end{align*}
+where $\mu$ is the Lebesgue measure. Also, without loss of generality, we could assume $2 \mu(F) > \mu(G)$. Since $F \subset G$, for each $x \in F$, there is a neighborhood $W_x$ of $0$ such that $x + W_x \subset G$. Furthermore, there is a neighborhood $V_x$ of $0$ such that $2V_k \subset W_x$, i.e. if $W_x = (-\varepsilon,\varepsilon)$, then we can take $V_x = (-\varepsilon/2,\varepsilon/2)$.
+
+Now, the family $\{x_i + V_{x_i} \,:\, x_i\in F \}$ is an open covering of $F$. Since $F$ is closed, it is compact, and hence there is a finite subcovering $\{x_i + V_{x_i}\}^n_{i=1}$. Let $V \coloneqq \bigcap^n_{i=1} V_{x_i}$, then
+\begin{align*}
+    F + V \subset \bigcup^n_{i=1} \left(x_i + V_{x_i}\right) + V \subset \bigcup^n_{i=1} \left(x_i + 2V_{x_i}\right) \subset G.
+\end{align*}
+Let $v \in V$ and suppose $(F + v) \cap F = \emptyset$, then $2 \mu(F) = \mu(F + v) + \mu(F) < \mu(G)$, which is a contradiction. Hence, for all $v \in V$, there exist $x_1, x_2 \in F \subset E$ such that $v + x_1 = x_2$, which means $E - E$ contains a neighborhood of $0$.
+\end{proof}
+
+\medskip
+
 \begin{theorem}\label{theorem_122}
 For an arbitrary set $E \subset \mathbb{R}^n$ (not necessarily measurable),
 \begin{align*}
@@ -2313,7 +2332,7 @@ Since $X$ is locally compact, then for every point $x \in X$, there is a compact
 $$
 \bigcup^\infty_{n=1}\biggr(r_n-\frac{1}{n},r_n+\frac{1}{n}\biggr)
 $$
-in $\mathbb{R}$ is non-empty? ({\em Hint}: Find an enumeration where the only rationals outside of a fixed bounded interval take the form $r_n$, with $n = m^2$ for some integer $m$.)
+in $\mathbb{R}$ is non-empty? ({\bf Hint:} Find an enumeration where the only rationals outside of a fixed bounded interval take the form $r_n$, with $n = m^2$ for some integer $m$.)
 \end{exercise}
 \begin{proof}\cite{19}
 Fixed an irrational number $\alpha$, we want to build a new enumeration $\{q_n\}^\infty_{n=1}$ of $\mathbb{Q}$ such that for any $n \in \mathbb{Z}^+$, $\alpha \notin \left(q_n - 1/n, q_n + 1/n\right)$.
@@ -2541,7 +2560,61 @@ and hence
 Thus, $\mathcal{L}_2(G_f)=0$ on $[0,1]$ and hence $\mathcal{L}_2(G_f)=0$ on $\mathbb{R}$.
 \end{proof}
 
+\medskip
 
+\begin{exercise}
+Prove that if $X$ is a compact metric space, then for any $\varepsilon>0$ and any $s>0$, $\H^s_\varepsilon(X)<\infty$.
+\end{exercise}
+\begin{proof}
+Let $X = \bigcup^\infty_{i=1} A_i$ be any covering of $X$ with $\operatorname{diam} A_i < \varepsilon$. Since $X$ is compact, then the covering $\{A_i\}^\infty_{i=1}$ has finite subcovering $\{A_{i_j}\}^K_{j=1}$, and hence
+\begin{align*}
+    \mathcal{H}^s_{\varepsilon}(X) \leq \frac{\omega_s}{2^s} \sum^K_{j=1} \operatorname{diam} A_{i_j} < \frac{\omega_s}{2^s} K \varepsilon < \infty.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $X$ is a bounded metric space and $\varepsilon>\diam X$, then for any $s>0$, $\H^s_\varepsilon(X)<\infty$.
+\end{exercise}
+\begin{proof}
+Since $X$ is bounded and $\operatorname{diam} X < \varepsilon$, $X$ is contained in an open ball centered as any point $x \in X$ with radius $\varepsilon$, denoted by $B(x,\varepsilon)$. Thus,
+\begin{align*}
+    \mathcal{H}^s_{\varepsilon}(X) \leq \frac{\omega_s}{2^s} \operatorname{diam} B(x,\varepsilon) = \frac{\omega_s}{2^{s-1}} \varepsilon < \infty.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that there is a bounded separable metric space such that for any $0<\varepsilon<\diam X$ and any $s>0$, $\H^s_\varepsilon(X)=\infty$. ({\bf Hint:} Subset of $\ell^\infty$.)
+\end{exercise}
+\begin{proof}
+Note that $\ell^\infty = \left\{x = (x_1,x_2,\cdots) \,:\, \sup_i \left|x_i\right| < \infty \right\}$. Let
+\begin{align*}
+    S = \left\{(x_1, x_2, \cdots) \,:\, x_1 \in [0,1],\, x_j = 1\,\, \text{for some $j$},\, x_i = 0, i \neq 1,j \right\},
+\end{align*}
+and the distance between any two elements in $S$ is $1$. Consider the set 
+\begin{align*}
+    T = S \cap \{(x_1, x_2, \cdots) \,:\, x_1 \in \mathbb{Q} \},
+\end{align*}
+then the cardinality of $T$ is $|\mathbb{Q}| |\mathbb{N}| = \aleph_0^2$, and hence $T$ is countable. Observe that $T$ is dense in $S$, then $S$ is separable. 
+
+Let $e_i = (0,\cdots,0,1,0,\cdots)$, where $1$ only appears at $i$th entry. Define $P_i = [0,1] \times e_i$, clearly, $S = \bigcup^\infty_{i=1} P_i$. Now for any $0 < \varepsilon < \operatorname{diam} X$ and $i \in \mathbb{N}$, let $P_i \subset \bigcup^\infty_{j=1} A_{i_j}$ be an open covering of $P_i$ with $\operatorname{diam} A_{i_j} < \varepsilon$. Let $\pi$ be the orthogonal projection defined by $\pi(x) = x_1, x \in \ell^\infty$. Observe that for any $x, y \in S$,
+\begin{align}\label{prob_27_equ1}
+    d_\infty(x,y) \geq \left|r - s\right| = d(\pi(x),\pi(y)).
+\end{align}
+Clearly, $\bigcup^\infty_{j=1} \pi(A_{i_j})$ is an open covering of $[0,1]$ since $\pi(S) = [0,1]$ and by \eqref{prob_27_equ1}, $\operatorname{diam} \pi(A_{i_j}) < \varepsilon$ for all $i$. Choose any $s > 0$, we have
+\begin{align*}
+    \frac{\omega_s}{2^s} \sum^\infty_{j=1} (\operatorname{diam} A_{i_j})^s \geq \frac{\omega_s}{2^s} \sum^\infty_{j=1} (\operatorname{diam} \pi(A_{i_j}))^s \geq \mathcal{H}^s_{\varepsilon}(\pi(S)) = \mathcal{H}^s_{\varepsilon}([0,1]) > 0.
+\end{align*}
+Thus, for $i \neq j$, $\operatorname{dist}(P_i,P_j) = 1$, and since $\mathcal{H}^s$ is a measure on Borel sets, we have
+\begin{align*}
+    \mathcal{H}^s_\varepsilon(S) = \sum^\infty_{i=1} \mathcal{H}^s_\varepsilon(P_i) \geq \sum^\infty_{i=1} \mathcal{H}^s_{\varepsilon}([0,1]) = \infty.
+\end{align*}
+\end{proof}
+
+\medskip
 
 
 
@@ -3128,7 +3201,7 @@ and thus, by \eqref{theorem_212_equ_1},
 In general, we do not have equality.
 \end{remark}
 \begin{proof}
-Now we construct a sequence of measurable functions $f_n: \mathbb{R} \to [0,\infty]$ such that the inequality in Fatou’s lemma is strict. Let
+Now we construct a sequence of measurable functions $f_n: \mathbb{R} \to [0,\infty]$ such that the inequality in Fatou’s lemma is strict.\footnote{Here is another simple example: Let $X = \mathbb{R}$, $E = [0,\infty)$ and let $f_n: E \to [0,\infty]$ be defined as for all $x \in E$, $f_n(x) = \chi_E$ if $n$ is even, and $f_n(x) = 1 - \chi_E$ if $n$ is odd. Then, $0 = \int_X \left(\liminf f_n\right)\,d\mu < \liminf \int_X f_n\,d\mu = n \cdot \frac{2}{n} = \infty$.}Let
 \begin{align*}
     f_n(x) = \begin{cases}
         n, & -\frac{1}{n} \leq x \leq \frac{1}{n}, \\
@@ -3527,7 +3600,7 @@ Let $E \subset \mathbb{R}^n$ be Lebesgue measurable. Then a function $f: E \to \
 
 \medskip
 
-\begin{theorem}[{\bf Egorov}]
+\begin{theorem}[{\bf Egorov}]\label{theorem_223}
 Let $\mu$ be a complete finite measure on a set $X$. Let $f_n: X \to Y$ be a sequence of measurable mappings with values in a separable metric space $Y$. If $f_n \to f$ a.e., then $f$ is measurable and for any $\varepsilon > 0$, there is a measurable set $E \subset X$ such that $\mu(X \setminus E) < \varepsilon$ and $f_n$ uniformly converges to $f$ on $E$.
 \end{theorem}
 \begin{proof}
@@ -3599,10 +3672,314 @@ This theorem does not hold if $\mu(X) = \infty$. $(X,\mathfrak{M},\mu)$ is an ar
 If $X$ is a metric space, $\mu$ is a measure on Borel set and $\mu(X) < \infty$, then we can take $E$ to be closed. 
 \end{remark}
 
+\medskip
+
+\section{Convergence in measure}
+
+\begin{definition}
+We say a sequence of measurable functions $f_n: X \to \mathbb{R}$ converges in measure to a measurable function $f: X \to \mathbb{R}$ if for every $\varepsilon > 0$,
+\begin{align*}
+    \lim_{n\to\infty} \mu\left(\{x \in X \,:\, \left|f_n(x) - f(x)\right| \geq \varepsilon\} \right) = 0.
+\end{align*}
+We denote the convergence in measure by $f_n \xrightarrow[]{\mu} f$. In general, we assume that the functions $f_n$ and $f$ are defined a.e.
+\end{definition}
+
+\medskip
+
+\begin{theorem}[{\bf Lebesgue}]
+If $\mu(X) < \infty$ and a sequence of measurable functions $f_n: X \to \mathbb{R}$ converges to $f: X \to \mathbb{R}$ a.e., then it converges in measure, $f_n \xrightarrow[]{\mu} f$.
+\end{theorem}
+\begin{proof}
+Given $\varepsilon > 0$, let $E_i = \{x \in X \,:\, \left|f_i(x) - f(x)\right| \geq \varepsilon\}$. The family of set $\bigcup^\infty_{i=n} E_i$ is a decreasing sequence of sets of finite measure, since $\mu(X) < \infty$ and hence
+\begin{align*}
+    \mu\left(\bigcup^\infty_{i=n} E_i\right) \to \mu\left(\bigcap^\infty_{n=1} \bigcup^\infty_{i=n} E_i\right) = 0.
+\end{align*}
+Indeed, if $x \in \bigcap^\infty_{n=1} \bigcup^\infty_{i=n} E_i$, then for all $n \in \mathbb{N}$, there is $i \geq n$ such that $\left|f_i(x) - f(x)\right| \geq \varepsilon$, which implies $f_i(x)$ does not converge to $f(x)$, and the set of such points has measure zero, since $f_n \to f$ a.e. Hence,
+\begin{align*}
+    \mu\left(\{x \in X \,:\, \left|f_n(x) - f(x)\right| \geq \varepsilon\}\right) = \mu(E_n) \leq \mu\left(\bigcup^\infty_{i=n} E_i\right) \to 0,
+\end{align*}
+which proves the convergence in measure.
+\end{proof}
+
+\medskip
+
+\begin{theorem}[{\bf Riesz}]\label{theorem_225}
+If $f_n \xrightarrow[]{\mu} f$, then there is a subsequence $f_{n_k}$ such that $f_{n_k} \xrightarrow[]{\mu} f$ a.e.
+\end{theorem}
+\begin{proof}
+Since $f_n \xrightarrow[]{\mu} f$, then for every $i \in \mathbb{N}$, 
+\begin{align*}
+    \lim_{i\to\infty}\mu\left(\left\{x \,:\, \left|f_n(x) - f(x)\right| \geq \frac{1}{i} \right\}\right) = 0,
+\end{align*}
+which implies for every $i$, there is $N_i$ such that for all $n \geq N_i$,
+\begin{align*}
+    \mu\left(\left\{x \,:\, \left|f_n(x) - f(x)\right| \geq \frac{1}{i} \right\}\right) \leq \frac{1}{2^i}.
+\end{align*}
+We can take $n_1 < n_2 < n_3 < \cdots$. Let 
+\begin{align*}
+    F_k = X \setminus \bigcup^\infty_{i=k} \left\{x \,:\, \left|f_{n_i}(x) - f(x)\right| \geq \frac{1}{i} \right\}.
+\end{align*}
+
+We claim $f_{n_i}$ uniformly converges to $f$ on $F_k$. Indeed, if $x \in F_k$, then
+\begin{align*}
+    x \in \bigcap^\infty_{i=k} \left(X \setminus \left\{\left|f_{n_i}(x) - f(x)\right| \geq \frac{1}{i} \right\}\right),
+\end{align*}
+that is $x \in \bigcap^\infty_{i=k} \{\left|f_{n_i}(x) - f(x)\right| < 1/i \}$. Hence, for all $x \in F_k$, for all $i \geq k$, we have
+\begin{align*}
+    \left|f_{n_i}(x) - f(x)\right| \leq \frac{1}{i},
+\end{align*}
+which proves the uniform convergence of $f_{n_i}$ to $f$ on $F_k$.
+
+It remains to show that $\mu\left(X \setminus \bigcup^\infty_{k=1} F_k \right) = 0$. Clearly, 
+\begin{align*}
+    \mu(X \setminus F_n) \leq \sum^\infty_{i=n} 2^{-i} = \frac{1}{2^{n-1}},
+\end{align*}
+and hence
+\begin{align*}
+    \mu\left(X \setminus \bigcup^\infty_{k=1} F_k \right) \leq \mu(X \setminus F_n) \leq \frac{1}{2^{n-1}} \xrightarrow[]{n \to \infty} 0.
+\end{align*}
+\end{proof}
+
+\begin{remark}
+In this theorem, the measure of the space can be infinite, $\mu(X) = \infty$. Also, we actually proved not only convergence a.e. but also uniform convergence
+on subsets of $X$ whose complement has arbitrary small measure. Note that Lebesgue theorem combined with this stronger conclusion of Riesz theorem implies Egorov
+theorem for sequences of real valued functions.
+\end{remark}
+
+\medskip
+
+\begin{theorem}\label{theorem_226}
+If $f_n, f \in L^1(\mu)$ and $\int_X \left|f_n - f\right|\,d\mu \to 0$, then $f_n \xrightarrow[]{\mu} f$.
+\end{theorem}
+\begin{proof}
+Observe that $\varepsilon \chi_{\{x \,:\, \left|f_n - f\right| \geq \varepsilon\}} \leq \left|f_n - f\right|$, and taking integral on both sides yields
+\begin{align*}
+    \varepsilon \mu(\{x \,:\, \left|f_n - f\right| \geq \varepsilon\}) \leq \int_X \left|f_n - f\right| \, d\mu \to 0.
+\end{align*}
+Hence, $\mu(\{x \,:\, \left|f_n - f\right| \geq \varepsilon\}) \to 0$, which proves the convergence in measure.
+\end{proof}
+
+\medskip
+
+\section{Absolute continuity of the integral}
+
+The following result is known as the absolute continuity of the integral.
+
+\medskip
+
+\begin{theorem}\label{theorem_227}
+Let $f \in L^1(\mu)$. Then for any $\varepsilon > 0$, there is $\delta > 0$ such that if $\mu(E) < \delta$,
+\begin{align*}
+    \int_E \left|f\right|\,d\mu < \varepsilon.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Suppose to the contrary that there is $\varepsilon > 0$ and for all $\delta > 0$, there is $E \in \mathfrak{M}$ and $\mu(E) < \delta$ such that $\int_E \left|f\right|\,d\mu \geq \varepsilon$. Fix such $\varepsilon$, for $\delta = 1/2^n$, we can find $E_n \in \mathfrak{M}$ such that $\mu(E_n) < 1/2^n$ and $\int_{E_n} \left|f\right|\,d\mu \geq \varepsilon$. 
+
+Let $A_k = \bigcup^\infty_{n=k} E_n$, which is a decreasing sequence of sets. For every $n$,
+\begin{align*}
+    \mu\left(\bigcap^\infty_{k=1} A_k\right) \leq \mu(A_n) \leq \sum^\infty_{i=n} \mu(E_i) \leq \sum^\infty_{i=n} \frac{1}{2^i} = \frac{1}{2^{n-1}},
+\end{align*}
+and since it holds for all $n$, then we have
+\begin{align}\label{theorem_227_equ1}
+    \mu\left(\bigcap^\infty_{k=1} A_k\right) = 0.
+\end{align}
+
+Recall that $\varphi(E) = \int_E \left|f\right|\,d\mu$ defines a measure in $\mathfrak{M}$, see Theorem \ref{theorem_213}, and since $f \in L^1(\mu)$,
+\begin{align*}
+    \varphi(A_1) = \int_{A_1} \left|f\right|\,d\mu \leq \int_X \left|f\right|\,d\mu < \infty.
+\end{align*}
+Now by Theorem \ref{theorem_16}(g) and \eqref{theorem_227_equ1},
+\begin{align*}
+    \lim_{n\to\infty} \varphi(A_n) = \varphi\left(\bigcap^\infty_{k=1} A_k\right) = \int_{\bigcap^\infty_{k=1} A_k} \left|f\right|\,d\mu = 0.
+\end{align*}
+On the other hand,
+\begin{align*}
+    \varphi(A_n) \geq \varphi(E_n) = \int_{E_n} \left|f\right|\,d\mu \geq \varepsilon,
+\end{align*}
+which is a contradiction.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+We say that a family of functions $\mathcal{F} \subset L^1(\mu)$ is uniformly integrable (or equiintegrable) if for any $\varepsilon > 0$, there is $\delta > 0$ such that for all $f \in \mathcal{F}$ and all $E \in \mathfrak{M}$, if $\mu(E) < \delta$, then
+\begin{align*}
+    \int_E \left|f\right|\,d\mu < \varepsilon.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{theorem}\label{theorem_228}
+If $f_n, f \in L^1(\mu)$ and $\lim_{n\to\infty}\int_X \left|f_n - f\right|\,d\mu = 0$, then the family $\{f_n\}^\infty_{n=1}$ is uniformly integrable.
+\end{theorem}
+\begin{proof}
+Given $\varepsilon > 0$ and let $n_0$ be such that for $n > n_0$,
+\begin{align*}
+    \int_X \left|f_n - f\right|\,d\mu < \frac{\varepsilon}{2}.
+\end{align*}
+Let $\delta > 0$ be such that for $\mu(E) < \delta$,\footnote{This is possible since $f_n,f \in L^1(\mu)$ and the rest follows from Theorem \ref{theorem_227}.}
+\begin{align*}
+    \int_E \left|f\right| + \left|f_1\right| + \cdots + \left|f_{n_0}\right|\,d\mu < \frac{\varepsilon}{2}.
+\end{align*}
+If $\mu(E) < \delta$, then for any $n$, if $n \leq n_0$, then $\int_E \left|f_n\right|\,d\mu < \varepsilon$; if $n > n_0$, then
+\begin{align*}
+    \int_E \left|f_n\right|\,d\mu \leq \int_E \left|f_n - f\right|\,d\mu + \int_E \left|f\right|\,d\mu < 2 \cdot \frac{\varepsilon}{2} = \varepsilon,
+\end{align*}
+which proves that $\{f_n\}$ is uniformly integrable.
+\end{proof}
+
+\medskip
+
+\begin{theorem}[{\bf Vitali}]
+If $\mu(X) < \infty$ and $f,f_n \in L^1(\mu)$, then $\lim_{n\to\infty}\int_X \left|f_n - f\right|\,d\mu = 0$ if and only if $f_n \xrightarrow[]{\mu} f$ and $\{f_n\}^\infty_{n=1}$ is uniformly integrable.
+\end{theorem}
+\begin{proof}
+~\begin{enumerate}
+    \item[($\Rightarrow$)] This direction is obvious by Theorem \ref{theorem_226} and  \ref{theorem_228}.
+    
+    \item[($\Leftarrow$)] Suppose to the contrary that there is a subsequence $f_{n_k}$ and $\varepsilon > 0$ such that
+    \begin{align}\label{theorem_229_equ1}
+        \int_X \left|f_{n_k} - f\right|\,d\mu \geq \varepsilon.
+    \end{align}
+    By the Riesz theorem \ref{theorem_225}, we can further assume that $f_{n_k} \to f$ a.e. Let $\delta > 0$ be such that for all $n$, if $\mu(E) < \delta$,\footnote{This is possible since $f \in L^1(\mu)$ and $\{f_n\}$ is uniformly integrable.}
+    \begin{align*}
+        \int_E \left|f\right| + \left|f_n\right| \, d\mu < \frac{\varepsilon}{2}.
+    \end{align*}
+    By the Egorov theorem \ref{theorem_223}, there is a set $F \in \mathfrak{M}$ such that $\mu(X \setminus F) < \delta$ and $f_{n_k}$ uniformly converges to $f$ on $F$. Therefore, 
+    \begin{align*}
+        \int_X \left|f_{n_k} - f\right|\,d\mu & = \int_F \left|f_{n_k} - f\right|\,d\mu + \int_{X \setminus F} \left|f_{n_k} - f\right|\,d\mu \\
+        & \leq \int_F \left|f_{n_k} - f\right|\,d\mu + \int_{X \setminus F} \left|f_{n_k}\right| + \left|f\right|\,d\mu < \varepsilon,
+    \end{align*}
+    for $k$ large enough, which is a contradiction to \eqref{theorem_229_equ1}. 
+\end{enumerate}
+\end{proof}
 
 
 
 
+
+
+
+
+\medskip
+
+
+\section{Exercise}
+
+\begin{exercise}
+Prove that if $K\subset\mathbb{R}^n$ is compact and $K_\varepsilon=\{x \,:\, \operatorname{dist}(x,K)<\varepsilon\}$, then $\left|K_\varepsilon\right| \to \left|K\right|$ as $\varepsilon\to 0$.
+Show an example of a non-compact measurable set such that $\left|K_\varepsilon\right| \not\to \left|K\right|$.
+\end{exercise}
+\begin{proof}
+Let $K_n = \{x \in \mathbb{R}^n \,:\, \operatorname{dist}(x,K) < 1/n\}$, since $K$ is compact, $\bigcap^\infty_{n=1} K_n = K$. And it follows that $\lim_{n\to\infty} \left|K_n\right| = \left|K\right|$.
+
+For non-compact set $K = \mathbb{Q} \subset \mathbb{R}$, $K_\varepsilon = \mathbb{R}$, and clearly $\left|K_\varepsilon\right| = \infty \neq \left|\mathbb{Q}\right| = 0$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Give an example of a measurable function $f:[0,1]\to [0,\infty)$ (i.e., with finite values) such that for all $0<a<b<1$ we have
+$$
+\int_a^b f(x)\, dx = \infty.
+$$
+\end{exercise}
+\begin{proof} 
+Let $\{q_n\} = \mathbb{Q} \cap [0,1]$ and define
+\begin{align*}
+    g(x) = \begin{cases}
+        \sum^\infty_{n=1} \frac{2^{-n}}{|x - q_n|^{1/2}}, & x \notin \{q_n\}, \\
+        0, & x \in \{q_n\}.
+    \end{cases}
+\end{align*}
+Observe that
+\begin{align*}
+    \int^1_0 \frac{1}{|x - q_n|^{1/2}}\, dx = \int^{q_n}_0 \frac{1}{|x - q_n|^{1/2}}\, dx + \int^1_{1_n} \frac{1}{|x - q_n|^{1/2}}\, dx \leq 4,
+\end{align*}
+then
+\begin{align*}
+    \int^1_0 g(x)\,dx \leq 4 \sum^\infty_{n=1} 2^{-n} < \infty,
+\end{align*}
+which means $g$ is well defined. Clearly $g \in L^1([0,1])$. Now define
+\begin{align*}
+    f(x) = \begin{cases}
+        g^2(x), & g(x) < \infty, \\
+        0, & g(x) = \infty.
+    \end{cases}
+\end{align*}
+For any $(a,b) \subset [0,1]$, there is a $q_i \in (a,b)$, then
+\begin{align*}
+    \int^b_a f(x)\,dx \geq \int^b_a \frac{2^{n-1}}{|x - q_i|} =  \infty.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $f:X\to [0,\infty]$ is measurable and $\int_Xf\,d\mu<\infty$, then
+$\mu(\{x \in X \,:\, f(x) = +\infty\})=0$.
+\end{exercise}
+\begin{proof} 
+Let $E = \{x \in X \,:\, f(x)=+\infty\}$ and suppose to the contrary $\mu(E) > 0$. Let $s_n = n \chi_E$ be simple functions dominated by $f$, then as $n \to \infty$,
+\begin{align*}
+    \int_X f\,d\mu \geq \int_X s_n\,d\mu = n \mu(E) = \infty,
+\end{align*}
+which is a contradiction.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if the functions $f,g:X\to \mathbb{R}$ are
+measurable, then the set $\{x \in X \,:\, f(x)=g(x)\}$ is measurable.
+\end{exercise}
+\begin{proof}
+Clearly, $f - g$ is a measurable function, then $(f - g)^{-1}\{0\} = \{x \in X \,:\, f(x)=g(x)\}$ is measurable.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove the following stronger version of the
+Lebesgue dominated convergence theorem: Suppose that $\{ f_n\}$ is a sequence of complex measurable functions on $X$ such that
+$$
+f(x)=\lim_{n\to\infty} f_n(x)
+$$
+for every $x\in X$. Suppose that there is a sequence of functions
+$g_n\in L^1(\mu)$ and a function $g\in L^1(\mu)$ such that
+$$
+\left|f_n(x)\right|\leq g_n(x)
+\qquad
+\mbox{{\em (}$n=1,2,3,\dots; x\in X${\em )}}
+$$
+and
+$$
+\lim_{n\to\infty} \int_X|g_n-g|\, d\mu = 0.
+$$
+Then $f\in L^1(\mu)$ and
+$$
+\lim_{n\to\infty} \int_X|f_n-f|\, d\mu = 0.
+$$
+\end{exercise}
+\begin{proof} 
+Since $\lim_{n\to\infty} \int_X |g_n - g|\, d\mu = 0$, then by Riesz theorem, there is a subsequence $\{g_{n_k}\}$ such that for $\lim_{k\to\infty} g_{n_k}(x) = g(x)$ a.e. Also, since $f(x) = \lim_{n\to\infty} f_n(x)$ and $\left|f_n(x)\right|\leq g_n(x)$, $f$ is measurable and $\left|f\right| \leq g$. Then, $\left|f_n - f\right| \leq \left|f_n\right| + \left|f\right| \leq g_n + g$, and by Fatou's lemma \ref{theorem_212}, we have
+\begin{align*}
+    \int_X (g_n + g)\, d\mu & = \int_X \lim_{n\to\infty} (g_n + g - \left|f_n - f\right|)\, d\mu \\
+    & = \int_X (g_n + g)\, d\mu + \int_X \liminf_{n\to\infty} (-\left|f_n - f\right|)\, d\mu \\
+    & \leq \int_X (g_n + g)\, d\mu + \liminf_{n\to\infty} \int_X (-\left|f_n - f\right|)\, d\mu \\
+    & = \int_X (g_n + g)\, d\mu - \limsup_{n\to\infty} \int_X \left|f_n - f\right|\, d\mu,
+\end{align*}
+also, since $g, g_n \in L^1(\mu)$, $\int_X (g_n + g)\, d\mu < \infty$. Hence,
+\begin{align*}
+    \limsup_{n\to\infty} \int_X \left|f_n - f\right|\, d\mu \leq 0,
+\end{align*}
+which implies
+\begin{align*}
+    \lim_{n\to\infty} \int_X \left|f_n - f\right|\, d\mu = 0.
+\end{align*}
+\end{proof}
 
 
 
