@@ -115,6 +115,8 @@
 \def\leb{{\mathcal L}}
 \def\H{{\mathcal H}}
 \def\L{{\mathcal L}}
+\def\diam{{\operatorname{diam}\,}}
+\def\co{{\overline{\operatorname{co}}\,}}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -750,7 +752,7 @@ Now we want to ask can it happen that $\MM^* = \{\emptyset, X\}$? The answer is 
 
 Let $(X,d)$ be a metric space, and for $E, F \subset X$, we can define
 \begin{align*}
-    \operatorname{dist}(E,F) = \inf_{x\in E,y\in F} d(x,y),\quad \operatorname{diam}(E) = \sup_{x,y\in E} d(x,y).
+    \operatorname{dist}(E,F) = \inf_{x\in E,y\in F} d(x,y),\quad \diam(E) = \sup_{x,y\in E} d(x,y).
 \end{align*}
 
 \medskip
@@ -956,20 +958,20 @@ then the proof is complete.
 
 Let $\omega_s = \pi^{s/2} / \Gamma(1 + s/2)$, $s \geq 0$, $\Gamma$ is Euler gamma function. Note that $\omega_0 = 1$ and if $s = n \in \mathbb{N}$, then $\omega_n$ is the volume of the unit ball in $\mathbb{R}^n$.\footnote{See Appendix \ref{appendix_b}.}And the volume of ball $B = B^n(x,r) \subset \mathbb{R}^n$ equals 
 \begin{align*}
-    \operatorname{vol}(B) = \omega_n r^n = \frac{\omega_n}{2^n} \left(\operatorname{diam} B\right)^n.
+    \operatorname{vol}(B) = \omega_n r^n = \frac{\omega_n}{2^n} \left(\diam B\right)^n.
 \end{align*}
 
 Let $X$ be a metric space, $d \geq 0$. For any $\varepsilon > 0$ and any $E \subset X$, we define
 \begin{align*}
-    \mathcal{H}^s_{\varepsilon}(E) = \inf \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^s,
+    \mathcal{H}^s_{\varepsilon}(E) = \inf \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\diam A_i\right)^s,
 \end{align*}
 where the infimum is taken over all possible coverings
 \begin{align*}
-    E \subset \bigcup^\infty_{i=1} A_i, \,\, \text{with} \,\, \operatorname{diam} A_i < \varepsilon.
+    E \subset \bigcup^\infty_{i=1} A_i, \,\, \text{with} \,\, \diam A_i < \varepsilon.
 \end{align*}
 Sometimes, $\H^s_\varepsilon(E)$ is called $\varepsilon$-{\em approximate} $s$-{\em dimensional Hausdorff measure} of $E$\cite{5}.
 
-Note that the function $\varepsilon \mapsto \mathcal{H}^s_{\varepsilon}$ is nonincreasing. Indeed, if $\varepsilon_1 > \varepsilon_2$, then there are more $A_i$ in family $\{A_i\}$ with $\operatorname{diam} A_i < \varepsilon_1$ than that with $\operatorname{diam} A_i < \varepsilon_2$. Then $\mathcal{H}^s_{\varepsilon_1}(E)$ is the infimum over a bigger set of coverings than $\mathcal{H}^s_{\varepsilon_2}(E)$ and hence 
+Note that the function $\varepsilon \mapsto \mathcal{H}^s_{\varepsilon}$ is nonincreasing. Indeed, if $\varepsilon_1 > \varepsilon_2$, then there are more $A_i$ in family $\{A_i\}$ with $\diam A_i < \varepsilon_1$ than that with $\diam A_i < \varepsilon_2$. Then $\mathcal{H}^s_{\varepsilon_1}(E)$ is the infimum over a bigger set of coverings than $\mathcal{H}^s_{\varepsilon_2}(E)$ and hence 
 \begin{align*}
     \mathcal{H}^s_{\varepsilon_1}(E) \leq \mathcal{H}^s_{\varepsilon_2}(E).
 \end{align*}
@@ -993,7 +995,7 @@ $\mathcal{H}^s(E)$ is called ($s$-dimensional) Hausdorff measure and $\mathcal{H
 \begin{remark}
 For any $\varepsilon > 0$, $\mathcal{H}^s_{\varepsilon}(E) \leq \mathcal{H}^s(E)$ and if $s = 0$, $\mathcal{H}^0$ is the counting measure. In particular, Hausdorff $h$-content of $E$ is defined as:\textsuperscript{{\rm \ref{footnote_hausdorff_content}}}
 \begin{align*}
-    \mathcal{H}^n_{\infty}(E) = \inf \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^s,
+    \mathcal{H}^n_{\infty}(E) = \inf \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\diam A_i\right)^s,
 \end{align*}
 where the infimum is taken over all possible coverings
 \begin{align*}
@@ -1010,13 +1012,13 @@ If $0 < s < \infty$ and $E \subset X$ is a subset of a metric space, then $\math
 \begin{proof}\cite{11}
 ~\begin{enumerate}
     \item[($\Rightarrow$)] If $\H^s(E) = 0$, then  $\H^s_\infty(E) = 0$ follows easily. Indeed, \begin{align*}
-        \H^s_\infty(E) \leq \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\operatorname{diam} A_i)^s = \H^s_\varepsilon(E) \xrightarrow[]{\varepsilon \to 0} \H^s(E),
+        \H^s_\infty(E) \leq \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\diam A_i)^s = \H^s_\varepsilon(E) \xrightarrow[]{\varepsilon \to 0} \H^s(E),
     \end{align*}  
-    since the infimum is taken over all coverings $E \subset \bigcup^\infty_{i=1} A_i$ with $\operatorname{diam} A_i < \varepsilon$, which is a smaller collection of coverings.
+    since the infimum is taken over all coverings $E \subset \bigcup^\infty_{i=1} A_i$ with $\diam A_i < \varepsilon$, which is a smaller collection of coverings.
     
-    \item[($\Leftarrow$)] If $\H^s_\infty(E) = 0$, then for any $\varepsilon > 0$, there exists a covering $\{G^\varepsilon_i\}$ of $E$ with $\operatorname{diam} G^\varepsilon_i < \varepsilon^{1/s}, i = 1,2,\cdots$. Otherwise, there exists $\varepsilon > 0$ such that for all coverings $\{G_i\}$ of $E$ with $\operatorname{diam} G_i \geq \varepsilon^{1/s}$, $\H^s_\infty(E) = 0$, which is a contradiction. Letting $\varepsilon \to 0$ implies
+    \item[($\Leftarrow$)] If $\H^s_\infty(E) = 0$, then for any $\varepsilon > 0$, there exists a covering $\{G^\varepsilon_i\}$ of $E$ with $\diam G^\varepsilon_i < \varepsilon^{1/s}, i = 1,2,\cdots$. Otherwise, there exists $\varepsilon > 0$ such that for all coverings $\{G_i\}$ of $E$ with $\diam G_i \geq \varepsilon^{1/s}$, $\H^s_\infty(E) = 0$, which is a contradiction. Letting $\varepsilon \to 0$ implies
     \begin{align*}
-        \H^s(E) = \lim_{\varepsilon^{1/s} \to 0}\H^s_{\varepsilon^{1/s}}(E) \leq \lim_{\varepsilon^{1/s} \to 0} \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\operatorname{diam} G^\varepsilon_i)^s = 0, \quad \operatorname{diam} G^\varepsilon_i < \varepsilon^{1/s}.
+        \H^s(E) = \lim_{\varepsilon^{1/s} \to 0}\H^s_{\varepsilon^{1/s}}(E) \leq \lim_{\varepsilon^{1/s} \to 0} \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\diam G^\varepsilon_i)^s = 0, \quad \diam G^\varepsilon_i < \varepsilon^{1/s}.
     \end{align*}
 \end{enumerate}
 \end{proof}
@@ -1027,7 +1029,7 @@ If $0 < s < \infty$ and $E \subset X$ is a subset of a metric space, then $\math
 \begin{example}
 Let $X = \mathbb{R}^n$, $B = B^n(x,r)$, then $\mathcal{H}^n_{\infty}(B) \leq \operatorname{vol}(B)$. Indeed,
 \begin{align*}
-    \mathcal{H}^n_{\infty}(B) = \inf \frac{\omega_n}{2^n} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^n \leq \frac{\omega_n}{2^n} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^n = \operatorname{vol}(B).
+    \mathcal{H}^n_{\infty}(B) = \inf \frac{\omega_n}{2^n} \sum^\infty_{i=1} \left(\diam A_i\right)^n \leq \frac{\omega_n}{2^n} \sum^\infty_{i=1} \left(\diam A_i\right)^n = \operatorname{vol}(B).
 \end{align*}
 \end{example}
 
@@ -1065,17 +1067,17 @@ $\mathcal{H}^s$ is a metric outer measure.
         \end{align*}
         For fixed $\delta > 0$, there exists a covering for each $E_n$,
         \begin{align*}
-            E_n \subset \bigcup^\infty_{i=1} A_{ni},\quad  \operatorname{diam} A_{ni} < \varepsilon,
+            E_n \subset \bigcup^\infty_{i=1} A_{ni},\quad  \diam A_{ni} < \varepsilon,
         \end{align*}
         such that
         \begin{align*}
-            \mathcal{H}^s_\varepsilon(E_n) \geq \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_{ni}\right)^s - \frac{\delta}{2^n}.
+            \mathcal{H}^s_\varepsilon(E_n) \geq \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\diam A_{ni}\right)^s - \frac{\delta}{2^n}.
         \end{align*}
         Then,
         \begin{align*}
-            \sum^\infty_{n=1} \mathcal{H}^s_\varepsilon(E_n) \geq \frac{\omega_s}{2^s} \sum^\infty_{n,i=1} \left(\operatorname{diam} A_{ni}\right)^s - \delta \geq \mathcal{H}^s_\varepsilon \left(\bigcup^\infty_{n=1} E_n\right) - \delta,
+            \sum^\infty_{n=1} \mathcal{H}^s_\varepsilon(E_n) \geq \frac{\omega_s}{2^s} \sum^\infty_{n,i=1} \left(\diam A_{ni}\right)^s - \delta \geq \mathcal{H}^s_\varepsilon \left(\bigcup^\infty_{n=1} E_n\right) - \delta,
         \end{align*}
-        where the last step comes from $\bigcup^\infty_{n=1} E_n \subset \bigcup^\infty_{n,i=1} A_{ni}, \operatorname{diam} A_{ni} < \varepsilon$ and the definition of $\mathcal{H}^s_\varepsilon$. Letting $\delta \to 0$ yields
+        where the last step comes from $\bigcup^\infty_{n=1} E_n \subset \bigcup^\infty_{n,i=1} A_{ni}, \diam A_{ni} < \varepsilon$ and the definition of $\mathcal{H}^s_\varepsilon$. Letting $\delta \to 0$ yields
         \begin{align*}
             \sum^\infty_{n=1} \mathcal{H}^s(E_n) \geq \sum^\infty_{n=1} \mathcal{H}^s_\varepsilon (E_n) \geq \mathcal{H}^s_\varepsilon \left(\bigcup^\infty_{n=1} E_n\right).
         \end{align*}
@@ -1097,16 +1099,16 @@ $\mathcal{H}^s$ is a metric outer measure.
     \begin{enumerate}[label=\arabic*)]
         \item Let $\{A_i\}$ be a covering for $E \cup F$, such that
         \begin{align*}
-            E \cup F \subset \bigcup^\infty_{i=1} A_i, \,\, \text{with} \,\, \operatorname{diam} A_i < \varepsilon,
+            E \cup F \subset \bigcup^\infty_{i=1} A_i, \,\, \text{with} \,\, \diam A_i < \varepsilon,
         \end{align*}
-        and assume that $A_i \cap (E \cup F) \neq \emptyset$ for all $i \in \mathbb{N}$, since otherwise we could remove this $A_i$ from the covering. Since $\operatorname{diam} A_i < \varepsilon < \operatorname{dist}(E,F)$, then each $A_i$ has a nonempty intersection with only one set $E$ or $F$. Then the family $\{A_i\}_i$ can be split into two disjoint subfamilies
+        and assume that $A_i \cap (E \cup F) \neq \emptyset$ for all $i \in \mathbb{N}$, since otherwise we could remove this $A_i$ from the covering. Since $\diam A_i < \varepsilon < \operatorname{dist}(E,F)$, then each $A_i$ has a nonempty intersection with only one set $E$ or $F$. Then the family $\{A_i\}_i$ can be split into two disjoint subfamilies
         \begin{align*}
             \{B_j\}_j & = \{A_j\, :\, A_j \cap E \neq \emptyset\}, \\
             \{C_j\}_j & = \{A_j\, :\, A_j \cap F \neq \emptyset\},
         \end{align*}
         and $E \subset \bigcup^\infty_{j=1} B_j$, $F \subset \bigcup^\infty_{j=1} C_j$. Hence,
         \begin{align*}
-            \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^s & = \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} B_i\right)^s + \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} C_i\right)^s \\
+            \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\diam A_i\right)^s & = \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\diam B_i\right)^s + \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\diam C_i\right)^s \\
             & \geq \mathcal{H}^s_\varepsilon(E) + \mathcal{H}^s_\varepsilon(E).
         \end{align*}
         Since $\{A_i\}_i$ is an arbitrary covering of $E \cup F$, then taking infimum over coverings yields
@@ -1114,11 +1116,11 @@ $\mathcal{H}^s$ is a metric outer measure.
             \mathcal{H}^s_\varepsilon(E \cup F) \geq \mathcal{H}^s_\varepsilon(E) + \mathcal{H}^s_\varepsilon(E).
         \end{align*}
         
-        \item The opposite inequality is obvious. Suppose $\{B_j\}_j$ and $\{C_j\}_j$ are coverings for $E$ and $F$ respectively, with $\operatorname{diam}(B_j) < \varepsilon$ and $\operatorname{diam}(C_j) < \varepsilon$. Let $C_i$ be replaced by $D_i = C_i \cap F$ and $B_i$ remain the same. Then, $\operatorname{diam}(D_i) \leq \operatorname{diam}(C_i) < \varepsilon$.
+        \item The opposite inequality is obvious. Suppose $\{B_j\}_j$ and $\{C_j\}_j$ are coverings for $E$ and $F$ respectively, with $\diam(B_j) < \varepsilon$ and $\diam(C_j) < \varepsilon$. Let $C_i$ be replaced by $D_i = C_i \cap F$ and $B_i$ remain the same. Then, $\diam(D_i) \leq \diam(C_i) < \varepsilon$.
         
         Now we can arrange $B_j$ and $D_j$ into a new family $\{A_i\}_i = \{B_i, D_i\}_i$, which is a covering of $E \cup F$. Hence,
         \begin{align*}
-            \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} B_j\right)^s + \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} C_j\right)^s & \geq \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\operatorname{diam} A_i\right)^s \geq \mathcal{H}^s_\varepsilon(E \cup F),
+            \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\diam B_j\right)^s + \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\diam C_j\right)^s & \geq \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\diam A_i\right)^s \geq \mathcal{H}^s_\varepsilon(E \cup F),
         \end{align*}
         then taking infimum over coverings yields
         \begin{align*}
@@ -1147,13 +1149,13 @@ Prove that
 \end{exercise}
 \begin{proof}\footnote{This proof is based on \cite{12}, with a different definition of $\mathcal{H}^s_{\varepsilon}$.}
 ~\begin{enumerate}[label=(\alph*)]
-    \item Since $\H^s(E) < \infty$, then for each $\varepsilon > 0$, there exists family $\{A_i\}$ of open sets $A_i$ with $\operatorname{diam} A_i < \varepsilon$, such that $E \subset \bigcup^\infty_{i=1} A_i$ and
+    \item Since $\H^s(E) < \infty$, then for each $\varepsilon > 0$, there exists family $\{A_i\}$ of open sets $A_i$ with $\diam A_i < \varepsilon$, such that $E \subset \bigcup^\infty_{i=1} A_i$ and
     \begin{align*}
-        \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\operatorname{diam} A_i)^s \leq \H^s(E) + 1.
+        \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\diam A_i)^s \leq \H^s(E) + 1.
     \end{align*}
     Thus, we have
     \begin{align*}
-        \H^t_{\varepsilon}(E) & \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} (\operatorname{diam} A_i)^s (\operatorname{diam} A_i)^{t - s} \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} \varepsilon^{t - s} (\operatorname{diam} A_i)^s \\
+        \H^t_{\varepsilon}(E) & \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} (\diam A_i)^s (\diam A_i)^{t - s} \leq \frac{\omega_t}{2^t} \sum^\infty_{i=1} \varepsilon^{t - s} (\diam A_i)^s \\
         & \leq \frac{\omega_t}{2^t} \frac{2^s}{\omega_s} \varepsilon^{t-s} \left( \H^s(E) + 1\right) \xrightarrow[]{\varepsilon \to 0} 0.
     \end{align*}
     
@@ -1273,28 +1275,28 @@ In the definition of the Hausdorff measure, we can always assume that
 \end{proposition}
 \begin{proof}
 ~\begin{enumerate}[label=(\alph*)]
-    \item It is obvious, since $\operatorname{diam} \overline{A_i} = \operatorname{diam} A_i$ and we can replace $A_i$ by its closure.
+    \item It is obvious, since $\diam \overline{A_i} = \diam A_i$ and we can replace $A_i$ by its closure.
     
     \item For any $E$ and fixed $\delta > 0$, there exists a family $\{A_i\}$ such that
     \begin{align*}
-        \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\operatorname{diam} A_i)^s \leq \H^s_{\varepsilon}(E) + \frac{\delta}{2}, \quad \operatorname{diam} A_i < \varepsilon.
+        \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\diam A_i)^s \leq \H^s_{\varepsilon}(E) + \frac{\delta}{2}, \quad \diam A_i < \varepsilon.
     \end{align*}
     Let $U_i = \bigcup_{x \in A_i} B(x, r_i)$ such that $A_i \subset U_i$, and $U_i$ is open. Also, 
     \begin{align*}
-        \operatorname{diam} U_i \leq \operatorname{diam} A_i + 2r_i < \varepsilon,
+        \diam U_i \leq \diam A_i + 2r_i < \varepsilon,
     \end{align*}
     for some $r_i$ small enough. And we can take $r_i$ small such that
     \begin{align*}
-        \frac{\omega_s}{2^s} (\operatorname{diam} U_i)^s \leq \frac{\omega_s}{2^s} (\operatorname{diam} A_i)^s + \frac{\delta}{2^{i+1}}.
+        \frac{\omega_s}{2^s} (\diam U_i)^s \leq \frac{\omega_s}{2^s} (\diam A_i)^s + \frac{\delta}{2^{i+1}}.
     \end{align*}
     
-    Then, since $\{U_i\}$ is also a covering of $E$ with $\operatorname{diam} U_i < \varepsilon$, then
+    Then, since $\{U_i\}$ is also a covering of $E$ with $\diam U_i < \varepsilon$, then
     \begin{align*}
-        \H^s_{\varepsilon}(E) \leq \frac{\omega_s}{2^s} (\operatorname{diam} U_i)^s \leq \frac{\omega_s}{2^s} (\operatorname{diam} A_i)^s + \frac{\delta}{2} \leq \H^s_{\varepsilon}(E) + \delta,
+        \H^s_{\varepsilon}(E) \leq \frac{\omega_s}{2^s} (\diam U_i)^s \leq \frac{\omega_s}{2^s} (\diam A_i)^s + \frac{\delta}{2} \leq \H^s_{\varepsilon}(E) + \delta,
     \end{align*}
     which implies
     \begin{align*}
-        \H^s_{\varepsilon}(E) = \inf \frac{\omega_s}{2^s} (\operatorname{diam} U_i)^s,
+        \H^s_{\varepsilon}(E) = \inf \frac{\omega_s}{2^s} (\diam U_i)^s,
     \end{align*}
     and the infimum is taken over all open coverings $\{U_i\}$.
 \end{enumerate}
@@ -1351,23 +1353,23 @@ Now let's use this theorem to prove the uniqueness of the previous theorem.
     
     \item It remains to prove that $\H^1((a,b)) = b - a$. 
 
-    First, for any $\varepsilon > 0$, divide $[a,b]$ into small intervals $I_1, I_2, \cdots$, such that $\operatorname{diam} I_i < \varepsilon$. Note that $\sum^\infty_{i=1}\operatorname{diam} I_i = b - a$. Then,
+    First, for any $\varepsilon > 0$, divide $[a,b]$ into small intervals $I_1, I_2, \cdots$, such that $\diam I_i < \varepsilon$. Note that $\sum^\infty_{i=1}\diam I_i = b - a$. Then,
     \begin{align*}
-        \H^1_{\varepsilon}([a,b]) \leq \frac{\omega_1}{2^1} \sum^\infty_{i=1}(\operatorname{diam} I_i)^1 = b - a,
+        \H^1_{\varepsilon}([a,b]) \leq \frac{\omega_1}{2^1} \sum^\infty_{i=1}(\diam I_i)^1 = b - a,
     \end{align*}
     since $\omega_1 = \operatorname{vol}\left(B^1(0,1)\right) = \operatorname{vol}\left((-1,1)\right) = 2$. Letting $\varepsilon \to 0$ gives $\H^1([a,b]) \leq b - a$.
     
-    Second, taking infimum over coverings by open intervals $[a,b] \subset \bigcup^\infty_{i=1}U_i$, where $U_i$ is open interval and $\operatorname{diam} U_i < \varepsilon$ and then we have
+    Second, taking infimum over coverings by open intervals $[a,b] \subset \bigcup^\infty_{i=1}U_i$, where $U_i$ is open interval and $\diam U_i < \varepsilon$ and then we have
     \begin{align*}
-        \H^1_{\varepsilon}([a,b]) = \inf \sum^\infty_{i=1} \operatorname{diam} U_i.
+        \H^1_{\varepsilon}([a,b]) = \inf \sum^\infty_{i=1} \diam U_i.
     \end{align*}
     Since $[a,b]$ is compact, then there exists finite coverings of $[a,b]$ by open intervals. Choose a finite open covering $\{I_i\}$ from $\{U_i\}$ such that $[a,b] \subset \bigcup^k_{i=1} I_i$, then 
     \begin{align*}
-        \sum^\infty_{i=1}\operatorname{diam} U_i \geq \sum^k_{i=1} \operatorname{diam}I_i \geq b - a.
+        \sum^\infty_{i=1}\diam U_i \geq \sum^k_{i=1} \diamI_i \geq b - a.
     \end{align*}
-    Taking infimum over all covering by open intervals with $\operatorname{diam}U_i < \varepsilon$ implies
+    Taking infimum over all covering by open intervals with $\diamU_i < \varepsilon$ implies
     \begin{align*}
-        \H^1([a,b]) = \inf \sum^\infty_{i=1} \operatorname{diam}U_i \geq b - a.
+        \H^1([a,b]) = \inf \sum^\infty_{i=1} \diamU_i \geq b - a.
     \end{align*}
     
     It follows that $\H^1([a,b]) = b - a$, and thus $\H^1((a,b)) = b - a$.
@@ -1394,11 +1396,11 @@ If $\H^s(E) = \infty$, take $v_i = X$ for all $I \in \mathbb{N}$ would yield the
 
 If $\H^s(E) < \infty$, by Proposition \ref{prop_15}, we can taking coverings by open sets in the definition of $\H^s$. So, we could find a covering $\{U_{i_j}\}$ such that
 \begin{align*}
-    E \subset \bigcup^\infty_{j=1} U_{i_j} \coloneqq U_i, \quad \operatorname{diam} U_{i_j} < \frac{1}{i}.
+    E \subset \bigcup^\infty_{j=1} U_{i_j} \coloneqq U_i, \quad \diam U_{i_j} < \frac{1}{i}.
 \end{align*}
 and by the definition of $\H^s_{1/i} (E)$, we have
 \begin{align*}
-    \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} U_{i_j}\right)^s \leq \H^s_{1/i} (E) + \frac{1}{i}.
+    \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\diam U_{i_j}\right)^s \leq \H^s_{1/i} (E) + \frac{1}{i}.
 \end{align*}
 
 Let $V_i = \bigcap^i_{k=1}U_k$ be open, and clearly, $V_1 \supset V_2 \supset V_3 \supset \cdots \supset E$. Also, 
@@ -1410,9 +1412,9 @@ We need to prove that $\H^s(E) = \H^s (\widetilde{E})$, and since $E \subset \wi
 \begin{align*}
     \widetilde{E} \subset U_i = \bigcup^\infty_{j=1} U_{i_j},
 \end{align*}
-then $\{U_{i_j}\}$ is a covering of $\widetilde{E}$ with $\operatorname{diam} U_{i_j} < 1/i$. Therefore,
+then $\{U_{i_j}\}$ is a covering of $\widetilde{E}$ with $\diam U_{i_j} < 1/i$. Therefore,
 \begin{align*}
-    \H^s_{1/i}(\widetilde{E}) \leq \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\operatorname{diam} U_{i_j}\right)^s \leq \H^s_{1/i}(E) + \frac{1}{i},
+    \H^s_{1/i}(\widetilde{E}) \leq \frac{\omega_s}{2^s} \sum^\infty_{j=1} \left(\diam U_{i_j}\right)^s \leq \H^s_{1/i}(E) + \frac{1}{i},
 \end{align*}
 and letting $i \to \infty$ gives
 \begin{align*}
@@ -1921,14 +1923,26 @@ Observe that by Corollary \ref{coro_1111}, $\H^n$ is a measure on $\BB(\mathbb{R
 \begin{theorem}
 $\H^n = \L_n$ on $\BB(\mathbb{R}^n)$.
 \end{theorem}
+\begin{proof}
+This theorem follows from the next theorem.
+\end{proof}
 
 \medskip
 
-Before proving this theorem, we need some propositions. Recall that $E \subset \mathbb{R}^n$ has measure zero if and only if for any $\varepsilon > 0$, there is a covering $E \subset \bigcup_i P_i$ such that $\sum_i \left|P_i\right| < \varepsilon$.
+\begin{theorem}\label{theorem_129}
+For any $A \subset \mathbb{R}^n$, $0 < \delta \leq \infty$, we have
+\begin{align*}
+    \L_n^*(A) = \H^n(A) = \H^n_{\delta} (A).
+\end{align*}
+\end{theorem}
 
 \medskip
 
-\begin{proposition}
+Before proving this theorem, we need some propositions and theorems. Recall that $E \subset \mathbb{R}^n$ has measure zero if and only if for any $\varepsilon > 0$, there is a covering $E \subset \bigcup_i P_i$ such that $\sum_i \left|P_i\right| < \varepsilon$.
+
+\medskip
+
+\begin{proposition}\label{prop_18}
 $E \subset \mathbb{R}^n$ has measure zero if and only if for any $\varepsilon > 0$, there is a family of balls $\{B(x_i,r_i)\}^\infty_{i=1}$ such that
 \begin{align*}
     E \subset \bigcup^\infty_{i=1} B(x_i,r_i), \quad \sum^\infty_{i=1} r_i^n < \varepsilon.
@@ -1953,9 +1967,130 @@ $E \subset \mathbb{R}^n$ has measure zero if and only if for any $\varepsilon > 
 
 \medskip
 
+\begin{theorem}[{\bf Brunn–Minkowski}]\label{theorem_130}
+Let $n \geq 1$ and let $\mu$ denote the Lebesgue measure on $\mathbb{R}^n$. Let $A$ and $B$ be two nonempty compact subsets of $\mathbb{R}^n$. Then,
+\begin{align*}
+    \mu(A + B)^{1/n} \geq \mu(A)^{1/n} + \mu(B)^{1/n}.
+\end{align*}
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+We say a set $W \subset \mathbb{R}^n$ is convex if for any $x,y \in W$ and $t \in [0,1]$, $tx + (1-t)y \in W$.
+\end{definition}
+
+\medskip
+
+\begin{definition}
+If $E \subset \mathbb{R}^n$ is compact, then its closed convex hull $\co(E)$ of $E$ is defined as the intersection of all convex closed sets that contain $E$.
+\end{definition}
+
+\medskip
+
+Clearly, $\co(E)$ is convex, compact and is the smallest convex set that contains $E$. Also, $\diam E = \diam (\co(E))$.
+
+\medskip
+
+\begin{theorem}[{\bf Isodiametric inequality}]\label{theorem_131}
+If $E \subset \mathbb{R}^n$ is compact, then
+\begin{align*}
+    \mu(E) \leq \mu(\co(E)) \leq \frac{\omega_n}{2^n} (\diam E)^n,
+\end{align*}
+where $\omega_n$ is the volume of the unit ball in $\mathbb{R}^n$, see Theorem \ref{theorem_B4}.
+\end{theorem}
+\begin{proof}
+It suffices to assume tat $E$ is convex. Indeed, if we know the result for convex sets, then for any $E \subset \mathbb{R}^n$, since $\diam E = \diam (\co(E))$, we have
+\begin{align*}
+    \mu(E) \leq \mu(\co(E)) \leq \frac{\omega_n}{2^n} (\diam (\co(E)))^n = \frac{\omega_n}{2^n} (\diam E)^n.
+\end{align*}
+
+Now we claim that it suffices to show that there is a set $F$ that is convex, compact and central symmetric with respect to $0$ (i.e., if $x \in F$, then $-x \in F$) such that 
+\begin{align*}
+    \mu(F) \geq \mu(E), \quad \diam F \leq \diam E.
+\end{align*}
+Indeed, first we have
+\begin{align}\label{theorem_131_equ1}
+    F \subset \overline{B}\left(0, \frac{\diam F}{2}\right).
+\end{align}
+To see this, note that there two points $x,y \in F$ such that $d(x,y) = \diam F$, and by the triangle inequality, one of the following is satisfied
+\begin{align*}
+    d(x,0) \geq \frac{d(x,y)}{2} \,\,\text{or}\,\, d(y,0) \geq \frac{d(x,y)}{2}.
+\end{align*}
+Suppose we have the former one: $d(x,0) \geq d(x,y)/2$, since $-x \in F$, we have $d(x,-x) = 2d(x,0) \geq d(x,y) = \diam F$, which implies that only equality can hold here. Hence, \eqref{theorem_131_equ1} holds.
+
+It remains to prove the existence of such $F$ in the claim. Let $E' = \{-x \,:\, X \in E\}$, and define
+\begin{align*}
+    F = \frac{E + E'}{2} = \left\{\frac{x - y}{2} \,:\, x, y \in E\right\}.
+\end{align*}
+Then, we have
+\begin{enumerate}[label=(\alph*)]
+    \item Clearly, $F$ is central symmetric and $F$ is convex, since for $(x-y)/2, (x'-y')/2 \in F$,
+    \begin{align*}
+        t \frac{x - y}{2} + (1 - t) \frac{x' - y'}{2} = \frac{tx - (1-t)x' - (ty + (1-t)y')}{2} \in F.
+    \end{align*}
+    
+    By Brunn–Minkowski theorem \ref{theorem_130}, and the fact that $\mu(aE) = a^n \mu(E)$, we have
+    \begin{align*}
+        \mu(F)^{1/n} = \mu\left(\frac{E+E'}{2}\right)^{1/n} \geq \mu\left(\frac{E}{2}\right)^{1/n} + \mu\left(\frac{E'}{2}\right)^{1/n} = \frac{\mu(E)^{1/n}}{2} + \frac{\mu(E')^{1/n}}{2} = \mu(E)^{1/n},
+    \end{align*}
+    which implies $\mu(F) \geq \mu(E)$.
+    
+    \item Let $x,y \in F$ such that $d(x,y) = \diam F$. Also, by definition of $F$, $x = (x' - x'')/2, y = (y' - y'')/2$ for some $x',x'',y',y'' \in E$. Then,
+    \begin{align*}
+        \diam F = d(x - y) = \frac{1}{2} d(x'-x'',y'-y'') \leq \frac{1}{2} d(x',y') + \frac{1}{2} d(x'',y'') \leq \diam E,
+    \end{align*}
+    which implies $\diam F \leq \diam E$.
+\end{enumerate}
+
+Now $F$ exists and by the claim, we have
+\begin{align*}
+    \mu(E) \leq \mu(F) \leq \omega_n \left(\frac{\diam F}{2}\right)^n \leq \frac{\omega_n}{2^n} (\diam E)^2,
+\end{align*}
+which proves the theorem.
+\end{proof}
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_129}]
+In order to prove 
+\begin{align*}
+    \L_n^*(A) = \H^n(A) = \H^n_{\delta} (A),
+\end{align*}
+it suffices to prove that $\L_n^*(A) = \H^n_{\delta} (A)$, since letting $\varepsilon \to 0$ yields the equality. 
+\begin{enumerate}[label=(\alph*)]
+    \item First, we prove that $\H^n_{\delta} (A) \leq \L_n^*(A)$. By Theorem \ref{theorem_122}, there is an open set $U \subset \mathbb{R}^n$ such that $A \subset U$ and $\L_n(U) \leq \L_n^*(A) + \varepsilon$. By Vitali covering theorem, $U$ can be covered a countable collection of closed balls $\{\overline{B}_i\}$ with $\diam \overline{B}_i < \delta$ such that 
+    \begin{align*}
+        \left|U \setminus \bigcup^\infty_{i=1} \overline{B}_i\right| = 0.
+    \end{align*}
+    
+    Let $Z \coloneqq \bigcup^\infty_{i=1} \overline{B}_i$, then we have
+    \begin{align*}
+        \H^n_{\delta}(Z) \leq \omega_n \sum^\infty_{i=1} \left(\frac{\diam \overline{B}_i}{2}\right)^n = \sum^\infty_{i=1} \left|\overline{B}_i\right| = \L_n(U) \leq \L_n^*(A) + \varepsilon.
+    \end{align*}
+    Also, by Proposition \ref{prop_18}, $U\setminus Z$ can be covered by a family of balls $\{B(r_i)\}$ with radius $r_i$ such that $\sum^\infty_{i=1} r_i^n < \varepsilon$, which implies $\H^n_{\infty}(U\setminus Z) = 0$. Hence, $\H^n_{\delta}(U\setminus Z) = 0$. Thus,
+    \begin{align*}
+        \H^n_{\delta}(A) \leq \H^n_{\delta}(A \cap Z) + \H^n_{\delta}(A \setminus Z) \leq \H^n_{\delta}(Z) + \H^n_{\delta}(U \setminus Z) \leq \L_n^*(A) + \varepsilon,
+    \end{align*}
+    and letting $\varepsilon \to 0$ proves this direction.
+    
+    \item The opposite direction follows from Isodiametric inequality \ref{theorem_131}. Indeed, given $\delta \in (0,\infty]$, let $A \subset \bigcup^\infty_{i=1} E_i$ be a compact covering of $A$ with $\diam E_i < \delta$, then
+    \begin{align*}
+        \L_n(A) \leq \sum^\infty_{i=1} \L_n(E_i) \leq \frac{\omega_n}{2^n} \sum^\infty_{i=1} (\diam E_i)^n.
+    \end{align*}
+    Taking infimum on the right hand side yields $\L_n(A) \leq \H^n_{\delta}(A)$.
+\end{enumerate}
+\end{proof}
+
+
+
+\medskip
+
 \begin{definition}
 A function between metric spaces $f:(X,d_X) \to (Y,d_Y)$ is Lipschitz continuous if there is a constant $L > 0$ such that for all $x, y\in X$, $d_Y(f(x),f(y)) \leq L d_X(x,y)$.
 \end{definition}
+
+
 
 \medskip
 
@@ -2274,18 +2409,18 @@ and this is a contradiction to Baire Category theorem.
 \medskip
 
 \begin{exercise}
-Prove that if $0 < s < \infty$ and $E \subset X$ is a subset of a metric space, then $\mathcal{H}^s(E) = 0$ if and only if $\mathcal{H}_\infty^s(E) = 0$. ({\em Remark}: Recall that $\mathcal{H}^s_\infty(E) = \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\operatorname{diam} A_i)^s$, where the infimum is taken over all coverings $E \subset \bigcup_{i=1}^\infty A_i$, $\operatorname{diam} A_i < \infty$.)
+Prove that if $0 < s < \infty$ and $E \subset X$ is a subset of a metric space, then $\mathcal{H}^s(E) = 0$ if and only if $\mathcal{H}_\infty^s(E) = 0$. ({\em Remark}: Recall that $\mathcal{H}^s_\infty(E) = \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\diam A_i)^s$, where the infimum is taken over all coverings $E \subset \bigcup_{i=1}^\infty A_i$, $\diam A_i < \infty$.)
 \end{exercise}
 \begin{proof}
 ~\begin{enumerate}
     \item[($\Rightarrow$)] If $\H^s(E) = 0$, then  $\H^s_\infty(E) = 0$ follows easily. Indeed, \begin{align*}
-        \H^s_\infty(E) \leq \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\operatorname{diam} A_i)^s = \H^s_\varepsilon(E) \xrightarrow[]{\varepsilon \to 0} \H^s(E),
+        \H^s_\infty(E) \leq \inf \frac{\omega_s}{2^s} \sum_{i=1}^\infty (\diam A_i)^s = \H^s_\varepsilon(E) \xrightarrow[]{\varepsilon \to 0} \H^s(E),
     \end{align*}  
-    since the infimum is taken over all coverings $E \subset \bigcup^\infty_{i=1} A_i$ with $\operatorname{diam} A_i < \varepsilon$, which is a smaller collection of coverings.
+    since the infimum is taken over all coverings $E \subset \bigcup^\infty_{i=1} A_i$ with $\diam A_i < \varepsilon$, which is a smaller collection of coverings.
     
-    \item[($\Leftarrow$)] If $\H^s_\infty(E) = 0$, then for any $\varepsilon > 0$, there exists a covering $\{G^\varepsilon_i\}$ of $E$ with $\operatorname{diam} G^\varepsilon_i < \varepsilon^{1/s}, i = 1,2,\cdots$. Otherwise, there exists $\varepsilon > 0$ such that for all coverings $\{G_i\}$ of $E$ with $\operatorname{diam} G_i \geq \varepsilon^{1/s}$, $\H^s_\infty(E) = 0$, which is a contradiction. Letting $\varepsilon \to 0$ implies
+    \item[($\Leftarrow$)] If $\H^s_\infty(E) = 0$, then for any $\varepsilon > 0$, there exists a covering $\{G^\varepsilon_i\}$ of $E$ with $\diam G^\varepsilon_i < \varepsilon^{1/s}, i = 1,2,\cdots$. Otherwise, there exists $\varepsilon > 0$ such that for all coverings $\{G_i\}$ of $E$ with $\diam G_i \geq \varepsilon^{1/s}$, $\H^s_\infty(E) = 0$, which is a contradiction. Letting $\varepsilon \to 0$ implies
     \begin{align*}
-        \H^s(E) = \lim_{\varepsilon^{1/s} \to 0}\H^s_{\varepsilon^{1/s}}(E) \leq \lim_{\varepsilon^{1/s} \to 0} \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\operatorname{diam} G^\varepsilon_i)^s = 0, \quad \operatorname{diam} G^\varepsilon_i < \varepsilon^{1/s}.
+        \H^s(E) = \lim_{\varepsilon^{1/s} \to 0}\H^s_{\varepsilon^{1/s}}(E) \leq \lim_{\varepsilon^{1/s} \to 0} \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\diam G^\varepsilon_i)^s = 0, \quad \diam G^\varepsilon_i < \varepsilon^{1/s}.
     \end{align*}
 \end{enumerate}
 \end{proof}
@@ -2297,9 +2432,9 @@ Prove that if $0 < s < \infty$ and $E \subset X$ is a subset of a metric space, 
 Show an example of a set such that $\mathcal{H}^s(E) > \mathcal{H}^s_\varepsilon(E)$ for some $s > 0$ and all $\varepsilon > 0$.
 \end{exercise}
 \begin{proof}
-For the interval $(0,1)$, we know that $\mathcal{H}^1((0,1)) = 1 - 0 = 1$. Then, for any $0 < s < 1$, $\mathcal{H}^s((0,1)) = \infty$. For a fixed $s$ and any $\varepsilon > 0$, there always exists a finite covering $(0,1) \subset \bigcup^k_{i=1} A_i$, such that $\operatorname{diam} A_i < \varepsilon$. Thus, for any $\varepsilon> 0$,
+For the interval $(0,1)$, we know that $\mathcal{H}^1((0,1)) = 1 - 0 = 1$. Then, for any $0 < s < 1$, $\mathcal{H}^s((0,1)) = \infty$. For a fixed $s$ and any $\varepsilon > 0$, there always exists a finite covering $(0,1) \subset \bigcup^k_{i=1} A_i$, such that $\diam A_i < \varepsilon$. Thus, for any $\varepsilon> 0$,
 \begin{align*}
-    \mathcal{H}^s_{\varepsilon}((0,1)) = \frac{\omega_s}{2^s} \sum^k_{i=1} (\operatorname{diam} A_i)^s < \infty = \mathcal{H}^1((0,1)).
+    \mathcal{H}^s_{\varepsilon}((0,1)) = \frac{\omega_s}{2^s} \sum^k_{i=1} (\diam A_i)^s < \infty = \mathcal{H}^1((0,1)).
 \end{align*}
 \end{proof}
 
@@ -2426,16 +2561,16 @@ Let $K\subset\mathbb{R}^2$ be a compact set and let $\pi:\mathbb{R}^2\to\mathbb{
 $\H^1(K)\geq 1$.
 \end{exercise}
 \begin{proof}
-We have $\H^1([0,1]) = 1$ and it suffices to prove that $\H^1(K) \geq \H^1([0,1])$. For any $x_1, x_2 \in K \subset \mathbb{R}^2$, since $\pi$ is an orthogonal projection, then $\left|x_1,x_2\right| \geq \left|\pi(x_1),\pi(x_2)\right|$, which implies for any open set $A \subset \mathbb{R}^2$, $\operatorname{diam} A \geq \operatorname{diam} \pi(A)$. 
+We have $\H^1([0,1]) = 1$ and it suffices to prove that $\H^1(K) \geq \H^1([0,1])$. For any $x_1, x_2 \in K \subset \mathbb{R}^2$, since $\pi$ is an orthogonal projection, then $\left|x_1,x_2\right| \geq \left|\pi(x_1),\pi(x_2)\right|$, which implies for any open set $A \subset \mathbb{R}^2$, $\diam A \geq \diam \pi(A)$. 
 
 For any $\varepsilon > 0$, suppose that the covering $K \subset \bigcup^\infty_{i=1} A_i$ satisfies \begin{align*}
-    \H^1_{\varepsilon} = \frac{\omega_1}{2} \sum^\infty_{i=1}\operatorname{diam} A_i, \quad \operatorname{diam} A_i < \varepsilon.
+    \H^1_{\varepsilon} = \frac{\omega_1}{2} \sum^\infty_{i=1}\diam A_i, \quad \diam A_i < \varepsilon.
 \end{align*}
 Since $K$ is compact, then $\{A_i\}$ has a finite subcovering $\bigcup^K_{j=1}A_{i_j}$. Then for any $\varepsilon > 0$, $\left\{\pi(A_{i_j})\right\}$ is a covering of $[0,1]$, and then we have
 \begin{align*}
-    H^1_\varepsilon(K) \geq \frac{\omega_1}{2} \sum^K_{j=1} \operatorname{diam} A_{i_j} \geq \frac{\omega_1}{2} \sum^K_{j=1} \operatorname{diam} \pi(A_{i_j}) \geq \inf \frac{\omega_1}{2} \sum^\infty_{i=1} \operatorname{diam} B_i = \H^1_{\varepsilon}([0,1]),
+    H^1_\varepsilon(K) \geq \frac{\omega_1}{2} \sum^K_{j=1} \diam A_{i_j} \geq \frac{\omega_1}{2} \sum^K_{j=1} \diam \pi(A_{i_j}) \geq \inf \frac{\omega_1}{2} \sum^\infty_{i=1} \diam B_i = \H^1_{\varepsilon}([0,1]),
 \end{align*}
-where $\{B_i\}$ is any covering of $[0,1]$ with $\operatorname{diam} B_i < \varepsilon$. Letting $\varepsilon \to 0$ yields the result.
+where $\{B_i\}$ is any covering of $[0,1]$ with $\diam B_i < \varepsilon$. Letting $\varepsilon \to 0$ yields the result.
 \end{proof}
 
 \medskip
@@ -2453,11 +2588,11 @@ Find $\dim_{\H}(\phi(S^1))$.
 \begin{proof}
 We claim that $\dim_{\H}(\phi(S^1)) = 1/s$. It suffices to prove that $\H^1(\phi(S^1)) = 0$.
 
-For any $\varepsilon > 0$, there is a covering $S^1 \subset \bigcup^\infty_{i=1} A_i$, with $\operatorname{diam} A_i < \varepsilon$. And $\{\phi(A_i)\}$ is a covering of $\{\phi(S^1)\}$ with $\varepsilon^s/L \leq \operatorname{diam} \phi(A_i) \leq L \varepsilon^s$. Then we have
+For any $\varepsilon > 0$, there is a covering $S^1 \subset \bigcup^\infty_{i=1} A_i$, with $\diam A_i < \varepsilon$. And $\{\phi(A_i)\}$ is a covering of $\{\phi(S^1)\}$ with $\varepsilon^s/L \leq \diam \phi(A_i) \leq L \varepsilon^s$. Then we have
 \begin{align*}
-    \frac{\varepsilon^s}{L}\frac{\omega_1}{2} \sum^\infty_{i=1} \operatorname{diam} A_i \leq\frac{\omega_1}{2} \sum^\infty_{i=1} \operatorname{diam} \phi(A_i) \leq L \varepsilon^s \frac{\omega_1}{2} \sum^\infty_{i=1} \operatorname{diam} A_i,
+    \frac{\varepsilon^s}{L}\frac{\omega_1}{2} \sum^\infty_{i=1} \diam A_i \leq\frac{\omega_1}{2} \sum^\infty_{i=1} \diam \phi(A_i) \leq L \varepsilon^s \frac{\omega_1}{2} \sum^\infty_{i=1} \diam A_i,
 \end{align*}
-taking infimum of all coverings $\{a_i\}$ with $\operatorname{diam} A_i < \varepsilon$ yields
+taking infimum of all coverings $\{a_i\}$ with $\diam A_i < \varepsilon$ yields
 \begin{align*}
     \frac{\varepsilon^s}{L} \H^1_{\varepsilon}(S^1) \leq \H^1_{L\varepsilon^s}(\phi(S^1)) \leq L \varepsilon^s \H^1_{\varepsilon}(S^1).
 \end{align*}
@@ -2566,9 +2701,9 @@ Thus, $\mathcal{L}_2(G_f)=0$ on $[0,1]$ and hence $\mathcal{L}_2(G_f)=0$ on $\ma
 Prove that if $X$ is a compact metric space, then for any $\varepsilon>0$ and any $s>0$, $\H^s_\varepsilon(X)<\infty$.
 \end{exercise}
 \begin{proof}
-Let $X = \bigcup^\infty_{i=1} A_i$ be any covering of $X$ with $\operatorname{diam} A_i < \varepsilon$. Since $X$ is compact, then the covering $\{A_i\}^\infty_{i=1}$ has finite subcovering $\{A_{i_j}\}^K_{j=1}$, and hence
+Let $X = \bigcup^\infty_{i=1} A_i$ be any covering of $X$ with $\diam A_i < \varepsilon$. Since $X$ is compact, then the covering $\{A_i\}^\infty_{i=1}$ has finite subcovering $\{A_{i_j}\}^K_{j=1}$, and hence
 \begin{align*}
-    \mathcal{H}^s_{\varepsilon}(X) \leq \frac{\omega_s}{2^s} \sum^K_{j=1} \operatorname{diam} A_{i_j} < \frac{\omega_s}{2^s} K \varepsilon < \infty.
+    \mathcal{H}^s_{\varepsilon}(X) \leq \frac{\omega_s}{2^s} \sum^K_{j=1} \diam A_{i_j} < \frac{\omega_s}{2^s} K \varepsilon < \infty.
 \end{align*}
 \end{proof}
 
@@ -2578,9 +2713,9 @@ Let $X = \bigcup^\infty_{i=1} A_i$ be any covering of $X$ with $\operatorname{di
 Prove that if $X$ is a bounded metric space and $\varepsilon>\diam X$, then for any $s>0$, $\H^s_\varepsilon(X)<\infty$.
 \end{exercise}
 \begin{proof}
-Since $X$ is bounded and $\operatorname{diam} X < \varepsilon$, $X$ is contained in an open ball centered as any point $x \in X$ with radius $\varepsilon$, denoted by $B(x,\varepsilon)$. Thus,
+Since $X$ is bounded and $\diam X < \varepsilon$, $X$ is contained in an open ball centered as any point $x \in X$ with radius $\varepsilon$, denoted by $B(x,\varepsilon)$. Thus,
 \begin{align*}
-    \mathcal{H}^s_{\varepsilon}(X) \leq \frac{\omega_s}{2^s} \operatorname{diam} B(x,\varepsilon) = \frac{\omega_s}{2^{s-1}} \varepsilon < \infty.
+    \mathcal{H}^s_{\varepsilon}(X) \leq \frac{\omega_s}{2^s} \diam B(x,\varepsilon) = \frac{\omega_s}{2^{s-1}} \varepsilon < \infty.
 \end{align*}
 \end{proof}
 
@@ -2600,13 +2735,13 @@ and the distance between any two elements in $S$ is $1$. Consider the set
 \end{align*}
 then the cardinality of $T$ is $|\mathbb{Q}| |\mathbb{N}| = \aleph_0^2$, and hence $T$ is countable. Observe that $T$ is dense in $S$, then $S$ is separable. 
 
-Let $e_i = (0,\cdots,0,1,0,\cdots)$, where $1$ only appears at $i$th entry. Define $P_i = [0,1] \times e_i$, clearly, $S = \bigcup^\infty_{i=1} P_i$. Now for any $0 < \varepsilon < \operatorname{diam} X$ and $i \in \mathbb{N}$, let $P_i \subset \bigcup^\infty_{j=1} A_{i_j}$ be an open covering of $P_i$ with $\operatorname{diam} A_{i_j} < \varepsilon$. Let $\pi$ be the orthogonal projection defined by $\pi(x) = x_1, x \in \ell^\infty$. Observe that for any $x, y \in S$,
+Let $e_i = (0,\cdots,0,1,0,\cdots)$, where $1$ only appears at $i$th entry. Define $P_i = [0,1] \times e_i$, clearly, $S = \bigcup^\infty_{i=1} P_i$. Now for any $0 < \varepsilon < \diam X$ and $i \in \mathbb{N}$, let $P_i \subset \bigcup^\infty_{j=1} A_{i_j}$ be an open covering of $P_i$ with $\diam A_{i_j} < \varepsilon$. Let $\pi$ be the orthogonal projection defined by $\pi(x) = x_1, x \in \ell^\infty$. Observe that for any $x, y \in S$,
 \begin{align}\label{prob_27_equ1}
     d_\infty(x,y) \geq \left|r - s\right| = d(\pi(x),\pi(y)).
 \end{align}
-Clearly, $\bigcup^\infty_{j=1} \pi(A_{i_j})$ is an open covering of $[0,1]$ since $\pi(S) = [0,1]$ and by \eqref{prob_27_equ1}, $\operatorname{diam} \pi(A_{i_j}) < \varepsilon$ for all $i$. Choose any $s > 0$, we have
+Clearly, $\bigcup^\infty_{j=1} \pi(A_{i_j})$ is an open covering of $[0,1]$ since $\pi(S) = [0,1]$ and by \eqref{prob_27_equ1}, $\diam \pi(A_{i_j}) < \varepsilon$ for all $i$. Choose any $s > 0$, we have
 \begin{align*}
-    \frac{\omega_s}{2^s} \sum^\infty_{j=1} (\operatorname{diam} A_{i_j})^s \geq \frac{\omega_s}{2^s} \sum^\infty_{j=1} (\operatorname{diam} \pi(A_{i_j}))^s \geq \mathcal{H}^s_{\varepsilon}(\pi(S)) = \mathcal{H}^s_{\varepsilon}([0,1]) > 0.
+    \frac{\omega_s}{2^s} \sum^\infty_{j=1} (\diam A_{i_j})^s \geq \frac{\omega_s}{2^s} \sum^\infty_{j=1} (\diam \pi(A_{i_j}))^s \geq \mathcal{H}^s_{\varepsilon}(\pi(S)) = \mathcal{H}^s_{\varepsilon}([0,1]) > 0.
 \end{align*}
 Thus, for $i \neq j$, $\operatorname{dist}(P_i,P_j) = 1$, and since $\mathcal{H}^s$ is a measure on Borel sets, we have
 \begin{align*}
