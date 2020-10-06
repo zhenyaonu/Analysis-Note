@@ -1983,26 +1983,33 @@ We say a set $W \subset \mathbb{R}^n$ is convex if for any $x,y \in W$ and $t \i
 \medskip
 
 \begin{definition}
-If $E \subset \mathbb{R}^n$ is compact, then its closed convex hull $\co(E)$ of $E$ is defined as the intersection of all convex closed sets that contain $E$.
+If $E \subset \mathbb{R}^n$ is compact, then its closed convex hull $\mathcal{C}(E)$ of $E$ is defined as the intersection of all convex closed sets that contain $E$.
 \end{definition}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{convex_hull.png}
+    \caption{The convex hull of several points in the plane and the convex hull of the standard basis in $\mathbb{R}^3$ (From \cite{31}).}
+    \label{fig:convex_hull}
+\end{figure}
 
 \medskip
 
-Clearly, $\co(E)$ is convex, compact and is the smallest convex set that contains $E$. Also, $\diam E = \diam (\co(E))$.
+Clearly, $\mathcal{C}(E)$ is convex, compact and is the smallest convex set that contains $E$. Also, $\diam E = \diam (\mathcal{C}(E))$.
 
 \medskip
 
 \begin{theorem}[{\bf Isodiametric inequality}]\label{theorem_131}
 If $E \subset \mathbb{R}^n$ is compact, then
 \begin{align*}
-    \mu(E) \leq \mu(\co(E)) \leq \frac{\omega_n}{2^n} (\diam E)^n,
+    \mu(E) \leq \mu(\mathcal{C}(E)) \leq \frac{\omega_n}{2^n} (\diam E)^n,
 \end{align*}
 where $\omega_n$ is the volume of the unit ball in $\mathbb{R}^n$, see Theorem \ref{theorem_B4}.
 \end{theorem}
 \begin{proof}
-It suffices to assume tat $E$ is convex. Indeed, if we know the result for convex sets, then for any $E \subset \mathbb{R}^n$, since $\diam E = \diam (\co(E))$, we have
+It suffices to assume tat $E$ is convex. Indeed, if we know the result for convex sets, then for any $E \subset \mathbb{R}^n$, since $\diam E = \diam (\mathcal{C}(E))$, we have
 \begin{align*}
-    \mu(E) \leq \mu(\co(E)) \leq \frac{\omega_n}{2^n} (\diam (\co(E)))^n = \frac{\omega_n}{2^n} (\diam E)^n.
+    \mu(E) \leq \mu(\mathcal{C}(E)) \leq \frac{\omega_n}{2^n} (\diam (\mathcal{C}(E)))^n = \frac{\omega_n}{2^n} (\diam E)^n.
 \end{align*}
 
 Now we claim that it suffices to show that there is a set $F$ that is convex, compact and central symmetric with respect to $0$ (i.e., if $x \in F$, then $-x \in F$) such that 
