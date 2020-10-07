@@ -82,7 +82,7 @@
 \newtheorem{definition}{Definition}[chapter]
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{corollary}{Corollary}[theorem]
-\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}[chapter]
 \newtheorem{proposition}{Proposition}[chapter]
 \newtheorem{exercise}{Exercise}[chapter]
 \newtheorem{remark}{Remark}[chapter]
@@ -151,7 +151,7 @@
 	\vspace{40mm}
     \textbf{\Huge{Real Analysis}} \\
     \medskip
-    \vspace{2mm} %5mm vertical space
+    \vspace{10mm} %5mm vertical space
     \large{\textsc{Zhen Yao}}\\
     %\large{\textsc{University of Pittsburgh}}
     \end{center}
@@ -2059,6 +2059,56 @@ which proves the theorem.
 
 \medskip
 
+\begin{lemma}\label{lemma_12}
+If $Z \subset \mathbb{R}^n$ and $\L_n(Z) = 0$, then $\H^n_{\delta}(Z) = 0$ for any $0 < \delta \leq \infty$.
+\end{lemma}
+\begin{proof}
+Since $\L_n(Z) = 0$, then for any $\varepsilon > 0$, there is a covering $Z \subset \bigcup^\infty_{i=1} B(x_i,r_i)$ of open balls with $\sum^\infty_{i=1} r_i^n < \varepsilon$. For any $0 < \varepsilon < (\delta/2)^n$, we have
+\begin{align*}
+    \frac{\omega_n}{2^n} \sum^\infty_{i=1}(\diam B_i)^n = \omega_n \sum^\infty_{i=1} r_i^n < \omega_n \varepsilon = \omega_n \left(\frac{\delta}{2}\right)^n,
+\end{align*}
+which implies $\diam B_i < \delta$, and hence $\H^n_{\delta}(Z) < \omega_n \varepsilon$. Letting $\varepsilon \to 0$ yields the lemma.
+\end{proof}
+
+\begin{lemma}\label{lemma_13}
+If $U \subset \mathbb{R}^n$ is open and bounded, then for any $\delta > 0$, there is a family of pairwise disjoint closed balls $\overline{B}_i \subset U$ with $\diam B_i < \delta$ and such that
+\begin{align*}
+    \left|U \setminus \bigcup^\infty_{i=1} \overline{B}_i\right| = 0.
+\end{align*}
+\end{lemma}
+\begin{proof}
+Let $Q \subset \mathbb{R}^n$ be a cube and $\overline{B} \subset \operatorname{int} Q$ be a ball. Then $\left|Q \setminus \overline{B}\right| = \theta \left|Q\right|$ for some $0 < \theta < 1$. 
+
+Now let $U_1 = U$ and $U = \bigcup^\infty_{j=1} Q_{1j}$, where $Q_{1j}$ are pairwise disjoint cubes with $\diam Q_{1j} < \delta$, i.e., $\operatorname{int} Q_{1i} \cap \operatorname{int} Q_{1j} = \emptyset$ for all $i \neq j$, see Theorem \ref{theorem_123}. For $Q_{1j}$, we can find a closed ball $\overline{B}_{1j} \subset \operatorname{int} Q_{1j}$ such that 
+\begin{align*}
+    \diam \overline{B}_{1j} < \delta, \quad \left|Q_{1j} \setminus \overline{B}_{1j}\right| = \theta \left|Q_{1j}\right|,
+\end{align*}
+for some $0 < \theta < 1$. Clearly,
+\begin{align*}
+    \left|U_1 \setminus \bigcup^\infty_{j=1} \overline{B}_{1j}\right| = \theta \left|U_1\right|.
+\end{align*}
+To see that $U_1 \setminus \bigcup^\infty_{j=1} \overline{B}_{1j}$ is open, let $\theta < \eta < 1$, there exists $N_1 > 0$ such that
+\begin{align*}
+    \left|U_1 \setminus \bigcup^{N_1}_{j=1} \overline{B}_{1j}\right| \leq \eta \left|U_1\right|,
+\end{align*}
+and denote $U_1 \setminus \bigcup^{N_1}_{j=1} \overline{B}_{1j}$ by $U_2$, which is open, since the finite union of closed sets is closed. 
+
+Similarly, $U_2 = \bigcup^\infty_{j=1} Q_{2j}$ as above, and for each $Q_{2j}$, we can find a closed ball $\overline{B}_{2j} \subset \operatorname{int} Q_{2j}$ such that
+\begin{align*}
+    \diam \overline{B}_{2j} < \delta, \quad \left|U_2 \setminus \bigcup^{N_2}_{j=1} \overline{B}_{2j}\right| = \eta \left|U_2\right|,
+\end{align*}
+let $U_3 = U_2 \setminus \bigcup^{N_2}_{j=1} \overline{B}_{2j}$. Continue this process to $U_k$ and we have
+\begin{align*}
+    \left|U_2 \setminus \bigcup^k_{i=1} \bigcup^{N_i}_{j=1} \overline{B}_{ij}\right| \leq \eta^k \left|U\right| \xrightarrow[]{k \to \infty} 0,
+\end{align*}
+which implies
+\begin{align*}
+    \left|U_2 \setminus \bigcup^\infty_{i=1} \bigcup^{N_i}_{j=1} \overline{B}_{ij}\right| = 0,
+\end{align*}
+\end{proof}
+
+\medskip
+
 \begin{proof}[Proof of Theorem \ref{theorem_129}]
 In order to prove 
 \begin{align*}
@@ -2066,7 +2116,7 @@ In order to prove
 \end{align*}
 it suffices to prove that $\L_n^*(A) = \H^n_{\delta} (A)$, since letting $\varepsilon \to 0$ yields the equality. 
 \begin{enumerate}[label=(\alph*)]
-    \item First, we prove that $\H^n_{\delta} (A) \leq \L_n^*(A)$. By Theorem \ref{theorem_122}, there is an open set $U \subset \mathbb{R}^n$ such that $A \subset U$ and $\L_n(U) \leq \L_n^*(A) + \varepsilon$. By Vitali covering theorem, $U$ can be covered a countable collection of closed balls $\{\overline{B}_i\}$ with $\diam \overline{B}_i < \delta$ such that 
+    \item First, we prove that $\H^n_{\delta} (A) \leq \L_n^*(A)$. By Theorem \ref{theorem_122}, there is an open set $U \subset \mathbb{R}^n$ such that $A \subset U$ and $\L_n(U) \leq \L_n^*(A) + \varepsilon$. By Lemma \ref{lemma_13}, $U$ can be covered a countable collection of closed balls $\{\overline{B}_i\}$ with $\diam \overline{B}_i < \delta$ such that 
     \begin{align*}
         \left|U \setminus \bigcup^\infty_{i=1} \overline{B}_i\right| = 0.
     \end{align*}
@@ -2075,7 +2125,7 @@ it suffices to prove that $\L_n^*(A) = \H^n_{\delta} (A)$, since letting $\varep
     \begin{align*}
         \H^n_{\delta}(Z) \leq \omega_n \sum^\infty_{i=1} \left(\frac{\diam \overline{B}_i}{2}\right)^n = \sum^\infty_{i=1} \left|\overline{B}_i\right| = \L_n(U) \leq \L_n^*(A) + \varepsilon.
     \end{align*}
-    Also, by Proposition \ref{prop_18}, $U\setminus Z$ can be covered by a family of balls $\{B(r_i)\}$ with radius $r_i$ such that $\sum^\infty_{i=1} r_i^n < \varepsilon$, which implies $\H^n_{\infty}(U\setminus Z) = 0$. Hence, $\H^n_{\delta}(U\setminus Z) = 0$. Thus,
+    Also, by Proposition \ref{prop_18}, $U\setminus Z$ can be covered by a family of balls $\{B(r_i)\}$ with radius $r_i$ such that $\sum^\infty_{i=1} r_i^n < \varepsilon$, which implies $\H^n_{\infty}(U\setminus Z) = 0$.\footnote{Also, $\H^n_{\infty}(U\setminus Z) = 0$ follows easily from Lemma \ref{lemma_12}.} Hence, $\H^n_{\delta}(U\setminus Z) = 0$. Thus,
     \begin{align*}
         \H^n_{\delta}(A) \leq \H^n_{\delta}(A \cap Z) + \H^n_{\delta}(A \setminus Z) \leq \H^n_{\delta}(Z) + \H^n_{\delta}(U \setminus Z) \leq \L_n^*(A) + \varepsilon,
     \end{align*}
@@ -3703,7 +3753,7 @@ Now we want to prove that $g = f|_{X \setminus E}$ is continuous. Note that\foot
 \begin{align*}
     g^{-1}(U_i) = V_i \cap (X \setminus E).
 \end{align*}
-In order to prove that $g$ is continuous, it suffices to prove that for every open set $U \subset Y$, there is an open set $V \subset X$ such that $g^{-1}(U) = V \cap (X \setminus E)$.\footnote{{\bf Theorem 4.8} in Rudin's {\em Principles of Mathematical Analysis}: A mapping $f$ of a metric space $X$ into a metric space $Y$ is continuous on $X$ if and only if $F^{-1}(V)$ is open in $X$ for every set $V$ in $Y$ \cite{28}. (Note that the class of open sets in the metric space $X \setminus E$ is exactly the class of sets of the form $V \cap (X \setminus E)$, where $V \subset X$ is open.)}Since $U = \bigcup^\infty_{j=1} U_{i_j}$, we have
+In order to prove that $g$ is continuous, it suffices to prove that for every open set $U \subset Y$, there is an open set $V \subset X$ such that $g^{-1}(U) = V \cap (X \setminus E)$.\footnote{{\bf Theorem 4.8} in Rudin's {\em Principles of Mathematical Analysis}: A mapping $f$ of a metric space $X$ into a metric space $Y$ is continuous on $X$ if and only if $f^{-1}(V)$ is open in $X$ for every set $V$ in $Y$ \cite{28}. (Note that the class of open sets in the metric space $X \setminus E$ is exactly the class of sets of the form $V \cap (X \setminus E)$, where $V \subset X$ is open.)}Since $U = \bigcup^\infty_{j=1} U_{i_j}$, we have
 \begin{align*}
     g^{-1}(U) = \bigcup^\infty_{j=1} g^{-1}(U_{i_j}) = \bigcup^\infty_{j=1}\left(V_{i_j} \cap (X \setminus E)\right) = \left(\bigcup^\infty_{j=1} V_{i_j} \right) \cap (X \setminus E),
 \end{align*}
