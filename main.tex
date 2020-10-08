@@ -117,6 +117,7 @@
 \def\L{{\mathcal L}}
 \def\diam{{\operatorname{diam}\,}}
 \def\co{{\overline{\operatorname{co}}\,}}
+\def\dist{{\operatorname{dist}}}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -1967,12 +1968,16 @@ $E \subset \mathbb{R}^n$ has measure zero if and only if for any $\varepsilon > 
 
 \medskip
 
-\begin{theorem}[{\bf Brunn–Minkowski}]\label{theorem_130}
+\begin{theorem}[{\bf Brunn–Minkowski inequality}]\label{theorem_130}
 Let $n \geq 1$ and let $\mu$ denote the Lebesgue measure on $\mathbb{R}^n$. Let $A$ and $B$ be two nonempty compact subsets of $\mathbb{R}^n$. Then,
 \begin{align*}
     \mu(A + B)^{1/n} \geq \mu(A)^{1/n} + \mu(B)^{1/n}.
 \end{align*}
 \end{theorem}
+
+\medskip
+
+See some applications of Brunn–Minkowski inequality and the proof of this inequality in Appendix \ref{appendix_d}.
 
 \medskip
 
@@ -2139,8 +2144,6 @@ it suffices to prove that $\L_n^*(A) = \H^n_{\delta} (A)$, since letting $\varep
 \end{enumerate}
 \end{proof}
 
-
-
 \medskip
 
 \begin{definition}
@@ -2254,6 +2257,10 @@ It remains to prove that $a(B_{kl}(s)) = 1$. Since $B_{kl}(-s) = A_k(1)B_{kl}(s)
 \end{proof}
 The theorem follows from the proposition easily.
 \end{proof}
+
+\medskip
+
+Now with the theorem above, we can know that the rotation of a set $S$ has the same measure as the $S$, since any rotation can be represented by a matrix $A$ with $\left|\det A\right| = 1$. Also, we can view this in another way, by Lemma \ref{lemma_13}, $S$ can be covered by disjoint closed balls and the measure of balls remains the same after rotation.
 
 \medskip
 
@@ -4204,6 +4211,10 @@ which implies
 \chapter{Hausdorff measure of the Cantor set}\label{appendix_c}
 
 \input{appendix_c}
+
+\chapter{Bruun-Minkowski inequality}\label{appendix_d}
+
+\input{appendix_d}
 
 
 \end{appendices}

@@ -1,0 +1,137 @@
+\begin{theorem}[{\bf Isoperimetric}]\label{theorem_d1}
+Among all sets in $\mathbb{R}^n$ with given volume, a ball has the least surface area.
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+For a compact set $A \subset \mathbb{R}^n$, let $A_h = \{x \in \mathbb{R}^n \,:\, \dist(x,A) \leq h\}$. The Minkowski content\footnote{Sometimes, this is called {\em outer Minkowski content}, denoted by $\mathcal{SM}(A)$\cite{32}.}is defined as 
+\begin{align*}
+    \mu_+(A) = \liminf_{h \to 0^+} \frac{\mu(A_n) - \mu(A)}{h}.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+If $A$ is a bounded domain and $\partial A \in \mathcal{C}^2$, i.e., the boundary is locally a graph of a $\mathcal{C}^2$ function, then $\mu_+(A) = \H^{n-1}(\partial A)$.
+\end{theorem}
+
+\medskip
+
+\begin{theorem}
+If $A \subset \mathbb{R}^n$ is any compact set, then $\mu_+(A) \leq \H^{n-1}(\partial A)$.
+\end{theorem}
+
+\medskip
+
+This theorem is hard to prove, so we will not prove it here.
+
+\medskip
+
+\begin{example}
+For a closed ball $\overline{B} = \overline{B}(x,r)$, then \begin{align*}
+    \mu_+(\overline{B}) = \liminf_{h \to 0^+} \frac{\omega_n(r+h)^n - \omega_n r^n}{h} = n \omega_n r^{n-1},
+\end{align*}
+which agrees with Theorem \ref{theorem_B4}(b).
+\end{example}
+
+\medskip
+
+\begin{theorem}[{\bf Isoperimetric inequality}]\label{theorem_d4}
+For any compact set $A \subset \mathbb{R}^n$,
+\begin{align}\label{theorem_d4_equ1}
+    \mu(A)^{(n-1)/n} \leq n^{-1} \omega_n^{-1/n} \mu_+(A).
+\end{align}
+\end{theorem}
+\begin{proof}
+Note that $A_h = A + \overline{B}(0,h)$. By Brunn-Minkowski inequality \ref{theorem_130}, we have
+\begin{align*}
+    \mu(A_h)^{1/n} \geq \mu(A)^{1/n} + \mu(\overline{B})^{1/n} = \mu(A)^{1/n} + \omega_n^{1/n}h,
+\end{align*}
+which implies\footnote{Consider $f(h) = \mu(A_h)$, $f(0) = \mu(A)$. Then, $\dv{}{h}\Big|_{h=0} f(h)^{1/n} = 1/n f(0)^{1/n-1} f'(0)$, and we can use similar approach in the proof. Note that $f$ is not necessarily differentiable in this case.}
+\begin{align*}
+    \omega_n^{1/n} & \leq \liminf_{h \to 0^+} \frac{\mu(A_n)^{1/n} - \mu(A)^{1/n}}{h} \\
+    & = \frac{1}{n} \mu(A)^{1/n-1} \liminf_{h \to 0^+} \frac{\mu(A_n) - \mu(A)}{h} \\
+    & = n^{-1} \mu(A)^{(1-n)/n} \mu_+(A).
+\end{align*}
+Thus, with this inequality, we have
+\begin{align*}
+    \mu(A)^{(n-1)/n} \leq n^{-1} \omega_n^{-1/n} \mu_+(A).
+\end{align*}
+\end{proof}
+
+\medskip
+
+With Isoperimetric inequality, we can prove Isoperimetric theorem.
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_d1}]
+If $A = \overline{B}$ is a ball in $\mathbb{R}^n$, then the equality holds in \eqref{theorem_d4_equ1}, since
+\begin{align*}
+    \mu(\overline{B})^{(n-1)/n} = (\omega_n r^n)^{(n-1)/n} = n^{-1} \omega_n^{-1/n} n \omega_n r^{n-1} = n^{-1} \omega_n^{-1/n} \mu_+(\overline{B}).
+\end{align*}
+
+Now if $A$ has the same volume as $\overline{B}$, then
+\begin{align*}
+    \mu_+(A) \geq n \omega_n^{1/n} \mu(A)^{(n-1)/n} = n \omega_n^{1/n} \mu(\overline{B})^{(n-1)/n} = \mu_+(\overline{B}),
+\end{align*}
+which proves the theorem.
+\end{proof}
+
+\medskip
+
+Now we prove the Brunn-Minkowski inequality.
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_130}]
+We complete the proof in several steps.
+\begin{enumerate}[label=(\Roman*)]
+    \item Suppose $A$ and $B$ are rectangular boxes with sides $\{a_i\}^n_{i=1}$ and $\{b_i\}^n_{i=1}$. Then, $A + B$ is also a rectangular box with sides $\{a_i + b_i\}^n_{i=1}$. In this case, by the arithmetic-geometric means inequality,\footnote{Indeed, the arithmetic-geometric means inequality implies 
+    \begin{align*}
+        \prod_{i=1}^n \left(\frac{a_i}{a_i + b_i}\right)^{1/n} + \prod_{i=1}^n \left(\frac{b_i}{a_i + b_i}\right)^{1/n} \leq \frac{1}{n} \sum^n_{i=1} \frac{a_i}{a_i + b_i} + \frac{1}{n} \sum^n_{i=1} \frac{b_i}{a_i + b_i} = 1,
+    \end{align*} 
+    and multiplying both sides with $\prod^n_{i=1}(a_i + b_1)^{1/n}$ yields \eqref{theorem_129_equ1}.} we have
+    \begin{align}\label{theorem_129_equ1}
+        \left(\prod^n_{i=1}(a_i + b_i)\right)^{1/n} \geq \left(\prod^n_{i=1} a_i\right)^{1/n} + \left(\prod^n_{i=1} b_i\right)^{1/n}.
+    \end{align}\label{theorem_129_step1}
+    
+    
+    \item  Each of $A$ and $B$ is a finite union of rectangular boxes with disjoint interiors (We do not assume that interiors of boxes in $A$ are disjoint from interiors of boxes in $B$\footnote{We could assume that $A$ and $B$ are disjoint by Remark \ref{remark_d1}, but this is not necessary.}). 
+    
+    We prove by induction with respect to the total number $k$ of boxes in $A$ and $B$. If $k = 2$, then $A$ and $B$ have one box respectively and the inequality holds by Step \ref{theorem_129_step1}. Suppose it is true for $k \geq 2$ and we want to prove it for $k + 1 \geq 3$. One of the sets, say $A$, has at least two boxes. Let $\pi$ be a hyperplane such that two fixed boxes in $A$ are on opposite sides of $\pi$, one in $\pi^+$, another one in $\pi^-$. By translating the sets, we can make sure that $0 \in \pi$. 
+    
+    Let $A^\pm = \pi^\pm \cap A$, $B^\pm = \pi^\pm \cap B$. Let $\lambda = \mu(A^+)/\mu(A)$. By translating, we can make sure that $\mu(B^+)/\mu(B) = \lambda$. Then the total number of boxes in $A^+ \cup B^+$ is less than or equal to $k$ and that in $A^- \cup B^-$ is also less than or equal to $k$. Hence, the induction hypothesis applies. Also, $A^+ + B^+$ and $A^- + B^-$ have disjoint interiors, then 
+    \begin{align*}
+        \mu(A + B) & \geq \mu(A^+ \cup B^+) + \mu(A^- \cup B^-) \\
+        & \geq \left(\mu(A^+)^{1/n} + \mu(B^+)^{1/n}\right)^n + \left(\mu(A^-)^{1/n} + \mu(B^-)^{1/n}\right)^n \\
+        & = \lambda \left(\mu(A)^{1/n} + \mu(B)^{1/n}\right)^n + (1 - \lambda) \left(\mu(A)^{1/n} + \mu(B)^{1/n}\right)^n \\
+        & = \left(\mu(A)^{1/n} + \mu(B)^{1/n}\right)^n,
+    \end{align*}
+    which implies 
+    \begin{align*}
+        \mu(A + B)^{1/n} \geq \mu(A)^{1/n} + \mu(B)^{1/n}.
+    \end{align*}\label{theorem_129_step2}
+    
+    \item In general case when $A$ and $B$ are arbitrary compact sets. Recall that if $K \subset \mathbb{R}^n$ is compact, $K_\varepsilon = \{x :\, \dist(x,K) < \varepsilon\}$, then $\mu(K_\varepsilon) \to \mu(K)$.\footnote{Indeed, let $K_n = \{x \in \mathbb{R}^n \,:\, \dist(x,K) < 1/n\}$, since $K$ is compact, $\bigcap^\infty_{n=1} K_n = K$. And it follows that $\mu(K_n) \to \mu(K)$.}There are sets $\widehat{A}_{\varepsilon}$ and $\widehat{B}_{\varepsilon}$, each is a finite union of rectangular boxes with pairwise disjoint interiors such that 
+    \begin{align*}
+        A \subset \widehat{A}_{\varepsilon} \subset A_\varepsilon, \quad B \subset \widehat{B}_{\varepsilon} \subset B_\varepsilon.
+    \end{align*}
+    Clearly, $\widehat{A}_{\varepsilon} + \widehat{B}_{\varepsilon} \subset (A+B)_{2\varepsilon}$, and then by Step \ref{theorem_129_step2},
+    \begin{align*}
+        \mu\left((A+B)_{2\varepsilon}\right)^{1/n} \geq \mu\left(\widehat{A}_{\varepsilon} + \widehat{B}_{\varepsilon}\right)^{1/n} \geq \mu\left(\widehat{A}_{\varepsilon}\right)^{1/n} + \mu\left(\widehat{B}_{\varepsilon}\right)^{1/n} \geq \mu(A)^{1/n} + \mu(B)^{1/n}.
+    \end{align*}
+    Letting $\varepsilon \to 0$ yields the theorem.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{remark}\label{remark_d1}
+If we translate $A$ and $B$, the Brunn-Minkowskil inequality still holds, since
+\begin{align*}
+    \mu(a + A) = \mu(A), \quad \mu(b + B) = \mu(B), \quad \mu((a+b) + (A+B)) = \mu(A+B).
+\end{align*}
+\end{remark}
