@@ -3651,7 +3651,7 @@ It follows from Theorem \ref{theorem_217}(b) applied to $f - g$.
 \medskip
 
 
-Recall Definition \ref{def_19} that a measure $\mu$ is {\em complete} if every subset of a set of measure zero is measurable (and hence has measure zero). All the measures obtained through the Carathéodory construction are complete by Proposition \ref{prop_14}, e.g. the Hausforff measure and the Lebesgue measure are complete. However, the Lebesgue measure on $\mathfrak{B}(\mathbb{R}^n)$ is not complete, i.e. there are sets of Lebesgue measure zero that are not Borel. However, we can assume that any measure is complete, because we can add all subsets of sets of measure zero to the $\sigma$-algebra.
+Recall Definition \ref{def_19} that a measure $\mu$ is {\em complete} if every subset of a set of measure zero is measurable (and hence has measure zero). All the measures obtained through the Carathéodory construction are complete by Proposition \ref{prop_14}, e.g. the Hausforff measure and the Lebesgue measure are complete. However, the Lebesgue measure on $\mathfrak{B}(\mathbb{R}^n)$ is not complete, i.e. there are sets of Lebesgue measure zero that are not Borel, see Example \ref{example_32}. However, we can assume that any measure is complete, because we can add all subsets of sets of measure zero to the $\sigma$-algebra.
 
 \medskip
 
@@ -4335,7 +4335,7 @@ which yields the countable additivity.
 
 \section{Fubini theorem}
 
-\begin{theorem}[{\bf Fubini}]
+\begin{theorem}[{\bf Fubini}]\label{theorem_35}
 Let $(X,\mathfrak{M},\mu)$ and $(Y,\mathfrak{N},\nu)$ be $\sigma$-finite measure spaces. Let $f: X \times Y \to [0,\infty]$ be $\mathfrak{M} \times \mathfrak{N}$-measurable function.
 \begin{enumerate}[label=(\alph*)]
     \item If $0 \leq f \leq \infty$, then 
@@ -4367,9 +4367,70 @@ Also, the integrals in \eqref{theorem_35_equ2} can also be written in the form
 \end{align*}
 \end{remark}
 
+\medskip
 
+If $(X,\mathfrak{M},\mu)$ and $(Y,\mathfrak{N},\nu)$ are complete measures, $(X \times Y,\mathfrak{M} \times \mathfrak{N},\mu \times \nu)$ may not be complete. Let's see an example.
 
+\medskip
 
+\begin{example}\label{example_32}
+Let $\mu = \nu = \L_1$ be Lebesgue measure in $\mathbb{R}$. Then, $(\mathbb{R} \times \mathbb{R},\mathfrak{M} \times \mathfrak{M},\L_1 \times \L_1)$ is not complete. Indeed, let $V \subset [0,1]$ be the Vitali set, and then $(\L_1 \times \L_1)([0,1] \times \{0\}) = 0$. However, completeness of $\L_1 \times \L_1$ would imply that $V \times \{0\}$ is measurable, and then the $y$-section of $V \times \{0\}$ is just $V$ and $V$ is measurable, which is a contradiction. 
+\end{example}
+
+\medskip
+
+Recall that every measure can be completed to a complete measure, see Theorem \ref{theorem_218}.
+
+\medskip
+
+\begin{theorem}
+$\L_{n+m}$ is the completion of $\L_n \times L_m$, i.e., $\mathfrak{M}_{n+m} = \left(\mathfrak{M}_n \times \mathfrak{M}_m\right)^*$.
+\end{theorem}
+
+\medskip
+
+The precious Fubini theorem \ref{theorem_35} is not practically useful, since it cannot be applied directly to $\mathbb{R}^n$. Indeed, the Lebesgue measure on $\mathbb{R}^{n+m}$ is not the product of $\mathbb{R}^{n}$
+and $\mathbb{R}^{m}$. Next we talk about the complete version of the Fubini theorem that will work on $\mathbb{R}^n$.
+
+\medskip
+
+\begin{theorem}[{\bf Fubini}]
+Let $(X,\mathfrak{M},\mu)$ and $(Y,\mathfrak{N},\nu)$ be complete $\sigma$-finite measure spaces. And $(X \times Y, (\mathfrak{M} \times \mathfrak{N})^*, \mu \times \nu)$ is a completion of $\mu \times \nu$. Let $f: X \times Y \to [0,\infty]$ be $(\mathfrak{M} \times \mathfrak{N})^*$-measurable function. Then all conclusion of Theorem \ref{theorem_35} hold, the only difference being as follows:
+
+The measurability of $f_x$ and $f^y$ can be asserted only for almost all $x \in X$ and $y \in Y$, so that 
+\begin{align}\label{theorem_35_equ1}
+    x \mapsto \int_Y f_x\, d\nu, \quad \text{and} \quad y \mapsto \int_X f^y\, d\mu
+\end{align}
+are defined a.e.
+\end{theorem}
+
+\medskip
+
+\begin{remark}
+Why the measurability of $f_x$ and $f^y$ can be asserted only for almost all $x \in X$ and $y \in Y$? Consider the Vitali set $V \subset [0,1]$ and $A \subset \mathbb{R}$ is a set of measure zero. $V \times A$ is $\L_2$ measurable and $\L_2(V \times A) = 0$. Therefore, $f = \chi_{V \times A}$ is measurable and
+\begin{align*}
+    \int_{\mathbb{R}^2} f\,d\L_2 = 0.
+\end{align*}
+Computing this integral using Fubini theorem yields
+\begin{align*}
+    \int_{\mathbb{R}^2} f\,d\L_2 = \int_{\mathbb{R}} \int_{\mathbb{R}} f^y(x)\, d\L_1(x) \, d\L_2(y),
+\end{align*}
+and 
+\begin{align*}
+    f^y(x) = \begin{cases}
+        \chi_V(x), & y \in A, \\
+        0, & y \notin A.
+    \end{cases}
+\end{align*}
+Hence,
+\begin{align*}
+    \int_{\mathbb{R}} f^y(x)\, d\L_1(x) = \begin{cases}
+        \text{does not exist}, & y \in A, \\
+        0, & y \notin A,
+    \end{cases}
+\end{align*}
+and this means $f_x$ and $f^y$ are only defined on almost $x$ and $y$.
+\end{remark}
 
 
 
