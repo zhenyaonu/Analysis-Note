@@ -3494,7 +3494,7 @@ Now we can extend the measurable function $f:X \to \overline{\mathbb{R}}$ to com
 
 \medskip
 
-\begin{definition}
+\begin{definition}\label{def_27}
 Let $(X,\mathfrak{M},\mu)$ be a measurable space. The space $L^1(\mu)$ of all measurable function $f: X \to \mathbb{C}$ such that
 \begin{align*}
     \left\|f\right\|_1 = \int_X \left|f\right|\,d\mu < \infty.
@@ -4431,6 +4431,223 @@ Hence,
 \end{align*}
 and this means $f_x$ and $f^y$ are only defined on almost $x$ and $y$.
 \end{remark}
+
+\medskip
+
+
+
+\chapter{$L^p$-space}
+
+In Definition \ref{def_27}, we talked about $L^1(\mu)$ space. Now we talk more about $L^P$ spaces.
+
+\medskip
+
+\begin{definition}
+Let $(X, \mathfrak{M}, \mu)$ be measure space and $0 < p < \infty$. Denote $\widetilde{L}^p(\mu)$ the class of all measurable functions $f: X \to \mathbb{R}$ such that
+\begin{align*}
+    \left\|f\right\|_p = \left(\int_X \left|f\right|^p\, d\mu \right)^{1/p} < \infty.
+\end{align*}
+The space $L^p(\mu) = \widetilde{L}^p(\mu) / \sim$ is defined as the equivalence classes of measurable functions in $\widetilde{L}^p(\mu)$, where $f \sim g$ if and only if $f = g$ a.e. 
+\end{definition}
+
+\medskip
+
+\begin{definition}
+$\widetilde{L}^\infty (\mu)$ is the class of essentially bounded functions, i.e, $f \in \widetilde{L}^\infty (\mu)$ if there exists $M > 0$ such that $\left|f\right| \leq M$ a.e. Such smallest $M$ is denoted by $\left\|f\right\|_{\infty}$ and it is called essential supremum of $f$.\footnote{In other book\cite{33}, {\em essential supremum} of $f$ on $X$ is defined as 
+\begin{align*}
+    \operatorname{ess~sup}_X f = \inf \{M \in \mathbb{R} \,:\, \mu(\{x \,:\, f(x) > M\}) = 0\}.   
+\end{align*}
+Equivalently, 
+\begin{align*}
+    \operatorname{ess~sup}_X f =\inf \left\{\sup_X g \,:\, g = f \,\,\text{pointwise a.e.} \right\}.   
+\end{align*}
+And $\left\|f\right\|_{\infty}$ is defined as $\operatorname{ess~sup}_X \left|f\right|$.
+}
+\end{definition}
+
+\medskip
+
+Usually, $f \in L^p(\mu), 0 < p < \infty$ are complex valued, but sometimes we also consider $L^p(\mu)$ for real valued functions.
+
+\medskip
+
+\begin{exercise}
+Prove the existence of essential supremum.
+\end{exercise}
+\begin{proof}
+Let $S$ be the set of all real $\alpha$ such that
+\begin{align*}
+    \mu\left(g^{-1}((\alpha,\infty])\right) = 0.
+\end{align*}
+Let $M = \inf S$, since
+\begin{align*}
+    g^{-1} ((M,\infty]) = \bigcup^\infty_{n=1} g^{-1} \left(\left(M + \frac{1}{n},\infty\right]\right),
+\end{align*}
+and the countable union of sets with measure zero has measure zero, we see that $M \in S$.
+\end{proof}
+
+\medskip
+
+\begin{example}
+Function $f: \mathbb{N} \to \mathbb{C}$ can be identified with sequences $\{x_n\}^\infty_{n=1}$. Let $\mu$ be a counting measure on $\mathbb{N}$. Then, for $x = \{x_n\}^\infty_{n=1}$,
+\begin{align*}
+    L^p(\mu) = \left\{x \,:\, \left(\sum^\infty_{n=1} \left|x_n\right|^p \right)^{1/p} < \infty \right\},
+\end{align*}
+we write this sequence space as $\ell^p(\mathbb{N})$ with norm
+\begin{align*}
+    \left\|x\right\|_{\ell^p} = \left(\sum^\infty_{n=1} \left|x_n\right|^p \right)^{1/p}.
+\end{align*}
+Similarly, $\ell^\infty(\mathbb{N})$ is defined as
+\begin{align*}
+    \ell^\infty(\mathbb{N}) = L^\infty(\mu) = \left\{x \,:\, \sup \left|x_n\right| < \infty \right\}.
+\end{align*}
+\end{example}
+
+\medskip
+
+\begin{theorem}[{\bf Jensen's inequality}]
+Let $(X,\mathfrak{M},\mu)$ be a measure space and $\mu(X) = 1$ ($\mu$ is a probability measure). If $f \in L^1(\mu)$, $a < f(x) < b$ a.e. and $\varphi$ is convex on $(a,b)$, then 
+\begin{align*}
+    \varphi \left(\int_X f\,d\mu\right) \leq \int_X \varphi \circ f \,d\mu.
+\end{align*}
+We allow $a = - \infty$ and $b = + \infty$.
+\end{theorem}
+
+\begin{remark}
+For general finite measure $0 < \mu(X) < \infty$, then
+\begin{align*}
+    \varphi \left(\frac{1}{\mu(X)}\int_X f\,d\mu\right) \leq \frac{1}{\mu(X)} \int_X \varphi \circ f \,d\mu,
+\end{align*}
+since $\frac{d\mu}{\mu(X)} = d\nu$ is a probability measure.
+\end{remark}
+
+To prove this theorem, we need two facts about convex function, see Exercise 23, Chapter 4 in Rudin's {\em Principles of Mathematical Analysis}. If $f$ is convex on $(a,b)$, then
+\begin{enumerate}[label=(\alph*)]
+    \item $f$ is continuous on $(a,b)$.
+    
+    \item If $a < s < t < u < b$, then
+    \begin{align*}
+        \frac{f(t) - f(s)}{t - s} \leq \frac{f(u) - f(s)}{u - s} \leq \frac{f(u) - f(t)}{u - t}.
+    \end{align*}
+\end{enumerate}
+
+\begin{proof}
+Let $t = \int_X f\,d\mu$, then $a < t < b$. Let
+\begin{align*}
+    \beta \coloneqq \sup_{a < s < b} \frac{\varphi(t) - \varphi(s)}{t - s}.
+\end{align*}
+Clearly, $\beta \leq \frac{\varphi(u) - \varphi(t)}{u - t}$ for $t < u < b$ and $\beta \geq \frac{\varphi(t) - \varphi(s)}{t - s}$ for $a < s < t$, which implies
+\begin{align*}
+    \varphi(u) & \geq \varphi(t) + \beta(u - t), \\
+    \varphi(s) & \geq \varphi(t) + \beta(s - t).
+\end{align*}
+This means that for all $a < s < b$, $\varphi(s) \geq \varphi(t) + \beta(s - t)$. 
+
+Let $s = f(x)$, then $\varphi(f(x)) \geq \varphi(t) + \beta (f(x) - t)$, and hence
+\begin{align*}
+    \int_X \left(\varphi(f(x)) - \varphi(t) - \beta (f(x) - t)\right)\,d\mu \geq 0.
+\end{align*}
+Since $\mu(X) = 1$ and $t = \int_X f\,d\mu$ is a constant, integrating both sides of the above equation yields
+\begin{align*}
+    \int_X \varphi(f(x))\,d\mu - \varphi\left(\int_X f\,d\mu\right) - \beta \left(\int_X \varphi(f(x))\,d\mu - \int_X \varphi(f(x))\,d\mu\right) \geq 0,
+\end{align*}
+which implies
+\begin{align*}
+    \int_X \varphi(f(x))\,d\mu - \varphi\left(\int_X f\,d\mu\right) \geq 0.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{definition}
+If $1 < p,q < \infty$, $1/p + 1/q = 1$ or if $p = 1, q = \infty$, then we say $p$ and $q$ are Hölder conjugate exponents. 
+\end{definition}
+
+\medskip
+
+\begin{theorem}[{\bf Hölder's inequality}]\label{theorem_42}
+Let $(X,\mathfrak{M},\mu)$ be a measure space and let $p, q$ be Hölder conjugate, for any measurable functions $f$ and $g$,
+\begin{align*}
+    \int_X \left|fg\right|\,d\mu \leq \left\|f\right\|_p \left\|g\right\|_q, 
+\end{align*}
+where $\left\|f\right\|_p = \left(\int_X \left|f\right|^p \,d\mu\right)^{1/p}$.
+\end{theorem}
+
+We need the following lemma to prove this theorem.
+
+\begin{lemma}[{\bf Young's inequality}]\label{lemma_41}
+If $a, b > 0$ and $p, q$ are Hölder conjugate, then
+\begin{align}\label{lemma_41_equ1}
+    ab \leq \frac{a^p}{p} + \frac{b^q}{q},
+\end{align}
+and equality hold if $a^p = b^q$.
+\end{lemma}
+\begin{proof}
+There exist unique $s,t \in \mathbb{R}$ such that $a = e^{s/p}$ and $b = e^{t/q}$. By convexity of the function $e^x$,\footnote{For $\lambda \in (0,1)$, $e^{\lambda s + (1-\lambda)t} \leq \lambda e^s + (1-\lambda) e^t$. Now let $p = 1/\lambda$ and $q = 1/(1-\lambda)$, then the equivalence is easy to see.}
+\begin{align*}
+    e^{\frac{s}{p}+\frac{t}{q}} \leq \frac{1}{p} e^s + \frac{1}{q} e^t,
+\end{align*}
+which is equivalent to \eqref{lemma_41_equ1}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{theorem_42}]
+We can assume $0 \leq \left\|f\right\|_p < \infty$ and $0 \leq \left\|g\right\|_q < \infty$, since otherwise the inequality easily holds. By Young's inequality,
+\begin{align*}
+    \frac{\left|fg\right|}{\left\|f\right\|_p \left\|g\right\|_q} \leq \frac{1}{p} \left(\frac{\left|f\right|}{\left\|f\right\|_p}\right)^p + \frac{1}{q} \left(\frac{\left|g\right|}{\left\|g\right\|_q}\right)^q.
+\end{align*}
+Integrating the both sides of the above inequality yields
+\begin{align*}
+    \int_X \left|fg\right|\,d\mu \leq \left\|f\right\|_p \left\|g\right\|_q \left(\frac{1}{p\left\|f\right\|_p^p} \int_X \left|f\right|^p\,d\mu + \frac{1}{q\left\|g\right\|_q^q} \int_X \left|g\right|^q\,d\mu \right) = \left\|f\right\|_p \left\|g\right\|_q \left(\frac{1}{p} + \frac{1}{q}\right),
+\end{align*}
+which proves the inequality.
+\end{proof}
+
+\medskip
+
+\begin{theorem}[{\bf Minkowski's inequality}]
+Let $(X,\mathfrak{M},\mu)$ be a measure space and $0 < p < \infty$. Then for any measurable functions $f,g$, we have
+\begin{align}\label{theorem_43_equ1}
+    \left\|f+g\right\|_p \leq \left\|f\right\|_p + \left\|g\right\|_p.
+\end{align}
+\end{theorem}
+\begin{proof}
+For $p = 1$, it is obvious since $\left|f+g\right| \leq \left|f\right| + \left|g\right|$. For $p = \infty$, it is also obvious since $\left\|f+g\right\|_{\infty} \leq \left\|f\right\|_{\infty} + \left\|g\right\|_{\infty}$. Now we assume $1 < p < \infty$. Now, by Hölder's inequality,
+\begin{align*}
+    \left\|f+g\right\|_p^p & = \int_X \left|f+g\right|^p\,d\mu = \int_X \left|f+g\right| \left|f+g\right|^{p-1}\,d\mu \\
+    & \leq \int_X \left|f\right| \left|f+g\right|^{p-1}\,d\mu + \int_X \left|g\right| \left|f+g\right|^{p-1}\,d\mu \\
+    & \leq \left(\int_X \left|f\right|^p\right)^{1/p} \left(\int_X \left|f+g\right|^{(p-1)\frac{p}{p-1}}\right)^{\frac{p-1}{p}} + \left(\int_X \left|g\right|^p\right)^{1/p} \left(\int_X \left|f+g\right|^{(p-1)\frac{p}{p-1}}\right)^{\frac{p-1}{p}} \\
+    & = \left\|f\right\|_p \left(\int_X \left|f+g\right|^{p}\right)^{\frac{p-1}{p}} + \left\|g\right\|_p \left(\int_X \left|f+g\right|^{p}\right)^{\frac{p-1}{p}} \\
+    & = \left(\left\|f\right\|_p + \left\|g\right\|_p\right) \left\|f+g\right\|_p^{p-1},
+\end{align*}
+which is equivalent to \eqref{theorem_43_equ1}.
+\end{proof}
+
+\medskip
+
+\begin{example}
+In $\ell^p(\mathbb{N})$ space, the Hölder's inequality is 
+\begin{align*}
+    \sum^\infty_{n=1} \left|x_ny_n\right| \leq \left(\sum^\infty_{n=1} \left|x_n\right|^p \right)^{1/p} \left(\sum^\infty_{n=1} \left|y_n\right|^q \right)^{1/q},
+\end{align*}
+where $1 < p,q < \inf$ and $1/p + 1/q = 1$. The Minkowski's inequality is 
+\begin{align*}
+    \left(\sum^\infty_{n=1} \left|x_n + y_n\right|^p \right)^{1/p} \leq \left(\sum^\infty_{n=1} \left|x_n\right|^p \right)^{1/p} + \left(\sum^\infty_{n=1} \left|y_n\right|^p \right)^{1/p},
+\end{align*}
+where $1 \leq p \leq \infty$.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
