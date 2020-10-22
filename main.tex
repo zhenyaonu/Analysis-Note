@@ -41,6 +41,7 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{esint}
+\usepackage{aligned-overset}
 \graphicspath{{images/}}
 
 
@@ -3795,50 +3796,71 @@ A normed space $(X, \left\|\cdot\right\|)$ is a Banach space if it is a complete
 $L^p(\mu)$ is a Banach space, $1 \leq p \leq \infty$.
 \end{theorem}
 \begin{proof}
-We will prove it when $1 \leq p < \infty$. 
+~\begin{enumerate}[label=(\alph*)]
+    \item For $1 \leq p < \infty$. Let $\{f_n\}$ be a Cauchy sequence, i.e. for every $\varepsilon > 0$, there is $N > 0$ such that for all $n, m \geq N$, $\left\|f_n - f_m\right\| < \varepsilon$. We need to prove there is $f \in L^p(\mu)$ such that $\lim_{n\to\infty} \left\|f_n - f\right\|_p = 0$. 
 
-Let $\{f_n\}$ be a Cauchy sequence, i.e. for every $\varepsilon > 0$, there is $N > 0$ such that for all $n, m \geq N$, $\left\|f_n - f_m\right\| < \varepsilon$. We need to prove there is $f \in L^p(\mu)$ such that $\lim_{n\to\infty} \left\|f_n - f\right\|_p = 0$. 
+    Also, since $\{f_n\}$ is a Cauchy sequence, then there is a subsequence $\{f_{n_k}\}$ such that
+    \begin{align*}
+        \left\|f_{n_k} - f_{n_{k+1}}\right\|_p < \frac{1}{2^k}, k = 1,2,3,\cdots.
+    \end{align*}
+    Indeed, let $\varepsilon = 2^{-1}$, then there exists $n_1$ such that for all $n,m \geq n_1$, $\left\|f_{n} - f_{m}\right\|_p < 2^{-1}$. Then, for $m > n_1$, we have $\left\|f_{n_1} - f_{m}\right\|_p < 2^{-1}$. Now let $\varepsilon = 2^{-2}$, then there exists $n_2 > n_1$ such that for all $n,m \geq n_2$, $\left\|f_{n} - f_{m}\right\|_p < 2^{-2}$. Then, for all $m > n_2$, we have $\left\|f_{n_2} - f_{m}\right\|_p < 2^{-2}$. Continue this process and we have
+    \begin{align*}
+        \left\|f_{n_1} - f_{n_2}\right\|_p & < \frac{1}{2}, \\
+        \left\|f_{n_2} - f_{n_3}\right\|_p & < \frac{1}{2^2}, \\
+        \left\|f_{n_3} - f_{n_4}\right\|_p & < \frac{1}{2^3},\\
+        & \,\, \vdots \\
+        \left\|f_{n_k} - f_{n_{k+1}}\right\|_p & < \frac{1}{2^k}.
+    \end{align*}
 
-Also, since $\{f_n\}$ is a Cauchy sequence, then there is a subsequence $\{f_{n_k}\}$ such that
-\begin{align*}
-    \left\|f_{n_k} - f_{n_{k+1}}\right\|_p < \frac{1}{2^k}, k = 1,2,3,\cdots.
-\end{align*}
-Indeed, let $\varepsilon = 2^{-1}$, then there exists $n_1$ such that for all $n,m \geq n_1$, $\left\|f_{n} - f_{m}\right\|_p < 2^{-1}$. Then, for $m > n_1$, we have $\left\|f_{n_1} - f_{m}\right\|_p < 2^{-1}$. Now let $\varepsilon = 2^{-2}$, then there exists $n_2 > n_1$ such that for all $n,m \geq n_2$, $\left\|f_{n} - f_{m}\right\|_p < 2^{-2}$. Then, for all $m > n_2$, we have $\left\|f_{n_2} - f_{m}\right\|_p < 2^{-2}$. Continue this process and we have
-\begin{align*}
-    \left\|f_{n_1} - f_{n_2}\right\|_p & < \frac{1}{2}, \\
-    \left\|f_{n_2} - f_{n_3}\right\|_p & < \frac{1}{2^2}, \\
-    \left\|f_{n_3} - f_{n_4}\right\|_p & < \frac{1}{2^3},\\
-    & \,\, \vdots \\
-    \left\|f_{n_k} - f_{n_{k+1}}\right\|_p & < \frac{1}{2^k}.
-\end{align*}
+    Now let $g_k = \sum^k_{k=1} \left|f_{n_k} - f_{n_{k+1}}\right|$, and $g = \sum^\infty_{k=1} \left|f_{n_k} - f_{n_{k+1}}\right|$. By Minkowski's inequality \ref{theorem_43}, we have
+    \begin{align*}
+        \left\|g_k\right\|_p \leq \sum^k_{k=1} \left\|f_{n_k} - f_{n_{k+1}}\right\|_p < 1.
+    \end{align*}
+    By Fatou's lemma \ref{theorem_212}, we have
+    \begin{align*}
+        \int_X \left|g\right|^p\,d\mu = \int_X \left(\liminf_{k\to\infty} \left|g_k\right|^p\right) \,d\mu \leq \liminf_{k\to\infty} \int_X \left|g_k\right|^p\,d\mu \leq 1,
+    \end{align*}
+    and hence $\left|g\right|_p = \left(\int_X \left|g\right|^p\,d\mu\right)^{1/p} \leq 1$, which means $g(x) < \infty$ for almost all $x \in X$. Also, note that
+    \begin{align*}
+        \left|f_{n_1}(x)\right| + \sum^\infty_{k=1} \left|f_{n_{k+1}}(x) - f_{n_k}(x)\right| = \left|f_{n_1}(x)\right| + \left|g(x)\right| < \infty,
+    \end{align*}
+    for almost all $x$, and then the series
+    \begin{align*}
+        f_{n_1}(x) + \sum^\infty_{k=1} \left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)
+    \end{align*}
+    converges. That means this series converges pointwise for almost all $x$. Moreover, for almost all $x$, $f_{n_k}(x)$ converges, since $f_{n_k}(x) = f_{n_1}(x) + \sum^{k-1}_{i=1} \left(f_{n_{i+1}}(x) - f_{n_i}(x)\right)$. 
 
-Now let $g_k = \sum^k_{k=1} \left|f_{n_k} - f_{n_{k+1}}\right|$, and $g = \sum^\infty_{k=1} \left|f_{n_k} - f_{n_{k+1}}\right|$. By Minkowski's inequality \ref{theorem_43}, we have
-\begin{align*}
-    \left\|g_k\right\|_p \leq \sum^k_{k=1} \left\|f_{n_k} - f_{n_{k+1}}\right\|_p < 1.
-\end{align*}
-By Fatou's lemma \ref{theorem_212}, we have
-\begin{align*}
-    \int_X \left|g\right|^p\,d\mu = \int_X \left(\liminf_{k\to\infty} \left|g_k\right|^p\right) \,d\mu \leq \liminf_{k\to\infty} \int_X \left|g_k\right|^p\,d\mu \leq 1,
-\end{align*}
-and hence $\left|g\right|_p = \left(\int_X \left|g\right|^p\,d\mu\right)^{1/p} \leq 1$, which means $g(x) < \infty$ for almost all $x \in X$. Also, note that
-\begin{align*}
-    \left|f_{n_1}(x)\right| + \sum^\infty_{k=1} \left|f_{n_{k+1}}(x) - f_{n_k}(x)\right| = \left|f_{n_1}(x)\right| + \left|g(x)\right| < \infty,
-\end{align*}
-for almost all $x$, and then the series
-\begin{align*}
-    f_{n_1}(x) + \sum^\infty_{k=1} \left(f_{n_{k+1}}(x) - f_{n_k}(x)\right)
-\end{align*}
-converges. That means this series converges pointwise for almost all $x$. Moreover, for almost all $x$, $f_{n_k}(x)$ converges, since $f_{n_k}(x) = f_{n_1}(x) + \sum^{k-1}_{i=1} \left(f_{n_{i+1}}(x) - f_{n_i}(x)\right)$. 
+    Let $f(x) \coloneqq \lim_{k\to\infty} f_{n_k}(x)$. It remains to show that $f \in L^p(\mu)$ and $\left\|f_n - f\right\|_p \to 0$. Fix $m \geq N$, then there exists $k_0$ such that for $k \geq k_0$, $\left\|f_{n_k} - f_m \right\| < \varepsilon$, i.e.,
+    \begin{align*}
+        \int_X \left|f_{n_k} - f_m \right|^p \,d\mu < \varepsilon.
+    \end{align*}
+    Again, by Fatou's lemma, we have
+    \begin{align*}
+        \int_X \left|f - f_m \right|^p \,d\mu = \int_X \left(\liminf_{k\to\infty} \left|f_{n_k} - f_m \right|^p \right) \,d\mu \leq \liminf_{k\to\infty} \int_X \left|f_{n_k} - f_m \right|^p \,d\mu \leq \varepsilon,
+    \end{align*}
+    and hence $f - f_m \in L^p(\mu)$ and $\left\|f - f_m \right\|_p \leq \varepsilon^{1/p}$. By the triangle inequality, $\left\|f\right\|_p \leq \left\|f - f_m \right\|_p + \left\|f_m \right\|_p < \infty$, which implies $f \in L^p(\mu)$. Also, we proved that for every $\varepsilon > 0$, there exists $N > 0$ such that for all $m \geq N$, $\left\|f - f_m \right\|_p \leq \varepsilon^{1/p}$, which implies $\left\|f_m - f\right\|_p \to 0$. thus, $L^p(\mu)$ is a Banach space for $1 \leq p < \infty$.
+    
+    \item For $p = \infty$. Suppose $\{f_n\}$ is a Cauchy sequence in $L^{\infty}$, then for every $k \in \mathbb{N}$, there exists $n_k \in \mathbb{N}$ such that for all $n,m \geq n_k$,
+    \begin{align}\label{theorem_44_equ1}
+        \lim_{k\to\infty} \mu\left(\left\{x \,:\, \left|f_n(x) - f_m(x)\right| > \frac{1}{k}\right\}\right) = 0.
+    \end{align}
+    Let
+    \begin{align*}
+        F_{k} = X \setminus \bigcup^\infty_{n,m \geq n_k}\left\{x \,:\, \left|f_n(x) - f_m(x)\right| > \frac{1}{k}\right\}
+    \end{align*}
+    Clearly,
+    \begin{align*}
+        \mu\left(X \setminus \bigcup^\infty_{k=1} F_k\right) = 0.
+    \end{align*}
+    Define $f: X \to \mathbb{R}$ as 
+    $$f(x) = \lim_{n\to\infty} f_n(x), x \in X \setminus \bigcup^\infty_{k=1} F_k.$$
+    Letting $n \to \infty$ in \eqref{theorem_44_equ1} implies that for every $k \in \mathbb{N}$, there is $n_k > 0$ such that for all $m \geq n_k$ and all $x \in X \setminus \bigcup^\infty_{k=1} F_k$,
+    \begin{align*}
+        \left|f(x) - f_m(x)\right| < \frac{1}{k}.
+    \end{align*}
+    It follows that $f$ is essentially bounded and $f_n \xrightarrow[]{L^\infty} f$, which proves that $L^\infty$ is complete.
+\end{enumerate}
 
-Let $f(x) \coloneqq \lim_{k\to\infty} f_{n_k}(x)$. It remains to show that $f \in L^p(\mu)$ and $\left\|f_n - f\right\|_p \to 0$. Fix $m \geq N$, then there exists $k_0$ such that for $k \geq k_0$, $\left\|f_{n_k} - f_m \right\| < \varepsilon$, i.e.,
-\begin{align*}
-    \int_X \left|f_{n_k} - f_m \right|^p \,d\mu < \varepsilon.
-\end{align*}
-Again, by Fatou's lemma, we have
-\begin{align*}
-    \int_X \left|f - f_m \right|^p \,d\mu = \int_X \left(\liminf_{k\to\infty} \left|f_{n_k} - f_m \right|^p \right) \,d\mu \leq \liminf_{k\to\infty} \int_X \left|f_{n_k} - f_m \right|^p \,d\mu \leq \varepsilon,
-\end{align*}
-and hence $f - f_m \in L^p(\mu)$ and $\left\|f - f_m \right\|_p \leq \varepsilon^{1/p}$. By the triangle inequality, $\left\|f\right\|_p \leq \left\|f - f_m \right\|_p + \left\|f_m \right\|_p < \infty$, which implies $f \in L^p(\mu)$. Also, we proved that for every $\varepsilon > 0$, there exists $N > 0$ such that for all $m \geq N$, $\left\|f - f_m \right\|_p \leq \varepsilon^{1/p}$, which implies $\left\|f_m - f\right\|_p \to 0$. thus, $L^p(\mu)$ is a Banach space for $1 \leq p < \infty$.
 \end{proof}
 
 \medskip
@@ -4276,9 +4298,9 @@ If $f,g,h \in L^1(\mathbb{R}^n)$ and $\alpha, \beta \in \mathbb{C}$, then
     \begin{align*}
         [f*(g*h)](x) & = \int_{\mathbb{R}^n} f(x-y)(g*h)(y)\,dy \\
         & = \int_{\mathbb{R}^n} f(x-y) \left(\int_{\mathbb{R}^n} g(y-z)h(z)\,dz \right)\,dy \\
-        (\text{Fubin}) & = \int_{\mathbb{R}^n} h(z) \left( \int_{\mathbb{R}^n} f(x-y) g(y-z)\,dy \right)\,dz \\
-        (y \mapsto y + x) & = \int_{\mathbb{R}^n} h(z) \left( \int_{\mathbb{R}^n} f(-y) g(y-z+x)\,dy \right)\,dz \\
-        (y \mapsto -y) & = \int_{\mathbb{R}^n} h(z) \left( \int_{\mathbb{R}^n} g((x-z)-y)f(y) \,dy \right)\,dz\\
+        \overset{\text{Fubin}}&{=} \int_{\mathbb{R}^n} h(z) \left( \int_{\mathbb{R}^n} f(x-y) g(y-z)\,dy \right)\,dz \\
+        \overset{y \mapsto y + x}&{=} \int_{\mathbb{R}^n} h(z) \left( \int_{\mathbb{R}^n} f(-y) g(y-z+x)\,dy \right)\,dz \\
+        \overset{y \mapsto -y}&{=} \int_{\mathbb{R}^n} h(z) \left( \int_{\mathbb{R}^n} g((x-z)-y)f(y) \,dy \right)\,dz\\
         & = \int_{\mathbb{R}^n} h(z) (f*g)(x-z) \,dz = [(f*g)*h](x).
     \end{align*}
  
@@ -4371,7 +4393,7 @@ We claim $\widetilde{\varphi} \in C^\infty_0(\mathbb{R}^n)$, $\widetilde{\varphi
     \centering
     \begin{tikzpicture}
         \draw[->] (-3, 0) -- (3, 0) node[right] {$x$};
-        \draw[->] (0, -0.5) -- (0, 1.5) node[above] {$y$};
+        \draw[->] (0, -0.5) -- (0, 1.5) node[above] {$\widetilde{\varphi}$};
         \draw[scale=2, domain=-0.99:0.99, smooth, variable=\x, black] plot ({\x}, {exp(1/(\x*\x-1))});
         \filldraw[black] (2,0) circle (0pt) node[anchor=north]{$1$};
         \filldraw[black] (-2,0) circle (0pt) node[anchor=north]{$-1$};
@@ -4396,7 +4418,7 @@ Also, $\varphi_{\varepsilon} \in C^\infty_0(\mathbb{R}^n)$, $\varphi_{\varepsilo
     \centering
     \begin{tikzpicture}
         \draw[->] (-3, 0) -- (3, 0) node[right] {$x$};
-        \draw[->] (0, -0.5) -- (0, 2) node[above] {$y$};
+        \draw[->] (0, -0.5) -- (0, 2) node[above] {$\varphi_{\varepsilon}$};
         \draw[scale=2, domain=-0.49:0.49, smooth, variable=\x, black] plot ({\x}, {2*exp(1/(\x*\x*4-1))});
         \filldraw[black] (1,0) circle (0pt) node[anchor=north]{$\varepsilon$};
         \filldraw[black] (-1,0) circle (0pt) node[anchor=north]{$-\varepsilon$};
@@ -4413,10 +4435,10 @@ For any function $f$ defined on $\mathbb{R}^n$, define $f_{\varepsilon} = f*\var
 
 \medskip
 
-\begin{theorem}
+\begin{theorem}\label{theorem_312}
 Let $f$ be a function defined on $\mathbb{R}^n$.
 \begin{enumerate}[label=(\alph*)]
-    \item If $f$ is locally in $L^1(\mathbb{R}^n)$, then $f_{\varepsilon} \in C^\infty$.
+    \item If $f$ is locally in $L^1(\mathbb{R}^n)$, then $f_{\varepsilon} \in C^\infty$.\label{theorem_312_a}
     
     \item If $f$ is continuous, then $f_{\varepsilon}$ uniformly converges to $f$ on compact sets in $\mathbb{R}^n$ as $\varepsilon \to 0^{+}$.
     
@@ -4447,7 +4469,66 @@ Let $f$ be a function defined on $\mathbb{R}^n$.
 \end{enumerate}
 \end{proof}
 
+\medskip
 
+\begin{corollary}
+If $f \in L^p(\mathbb{R}^n)$, $1 \leq p < \infty$, then $f_{\varepsilon} \coloneqq f*\varphi_{\varepsilon} \in C^{\infty}(\mathbb{R}^n) \cap L^p(\mathbb{R}^n)$ and $\left\|f_{\varepsilon}\right\|_p \leq \left\|f\right\|_p$.
+\end{corollary}
+
+\medskip
+
+\begin{theorem}\label{theorem_313}
+If $f \in L^p(\mathbb{R}^n)$, $1 \leq p < \infty$, then $f_{\varepsilon} \coloneqq f*\varphi_{\varepsilon} \in C^{\infty}(\mathbb{R}^n) \cap L^p(\mathbb{R}^n)$ and 
+\begin{align*}
+    \lim_{\varepsilon\to 0^+} \left\|f_{\varepsilon} - f\right\|_p = 0.
+\end{align*}
+\end{theorem}
+
+We need a lemma to prove this theorem.
+
+\begin{lemma}
+If $f \in L^p(\mathbb{R}^n)$, $1 \leq p < \infty$, then
+\begin{align*}
+    \lim_{y\to 0} \int_{\mathbb{R}^n} \left|f(x+y) - f(x)\right|^p \,dx = 0.
+\end{align*}
+\end{lemma}
+\begin{proof}
+Define $\tau_y: L^p(\mathbb{R}^n) \to L^p(\mathbb{R}^n)$ be defined as $(\tau_y f)(x) = f(x+y)$. Since $\mathbb{R}^n$ is a locally compact metric space, by Theorem \ref{theorem_45}, $C_c(\mathbb{R}^n)$ is dense in $L^p(\mathbb{R}^n), 1 \leq p < \infty$ with respect to the Lebesgue measure. Given $\varepsilon > 0$, let $g \in C_c(\mathbb{R}^n)$ be such that $\left\|f - g\right\|_p < \varepsilon/3$.
+
+Also, $\tau_y g$ uniformly converges to $g$ as $y \to 0$ on $\mathbb{R}^n$, which implies there is $\delta > 0$ such that if $\left|y\right| < \delta$, $\left\|\tau_y g - g\right\|_p < \varepsilon/3$. Therefore, for $\left|y\right| < \delta$,
+\begin{align*}
+    \left\|\tau_y f - f\right\|_p & \leq \left\|\tau_y f - \tau_y g\right\|_p + \left\|\tau_y g - g\right\|_p + \left\|f - g\right\|_p < \varepsilon,
+\end{align*}
+Since $\left\|\tau_y f - f\right\|_p^p = \int_{\mathbb{R}^n} \left|f(x+y) - f(x)\right|^p \,dx$, the lemma follows.
+\end{proof}
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_313}]
+Since $\int_{\mathbb{R}^n}\varphi_{\varepsilon}(x)\,dx = 1$, we have
+\begin{align*}
+    \left\|f_{\varepsilon} - f\right\|_p^p & = \int_{\mathbb{R}^n} \left|\int_{\mathbb{R}^n} (f(x) - f(x-y)) \varphi_{\varepsilon}(y) \,dy\right|^p \,dx\\
+    & \leq \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^n} \left|f(x) - f(x-y)\right| \varphi_{\varepsilon}(y)^{1/p} \varphi_{\varepsilon}(y)^{1/q} \,dy \right)^p \,dx \\
+    \overset{\text{Hölder}}&{\leq} \int_{\mathbb{R}^n} \left[ \left(\int_{\mathbb{R}^n} \left|f(x) - f(x-y)\right|^p \varphi_{\varepsilon}(y) \,dy \right) \left(\int_{\mathbb{R}^n} \varphi_{\varepsilon}(y)^{1/q} \,dy\right)^{p/q} \right] \,dx \\
+    & = \int_{\mathbb{R}^n} \int_{\overline{B}(0,\varepsilon)} \left|f(x) - f(x-y)\right|^p \varphi_{\varepsilon}(y)\,dydx \\
+    \overset{\text{Fubini}}&{\leq} \int_{\overline{B}(0,\varepsilon)} \left(\int_{\mathbb{R}^n} \left|f(x) - f(x-y)\right|^p \,dx\right)\varphi_{\varepsilon}(y) \,dy \\
+    & \leq \int_{\overline{B}(0,\varepsilon)} \left( \sup_{\left|z\right|\leq \varepsilon} \int_{\mathbb{R}^n} \left|f(x) - f(x-z)\right|^p \,dx \right) \varphi_{\varepsilon}(y) \,dy \\
+    & = \int_{\overline{B}(0,\varepsilon)}  \sup_{\left|z\right|\leq \varepsilon} \left\|\tau_z f - f\right\|_p^p \varphi_{\varepsilon}(y) \,dy \\
+    & = \left\|\tau_z f - f\right\|_p^p \xrightarrow[]{z \to 0} 0,
+\end{align*}
+where $p$ and $q$ are conjugate exponents and $(\tau_z f)(x) = f(x - z)$, and the theorem follows.
+\end{proof}
+
+\medskip
+
+\begin{corollary}
+$C^{\infty}_0(\mathbb{R}^n)$ is dense in $L^p(\mathbb{R}^n)$, $1 \leq p < \infty$.
+\end{corollary}
+\begin{proof}
+Since $C_c(\mathbb{R}^n)$ is dense in $L^p(\mathbb{R}^n)$, it suffices to show that compactly supported continuous functions can be approximated by compactly supported smooth functions.
+
+Let $g \in C_c(\mathbb{R}^n)$, then $g_{\varepsilon}$ converges to $g$ in $L^p(\mathbb{R}^n)$ and $g_{\varepsilon} \in C^{\infty}_0(\mathbb{R}^n)$ (Theorem \ref{theorem_312}(a)). Since $g$ is compactly supported, uniformly convergence implies that $g_{\varepsilon}$ is also compactly supported. Hence, $C^{\infty}_0(\mathbb{R}^n) \subset C_c(\mathbb{R}^n) \subset L^p(\mathbb{R}^n)$, and since $C^{\infty}_0(\mathbb{R}^n)$ is dense in $L^p$ norm, we have $C^{\infty}_0(\mathbb{R}^n)$ is dense in $L^p(\mathbb{R}^n)$.
+\end{proof}
 
 
 
