@@ -5328,8 +5328,118 @@ This is obvious by Lebesgue dominated convergence theorem. Also, the condition $
 
 \medskip
 
+\begin{definition}
+We say that a function $\phi:\mathbb{R}\to\mathbb{R}$ is Cauchy if $\phi(x+y) = \phi(x) + \phi(y)$, for all $x,y\in\mathbb{R}$. Clearly linear functions $\phi(x) = ax, a \in \mathbb{R}$ are Cauchy.
+\end{definition}
 
+\begin{exercise}\label{exercise_529}
+Prove that if a Cauchy function is continuous, then it is linear.
+\end{exercise}
+\begin{proof}
+Suppose $\phi$ is Cauchy and continuous, then it suffices to show that $\phi(x) = ax$ for all $x$. 
+\begin{enumerate}[label=(\alph*)]
+    \item If $q = 0$, $\phi(0) = \phi(0 + 0) = 2 \phi(0)$ implies that $\phi(0) = 0$.
+    
+    \item If $q \in \mathbb{Q}, q > 0$. Since $f(\alpha x) = \alpha f(x)$, for $\alpha \in \mathbb{N}, x \in \mathbb{Q}$, substituting $x$ by $x/\alpha$ and multiplying both sides by $\beta/\alpha$, where $\beta \in \mathbb{N}$ yields
+    \begin{align*}
+        \frac{\beta}{\alpha} f(x) = \beta f\left(\frac{x}{\alpha}\right), \alpha,\beta \in \mathbb{N}, x \in \mathbb{Q}.
+    \end{align*}
+    Since $f$ is Cauchy, then for the left hand side, \begin{align*}
+        \frac{\beta}{\alpha} f(x) = \frac{\beta}{\alpha} \cdot \alpha f\left(\frac{x}{\alpha}\right) = \beta f\left(\frac{x}{\alpha}\right) = f\left(\frac{\beta}{\alpha} x\right),
+    \end{align*}
+    and similarly, for the right hand side, we have
+    \begin{align*}
+        \beta f\left(\frac{x}{\alpha}\right) = \frac{\beta}{\alpha} f(x).
+    \end{align*}
+    Therefore,
+    \begin{align*}
+        f\left(\frac{\beta}{\alpha} x\right) = \frac{\beta}{\alpha} f(x).
+    \end{align*}
+    Letting $q = \beta/\alpha$ gives $f(qx) = qf(x)$, $q, x \in \mathbb{Q}, q > 0$, which implies $f(q) = qf(1) = cq$. Hence, $f$ is Cauchy for rational numbers.
+    
+    \item If $q \in \mathbb{Q}, q < 0$. Since $\phi(x+(-x)) = \phi(0) = 0$, we have $\phi(x) = - \phi(-x)$. Then, $f(q) = - f(-q) = -c(-q) = cq, c = f(1)$ for $q \in \mathbb{Q}, q < 0$.
+\end{enumerate}
 
+Now we proved that $f: \mathbb{Q} \to \mathbb{Q}$ is linear. Since $\mathbb{Q}$ is dense in $\mathbb{R}$, for any irrational number $r \in \mathbb{R} \setminus \mathbb{Q}$, there is a sequence $\{q_n\} \subset \mathbb{Q}$ such that $\lim_{n\to\infty} q_n = r$. By continuity of $f$,
+\begin{align*}
+    \lim_{n\to\infty} \phi(q_n) = \phi(r) = \lim_{n\to\infty} q_n \phi(1) = r \phi(1),
+\end{align*}
+and hence $\phi(r) = cr$, where $c = \phi(1)$. Thus, $f: \mathbb{R} \to \mathbb{R}$ is linear.
+\end{proof}
+
+\medskip
+
+\begin{exercise}\label{exercise_5210}
+Prove that if a Cauchy function is continuous at $0$, then it is linear.
+\end{exercise}
+\begin{proof}
+By Problem \ref{exercise_529}, we have $f: \mathbb{Q} \to \mathbb{Q}$ is linear. For any $r \in \mathbb{R} \setminus \mathbb{Q}$, there is a sequence $\{q_n\} \subset \mathbb{Q}$ such that $\lim_{n\to\infty} q_n = - r$. Clearly, $\lim_{n\to\infty} -q_n = - r$. Then, by continuity of $f$ at $0$, we have
+\begin{align*}
+    \lim_{n\to\infty} \phi(r - q_n) = \phi(0) = 0.
+\end{align*}
+On the other hand, since $f$ is Cauchy and $q_n \in \mathbb{Q}$,
+\begin{align*}
+    \lim_{n\to\infty} \phi(r - q_n) = \phi(r) + \lim_{n\to\infty} \phi(-q_n) = \phi(r) + \lim_{n\to\infty} -q_n \phi(1) = \phi(r) - r \phi(1),
+\end{align*}
+hence, $\phi(r) - r \phi(1) = 0$, and thus, $\phi(r) = r \phi(1)$, which prove that $f$ is linear on $\mathbb{R}$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that there is a Cauchy function such that $\phi(1)=0$ and $\phi(\pi)=1$. ({\bf Hint:} Clearly, this functions cannot be linear. To prove existence of $\phi$ regard $\mathbb{R}$ as a linear space over the field of rational numbers $\mathbb{Q}$ and use the Hamel basis.)
+\end{exercise}
+\begin{proof}
+Consider $\mathbb{R}$ as a vector space over $\mathbb{Q}$ and $\{x_i\}_{i \in I}$ is the Hamel basis for $\mathbb{R}$. Let $x_1 = 1$ and $x_2 = \pi$, then $x_1$ and $x_2$ are linearly independent in $\mathbb{Q}$, since $\pi$ is irrational.\footnote{Any linearly independent subset of a vector space can be extended into a basis.} Since any $x \in \mathbb{R}$ can be written as $x = \sum_{i\in I} \lambda_i x_i$, and $f: \mathbb{R} \to \mathbb{R}$ is additive, $f(x)$ is well defined for all $x \in \mathbb{R}$ and is given by
+\begin{align*}
+    f(x) = f\left(\sum_{i\in I} \lambda_i x_i\right) = \sum_{i \in I} f(\lambda_i x_i) = \sum_{i \in I} \lambda_i f(x_i)
+\end{align*}
+Then any function, which is defined on a basis can be uniquely extended into a function in the space. Now we can let $\phi(1) = 0$,$\phi(\pi) = 1$ and $\phi(x), x \neq 1,\pi$ be whatever.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that is a Cauchy function is not linear, then it is not Lebesgue measurable. ({\bf Hint:} Use the Steinhaus theorem or use the Lusin theorem.)
+\end{exercise}
+\begin{proof}
+Suppose that $f$ is measurable. For any interval $I$ of length $\varepsilon$, we have $E \coloneqq f^{-1}(I)$ is measurable. Then, we have
+\begin{align*}
+    f^{-1}((-\varepsilon,\varepsilon)) = f^{-1}(I - I) = E - E.
+\end{align*}
+By the Steinhaus theorem, $E - E$ contains a neighborhood of $0$. Thus, for some $\delta > 0$, if $\left|x\right| < \delta$, then $x \in E - E$ and hence $\left|f(x)\right| < \varepsilon$, which implies $f$ is continuous at $0$. By Exercise \ref{exercise_5210}, this is a contradiction.
+\end{proof}
+
+\medskip
+
+\begin{exercise}\label{exercise_5213}
+Prove that if $f_n$ converges in measure to $f$ and converges in measure to $g$, then $f = g$ a.e.
+\end{exercise}
+\begin{proof}
+Let $E = \{x \,:\, f(x) \neq g(x)\}$. It suffices to prove that $\mu(E) = 0$. 
+
+Let $\varepsilon > 0$, since $f_n \xrightarrow[]{\mu} f$ and $f_n \xrightarrow[]{\mu} g$, then $f,g,f_n$ are measurable. Convergence in measure implies that
+\begin{align*}
+    \lim_{n\to\infty} \mu\left(\left\{x \,:\, \left|f_n(x) - f(x)\right| \geq \frac{\varepsilon}{2}\right\}\right) & = 0, \\
+    \lim_{n\to\infty} \mu\left(\left\{x \,:\, \left|f_n(x) - g(x)\right| \geq \frac{\varepsilon}{2}\right\}\right) & = 0.
+\end{align*}
+Also, for some $x \in X$, if $\left|f(x) - g(x)\right| \geq \varepsilon$, then $x$ satisfies either $\left|f_n(x) - g(x)\right| \geq \varepsilon/2$ or $\left|f_n(x) - f(x)\right| \geq \varepsilon/2$. Indeed, 
+\begin{align*}
+    \varepsilon \leq \left|f(x) - g(x)\right| \leq \left|f_n(x) - g(x)\right| + \left|f_n(x) - f(x)\right|.
+\end{align*}
+Thus,
+\begin{align*}
+    \mu\left(\left\{x \,:\, \left|f(x) - g(x)\right| \geq \varepsilon\right\}\right) & \leq \mu\left(\left\{x \,:\, \left|f_n(x) - f(x)\right| \geq \frac{\varepsilon}{2}\right\}\right) \\
+    & + \mu\left(\left\{x \,:\, \left|f_n(x) - g(x)\right| \geq \frac{\varepsilon}{2}\right\}\right) \xrightarrow[]{n\to\infty} 0,
+\end{align*}
+which implies $f = g$ a.e.
+\end{proof}
+
+\begin{proof}[Second Proof of Exercise \ref{exercise_5213}]
+By Riesz theorem \ref{theorem_225}, there are subsequence $\{f_{n_k}\}$ such that $f_{n_k} \xrightarrow[]{\mu} f$ a.e. and another subsequence $\{f_{n_l}\}$ such that $f_{n_l} \xrightarrow[]{\mu} g$ a.e. This means $f_{n_k}(x) \to f(x)$ for $x \in X \setminus N_1$, where $\mu(N_1) = 0$. Similarly, $f_{n_l}(x) \to g(x)$ for $x \in X \setminus N_2$, where $\mu(N_2) = 0$.
+
+Let $N = N_1 \cup N_2$ and clearly, $\mu(N) = 0$. Also, for all $x \in X \setminus N$, we have $f_{n_k}(x) \to f(x)$ and $f_{n_l}(x) \to g(x)$, so $f(x) = g(x)$ for all $x \in X \setminus N, \mu(N) = 0$. Thus, $f = g$ a.e.
+\end{proof}
 
 
 \begin{appendices}
