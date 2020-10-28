@@ -128,6 +128,7 @@
 \fancyhead[LO]{{\em \rightmark}}
 \fancyhead[RO]{{\em \thepage}}
 
+
 \counterwithout{footnote}{chapter}
 
 \def\dsp{\def\baselinestretch{1.35}\large
@@ -2604,7 +2605,7 @@ which are measurable. Thus, $f^{-1}(F)$ is measurable and $f$ is a measurable ma
 \begin{definition}
 Let $(X,\mathfrak{M})$ be a measurable space. A measurable function $s: X \to \mathbb{R}$ is a simple function if it has only a finite number of values. Simple function can be represented in the form
 \begin{align*}
-    S = \sum^n_{i=1} \alpha_i \chi_{A_i},
+    s = \sum^n_{i=1} \alpha_i \chi_{A_i},
 \end{align*}
 where $\alpha_i \neq \alpha_j$ for $i \neq j$, $A_i$ are pairwise disjoint measurable sets and $\bigcup^n_{i=1} A_i = X$.
 \end{definition}
@@ -2616,7 +2617,7 @@ To see why {\em simple function} is so important, see the following theorem.
 \medskip
 
 \begin{theorem}\label{theorem_27}
-Let $(X,\mathfrak{M})$ be a measurable space. If $f: X \to [0,1]$ is measurable, then there is a sequence of simple functions $s_n$ on $X$ such that 
+Let $(X,\mathfrak{M})$ be a measurable space. If $f: X \to [0,\infty]$ is measurable, then there is a sequence of simple functions $s_n$ on $X$ such that 
 \begin{enumerate}[label=(\alph*)]
     \item $0 \leq s_1 \leq s_2 \leq \cdots \leq f$;
     
@@ -4530,6 +4531,143 @@ Since $C_c(\mathbb{R}^n)$ is dense in $L^p(\mathbb{R}^n)$, it suffices to show t
 Let $g \in C_c(\mathbb{R}^n)$, then $g_{\varepsilon}$ converges to $g$ in $L^p(\mathbb{R}^n)$ and $g_{\varepsilon} \in C^{\infty}_0(\mathbb{R}^n)$ (Theorem \ref{theorem_312}(a)). Since $g$ is compactly supported, uniformly convergence implies that $g_{\varepsilon}$ is also compactly supported. Hence, $C^{\infty}_0(\mathbb{R}^n) \subset C_c(\mathbb{R}^n) \subset L^p(\mathbb{R}^n)$, and since $C^{\infty}_0(\mathbb{R}^n)$ is dense in $L^p$ norm, we have $C^{\infty}_0(\mathbb{R}^n)$ is dense in $L^p(\mathbb{R}^n)$.
 \end{proof}
 
+\medskip
+
+
+
+
+\chapter{Vitali covering lemma, doubling and Hausdorff
+measures}
+
+\section{Doubling measures}
+
+If $\sigma > 0$ and $B = B(x,r)$ is a ball in a metric space,  then we denote $\sigma B$ the ball concentric with $B$ and with the radius of $\sigma r$.
+
+\medskip
+
+\begin{definition}
+Let $X$ be a metric space and $\mu$ a measure on $\mathfrak{B}(X)$. We say $\mu$ is a doubling measure if there is a constant $C_d > 0$ (called doubling constant) such that for every ball $B$, $0 \mu(B) < \infty$ and $\mu(2B) \leq C_d \mu(B)$.
+\end{definition}
+
+\medskip
+
+\begin{example}
+The Lebesgue measure is a doubling measure with $C_d = 2^n$.
+\end{example}
+
+\medskip
+
+\begin{definition}
+A metric space $X$ is said to be a metric-doubling space if there is a constant $M > 0$ such that every ball $B(x,r)$ can be covered by no more than $M$ balls of half of the radius, that is, for every $x$ and $r$, there exists $M > 0$ such that there is for some $k \leq M$ and $x_1, \cdots, x_k \in X$,
+\begin{align*}
+    B(x,r) \subset \bigcup^k_{i=1} B\left(x_i, \frac{r}{2}\right).
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{example}
+~\begin{enumerate}[label=(\alph*)]
+    \item $\mathbb{R}^n$ is metric-doubling.
+    
+    \item If $X$ is metric-doubling and $Y \subset X$, then $Y$ is also metric-doubling.
+    
+    \item If $X$ is an infinite discrete space, then $X$ is not metric-doubling, since if we take a ball of radius $1$, then it cannot be covered by finitely many balls of the radius of $1/2$.
+\end{enumerate}
+\end{example}
+
+\medskip
+
+\begin{theorem}
+Every complete metric-doubling space $X$ is boundedly compact (or proper),\footnote{(i) For example, $\mathbb{R}^n \setminus \{0\}$ is locally compact, since any point in it has a compact neighborhood. However, it is not boundedly compact, since any bounded closed set $[-\delta,0)\cup(0,\delta]$ is not compact. (ii) The infinite discrete space $X$ is locally compact, but not 
+boundedly compact, since the whole space is compact.} meaning that bounded and closed set are compact.\footnote{A space $X$ is compact if it is complete and totally bounded. A space $X$ is said to be totally bounded if for every $\varepsilon > 0$, $X$ can be covered by finitely many balls of the radius $\varepsilon$.}
+\end{theorem}
+\begin{proof}
+Let $E \subset X$ be bounded and closed. Clearly, $E$ is complete since $X$ is complete. It remains to show that $E$ is totally bounded.
+
+Note that $E \subset B(x,r)$ for some ball $B$, since $B$ is bounded. Since $X$ is metric-doubling, then $B(x,r)$ can be covered by no more than $M$ balls of radius $r/2$. Then it can be covered by no more than $M^2$ balls of radius $r/4$. Continue this process and $B(x,r)$ can be covered by no more than $M^k$ balls of radius $r/2^k$. Then, for any $\varepsilon > 0$, there exists $k$ such that $r/2^k \leq \varepsilon$, which implies $B(x,r)$ can be covered by finitely many balls of radius of $\varepsilon$. Thus, $E$ is totally bounded.
+\end{proof}
+
+\medskip
+
+\begin{corollary}
+Every bounded set in a metric-doubling space $X$ is totally bounded. Therefore, $X$ is separable.
+\end{corollary}
+
+\medskip
+
+\begin{proposition}
+If $\mu$ is a doubling measure on $X$, then $X$ is metric-doubling (and hence separable).
+\end{proposition}
+\begin{proof}
+We will prove that $M = C_d^4$ works. 
+
+For any ball $B(x,r)$, let $\{x_i\}_{i\in I} \subset B(x,r)$ be a maximal $r/2$-separated set, i.e. for all $i,j\in I$, $d(x_i,x_j) \geq r/2$ and for all $y \in B(x,r)$, there exists $i \in I$ such that $d(x_i,y) < r/2$. Clearly, $B(x,r) \subset \bigcup_{i \in I} B\left(x_i,r/2\right)$.
+
+It remains to prove that the number $M$ of elements of $I$ is no more than $C_d^4$. Clearly, the balls $B\left(x_i,r/4\right)$ are pairwise disjoint. Also, 
+\begin{align}\label{prop_51_equ1}
+    B\left(x_i,\frac{r}{4}\right) \subset B\left(x,2r\right) \subset B\left(x_i,4r\right).
+\end{align}
+Since $\mu$ is a doubling measure, we have
+\begin{align*}
+    \mu(B\left(x_i,4r\right)) \leq C_d \mu(B\left(x_i,2r\right)) \leq C_d^2 \mu(B\left(x_i,r\right)) \leq \cdots \leq C_d^4 \mu \left(B\left(x_i,\frac{r}{4}\right)\right),
+\end{align*}
+which implies $\mu \left(B\left(x_i,r/4\right)\right) \geq C_d^{-4} \mu \left(B\left(x_i,4r\right)\right)$, and by \eqref{prop_51_equ1}, we have
+\begin{align*}
+    \mu \left(B\left(x_i,2r\right)\right) \geq \sum_{i\in I} \mu\left(B\left(x_i,\frac{r}{4}\right)\right) \geq C_d^{-4} \sum_{i\in I} \mu \left(B\left(x_i,4r\right)\right) \geq C_d^{-4} M \mu \left(B\left(x,2r\right)\right).
+\end{align*}
+Thus, $M \leq C_d^4$.
+\end{proof}
+
+\medskip
+
+\begin{theorem}[{\bf Volberg-Konyagin}]
+If $X$ is a complete metric-doubling space, then there is a doubling measure on $X$.
+\end{theorem}
+
+\medskip
+
+\begin{corollary}
+If $X \in \mathbb{R}^n$ is closed, then there is a doubling measure on $X$.
+\end{corollary}
+
+\medskip
+
+\begin{theorem}
+Let $\mu$ be a doubling measure on $X$. Then there is a constant $c > 0$ such that
+\begin{align*}
+    \frac{\mu(B(x,r))}{\mu(B(x_0,r_0))} \geq c \left(\frac{r}{r_0}\right)^s, \quad s = \frac{\log C_d}{\log 2}.
+\end{align*}
+where $x \in B(x_0,r_0)$, $r \leq r_0$.
+\end{theorem}
+\begin{proof}
+Let $k$ be the largest integer such that $2^{k-1}r \leq 2r_0$ and $2^kr > 2r_0$, then $B(x_0,r_0) \subset B(x,2^kr)$. Since $\mu$ is a doubling measure, we have
+\begin{align*}
+    \mu(B(x_0,r_0)) \leq \mu \left(B\left(x,2^kr\right)\right) \leq C_d \mu \left(B\left(x,2^{k-1}r\right)\right) \leq \cdots \leq C_d^k \mu(B(x,r)),
+\end{align*}
+which implies
+\begin{align*}
+    \frac{\mu(B(x_0,r_0))}{\mu(B(x,r))} \geq C_d^{-k}.
+\end{align*}
+Since $2^{k-1}r \leq 2r_0$, $r/r_0 \leq 4 \cdot 2^{-k}$, and taking $s = \log C_d/\log 2$ implies
+\begin{align*}
+    \left(\frac{r}{r_0}\right)^s = \left(\frac{r}{r_0}\right)^{\log C_d/\log 2} \leq \underbrace{4^{\log C_d/\log 2}}_{C_d^2} \left(2^{-k}\right)^{\log C_d/\log 2} = C_d^2 C_d^{-k}.
+\end{align*}
+Thus,
+\begin{align*}
+    \frac{\mu(B(x_0,r_0))}{\mu(B(x,r))} \geq C_d^{-2} \left(\frac{r}{r_0}\right)^s.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{remark}
+If $\mu$ is the Lebesgue measure $\L_n$ in $\mathbb{R}^n$, then $s = n$ and 
+\begin{align*}
+    \frac{\mu(B(x,r))}{\mu(B(0,1))} \geq \omega_n C r^n,
+\end{align*}
+which is the sharp lower bound estimate for the Lebesgue measure of the ball. That shows that the exponent $s$ in the above inequality cannot be any smaller.
+\end{remark}
 
 
 
@@ -5440,6 +5578,165 @@ By Riesz theorem \ref{theorem_225}, there are subsequence $\{f_{n_k}\}$ such tha
 
 Let $N = N_1 \cup N_2$ and clearly, $\mu(N) = 0$. Also, for all $x \in X \setminus N$, we have $f_{n_k}(x) \to f(x)$ and $f_{n_l}(x) \to g(x)$, so $f(x) = g(x)$ for all $x \in X \setminus N, \mu(N) = 0$. Thus, $f = g$ a.e.
 \end{proof}
+
+\medskip
+
+\begin{exercise}
+Show an example of a sequence of measurable functions $f_n:[0,1]\to\mathbb{R}$ that converge to the function $f=0$ in measure but not a.e.
+\end{exercise}
+\begin{proof}
+Define a sequence $\{E_n\}$ of sets as follows:\footnote{This construction is based on an counterexample in Wikipedia \cite{34}.}
+\begin{align*}
+    E_1 & = \left[0,1\right], \\ 
+    E_2 & = \left[0,\frac{1}{2}\right], \, E_3 = \left[\frac{1}{2},1\right] \\
+    E_4 & = \left[0,\frac{1}{4}\right], \, E_5 = \left[\frac{1}{4},\frac{1}{2}\right],\, E_6 = \left[\frac{1}{2},\frac{3}{4}\right], \, E_7 = \left[\frac{3}{4},1\right] \\
+    & \cdots
+\end{align*}
+Then we can define the sequence $\{f_n\}$ of functions by $f_n(x) = \chi_{E_n}$. Hence, $f_n \xrightarrow[]{\mu} f = 0$ but does not converge to $0$ a.e. 
+
+Indeed, $f_n$ differs from $f = 0$ on an interval of length $1/2^k$ for some  $k \in \mathbb{N}$. Then, for any $\varepsilon > 0$, we have
+\begin{align*}
+    \lim_{n\to\infty} \mu\left(\left\{x \,:\, \left|f_n(x) - f(x)\right| \geq \varepsilon \right\}\right) \leq \lim_{k\to\infty} \frac{1}{2^k} = 0,
+\end{align*}
+which implies $f_n \xrightarrow[]{\mu} 0$. However, for any $x \in [0,1]$, there are infinitely many $f_n$ such that $f_n(x) = 1$, and hence $f_n$ does not converge pointwise to $0$. Thus, $f_n$ does not converge to $f$ a.e.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Show an example of a sequence $f_n: \mathbb{R} \to \mathbb{R}$ of measurable functions that converge of a function $f$ a.e. but not in measure.
+\end{exercise}
+\begin{proof}
+Define the sequence $\{f_n\}$ of functions $f_n: \mathbb{R} \to \mathbb{R}$ by $f_n = \chi_{[n,n+1]}$ for all $n \in \mathbb{N}$. Then, $f_n$ converges to $f = 0$ almost everywhere, but it does not converges in measure.
+
+Indeed, for any $x \in \mathbb{R}$, there is $N > 0$ such that $x \leq N$ which implies $f_n(x) = f = 0$ for all $n \geq N$. However, 
+\begin{align*}
+    \lim_{n\to\infty} \mu\left(\left\{x \,:\, \left|f_n(x) - f(x)\right| \geq \varepsilon \right\}\right) = 1,
+\end{align*}
+which implies $f_n$ does not converge to $f = 0$ in measure.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+Let $(X,\mu)$ be a complete measure space.
+For a function $f : X \to [0,\infty]$ defined $\mu$-a.e. on $X$, the upper integral is defined by
+$$\int^*_X f \,d\mu = \inf \int_X \phi \,d\mu,$$
+where the infimum is taken over all $\mu$-measurable functions $\phi$ satisfying $0 \leq f(x) \leq \phi(x)$ for $\mu$-a.e. $x \in X$.
+We do note require $f$ to be measurable. Clearly, for measurable functions, the upper integral coincides with the Lebesgue one.
+\end{definition}
+
+\medskip
+
+\begin{exercise}
+Prove that if $\int_X^* f \,d\mu=0$, then $f = 0$ $\mu$-a.e. and hence it is measurable.
+\end{exercise}
+\begin{proof}
+Since
+\begin{align*}
+    \int^*_X f \,d\mu = \inf \int_X \phi \,d\mu = 0,
+\end{align*}
+then for any $n \in \mathbb{N}$, there is a measurable function $\phi_n$ such that $\int_X \phi_n \,d\mu < 1/n$ and $0 \leq f(x) \leq \phi_n(x)$ for almost every $x \in X$. 
+
+Now we define $g_n(x) = \inf_{k\leq n} \phi_k(x)$. Clearly, $0 \leq f(x) \leq g_n(x)$ for almost every $x \in X$. Also, we have $\int_X g_n \,d\mu < 1/n$. Since $\{g_n\}$ is bounded below and decreasing, the sequence has a limit, denoted by $g$. By Fatou's lemma,\footnote{Also, Lebesgue dominated convergence theorem could work here.}we have
+\begin{align*}
+    \int_X g \,d\mu = \int_X \left(\liminf_{n\to\infty} g_n\right) \,d\mu \leq \liminf_{n\to\infty} \int_X g_n \,d\mu \leq \liminf_{n\to\infty} \frac{1}{n} = 0,
+\end{align*}
+which implies $g = 0$ a.e. Since $0 \leq f \leq g$, $f = 0$ for almost every $x \in X$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}[{\bf Nonmeasurable monotone convergence theorem}]
+Let $f_n: X \to [0,\infty]$ be a monotone sequence of (not necessarily measurable) functions, i.e.
+$0 \leq f_1(x) \leq f_2(x) \leq \ldots$ for $\mu$-a.e. $x \in X$. Prove that if $f(x):=\lim_{n \to \infty} f_n(x)$, then
+\begin{equation}
+    \lim_{n\to \infty} \int_X^* f_n \,d\mu = \int_X^* f \, d\mu.
+\end{equation}
+\end{exercise}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item If $\lim_{n\to\infty} f_n(x) = \infty$, the equality holds naturally.
+    
+    \item If $\lim_{n\to\infty} f_n(x) < \infty$, firstly, since $f_n(x) \leq f(x)$ for almost every $x \in X$, we have
+    \begin{align*}
+        \lim_{n\to \infty} \int_X^* f_n \,d\mu \leq \int_X^* f \,d\mu.
+    \end{align*}
+    It remains to prove that
+    \begin{align}\label{exercise_5217_equ1}
+        \lim_{n\to \infty} \int_X^* f_n \,d\mu \geq \int_X^* f \,d\mu.
+    \end{align}
+    For any $n \in \mathbb{N}$, there exists a measurable function $\phi_n$ such that $0 \leq f_n(x) \leq \phi_n(x)$ for almost every $x \in X$ and 
+    \begin{align*}
+        \int_X^* f_n \,d\mu \leq \int_X^* \phi_n \,d\mu \leq \int_X^* f_n \,d\mu + \frac{1}{n}.
+    \end{align*}
+    Now define $\varphi_n = \inf_{k\geq n} \phi_k$, clearly $\varphi_n$ is measurable. Also, $\{\varphi_n\}$ is an increasing sequence and bounded above, and hence it has a limit, denoted by $\varphi$, that is $\varphi = \lim_{n\to\infty} \varphi_n$. Note that
+    \begin{align*}
+        0 \leq f = \lim_{n\to\infty} f_n \leq \lim_{n\to\infty} \phi_n \leq \varphi,
+    \end{align*}
+    then by monotone convergence theorem, we have
+    \begin{align*}
+        \int_X^* f \,d\mu \leq \int_X^* \varphi \,d\mu = \lim_{n\to\infty} \int_X^* \varphi_n \,d\mu \leq \lim_{n\to\infty} \int_X^* \phi_n \,d\mu \leq \lim_{n\to\infty} \left(\int_X^* f_n \,d\mu + \frac{1}{n}\right).
+    \end{align*}
+    As $n \to \infty$, \eqref{exercise_5217_equ1} holds.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{definition}
+We say $\phi:X \to [0,\infty]$ is a \textit{step function} if it is $\mu$-measurable and attains at most countably many values (we allow infinite values). That is, $\phi$ is a step function if there exist  disjoint $\mu$-measurable subsets $A_i \subset X $ and $0 \leq a_i \leq \infty $ such that
+$$
+\phi(x) = \sum_{i=1}^\infty a_i \chi_{A_i}(x).
+$$
+Note that the difference with the definition of a simple function is that a simple function is finite and has only finitely many values.
+\end{definition}
+
+\medskip
+
+\begin{exercise}
+Let $f:X \to [0,\infty]$ be any function. Prove that
+$$
+\int^*_X f \,d\mu = \inf \int_X \varphi \,d\mu,
+$$
+where the infimum is over all step functions $\varphi$ satisfying
+$0 \leq f(x) \leq \varphi(x)$ for all $x\in X$.
+\end{exercise}
+\begin{proof}
+By the definition of upper integral, there exists a measurable function $\phi: X \to [0,\infty]$ such that $\int^*_X f \,d\mu = \int_X \phi \,d\mu$. It suffices to show that $\int_X \phi \,d\mu = \inf \int_X \varphi \,d\mu$ where the infimum is taken over all step functions $\varphi$ such that $0 \leq f(x) \leq \varphi(x)$ for all $x \in X$.
+\begin{enumerate}[label=(\alph*)]
+    \item For $\int^*_X f \,d\mu = \infty$, the equality holds naturally.
+    
+    \item For $\int^*_X f \,d\mu < \infty$. By a proposition in Gustav Holzegel's {\em Measure and Integral} \cite{35}: Let $s = \sum^n_{i=1} \alpha_i \chi_{A_i}$ be a simple function with $\mu(A_i) < \infty$. For any $\varepsilon > 0$, there is a step function $\varphi$ such that 
+    \begin{align*}
+        \mu\left(\left\{x \,:\, \varphi(x) \neq s(x)\right\}\right) < \varepsilon.
+    \end{align*}
+    Thus, any simple function can be approximated by a step function, and any measurable function can be approximated by a simple function, then we are done.
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \begin{appendices}
