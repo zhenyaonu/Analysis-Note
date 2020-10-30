@@ -3751,7 +3751,7 @@ Recall the definition of a metric space.
 \begin{definition}
 A set $X$, whose elements we call points, is said to be a metric space if with any two points $x$ and $y$ of $X$ there is associated a real number $d(x,y): \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}$ called the distance from $x$ to $y$, which is defined as 
 \begin{align*}
-    d(x,y) = \left\|x - z\right\|
+    d(x,y) = \left\|x - z\right\|,
 \end{align*}
 which has the following properties
 \begin{enumerate}[label=(\alph*)]
@@ -4536,8 +4536,7 @@ Let $g \in C_c(\mathbb{R}^n)$, then $g_{\varepsilon}$ converges to $g$ in $L^p(\
 
 
 
-\chapter{Vitali covering lemma, doubling and Hausdorff
-measures}
+\chapter{Doubling and Hausdorff measures}
 
 \section{Doubling measures}
 
@@ -4590,13 +4589,13 @@ Note that $E \subset B(x,r)$ for some ball $B$, since $B$ is bounded. Since $X$ 
 
 \medskip
 
-\begin{corollary}
+\begin{corollary}\label{coro_511}
 Every bounded set in a metric-doubling space $X$ is totally bounded. Therefore, $X$ is separable.
 \end{corollary}
 
 \medskip
 
-\begin{proposition}
+\begin{proposition}\label{prop_51}
 If $\mu$ is a doubling measure on $X$, then $X$ is metric-doubling (and hence separable).
 \end{proposition}
 \begin{proof}
@@ -4668,6 +4667,144 @@ If $\mu$ is the Lebesgue measure $\L_n$ in $\mathbb{R}^n$, then $s = n$ and
 \end{align*}
 which is the sharp lower bound estimate for the Lebesgue measure of the ball. That shows that the exponent $s$ in the above inequality cannot be any smaller.
 \end{remark}
+
+\medskip
+
+\section{Covering lemmas}
+
+\begin{theorem}[{\bf $5r$-covering lemma}]\label{theorem_54}
+Let $\mathcal{F}$ be a family of balls in a metric space $X$ such that $\sup_{B \in \mathcal{F}} \diam B < \infty$, then there is a subfamily $\mathcal{F}' \subset \mathcal{F}$ of pairwise disjoint balls such that for all $B \in \mathcal{F}$, there is $B' \in \mathcal{F}'$ which satisfy $B \cap B' \neq \emptyset$ and $B \subset 5B'$. In particular,
+\begin{align*}
+    \bigcup_{B \in \mathcal{F}} B \subset \bigcup_{B' \in \mathcal{F}'} 5B'.
+\end{align*}
+In particular, if $X$ is separable, then $\mathcal{F}'$ is countable and hence we can arrange it as a sequence $\mathcal{F}' = \{B_i\}^\infty_{i=1}$. Therefore,
+\begin{align*}
+        \bigcup_{B \in \mathcal{F}} B \subset \bigcup^\infty_{i=1} 5B_i.
+    \end{align*}
+\end{theorem}
+
+\begin{remark}
+Balls in $\mathcal{F}$ are all open or closed. In both cases the proof is the same.
+\end{remark}
+
+\begin{proof}
+Let $R = \sup_{B \in \mathcal{F}} \diam B$, and 
+\begin{align*}
+    \mathcal{F}_j = \left\{B \in \mathcal{F} \,:\, \frac{R}{2^j} < \diam B \leq \frac{R}{2^{j-1}} \right\}.
+\end{align*}
+Clearly, $\mathcal{F} = \bigcup^\infty_{j=1} \mathcal{F}_j$. We select $\mathcal{F}_j' \subset \mathcal{F}_j$ by induction. 
+
+Let $\mathcal{F}_1' \subset \mathcal{F}_1$ be any maximal subfamily of pairwise disjoint balls in $\mathcal{F}_1$, that is, for any $B \in \mathcal{F}_1 \setminus \mathcal{F}_1'$, $B \cap B' \neq \emptyset$ for some $B' \in \mathcal{F}_1'$. Suppose the family $\mathcal{F}_1' \subset \mathcal{F}_1, \cdots, \mathcal{F}_{j-1}' \subset \mathcal{F}_{j-1}$ are defined. Then we want to define $\mathcal{F}_j'$. Let 
+\begin{align*}
+    \widetilde{\mathcal{F}}_j = \left\{ B \in \mathcal{F}_j \,:\, B \cap B' = \emptyset \,\, \text{for all} \,\, B' \in \bigcup^{j-1}_{i=1} \mathcal{F}_i' \right\},
+\end{align*}
+and let $\mathcal{F}_j' \subset \widetilde{\mathcal{F}}_j$ be the maximal family of pairwise disjoint balls. 
+
+Now define $\mathcal{F}' = \bigcup^\infty_{j=1} \mathcal{F}_j'$. For any $B \in \mathcal{F}$, $B \in \mathcal{F}_j$ for some $j$, and hence there exists $B' \subset \bigcup^{j}_{i=1} \mathcal{F}_i'$ such that $B \cap B' \neq \emptyset$, otherwise we could add $B$ to $\mathcal{F}_j'$ and make the family larger. Then,
+\begin{align*}
+    \diam B \leq \frac{R}{2^{j-1}} = 2 \cdot \frac{R}{2^j} \leq 2 \, \diam B',
+\end{align*}
+and hence $B \subset 5B'$. Indeed, let $B'$ be denoted by $B'(x,r)$ and $\diam B \leq 2r$. Also, let $z \in B \cap B'$. For any $y \in B$, if $\mathcal{F}$ is the family of open balls, then we have\footnote{If $\mathcal{F}$ is the family of closed balls, then
+\begin{align*}
+    d(x,y) \leq d(x,z) + d(z,y) \leq r + \diam B \leq 5r,
+\end{align*}
+which implies $y \in \overline{B}(x,5r)$. Since $B' = \overline{B}(x,r)$, $\overline{B}(x,5r) = 5B'$. $B \subset 5B'$ still holds.}
+\begin{align*}
+    d(x,y) \leq d(x,z) + d(z,y) < r + \diam B \leq r + 2\, \underbrace{\diam B'}_{\leq \, 2r} \leq 5r.
+\end{align*}
+Thus, $B \subset 5B'$.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+Let $\mathcal{F}$ be a family of balls in a metric space $X$. We say that $\mathcal{F}$ is a fine covering (or Vitali covering) of a subset $A \subset X$ if for every $x \in A$ and every $\varepsilon > 0$, there is a ball $B \in \mathcal{F}$ such that $x \in B \subset B(x,\varepsilon)$. In other words, for every $x \in A$,
+\begin{align*}
+    \inf \{\diam B \,:\, x \in B \in \mathcal{F}\} = 0.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{corollary}\label{coro_541}
+Let $\mathcal{F}$ be a family of closed balls in $X$ such that $\sup_{B \in \mathcal{F}} \diam B < \infty$, that is a Vitali covering of $A \subset X$. If $\mathcal{F}' \subset \mathcal{F}$ is a subcovering as in the $5r$-covering lemma, then for any $B_1', \cdots, B_N' \in \mathcal{F}'$,
+\begin{align*}
+    A \subset \bigcup^N_{j=1} B_j' \cup \bigcup_{B' \in \mathcal{F} \setminus \widetilde{B}} 5B',
+\end{align*}
+where $\widetilde{B} = \{B_1',\cdots,B_N'\}$.
+\end{corollary}
+\begin{proof}
+Take $x \in A \setminus \bigcup^N_{j=1} B_j'$. Since $B_j'$ are closed balls, then there exists $\varepsilon > 0$ such that $B(x,\varepsilon) \cap B_j' = \emptyset$ for all $j = 1,2,\cdots,N$. Since $\mathcal{F}$ is a Vitali covering, then there is a ball $B \in \mathcal{F}$ such that $x \in B \subset B(x,\varepsilon)$. Clearly, $B \cap B_j' = \emptyset$ for all $j = 1,2,\cdots,N$. By $5r$-covering lemma \ref{theorem_54}, there exists $B' \subset \mathcal{F}'$ such that $B \cap B' \neq \emptyset$ and $x \in B \subset 5B'$. Clearly, $B' \neq B_j'$ for all $j = 1,2,\cdots,N$, i.e. $B' \in \mathcal{F}' \setminus \widetilde{B}$. Thus, $A \setminus \bigcup^N_{j=1} B_j' \subset \bigcup_{B' \in \mathcal{F} \setminus \widetilde{B}} 5B'$, and the result follows.
+\end{proof}
+
+\section{Vitali covering theorem}
+
+Recall Lemma \ref{lemma_13}, and we present some generalization of this lemma to the metric space and arbitrary doubling measure.
+
+\medskip
+
+\begin{theorem}[{\bf Vitali covering theorem}]
+Let $\mu$ be a doubling measure on $X$ and $A \subset X$ a measurable set. Let $\mathcal{F}$ be a family of closed balls that covers $A$ in the Vitali sense. Then there is a subfamily $\mathcal{F}' \subset \mathcal{F}$ of pairwise disjoint balls such that
+\begin{align*}
+    \mu \left(A \setminus \bigcup_{B \in \mathcal{F}'} B\right) = 0.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Removing balls of radius greater than $1$ in $\mathcal{F}$ does not change the fact that $\mathcal{F}$ remains a Vitali covering. So, let $\mathcal{F}$ be a family of closed balls $B$ with radius less than $1$, i.e., $\diam B \leq 2$. By $5r$-covering lemma \ref{theorem_54}, we can let $\mathcal{F}' \subset \mathcal{F}$ be a subfamily of pairwise disjoint balls such that 
+\begin{align*}
+    A \subset \bigcup_{B \in \mathcal{F}} B \subset \bigcup_{B' \in \mathcal{F}'} 5B'.
+\end{align*}
+
+It suffices to prove that for any ball $Q$ of radius greater than $1$,
+\begin{align*}
+    \mu \left(Q \cap \left(A \setminus \bigcup_{B \in \mathcal{F}'} B\right)\right) = 0.
+\end{align*}
+Note than $\mathcal{F}'$ is a countable family, since $X$ is separable by Proposition \ref{prop_51} and Corollary \ref{coro_511}. In particular, the set $\left\{B \in \mathcal{F}' \,:\, B \subset 10Q \right\}$ is countable and hence it can be written as a sequence $\{B_i\}^\infty_{i=1}$. 
+
+Now, since $\mu$ is a doubling measure and $B_i$ are disjoint and contained in $10Q$, we have
+\begin{align*}
+    \sum^\infty_{i=1} \mu(5B_i) \leq c \sum^\infty_{i=1} \mu(B_i) \leq c \mu(10Q) < \infty,
+\end{align*}
+which implies
+\begin{align*}
+    \mu\left(\bigcup^\infty_{i=N+1} 5B_i\right) \leq \sum^\infty_{i=N+1} \mu(5B_i) \xrightarrow[]{N\to\infty} 0.
+\end{align*}
+By Corollary \ref{coro_541},\footnote{This is why we need $\mathcal{F}$ to be a family of closed balls.}
+\begin{align*}
+    A \subset \left(\bigcup^N_{i=1} B_i \right) \cup \left(\bigcup_{B \in \widetilde{B}} 5B\right),
+\end{align*}
+where $\widetilde{B} = \mathcal{F}' \setminus \{B_1,\cdots,B_N\}$. Then,
+\begin{align*}
+    Q \cap A \subset \left(\bigcup^N_{i=1} B_i \right) \cup \left(\bigcup_{B \in \widetilde{B}} 5B\right).
+\end{align*}
+If $B \in \mathcal{F}'$ but $B \not\subset 10Q$, $5B \cap Q = \emptyset$, and hence $5B \cap (Q \cap A) = \emptyset$. And such balls $B$ can be removed from $\widetilde{B}$. Also, $B$ that is in $\widetilde{B}$ but does not satisfies $B \not\subset 10Q$ is exactly in $\{B_i\}^\infty_{i=N+1}$, which implies
+\begin{align*}
+    Q \cap A \subset \left(\bigcup^N_{i=1} B_i \right) \cup \left(\bigcup^\infty_{i=N+1} 5 B_i\right).
+\end{align*}
+Therefore,
+\begin{align*}
+    (Q \cap A) \setminus \left(\bigcup^\infty_{i=1} B_i \right) \subset (Q \cap A) \setminus \left(\bigcup^N_{i=1} B_i \right) \subset \bigcup^\infty_{i=N+1} 5 B_i,
+\end{align*}
+and hence
+\begin{align*}
+    \mu \left((Q \cap A) \setminus \left(\bigcup^\infty_{i=1} B_i \right) \right) \leq \sum^\infty_{i=N+1} \mu(5B_i) \xrightarrow[]{N\to\infty} 0.
+\end{align*}
+Since $Q \cap \left(A \setminus \bigcup^\infty_{i=1} B_i\right) = (Q \cap A) \setminus \left(\bigcup^\infty_{i=1} B_i \right)$ and $B_j \in \mathcal{F}'$, we finally have
+\begin{align*}
+    \mu \left(Q \cap \left(A \setminus \bigcup_{B \in \mathcal{F}'} B\right)\right) = 0,
+\end{align*}
+which completes the proof.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
 
 
 
