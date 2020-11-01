@@ -119,7 +119,7 @@
 \def\L{{\mathcal L}}
 \def\diam{{\operatorname{diam}\,}}
 \def\co{{\overline{\operatorname{co}}\,}}
-\def\dist{{\operatorname{dist}}}
+\def\dist{{\operatorname{dist}\,}}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -1396,7 +1396,7 @@ and $\H^s(E) = \H^s (\widetilde{E})$.
 \begin{proof}
 Note that $\widetilde{E}$ is $G_\delta$ set and hence Borel.
 
-If $\H^s(E) = \infty$, take $v_i = X$ for all $I \in \mathbb{N}$ would yield the statement.
+If $\H^s(E) = \infty$, take $V_i = X$ for all $i \in \mathbb{N}$ would yield the statement.
 
 If $\H^s(E) < \infty$, by Proposition \ref{prop_15}, we can taking coverings by open sets in the definition of $\H^s$. So, we could find a covering $\{U_{i_j}\}$ such that
 \begin{align*}
@@ -4210,11 +4210,23 @@ To apply Fubini theorem, we first prove that the function $F$ defined by
 \begin{align*}
     F(x,y) = \left|f(x-y)g(y)\right|
 \end{align*}
-is measurable on $\mathbb{R}^{2n}$. Define $\varphi, \psi: \mathbb{R}^{2n} \to \mathbb{R}^n$ by 
+is measurable on $\mathbb{R}^{2n}$.
+
+First, we prove that $h(x,y) = f(x-y)$ is measurable. Let $g: \mathbb{R}^{2n} \to \mathbb{R}^{n}$ be defined as $g(x,y) = x - y$. Then, $h(x,y) = f \circ g(x,y)$. Clearly, $g$ is a continuous function, and hence a Borel mapping. Now let $E$ be a measurable set in $\mathbb{R}$, then it suffices to prove that $h^{-1}(E) = g^{-1} \circ f^{-1}(E)$ is a measurable set in $\mathbb{R}^{2n}$. Since $F = f^{-1}(E)$ is measurable, then it suffices to prove that $g^{-1}(F)$ is measurable whenever $F \subset \mathbb{R}^n$ is measurable. This is true when $F$ is Borel, since $g$ is continuous. Also, any measurable set can be written as a sum of a Borel set and a set of zero outer zero measure. 
+    
+Let $E = \{x \in \mathbb{R}^n \,:\, f(x) < a\}$ for any $a \in \mathbb{R}$ and $\widetilde{E} = \{(x,y) \,:\, x - y \in E\}$. Clearly, $\widetilde{E} = g^{-1}(E)$. It remains to prove that for any $U \subset \mathbb{R}^n$, if $\mu(U) = 0$, then $\mu(\widetilde{U}) = 0$. Let $\widetilde{E}_k = \widetilde{E} \cap B_k$ and $B_k = \{(x,y) \,:\, \left|y\right| < k\}$. Let $U$ be open in $\mathbb{R}^n$, then we have
 \begin{align*}
-    \varphi(x,y) = x - y, \quad \psi(x,y) = y.
+    \chi_{\widetilde{U} \cap B_k} = \chi_{U}(x-y) \chi_{B_k}(y),
 \end{align*}
-Then $f(x-y) = (f \circ \varphi)(x,y)$ and $g(x,y) = (g \circ \psi)(x,y)$. Since $\varphi$ and $\psi$ are Borel functions, by Theorem \ref{theorem_23}, $f \circ \varphi$ and $g \circ \psi$ are also measurable. So is their product, see Remark \ref{remark_22}(c). Hence, by Remark \ref{remark_22}(b), $F(x,y)$ is measurbale.
+where $\widetilde{U}$ is defined like $\widetilde{E}$ before, and hence, by Fubini theorem, we have
+\begin{align*}
+    \mu\left(\widetilde{U} \cap B_k\right) & = \int_{\mathbb{R}^{2n}} \chi_{U}(x-y) \chi_{B_k}(y) \,dy dx \\
+    & = \int_{\mathbb{R}^{n}} \left(\int_{\mathbb{R}^{n}} \chi_{U}(x-y) \,dx\right) \chi_{B_k}(y) \,dy \\
+    & = \mu(U) \mu(B_k).
+\end{align*}
+If $\mu(E) = 0$, then there is a sequence of open set $U_n$ such that $E \subset U_n$ and $\mu(U_n) \to 0$. Then we have $\widetilde{E}_k \subset \widetilde{U}_n \cap B_k$  and hence $\mu(\widetilde{U}_n \cap B_k) \to 0$ as $n \to \infty$ for every $k$. This proves $\mu(\widetilde{E}_k) = 0$, and hence $\mu(\widetilde{E}) = 0$. Now we proved that $g$ takes zero measure set into zero measure set. Hence, $h(x,y)$ is measurable.
+
+Second, we could easily see that $f(x-y)g(y)$ is a measurable function on $\mathbb{R}^{2n}$ and hence $\left|f(x-y)g(y)\right|$ is also measurable.
 
 Now by Fubini theorem \ref{theorem_37},
 \begin{align*}
