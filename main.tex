@@ -1143,7 +1143,7 @@ $\mathcal{H}^s$ is countable additive measure on the class of all Borel sets $\m
 
 \medskip
 
-\begin{exercise}\label{exercise_12}
+\begin{exercise}\label{exercise_151}
 Prove that
 \begin{enumerate}[label=(\alph*)]
     \item if $\mathcal{H}^s(E) < \infty$, then $\mathcal{H}^t(E) = 0$ for all $t > s$;
@@ -1180,13 +1180,13 @@ This exercise implies that at most one $s \geq 0$ such that $\mathcal{H}^s(E) < 
 \medskip
 
 \begin{definition}
-The Hausdorff dimension is defined as follows. If $\mathcal{H}^s(E) > 0$ for all $s \geq 0$, then $\dim_{\mathcal{H}}(E) = \infty$ (in this case, $\mathcal{H}^s(E) = \infty$ for all $s \geq 0$). Otherwise, we define
+The Hausdorff dimension is defined as follows. If $\mathcal{H}^s(E) > 0$ for all $s \geq 0$, then $\dim_{H}(E) = \infty$ (in this case, $\mathcal{H}^s(E) = \infty$ for all $s \geq 0$). Otherwise, we define
 \begin{align*}
-    \dim_{\mathcal{H}}(E) = \inf \{s \geq 0\, :\, \mathcal{H}^s(E) = 0 \}.
+    \dim_{H}(E) = \inf \{s \geq 0\, :\, \mathcal{H}^s(E) = 0 \}.
 \end{align*}
 \end{definition}
 
-It follows from the Exercise \ref{exercise_12} that there is $s \in [0,\infty]$ such that $\mathcal{H}^t(E) = 0$ for $t > s$ and $\mathcal{H}^t(E) = \infty$ for $0 < t < s$. Then, the Hausdorff dimension of $E$ equals $s$.
+It follows from the Exercise \ref{exercise_151} that there is $s \in [0,\infty]$ such that $\mathcal{H}^t(E) = 0$ for $t > s$ and $\mathcal{H}^t(E) = \infty$ for $0 < t < s$. Then, the Hausdorff dimension of $E$ equals $s$.
 
 \medskip
 
@@ -1223,7 +1223,7 @@ Next, we show a result regarding to the Hausdorff  dimension of the Cantor set.
 \medskip
 
 \begin{exercise}\label{exe_13}
-Let $\CC \subset [0,1]$ be the ternary Cantor set. Prove that $\dim_{\H}(\CC) \leq \log 2/\log 3$.
+Let $\CC \subset [0,1]$ be the ternary Cantor set. Prove that $\dim_{H}(\CC) \leq \log 2/\log 3$.
 \end{exercise}
 \begin{proof}
 Cantor set $\CC$ can be covered by $1$ segment of length $1$, or $2$ segments of length $1/3$, or $4$ segments of length $1/3^2$, $\cdots$, or $2^n$ segments of length $3^{-n}$ and so on. Let $s = \log 2/\log 3$, then by the definition of $\H^s_{\varepsilon}$, we have
@@ -1234,12 +1234,12 @@ Note that $3^s = \left(e^{\log 3}\right)^{\log 2/\log 3} = 2$ and $\left(3^{-n}\
 \begin{align*}
     \H^s_{3^{-n}}(\CC) \leq \frac{\omega_s}{2^s} 2^n \left(3^{-n}\right)^s = \frac{\omega_s}{2^s},
 \end{align*}
-letting $n \to \infty$ implies $\H^s(\CC) \leq \omega_s / 2^s$. Thus, $\dim_{\H}(\CC) \leq \log 2/\log 3$.
+letting $n \to \infty$ implies $\H^s(\CC) \leq \omega_s / 2^s$. Thus, $\dim_{H}(\CC) \leq \log 2/\log 3$.
 \end{proof}
 
 \medskip
 
-Furthermore, $\dim_{\H}(\CC) = \log 2/\log 3$. It follows from the following theorem.
+Furthermore, $\dim_{H}(\CC) = \log 2/\log 3$. It follows from the following theorem.
 
 \medskip
 
@@ -1263,7 +1263,7 @@ Let's introduce von Koch snowflake $K$ show as below:\footnote{Figure source: \u
 
 Then $K$ is homeomorphic to the circle $S^1$. For $s = \log/\log 3$, then we have $0 < \H^s(K) < \infty$ and in fact,
 \begin{align*}
-    \dim_{\H}(K) = \frac{\log 4}{\log 3}.
+    \dim_{H}(K) = \frac{\log 4}{\log 3}.
 \end{align*}
 \end{example}
 
@@ -4557,12 +4557,12 @@ If $\sigma > 0$ and $B = B(x,r)$ is a ball in a metric space,  then we denote $\
 \medskip
 
 \begin{definition}
-Let $X$ be a metric space and $\mu$ a measure on $\mathfrak{B}(X)$. We say $\mu$ is a doubling measure if there is a constant $C_d > 0$ (called doubling constant) such that for every ball $B$, $0 \mu(B) < \infty$ and $\mu(2B) \leq C_d \mu(B)$.
+Let $X$ be a metric space and $\mu$ a measure on $\mathfrak{B}(X)$. We say $\mu$ is a doubling measure if there is a constant $C_d > 0$ (called doubling constant) such that for every ball $B$, $0 < \mu(B) < \infty$ and $\mu(2B) \leq C_d \mu(B)$.
 \end{definition}
 
 \medskip
 
-\begin{example}
+\begin{example}\label{example_51}
 The Lebesgue measure is a doubling measure with $C_d = 2^n$.
 \end{example}
 
@@ -4644,11 +4644,11 @@ If $X \in \mathbb{R}^n$ is closed, then there is a doubling measure on $X$.
 
 \medskip
 
-\begin{theorem}
-Let $\mu$ be a doubling measure on $X$. Then there is a constant $c > 0$ such that
-\begin{align*}
-    \frac{\mu(B(x,r))}{\mu(B(x_0,r_0))} \geq c \left(\frac{r}{r_0}\right)^s, \quad s = \frac{\log C_d}{\log 2}.
-\end{align*}
+\begin{theorem}\label{theorem_53}
+Let $\mu$ be a doubling measure on $X$. Then there is a constant $C > 0$ such that
+\begin{align}\label{theorem_53_equ1}
+    \frac{\mu(B(x,r))}{\mu(B(x_0,r_0))} \geq C \left(\frac{r}{r_0}\right)^s, \quad s = \frac{\log C_d}{\log 2}.
+\end{align}
 where $x \in B(x_0,r_0)$, $r \leq r_0$.
 \end{theorem}
 \begin{proof}
@@ -4775,7 +4775,7 @@ Note than $\mathcal{F}'$ is a countable family, since $X$ is separable by Propos
 
 Now, since $\mu$ is a doubling measure and $B_i$ are disjoint and contained in $10Q$, we have
 \begin{align*}
-    \sum^\infty_{i=1} \mu(5B_i) \leq c \sum^\infty_{i=1} \mu(B_i) \leq c \mu(10Q) < \infty,
+    \sum^\infty_{i=1} \mu(5B_i) \leq C \sum^\infty_{i=1} \mu(B_i) \leq C \mu(10Q) < \infty,
 \end{align*}
 which implies
 \begin{align*}
@@ -4808,9 +4808,126 @@ Since $Q \cap \left(A \setminus \bigcup^\infty_{i=1} B_i\right) = (Q \cap A) \se
 which completes the proof.
 \end{proof}
 
+\medskip
 
 
 
+
+
+\section{Doubling measures and the Hausdorff measures}
+
+We will present how to use the covering lemmas to prove important results about Hausdorff measures.
+
+\medskip
+
+\begin{example}
+Recall Example \ref{example_51} that if the measure is Legusgue measure $\mu$, then $C_d = 2^n$, and $s = \log C_d/\log 2 = n$, the dimension of $\mathbb{R}^n$.
+\end{example}
+
+\medskip
+
+\begin{theorem}
+Let $\mu$ be a doubling measure on $X$, that is $\mu(2B) \leq C_d \mu(B)$ for every ball $B \subset X$ and $s = \log C_d/\log 2$ as above, then 
+\begin{align*}
+    \dim_{H}(X) \leq s.
+\end{align*}
+\end{theorem}
+\begin{proof}
+It suffices to prove that $\H^s(B) < \infty$ for every ball $B \subset X$, since by Exercise \ref{exercise_151}, $\H^t(B) = 0$ for all $t > s$ and this implies that $\H^t(X) = 0$ for all $t > s$.\footnote{$X$ can be covered by countable union of balls $B$.}Hence, this implies $\dim_H(X) = \inf\{t > 0 \,:\, \H^t(X) = 0\} \leq s$.
+
+Let $B = B(x_0,R)$ be a ball, by Theorem \ref{theorem_53}, there is a constant $a > 0$ such that for every $x \in B$ and $r < R$, $\mu(B(x,r)) \geq a r^s$.\footnote{Take $a = c \mu(B(x_0,R))R^{-s}$ in \eqref{theorem_53_equ1} and $a$ is independent of $x$ and $r$.}
+
+For fixed $0 < \delta < R$. Let $\{x_i\}_{i\in I} \subset B$ be a maximal $\delta/2$-separated set, i.e. $d(x_i,x_j) \geq \delta/2$ for all $i \neq j$ and for every $x \in B$, there is $i \in I$ such that $d(x,x_i) < \delta/2$. Therefore, the balls $B(x_i,\delta/4)$ are pairwise disjoint, contained in $2B$ and $B \subset \bigcup_{i\in I}B(x_i,\delta/2) \subset 2B$. Now we estimate the number $n$ of elements in $I$, 
+\begin{align*}
+    \mu(2B) \geq \sum_{i\in I} \mu\left(B\left(x_i, \frac{\delta}{4}\right)\right) \geq \sum_{i\in I} a \left(\frac{\delta}{4}\right)^s = n a 4^{-s} \delta^s,
+\end{align*}
+and hence
+\begin{align*}
+    n \leq \mu(2B) a^{-1} 4^s \delta^{-s}.
+\end{align*}
+Let $b = \mu(2B) a^{-1} 4^s$ and clearly $b$ does not depend on $\delta$. Also, $B \subset \bigcup_{i\in I}B(x_i,\delta/2)$ is a covering of balls with $\diam B(x_i,\delta/2) \leq \delta$, and hence
+\begin{align*}
+    \H^s_\delta(B) \leq \frac{\omega_s}{2^s} \sum_{i\in I} \left(\diam B\left(x_i, \frac{\delta}{2}\right)\right)^s \leq \frac{\omega_s}{2^s} n \delta^s \leq \frac{\omega_n}{2^s}b.
+\end{align*}
+Thus,
+\begin{align*}
+    \H^s(B) = \lim_{\delta\to 0^+} \H^s_\delta(B) \leq \frac{\omega_n}{2^s}b < \infty.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{definition}
+We say that a measure $\mu$ defined on the class $\mathfrak{B}(X)$ of Borel sets in the metric space $X$ is $s$-regular (or Ahlfors regular) if there is a constant $C \geq 1$ such that for all $x \in X$ and all $0 < r < \diam X$,
+\begin{align*}
+    C^{-1}r^s \leq \mu(B(x,r)) \leq Cr^s.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+Let $\mu$ be $s$-regular on $X$. Then there are constants $C_1, C_2 > 0$ such that
+\begin{align*}
+    C_1 \mu(E) \leq \H^s(E) \leq C_2 \mu(E),
+\end{align*}
+for all $E \in \mathfrak{B}(X)$. In particular, $\H^s$ is $s$-regular.
+\end{theorem}
+\begin{proof}
+First we prove that there is a constant $C_1$ such that $C_1 \mu(E) \leq \H^s(E)$ for every Borel set $E$. We can assume that $\H^s(E) < \infty$. Since every bounded set $A$ is contained in a ball of radius $\diam A$, then $\mu(A) \leq 
+\widetilde{C} (\diam A)^s$ by the $s$-regularity of the measure. For any $\varepsilon > 0$, let $E \subset \bigcup^\infty_{i=1} A_i$ be any covering by closed set $A_i$ such that 
+\begin{align*}
+    \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\diam A_i)^s \leq \H^s_\infty(E) + \varepsilon \leq \H^s(E) + \varepsilon.
+\end{align*}
+Then,
+\begin{align*}
+    \mu(E) & \leq \mu \left(\sum^\infty_{i=1} A_i\right) \leq \sum^\infty_{i=1} \mu(A_i) \leq \widetilde{C} \sum^\infty_{i=1} (\diam A)^s \\
+    & = \widetilde{C} \frac{2^s}{\omega_s} \frac{\omega_s}{2^s} \sum^\infty_{i=1} (\diam A)^s \leq \widetilde{C} \frac{2^s}{\omega_s} (\H^s(E) + \varepsilon),
+\end{align*}
+and letting $\varepsilon \to 0$ gives
+\begin{align*}
+    \mu(E) \leq \widetilde{C} \frac{2^s}{\omega_s} \H^s(E),
+\end{align*}
+and hence $C_1 \mu(E) \leq \H^s(E)$, where $C_1 = \widetilde{C}^{-1} \omega_s/2^s$.
+
+\medskip
+
+To prove the opposite inequality, we need a lemma.
+
+\medskip
+
+\begin{lemma}\label{lemma_51}
+Let $\mu$ be $s$-regular on a metric space $X$. Then there is a constant $M > 0$ such that for every ball $B$ of radius $R$ and for any $r < R$, the ball $B$ can be covered by no more than $M(R/r)^s$ balls of radius $r$. (Note that if $r = R/2$, then $X$ is a metric-doubling space.)
+\end{lemma}
+\begin{proof}
+Let $\{x_i\}_{i \in I} \subset B$ be a maximal $r$-separated set and denote $n$ the numbers of elements of $I$. It suffices to prove that $n \leq M(R/r)^s$. Since $\mu$ is $s$-regular, then
+\begin{align*}
+    C(2R)^s \geq \mu(2B) \geq \sum_{i\in I} \mu\left(B\left(x_i, \frac{r}{2}\right)\right) \geq n C^{-1} \left(\frac{r}{2}\right)^s,
+\end{align*}
+and hence
+\begin{align*}
+    n \leq C^2 4^s \left(\frac{R}{r}\right)^s.
+\end{align*}
+Letting $M = C^2 4^s$ proves the lemma.
+\end{proof}
+
+\medskip
+
+The lemma implies that $\H^s_\delta(B) \leq C' \mu(B)$ for any ball $B$ of radius $R$. Indeed, $B$ can be covered by no more than $M(R/r)^s$ balls of radius $r$ such that $2r < \delta$, and since $\mu$ is $s$-regular, we have for some constant $C'$,
+\begin{align*}
+    \H^s_\delta(B) \leq \frac{\omega_s}{2^s} M \left(\frac{R}{r}\right)^s (2r)^s = \omega_s M R^s \leq C' \mu(B).
+\end{align*}
+Since $C'$ is independent of $\delta$, we have
+\begin{align*}
+    \H^s(B) = \lim_{\delta\to 0^+} \H^s_\delta(B) \leq C' \mu(B).
+\end{align*}
+
+Now we prove that for any open $U \subset X$, $\H^s(U) \leq C'' \mu(U)$. It follows from Lemma \ref{lemma_51} and Proposition \ref{prop_51} that $X$ is separable, then by $5r$-covering lemma, we can find disjoint balls $B_i \subset U$ such that $U \subset \bigcup^\infty_{i=1} 5B_i$ with $\diam B_i < 1$. Thus,
+\begin{align*}
+    \H^s(U) \leq \sum^\infty_{i=1} \H^s(5B_i) \leq C' \sum^\infty_{i=1} \mu(5B_i) \leq C'' \sum^\infty_{i=1} \mu(B_i) \leq C'' \mu(U),
+\end{align*}
+which implies $\H^s(E) \leq C'' \mu(E)$ for any $E \in \mathfrak{B}(X)$, since $\H^s(E) = \inf_{E \subset U}\H^s(U)$ and $\mu(E) = \inf_{E \subset U} \mu(U)$.
+\end{proof}
 
 
 
@@ -4929,7 +5046,7 @@ Show that
 \end{enumerate}
 \end{exercise}
 \begin{proof}
-It has been proved in Exercise \ref{exercise_12}, section \ref{hausdorff_measure}.
+It has been proved in Exercise \ref{exercise_151}, section \ref{hausdorff_measure}.
 \end{proof}
 
 \medskip
@@ -4944,7 +5061,7 @@ It has been proved in Proposition \ref{proposition_110}.
 \medskip
 
 \begin{exercise}
-Let $\CC \subset [0,1]$ be the ternary Cantor set. Prove that $\dim_{\H}(\CC) \leq \log 2/\log 3$.
+Let $\CC \subset [0,1]$ be the ternary Cantor set. Prove that $\dim_{H}(\CC) \leq \log 2/\log 3$.
 \end{exercise}
 \begin{proof}
 Cantor set $C$ can be covered by $1$ segment of length $1$, or $2$ segments of length $1/3$, or $4$ segments of length $1/3^2$, $\cdots$, or $2^n$ segments of length $3^{-n}$ and so on. Let $s = \log 2/\log 3$, then by the definition of $\H^s_{\varepsilon}$, we have
@@ -4955,7 +5072,7 @@ Note that $3^s = \left(e^{\log 3}\right)^{\log 2/\log 3} = 2$ and $\left(3^{-n}\
 \begin{align*}
     \H^s_{3^{-n}}(C) \leq \frac{\omega_s}{2^s} 2^n \left(3^{-n}\right)^s = \frac{\omega_s}{2^s},
 \end{align*}
-letting $n \to \infty$ implies $\H^s(C) \leq \omega_s / 2^s$. Thus, $\dim_{\H}(\CC) \leq \log 2/\log 3$.
+letting $n \to \infty$ implies $\H^s(C) \leq \omega_s / 2^s$. Thus, $\dim_{H}(\CC) \leq \log 2/\log 3$.
 \end{proof}
 
 \medskip
@@ -5210,10 +5327,10 @@ $$
 \quad
 \text{for all $x,y\in S^1$.}
 $$
-Find $\dim_{\H}(\phi(S^1))$.
+Find $\dim_{H}(\phi(S^1))$.
 \end{exercise}
 \begin{proof}
-We claim that $\dim_{\H}(\phi(S^1)) = 1/s$. It suffices to prove that $\H^1(\phi(S^1)) = 0$.
+We claim that $\dim_{H}(\phi(S^1)) = 1/s$. It suffices to prove that $\H^1(\phi(S^1)) = 0$.
 
 For any $\varepsilon > 0$, there is a covering $S^1 \subset \bigcup^\infty_{i=1} A_i$, with $\diam A_i < \varepsilon$. And $\{\phi(A_i)\}$ is a covering of $\{\phi(S^1)\}$ with $\varepsilon^s/L \leq \diam \phi(A_i) \leq L \varepsilon^s$. Then we have
 \begin{align*}
@@ -5223,7 +5340,7 @@ taking infimum of all coverings $\{a_i\}$ with $\diam A_i < \varepsilon$ yields
 \begin{align*}
     \frac{\varepsilon^s}{L} \H^1_{\varepsilon}(S^1) \leq \H^1_{L\varepsilon^s}(\phi(S^1)) \leq L \varepsilon^s \H^1_{\varepsilon}(S^1).
 \end{align*}
-Now letting $\varepsilon \to 0$ gives $\H^1(\phi(S^1)) = 0$, and thus $\dim_{\H}(\phi(S^1)) = 1/s$.
+Now letting $\varepsilon \to 0$ gives $\H^1(\phi(S^1)) = 0$, and thus $\dim_{H}(\phi(S^1)) = 1/s$.
 \end{proof}
 
 \medskip
