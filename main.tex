@@ -121,6 +121,12 @@
 \def\co{{\overline{\operatorname{co}}\,}}
 \def\dist{{\operatorname{dist}\,}}
 
+\usepackage{scalerel}
+%\usepackage[usestackEOL]{stackengine}
+\def\avint{\,\ThisStyle{\ensurestackMath{%
+  \stackinset{c}{.2\LMpt}{c}{1\LMpt}{\SavedStyle-}{\SavedStyle\phantom{\int}}}%
+  \setbox0=\hbox{$\SavedStyle\int\,$}\kern-\wd0}\int}
+
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[LE]{{\em \thepage}}
@@ -4755,7 +4761,7 @@ Recall Lemma \ref{lemma_13}, and we present some generalization of this lemma to
 
 \medskip
 
-\begin{theorem}[{\bf Vitali covering theorem}]
+\begin{theorem}[{\bf Vitali covering theorem}]\label{theorem_55}
 Let $\mu$ be a doubling measure on $X$ and $A \subset X$ a measurable set. Let $\mathcal{F}$ be a family of closed balls that covers $A$ in the Vitali sense. Then there is a subfamily $\mathcal{F}' \subset \mathcal{F}$ of pairwise disjoint balls such that
 \begin{align*}
     \mu \left(A \setminus \bigcup_{B \in \mathcal{F}'} B\right) = 0.
@@ -4928,6 +4934,205 @@ Now we prove that for any open $U \subset X$, $\H^s(U) \leq C'' \mu(U)$. It foll
 \end{align*}
 which implies $\H^s(E) \leq C'' \mu(E)$ for any $E \in \mathfrak{B}(X)$, since $\H^s(E) = \inf_{E \subset U}\H^s(U)$ and $\mu(E) = \inf_{E \subset U} \mu(U)$.
 \end{proof}
+
+
+
+
+\chapter{Differentiation}
+
+\section{Lebesgue differentiation theorem}
+
+\begin{definition}
+We say $f \in L^1_{\operatorname{loc}}(\mu)$ if for every $x \in X$, there exists $r > 0$ such that 
+\begin{align*}
+    \int_{B(x,r)} \left|f\right| \,d\mu < \infty.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{definition}
+The integral average of $f$ over a measurable set $E$ of finite measure is denoted by
+\begin{align*}
+    f_E = \frac{1}{\mu(E)} \int_E f \,d\mu = \avint_E f \,d\mu.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{exercise}
+Prove that if $0 < \mu(B) < \infty$ for every ball $B$, then
+\begin{align*}
+    \lim_{r\to 0} \avint_{B(x,r)} f \,d\mu = a,
+\end{align*}
+if and only if
+\begin{align*}
+    \lim_{r\to 0} \avint_{\overline{B}(x,r)} f \,d\mu = a.
+\end{align*}
+\end{exercise}
+
+\medskip
+
+\begin{definition}
+A measure $\mu$ is Borel regular if 
+\begin{enumerate}[label=(\alph*)]
+    \item All Borel sets are measurable;
+    
+    \item $\mu$ is a complete measure;
+    
+    \item Every measurable set is contained in a Borel set of equal measure.
+\end{enumerate}
+\end{definition}
+
+\medskip
+
+\begin{proposition}
+If $\mu$ is Borel regular and $\sigma$-finite,\footnote{See $\sigma$-finite measure in Definition \ref{def_15}.} and $f$ is a measurable function, then $f = g$ a.e., where $g$ is a Borel function.
+\end{proposition}
+
+\medskip
+
+\begin{theorem}[{\bf Lebesgue differentiation theorem}]
+Suppose $\mu$ is a doubling\footnote{Doubling measure is automatically $\sigma$-finite.} and Borel regular measure. If $f \in L^1_{\operatorname{loc}}$, then 
+\begin{align*}
+    \lim_{r\to 0} \avint_{B(x,r)} f \,d\mu = \lim_{r\to 0} \avint_{\overline{B}(x,r)} f \,d\mu = f(x),
+\end{align*}
+for $\mu$-almost every $x \in X$.
+\end{theorem}
+\begin{proof}
+Without loss of generality, we can assume that $f$ is a Borel function and $f \geq 1$. Indeed, if $f+1$ satisfies the above equality, so does $f$. It suffieces to prove that \begin{align}\label{theorem_61_equ1}
+    \lim_{r\to 0} \avint_{\overline{B}(x,r)} f \,d\mu = f(x),
+\end{align}
+for almost every $x \in X$.
+
+By Proposition \ref{prop_51}, we know that $X$ is separable, i.e. $X$ is a union of countable balls $B$ such that $\int_{2B} f\,d\mu < \infty$. Therefore, it suffices to prove that if $\int_{2B} f\,d\mu < \infty$, then \eqref{theorem_61_equ1} holds for almost every $x \in B$.
+
+Fix such a ball $B$. Now we need a lemma.
+
+\medskip
+
+\begin{lemma}\label{lemma_61}
+If $s,t > 0$ and the sets
+\begin{align*}
+    E & \subset \left\{x \in B \,:\, \liminf_{r \to 0} \avint_{\overline{B}(x,r)} f\,d\mu \leq s\right\}, \\
+    F & \subset \left\{x \in B \,:\, \limsup_{r \to 0} \avint_{\overline{B}(x,r)} f\,d\mu \geq t\right\},
+\end{align*}
+are (Borel) measurable, then 
+\begin{align*}
+    \int_E f\,d\mu \leq s \mu(E), \quad \int_F f\,d\mu \geq t \mu(F).
+\end{align*}
+\end{lemma}
+\begin{proof}
+Since $X$ is a union of countable balls $B$ of finite measure, by Theorem \ref{theorem_114}, $\mu(E) = \inf \mu(U)$, where $E \subset U$ and $U$ is open. Given $\varepsilon > 0$, there is open set $U$ such that $E \subset U$ and $\mu(U) \leq \mu(E) + \varepsilon$. Also, by the definition of $E$, for any $x \in E$, there exists $r > 0$ such that $\overline{B}(x,r) \subset U$ and
+\begin{align*}
+    \avint_{\overline{B}(x,r)} f\,d\mu \leq s + \varepsilon.
+\end{align*}
+Note that $\overline{B}(x,r)$ forms a Vitali covering of $E$. By Vitali covering theorem \ref{theorem_55}, there is a subfamily $\{\overline{B}_i\} \subset \{\overline{B}(x,r)\}$ of pairwise disjoint cloesd balls such that 
+\begin{align*}
+    \mu\left(E \setminus \bigcup^\infty_{i=1} \overline{B}_i\right) = 0, \quad \text{and} \quad \avint_{\overline{B}_i} f\,d\mu \leq s + \varepsilon.
+\end{align*}
+Since $\overline{B}_i$'s are pairwise disjoint, we have
+\begin{align*}
+    \int_E f\,d\mu & \leq \int_{\bigcup^\infty_{i=1} \overline{B}_i} f\,d\mu + \int_{E \setminus \bigcup^\infty_{i=1} \overline{B}_i} f\,d\mu \\
+    & = \sum^\infty_{i=1} \int_{\overline{B}_i} f\,d\mu \leq (s + \varepsilon) \sum^\infty_{i=1} \mu (\overline{B}_i) \\
+    & \leq (s + \varepsilon) \mu(U) \leq (s + \varepsilon) (\mu(E) + \varepsilon),
+\end{align*}
+and letting $\varepsilon \to 0$ gives
+\begin{align*}
+    \int_E f\,d\mu \leq s \mu(E).
+\end{align*}
+
+Now we prove the second inequality. Since we fix a ball $B$ before this lemma such that $\int_{2B} f\,d\mu < \infty$, we can still assume $\int_{2B} f\,d\mu < \infty$ in this lemma. Fix $\varepsilon > 0$, for any $\delta > 0$, we can find open set $U$ such that $F \subset U \subset 2B$ such that $\mu(U \setminus F) < \delta$. Also, absolute continuity of the integral implies that we can find $0 < \delta < \varepsilon$ so small such that 
+\begin{align*}
+    \int_{U \setminus F} f\,d\mu < \varepsilon.
+\end{align*}
+For all $x \in F$, there exists arbitrary small $r > 0$ such that $\overline{B}(x,r) \subset U$ and
+\begin{align*}
+    \avint_{\overline{B}(x,r)} f\,d\mu \geq t - \varepsilon.
+\end{align*}
+Similarly, $\overline{B}(x,r)$ forms a Vitali covering of $F$. By Vitali covering theorem \ref{theorem_55}, there is a subfamily $\{\overline{B}_i\}$ of pairwise disjoint closed balls such that
+\begin{align*}
+    \mu \left(F \setminus \bigcup^\infty_{i=1} \overline{B}_i\right) = 0, \quad \text{and} \quad \avint_{\overline{B}_i} f\,d\mu \geq t - \varepsilon.
+\end{align*}
+Since $\overline{B}_i$'s are pairwise disjoint and $\overline{B}_i \subset U$, we have
+\begin{align*}
+    \int_F f\,d\mu & = \int_{\bigcup^\infty_{i=1} \overline{B}_i} f\,d\mu + \int_{F \setminus \bigcup^\infty_{i=1} \overline{B}_i} f\,d\mu - \int_{\bigcup^\infty_{i=1} \overline{B}_i \setminus F} f\,d\mu \\
+    & \geq \sum^\infty_{i=1} \int_{\overline{B}_i} f\,d\mu - \int_{U \setminus F} f\,d\mu \\
+    & \geq (t - \varepsilon) \sum^\infty_{i=1} \mu(\overline{B}_i) - \varepsilon \geq (t - \varepsilon) \mu(F) - \varepsilon,
+\end{align*}
+and letting $\varepsilon \to 0$ gives
+\begin{align*}
+    \int_F f\,d\mu \geq t \mu(F).
+\end{align*}
+\end{proof}
+
+Now for $0 < s < t < \infty$, let 
+\begin{align*}
+    A_{s,t} = \left\{x \in B \,:\, \liminf_{r \to 0} \avint_{\overline{B}(x,r)} f\,d\mu \leq s < t \leq  \limsup_{r \to 0} \avint_{\overline{B}(x,r)} f\,d\mu \right\}.
+\end{align*}
+Clearly,
+\begin{align*}
+    t \mu(A_{s,t}) \leq \int_{A_{s,t}} f\,d\mu \leq s \mu(A_{s,t}).
+\end{align*}
+Since $t > s$, $\mu(A_{s,t}) = 0$. Note that the following set 
+\begin{align*}
+    \left\{x \in B \,:\, \liminf_{r \to 0} \avint_{\overline{B}(x,r)} f\,d\mu < \limsup_{r \to 0} \avint_{\overline{B}(x,r)} f\,d\mu \right\} = \bigcup_{\substack{0 < s < t\\ s,t \in \mathbb{Q}}} A_{s,t}
+\end{align*}
+has measure zero. Hence, 
+\begin{align*}
+    \liminf_{r \to 0} \avint_{\overline{B}(x,r)} f\,d\mu = \limsup_{r \to 0} \avint_{\overline{B}(x,r)} f\,d\mu,
+\end{align*}
+for almost every $x \in X$, i.e. the limit
+\begin{align}\label{theorem_61_equ1}
+    g(x) \coloneqq \lim_{r \to 0} \avint_{\overline{B}(x,r)} f\,d\mu
+\end{align}
+exists for almost every $x \in X$.
+
+It remains to prove $f = g$ a.e. Since $f \geq 1$, \eqref{theorem_61_equ1} implies that $g \geq 1$ a.e. For any measurable set $G \subset E$, let
+\begin{align*}
+    A_n = \left\{x \in G \,:\, (1 + \varepsilon)^n \leq g(x) \leq (1 + \varepsilon)^{n+1}, n \in \mathbb{Z}\right\}.
+\end{align*}
+Clearly, 
+\begin{align*}
+    G = Z \cup \bigcup^\infty_{n=-\infty} A_n,
+\end{align*}
+where $\mu(Z) = 0$, i.e. $Z$ is the set where $g$ is not defined. For $x \in A_n$, we have
+\begin{align*}
+    \limsup_{r\to 0} \avint_{\overline{B}(x,r)} f\,d\mu = g(x) \geq (1 + \varepsilon)^n,
+\end{align*}
+and by Lemma \ref{lemma_61}, we have
+\begin{align*}
+    \int_{A_n} f\,d\mu \geq (1 + \varepsilon)^n \mu(A_n).
+\end{align*}
+Now we have
+\begin{align}
+    \int_F g \,d\mu & = \sum^\infty_{n=-\infty} \avint_{A_n} g\,d\mu \leq \sum^\infty_{n=-\infty} \avint_{A_n} (1 + \varepsilon)^{n+1} \,d\mu \\
+    & \leq \sum^\infty_{n=-\infty} (1 + \varepsilon)^{n+1} \mu(A_n) \leq (1 + \varepsilon) \sum^\infty_{n=-\infty} \avint_{A_n} f\,d\mu \\
+    & \leq (1 + \varepsilon) \int_G f \,d\mu. \label{theorem_61_equ2}
+\end{align}
+Similarly, for $x \in A_n$,
+\begin{align*}
+    \liminf_{r\to 0} \avint_{\overline{B}(x,r)} f\,d\mu = g(x) \leq (1 + \varepsilon)^{n+1},
+\end{align*}
+and by Lemma \ref{lemma_61}, we have
+\begin{align*}
+    \int_{A_n} f\,d\mu \leq (1 + \varepsilon)^n \mu(A_n).
+\end{align*}
+And then we have
+\begin{align}
+    \int_G g \,d\mu & = \sum^\infty_{n=-\infty} \avint_{A_n} g\,d\mu \geq \sum^\infty_{n=-\infty} \avint_{A_n} (1 + \varepsilon)^n \,d\mu \\
+    & \geq \sum^\infty_{n=-\infty} (1 + \varepsilon)^n \mu(A_n) \geq (1 + \varepsilon)^{-1} \sum^\infty_{n=-\infty} (1 + \varepsilon)^{n+1} \mu(A_n) \\
+    & \geq (1 + \varepsilon)^{-1} \int_G f \,d\mu. \label{theorem_61_equ3}
+\end{align}
+Letting $\varepsilon \to 0$ in \eqref{theorem_61_equ2} and \eqref{theorem_61_equ3} gives
+\begin{align*}
+    \int_G g \,d\mu = \int_G f \,d\mu,
+\end{align*}
+for any measurable set $G \subset B$, and thus, $f = g$ a.e.
+\end{proof}
+
+
+
 
 
 
