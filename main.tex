@@ -4505,7 +4505,7 @@ If $f \in L^p(\mathbb{R}^n)$, $1 \leq p < \infty$, then $f_{\varepsilon} \colone
 
 We need a lemma to prove this theorem.
 
-\begin{lemma}
+\begin{lemma}\label{lemma_31}
 If $f \in L^p(\mathbb{R}^n)$, $1 \leq p < \infty$, then
 \begin{align*}
     \lim_{y\to 0} \int_{\mathbb{R}^n} \left|f(x+y) - f(x)\right|^p \,dx = 0.
@@ -4992,7 +4992,7 @@ If $\mu$ is Borel regular and $\sigma$-finite,\footnote{See $\sigma$-finite meas
 
 \medskip
 
-\begin{theorem}[{\bf Lebesgue differentiation theorem}]
+\begin{theorem}[{\bf Lebesgue differentiation theorem}]\label{theorem_61}
 Suppose $\mu$ is a doubling\footnote{Doubling measure is automatically $\sigma$-finite.} and Borel regular measure. If $f \in L^1_{\operatorname{loc}}$, then 
 \begin{align*}
     \lim_{r\to 0} \avint_{B(x,r)} f \,d\mu = \lim_{r\to 0} \avint_{\overline{B}(x,r)} f \,d\mu = f(x),
@@ -5131,10 +5131,337 @@ Letting $\varepsilon \to 0$ in \eqref{theorem_61_equ2} and \eqref{theorem_61_equ
 for any measurable set $G \subset B$, and thus, $f = g$ a.e.
 \end{proof}
 
+\medskip
 
+Recall that for a function $f$ defined almost everywhere, a {\em representative} of $f$ is a function defined everywhere that equals $f$ a.e.
 
+\medskip
 
+\begin{example}
+Let
+\begin{align*}
+    f = \begin{cases}
+        1, & x \in \mathbb{Q}, \\
+        0, & x \in \mathbb{R} \setminus \mathbb{Q}.
+    \end{cases}
+\end{align*}
+Then $\widetilde{f} = 0$ everywhere is a representative of $f$. 
+\end{example}
 
+\medskip
+
+Among all representatives of $f$ in the class of functions that are equal $f$ a.e. we choose the following one 
+\begin{align}\label{chapter6_equ1}
+    f(x) \coloneqq \limsup_{r\to 0} \avint_{B(x,r)} f \,d\mu.
+\end{align}
+By Lebesgue  differentiation  theorem \ref{theorem_61}, the right hand side is defined equals $f$ a.e.
+
+\medskip
+
+\begin{definition}
+Suppose $\mu$ is a doubling and Borel regular measure and $f \in L^1_{\operatorname{loc}}(\mu)$. We say $x \in X$ is a Lebesgue point of $f$ if
+\begin{align*}
+    \lim_{r\to 0} \avint_{B(x,r)} \left|f(y) - f(x)\right| \,d\mu(y) = 0,
+\end{align*}
+where $f(x)$ is defined in \eqref{chapter6_equ1}.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+Suppose $\mu$ is a doubling and Borel regular measure and $f \in L^1_{\operatorname{loc}}(\mu)$. Then almost every $x \in X$ are Lebesgue points of $f$.
+\end{theorem}
+\begin{proof}
+For every $c \in \mathbb{R}$, by Lebesgue  differentiation theorem,
+\begin{align}\label{theorem_62_equ1}
+    \lim_{r\to 0} \avint_{B(x,r)} \left|f(y) - c\right| \,d\mu(y) = \left|f(x) - c\right|.
+\end{align}
+Let $E = \left\{x \in X \,:\, \eqref{theorem_62_equ1} \,\, \text{holds for all} \,\, c \in \mathbb{Q} \right\}$. Clearly, $\mu(X \setminus E) = 0$. Let $x \in E$ such that $\left|f(x)\right| < \infty$ and $\{c_n\} \subset \mathbb{Q}$ be a sequence such that $\lim_{n\to\infty} c_n = f(x)$. Then, it follows from \eqref{theorem_62_equ1} that
+\begin{align*}
+    \lim_{r\to 0} \avint_{B(x,r)} \left|f(y) - c_n\right| \,d\mu(y) = \left|f(x) - c_n\right| \xrightarrow[]{n \to \infty} 0,
+\end{align*}
+and since\footnote{Indeed,
+\begin{align*}
+    \lim_{r\to 0}\avint_{B(x,r)} \left|f(y) - f(x)\right| \,d\mu(y) \leq \lim_{r\to 0}\avint_{B(x,r)} \lim_{n\to\infty} \left|f(y) - c_n\right| \,d\mu(y) \leq \liminf_{n\to\infty} \left(\lim_{r\to 0}\avint_{B(x,r)} \left|f(y) - c_n\right| \,d\mu(y)\right).
+\end{align*}}
+\begin{align*}
+    \lim_{r\to 0} \avint_{B(x,r)} \left|f(y) - c_n\right| \,d\mu(y) \to \lim_{r\to 0} \avint_{B(x,r)} \left|f(y) - f(x)\right| \,d\mu(y),
+\end{align*}
+we have
+\begin{align*}
+    \lim_{r\to 0} \avint_{B(x,r)} \left|f(y) - f(x)\right| \,d\mu(y) = 0.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{definition}
+A family $\mathcal{F}$ of measurable sets in $X$ is regular at $x \in X$ if there is a constant $C > 0$ such that for every $S \in \mathcal{F}$, there is a ball $B(x,r_S)$ satisfying
+\begin{align*}
+    S \subset B(x,r_S), \quad \mu(B(x,r_S)) \leq C \mu(S),
+\end{align*}
+and for every $\varepsilon > 0$, there is a set $S \in \mathcal{F}$ with $\mu(S) < \varepsilon$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+Suppose $\mu$ is a doubling and Borel regular measure and $f \in L^1_{\operatorname{loc}}(\mu)$. If $x \in X$ is a Lebesgue point of $f$ and $\mathcal{F}$ is regular at $x$, then 
+\begin{align*}
+    \lim_{\substack{S \in \mathcal{F}\\ \mu(S) \to 0}} \avint_S f\,d\mu = f(x).
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $S \in \mathcal{F}$ and $r_S$ as above. If $\mu(S) \to 0$, then $r_S \to 0$. We have
+\begin{align*}
+    \left|\avint_S f\,d\mu(y) - f(x)\right| & \leq \avint_S \left|f(y) - f(x)\right| \,d\mu(y) \leq \frac{1}{\mu(S)} \int_{B(x,r_S)} \left|f(y) - f(x)\right| \,d\mu(y) \\
+    & = \frac{\mu(B(x,r_S))}{\mu(S)} \avint_{B(x,r_S)} \left|f(y) - f(x)\right| \,d\mu(y) \\
+    & \leq C \avint_{B(x,r_S)} \left|f(y) - f(x)\right| \,d\mu(y) \xrightarrow[]{r_S \to 0} 0.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{corollary}
+Suppose $f \in L^1_{\operatorname{loc}}(\mathbb{R}^n)$ with respect to the Lebesgue measure and $x \in \mathbb{R}^n$ is a Lebesgue point of $f$. Then for any sequence of cubes $Q_i$ such that $x \in Q_i$, $\diam Q_i \to 0$, we have
+\begin{align*}
+    \lim_{i \to \infty} \avint_{Q_i} f \,d\mu = f(x).
+\end{align*}
+\end{corollary}
+
+\medskip
+
+\begin{corollary}
+Suppose $f \in L^1(a,b)$ and
+\begin{align*}
+    F(x) = \int^x_a f(t)\,dt.
+\end{align*}
+Then, $F'(x) = f(x)$ for almost every $x \in (a,b)$.
+\end{corollary}
+\begin{proof}
+By definition of derivative, we have
+\begin{align*}
+    \frac{F(x + h) - F(x)}{h} = \avint^{x+h}_x f\,d\mu \xrightarrow[]{h \to 0} 0,
+\end{align*}
+whenever $x$ is a Lebesgue point of $f$, since $(x,x+h)$ is $1$-dimensional cube. 
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+If $A \subset \mathbb{R}^n$ is a measurable set, then for almost all $x \in A$,
+\begin{align*}
+    \lim_{r \to 0} \frac{\left|B(x,r) \cap A\right|}{\left|B(x,r)\right|} = 1,
+\end{align*}
+and for almost all $x \in \mathbb{R}^n \setminus A$,
+\begin{align*}
+    \lim_{r \to 0} \frac{\left|B(x,r) \cap A\right|}{\left|B(x,r)\right|} = 0, 
+\end{align*}
+where $\left|\cdot\right|$ denotes the Lebesgue measure $\L_n$.
+\end{theorem}
+\begin{proof}
+Let $f = \chi_A \in L^1_{\operatorname{loc}}(\mathbb{R}^n)$, then by the Lebesgue differentiation theorem \ref{theorem_61}, we have that for almost all $x \in A$,
+\begin{align*}
+    \frac{\left|B(x,r) \cap A \right|}{\left|B(x,r)\right|} = \avint_{B(x,r)} \chi_A \,d\L_n \xrightarrow[]{r \to 0} \chi_A(x) = \begin{cases}
+        1, & x \in A,\\
+        0, & x \notin A.
+    \end{cases}
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{definition}
+If $A \subset \mathbb{R}^n$ is a measurable set, we say $x \in \mathbb{R}^n$ is a density point of $A$ is
+\begin{align*}
+    \lim_{r \to 0} \frac{\left|B(x,r) \cap A\right|}{\left|B(x,r)\right|} = 1.
+\end{align*}
+Thus the above theorem implies that almost all points of a measurable set $A \subset \mathbb{R}^n$ are density points of $A$.
+\end{definition}
+
+\medskip
+
+\section{Maximal function}
+
+\begin{definition}
+For a function $f \in L^1_{\operatorname{loc}}(\mathbb{R}^n)$, we define the Hardy-Littlewood maximal function by
+\begin{align*}
+    Mf(x) = \sup_{r > 0} \avint_{B(x,r)} \left|f(y)\right| \,dy
+\end{align*}
+Note that $Mf \geq 0$ and $f \mapsto Mf$ is not linear. However, it is subadditive, i.e. 
+\begin{align*}
+    M(f_1 + f_2)(x) \leq Mf_1(x) + Mf_2(x).
+\end{align*}
+Also, for any $\alpha \in \mathbb{C}$, $M(\alpha f) = \left|\alpha\right| Mf$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}[{\bf Hardy-Littlewood maximal theorem}]\label{theorem_65}
+If $f \in L^p(\mathbb{R}^n)$, $1 \leq p \leq \infty$, then $Mf < \infty$ a.e. Moreover, 
+\begin{enumerate}[label=(\alph*)]
+    \item If $f \in L^1(\mathbb{R}^n)$, then for every $t > 0$,
+    \begin{align}\label{theorem_65_equ1}
+        \mu(\{x \,:\, Mf(x) > t\}) \leq \frac{5^n}{t} \left\|f\right\|_1,
+    \end{align}
+    
+    \item If $f \in L^p(\mathbb{R}^n)$ for $1 < p < \infty$, then 
+    \begin{align}\label{theorem_65_equ2}
+        \left\|Mf\right\|_p \leq 2 \cdot 5^{n/p} \left(\frac{p}{p-1}\right)^{1/p} \left\|f\right\|_p,
+    \end{align}
+    and for $p = \infty$,
+    \begin{align}\label{theorem_65_equ3}
+        \left\|Mf\right\|_\infty \leq \left\|f\right\|_\infty,
+    \end{align}
+\end{enumerate}
+where 
+\begin{align*}
+    \left\|f\right\|_1 = \int_{\mathbb{R}^n} \left|f\right| \,d\mu, \quad \left\|f\right\|_p = \left(\int_{\mathbb{R}^n} \left|f\right|^p \,d\mu\right)^{1/p}.
+\end{align*}
+\end{theorem}
+
+\medskip
+
+\begin{remark}
+~\begin{enumerate}[label=(\alph*)]
+    \item In general, if $f \in L^1(\mathbb{R}^n)$, it does not follows that $Mf \in L^1(\mathbb{R}^n)$. For example, let $f = \chi_{[0,1]}$, then for $x \geq 1$,
+    \begin{align*}
+        Mf(x) \geq \frac{1}{2x} \int^{2x}_0 \chi_{[0,1]}(y) \,dy = \frac{1}{2x} \notin L^1(\mathbb{R}).
+    \end{align*}
+    
+    \item If $g \in L^1(\mathbb{R}^n)$, the Chebyshev inequality states that for $t > 0$,
+    \begin{align*}
+        \mu(\{x \,:\, \left|g(x)\right| > t\}) \leq \frac{1}{t} \int_{\mathbb{R}^n} \left|g(x)\right|\,d\mu.
+    \end{align*}
+    \begin{proof}
+    Let $E_t = \{x \,:\, \left|g(x)\right| > t\}$, and consider the function $s = t \chi_{E_t}$. Clearly, $s$ is a simple function and $0 \leq s \leq \left|g\right|$. Therefore,
+    \begin{align*}
+        t \mu(E_t) = \int_{\mathbb{R}^n} s(x)\,d\mu \leq \int_{\mathbb{R}^n} \left|g(x)\right|\,d\mu,
+    \end{align*}
+    since $t > 0$, dividing both sides by $t$ gives
+    \begin{align*}
+        \mu(E_t) \leq \frac{1}{t} \int_{\mathbb{R}^n} \left|g(x)\right|\,d\mu.
+    \end{align*}
+    \end{proof}
+    
+    So, if an operator satisfies $\left\|Tf\right\|_1 \leq C\left\|f\right\|_1$, then 
+    \begin{align*}
+        \mu(\{x \,:\, \left|Tf(x)\right| > t\}) \leq \frac{C}{t} \int_{\mathbb{R}^n} \left|f\right|\,d\mu.
+    \end{align*}
+    Also, note that in general, $\left\|Mf\right\|_1 \leq C\left\|f\right\|_1$ does not hold.
+\end{enumerate}
+\end{remark}
+
+\medskip
+
+\begin{theorem}[{\bf Cavalieri's principle}]
+If $\mu$ is a $\sigma$-finite measure on some measurable space $X$, $\Phi: [0,\infty] \to [0,\infty]$ is of class $C^1$, increasing and $\Phi(0) = 0$, then 
+\begin{align*}
+    \int_X \Phi(\left|f\right|) \,d\mu = \int^\infty_0 \Phi'(t) \mu(\{\left|f\right| > t \}) \,dt.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Since $\Phi(0) = 0$ and by the Fubini theorem \ref{theorem_35}, we have
+\begin{align*}
+    \int_X \Phi(\left|f\right|) \,d\mu & = \int_X \int^{\left|f(x)\right|}_0 \Phi'(t) \,dtd\mu(x) \\
+    \overset{\text{Fubini}}&{=} \int^\infty_0 \Phi'(t) \int_{\{x\,:\,\left|f(x)\right| > t\}} \, d\mu(x) dt \\
+    & = \int^\infty_0 \Phi'(t) \mu(\{\left|f(x)\right| > t\}) \, dt.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{corollary}\label{corollary_661}
+If $\mu$ is a $\sigma$-finite measure on some measurable space $X$ and $0 < p < \infty$, then
+\begin{align*}
+    \int_X \left|f\right|^p \,d\mu = p \int^\infty_0 t^{p-1} \mu(\{\left|f\right| > t\}) \,dt.
+\end{align*}
+\end{corollary}
+\begin{proof}
+Similar to the theorem above, we have
+\begin{align*}
+    \int_X \left|f\right|^p \,d\mu & = \int_{\mathbb{R}^n} \left(\int^{\left|f(x)\right|}_0 p t^{p-1} \,dt\right) \,dx = p \int^\infty_0 \int_{\{x\,:\,\left|f(x)\right| > t\}} t^{p-1} \,dxdt \\
+    & = p \int^\infty_0 t^{p-1} \left(\int_{\{x\,:\,\left|f(x)\right| > t\}} \,dx\right) \,dt \\
+    & = p \int^\infty_0 t^{p-1} \mu(\{\left|f\right| > t\}) \,dt,
+\end{align*}
+since the second term integrates over $\{(x,t) \in \mathbb{R}^n \times [0,\infty) \,:\, \left|f(x)\right| > t\}$.
+\end{proof}
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_65}]
+~\begin{enumerate}[label=(\alph*)]
+    \item Let $E_t = \{x \,:\, Mf(x) > t\}$. For every $x \in E_t$, there exists $r_x > 0$ such that
+    \begin{align*}
+        \avint_{B(x,r)} \left|f(y)\right| \,dy > t,
+    \end{align*}
+    which is equivalent to 
+    \begin{align*}
+        \mu(B(x,r)) < t^{-1} \int_{B(x,r)} \left|f(y)\right| \,dy.
+    \end{align*}
+    
+    We claim that $\sup_{x \in E_t} r_x < \infty$.\footnote{Indeed, $\omega_n r_x^n = \mu(B(x,r)) < t^{-1} \left\|f\right\|_1$, and hence $r_x \leq \left(\left\|f\right\|_1/(t\omega_n)\right)^{1/n}$, where the right hand side does not depend on $x$.}Now consider the family $\{B(x,r_x)\}_{x \in E_t}$, and $5r$-covering lemma \ref{theorem_54} implies that 
+    \begin{align*}
+        E_t \subset \bigcup_{x\in E_t} B(x,r_x) \subset \bigcup^\infty_{i=1} B(x_i,5r_{x_i}),
+    \end{align*}
+    where $B(x_i,r_{x_i})$ are pairwise disjoint. Then,
+    \begin{align*}
+        \mu(E_t) \leq 5^n \sum^\infty_{i=1} \mu(B(x_i,r_{x_i})) \leq \frac{5^n}{t} \sum^\infty_{i=1} \int_{B(x_i,r_{x_i})} \left|f(y)\right| \,dy \leq \frac{5^n}{t} \int_{\mathbb{R}^n} \left|f\right| \,d\mu.
+    \end{align*}\label{theorem_65_a}
+    
+    \item Note that \eqref{theorem_65_equ3} is obvious, since by definition of the essential supremum, $\left|f\right| \leq \left\|f\right\|_\infty$ a.e. so we have
+    \begin{align*}
+        \avint_{B(x,r)} \left|f\right| \,d\mu \leq \avint_{B(x,r)} \left\|f\right\|_\infty \,d\mu = \left\|f\right\|_\infty,
+    \end{align*}
+    and taking supremum over $r > 0$ yields
+    \begin{align*}
+        Mf(x) = \sup_{r > 0} \avint_{B(x,r)} \left|f\right| \,d\mu \leq \left\|f\right\|_\infty.
+    \end{align*}
+    
+    Now we assume that $1 < p < \infty$. Given $t > 0$, let $f = f_1 + f_2$, where 
+    \begin{align*}
+        f_1 = f\chi_{\{\left|f\right| > t/2\}}, \quad f_2 = f\chi_{\{\left|f\right| \leq t/2\}}.
+    \end{align*}
+    Clearly, $\left|f\right| \leq \left|f_1\right| + t/2$, and then we have $Mf \leq Mf_1 + t/2$. Note that if $Mf > t/2$, then $Mf_1 > t/2$, which implies
+    \begin{align*}
+        \left\{x \,:\, Mf(x) > t\right\} 
+        \subset \left\{x \,:\, Mf_1(x) > \frac{t}{2}\right\}.
+    \end{align*}
+    And hence \ref{theorem_65_a} implies 
+    \begin{align*}
+        \mu(E_t) & = \mu(\left\{x \,:\, Mf(x) > t\right\}) \leq \mu \left(\left\{x \,:\, Mf_1(x) > \frac{t}{2}\right\}\right) \\
+        & \leq \frac{5^n}{t/2} \int_{\mathbb{R}^n} \left|f_1\right| \,dx = \frac{2 \cdot 5^n}{t} \int_{\{\left|f\right| > t/2\}} \left|f\right| \,dx. 
+    \end{align*}
+    
+    By Corollary \ref{corollary_661}, we have
+    \begin{align*}
+        \int_{\mathbb{R}^n} \left|Mf\right|^p \,d\mu & = p \int^\infty_0 t^{p-1} \mu(\{Mf > t\}) \,dt \\ 
+        & \leq p \int^\infty_0 t^{p-1} \left(\frac{2 \cdot 5^n}{t} \int_{\{\left|f\right| > t/2\}} \left|f\right| \,dx\right) \,dt \\
+        \overset{\text{Fubini}}&{=} 2 \cdot 5^n p \int_{\mathbb{R}^n} \int^{2\left|f(x)\right|}_0 t^{p-2} \left|f(x)\right| \,dtdx \\
+        & = 2 \cdot 5^n p \int_{\mathbb{R}^n} \left|f(x)\right| \int^{2\left|f(x)\right|}_0 t^{p-2} \, dtdx \\
+        & = 2 \cdot 5^n \frac{p}{p-1}  \int_{\mathbb{R}^n} \left|f(x)\right| \left(2\left|f(x)\right|\right)^{p-1} \,dx \\
+        & = 2^p \cdot 5^n \frac{p}{p-1} \int_{\mathbb{R}^n} \left|f(x)\right|^p \,dx,
+    \end{align*}
+    and taking $p$th root of both sides yields
+    \begin{align*}
+        \left\|Mf\right\|_p \leq 2 \cdot 5^{n/p} \left(\frac{p}{p-1}\right)^{1/p} \left\|f\right\|_p.
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+Now we will use Theorem \ref{theorem_65} \ref{theorem_65_a} to prove the Lebesgue differentiation theorem \ref{theorem_61}. Recall Lemma \ref{lemma_31}: {\em Suppose $f \in L^p(\mathbb{R}^n)$, $1 \leq p < \infty$, and $\tau_yf(x) = f(x+y)$, then 
+\begin{align*}
+    \lim_{y\to 0} \left\|\tau_yf - f\right\|_p = 0.
+\end{align*}}
+Also, we have the following lemma.
+
+\medskip
+
+\begin{lemma}
+
+\end{lemma}
 
 
 
