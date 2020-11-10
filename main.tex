@@ -3872,7 +3872,7 @@ $L^p(\mu)$ is a Banach space, $1 \leq p \leq \infty$.
 
 \medskip
 
-\begin{corollary}
+\begin{corollary}\label{coro_341}
 If $f_n \to f$ in $L^p$, then $f_n$ has a subsequence convergent to $f$ a.e.
 \end{corollary}
 \begin{proof}
@@ -5303,7 +5303,7 @@ If $f \in L^p(\mathbb{R}^n)$, $1 \leq p \leq \infty$, then $Mf < \infty$ a.e. Mo
     \item If $f \in L^1(\mathbb{R}^n)$, then for every $t > 0$,
     \begin{align}\label{theorem_65_equ1}
         \mu(\{x \,:\, Mf(x) > t\}) \leq \frac{5^n}{t} \left\|f\right\|_1,
-    \end{align}
+    \end{align}\label{theorem_65_a}
     
     \item If $f \in L^p(\mathbb{R}^n)$ for $1 < p < \infty$, then 
     \begin{align}\label{theorem_65_equ2}
@@ -5407,7 +5407,7 @@ since the second term integrates over $\{(x,t) \in \mathbb{R}^n \times [0,\infty
     where $B(x_i,r_{x_i})$ are pairwise disjoint. Then,
     \begin{align*}
         \mu(E_t) \leq 5^n \sum^\infty_{i=1} \mu(B(x_i,r_{x_i})) \leq \frac{5^n}{t} \sum^\infty_{i=1} \int_{B(x_i,r_{x_i})} \left|f(y)\right| \,dy \leq \frac{5^n}{t} \int_{\mathbb{R}^n} \left|f\right| \,d\mu.
-    \end{align*}\label{theorem_65_a}
+    \end{align*}
     
     \item Note that \eqref{theorem_65_equ3} is obvious, since by definition of the essential supremum, $\left|f\right| \leq \left\|f\right\|_\infty$ a.e. so we have
     \begin{align*}
@@ -5452,19 +5452,72 @@ since the second term integrates over $\{(x,t) \in \mathbb{R}^n \times [0,\infty
 \medskip
 
 Now we will use Theorem \ref{theorem_65} \ref{theorem_65_a} to prove the Lebesgue differentiation theorem \ref{theorem_61}. Recall Lemma \ref{lemma_31}: {\em Suppose $f \in L^p(\mathbb{R}^n)$, $1 \leq p < \infty$, and $\tau_yf(x) = f(x+y)$, then 
-\begin{align*}
+\begin{align}\label{lemma_41_ref1}
     \lim_{y\to 0} \left\|\tau_yf - f\right\|_p = 0.
-\end{align*}}
+\end{align}}
 Also, we have the following lemma.
 
 \medskip
 
-\begin{lemma}
-
+\begin{lemma}\label{lemma_62}
+Suppose $f \in L^1(\mathbb{R}^n)$ and 
+\begin{align*}
+    f_r(x) = \avint_{B(x,r)} f(y) \,dy.
+\end{align*}
+Then, $f_r \to f$ in $L^1(\mathbb{R}^n)$ and there is a subsequence $r_i \to 0$ such that
+\begin{align*}
+    \lim_{r_i \to 0} f_{r_i} = f,
+\end{align*}
+for almost every $x \in \mathbb{R}^n$.
 \end{lemma}
+\begin{proof}
+By the Fubini theorem and \eqref{lemma_41_ref1}, we have
+\begin{align*}
+    \int_{\mathbb{R}^n} \left|f_r(x) - f(x)\right| \,dx & = \int_{\mathbb{R}^n} \left|\avint_{B(x,r)} f(y) \,dy - f(x)\right| \,dx = \int_{\mathbb{R}^n} \left|\avint_{B(x,r)} (f(y) - f(x)) \,dy \right| \,dx \\
+    & \leq \int_{\mathbb{R}^n} \avint_{B(x,r)} \left|f(y) - f(x) \right| \,dydx = \int_{\mathbb{R}^n} \avint_{B(0,r)} \left|f(x+y) - f(x) \right| \,dydx \\
+    \overset{\text{Fubini}}&{=} \avint_{B(0,r)} \int_{\mathbb{R}^n} \left|f(x+y) - f(x) \right| \, dxdy = \avint_{B(0,r)} \left\|\tau_yf - f\right\|_1 \,dy \\
+    & \leq \sup_{\left|y\right| \leq r} \left\|\tau_yf - f\right\|_1 \xrightarrow[]{r \to 0} 0.
+\end{align*}
+Now, we proved $f_r \to f$ in $L^1(\mathbb{R}^n)$, and by Corollary \ref{coro_341}, there is a subsequence $f_{r_i} \to f$ a.e.
+\end{proof}
 
+\medskip
 
+Now we present another proof of the Lebesgue differentiation theorem.
 
+\medskip
+
+\begin{proof}[Second Proof of Theorem \ref{theorem_61}]
+Without loss of generality, we can assume $f \in L^1(\mathbb{R}^n)$. Let $f_r$ be as in lemma above and define
+\begin{align*}
+    \Omega f(x) = \limsup_{r\to 0} f_r(x) - \liminf_{r\to 0} f_r(x).
+\end{align*}
+If suffices to prove that $\Omega f = 0$ a.e. Indeed, $\Omega f = 0$ a.e. implies that $\limsup_{r\to 0} f_r(x) = \liminf_{r\to 0} f_r(x)$ a.e., that is, $g(x) \coloneqq \lim_{r\to 0} f_r(x)$ exists almost everywhere. By Lemma \ref{lemma_62}, there is a subsequence $\{f_{r_i}\}$ such that $f_{r_i} \to f$ a.e., and hence $f = g$ a.e.
+
+Recall the definition of maximal function:
+\begin{align*}
+    Mf(x) = \sup_{r > 0} \avint_{B(x,r)} \left|f(y)\right| \,dy.
+\end{align*}
+Clearly, $\Omega f \leq 2Mf$. For any $\varepsilon > 0$, by Theorem \ref{theorem_65} \ref{theorem_65_a}, we have
+\begin{align*}
+    \mu(\{\Omega f > 2\varepsilon\}) \leq \mu(\{Mf > \varepsilon\}) \leq \frac{C(n)}{\varepsilon} \int_{\mathbb{R}^n} \left|f\right| \,d\mu,
+\end{align*}
+where $C(n) = 5^n$. 
+
+Let $h \in C_c(\mathbb{R}^n)$ be a compactly supported continuous function such that $\left\|h - f\right\| < \varepsilon^2$. Also, continuity of $h$ implies that $\Omega h = 0$ everywhere and hence\footnote{The first inequality $\Omega f \leq \Omega (f - h)$ holds because \begin{align*}
+    \Omega f & = \Omega (f - h + h) = \limsup_{r\to 0} (f - h + h)_r(x) - \liminf_{r\to 0} (f - h + h)_r(x)
+    \\
+    & \leq \limsup_{r\to 0} (f-h)_r + \limsup_{r\to 0} h_r - \liminf_{r\to 0} (f-h)_r - \liminf_{r\to 0} h_r = \Omega (f - h) + \Omega h.
+\end{align*}}
+\begin{align*}
+    \Omega f \leq \Omega (f - h) + \Omega h = \Omega (f - h).
+\end{align*}
+Then we have
+\begin{align*}
+    \mu(\{\Omega f > 2\varepsilon\}) \leq \mu(\{\Omega (f - h) > 2\varepsilon\}) \leq \frac{C(n)}{\varepsilon} \int_{\mathbb{R}^n} \left|f - h\right| \,d\mu \leq C(n) \varepsilon,
+\end{align*}
+and it follows that $\Omega f = 0$ a.e.
+\end{proof}
 
 
 
