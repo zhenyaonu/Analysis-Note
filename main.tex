@@ -42,7 +42,11 @@
 \usepackage{titlesec}
 \usepackage{esint}
 \usepackage{aligned-overset}
+\usepackage{mathrsfs}
 \graphicspath{{images/}}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 
 \titleformat{\chapter}[block]{\huge\bfseries\itshape\raggedleft}{\chaptertitlename\  \thechapter.}{0.5ex}{}[]
@@ -4184,6 +4188,63 @@ Moreover, observe that $tE = \{tx \,:\, x \in E, t > 0\}$, then $\L_n(tE) = t^n 
 \begin{align*}
     \int_{\mathbb{R}^n} f\left(\frac{x}{t}\right) \,dx = t^n \int_{\mathbb{R}^n} f(x) \,dx.
 \end{align*}
+We prove this result directly from the definition of the Lebesgue measure and the definition of the integral as follows.
+
+\medskip
+
+\begin{exercise}
+Prove directly from the definition of the Lebesgue measure and the definition of the integral that if $u \in L^1(\mathbb{R}^n)$ (with respect to the Lebesgue measure), then for every $t > 0$,
+\begin{align}\label{problem5_1}
+    \int_{\mathbb{R}^n} u(x) = t^{-n} \int_{\mathbb{R}^n} u \left(\frac{x}{t}\right) \,dx.  
+\end{align}
+\end{exercise}
+\begin{proof}
+Let $\phi: \mathbb{R}^n \to \mathbb{R}^n$ be defined by $\phi(x) = x/t, t > 0$.
+\begin{enumerate}[label=(\alph*)]
+    \item First, we prove that \eqref{problem5_1} holds for simple function $s$. By definition,
+    \begin{align*}
+        \int_{\mathbb{R}^n} s\,d\mu = \sum^n_{i=1} \alpha_i \mu(\{ x \,:\, x \in A_i\}),
+    \end{align*}
+    where $A_i$ are pairwise disjoint and $\bigcup^n_{i=1}A_i = \mathbb{R}^n$. 
+
+    We can assume $A_i = (a_1,b_1) \times \cdots \times (a_n,b_n)$ are all open intervals in $\mathbb{R}^n$, since any measurable set can be approximated by an open set with arbitrary small difference in measure and any open set is a union of closed dyadic cubes. Clearly, $\mu(A_i) = (b_1 - a_1) \cdots (b_n - a_i)$. Then,
+    \begin{align}\label{problem5_2}
+        \mu \left( \left\{x \,:\, \frac{x}{t} \in A_i \right\} \right) = t^n \mu(\{ x \,:\, x \in A_i\}).
+    \end{align}
+    Indeed, if $x = (x_1,\cdots,x_n) \in A_i$, then $x_i \in (a_i,b_i)$. Considering $\{x \,:\, x/t \in A_i\}$ gives $x_i \in (ta_i,tb_i)$, and this implies \eqref{problem5_2}. Then, $s \circ \phi$ is also a simple function and hence
+    \begin{align*}
+        \int_{\mathbb{R}^n} s \circ \phi\,d\mu = \sum^n_{i=1} \alpha_i \mu \left( \left\{x \,:\, \frac{x}{t} \in A_i \right\} \right) = t^n \sum^n_{i=1} \alpha_i \mu(\{ x \,:\, x \in A_i\}) = t^n \int_{\mathbb{R}^n} s\,d\mu,
+    \end{align*}
+    which proves \eqref{problem5_1} holds for simple functions.\label{problem5_part_a}
+    
+    \item Now we prove \eqref{problem5_1} holds for any function $f$. By the definition of integral, we have
+    \begin{align}\label{problem5_3}
+        t^n \int_{\mathbb{R}^n} f\,d\mu = t^n \sup \int_{\mathbb{R}^n} s\,d\mu,
+    \end{align}
+    where $s$ is simple function and $0 \leq s \leq f$. Clearly, $0 \leq s \circ \phi \leq f \circ \phi$, then by \eqref{problem5_3}, we have
+    \begin{align*}
+        t^n \int_{\mathbb{R}^n} f\,d\mu \leq \int_{\mathbb{R}^n} f \circ \phi \,d\mu.
+    \end{align*}
+    It suffices to prove the other direction. Let $\overline{s}$ be a simple function defined by
+    \begin{align*}
+        \overline{s} = \sum^n_{k=1} \beta_k \chi_{B_k},
+    \end{align*}
+    where $0 \leq \beta_k \leq f(\phi(x))$ and $B_k$ are pairwise disjoint. Clearly, $0 \leq \overline{s} \leq f \circ \phi$. Let $F_k = \{x \,:\, f(x) \geq \beta_k\}$, and each $F_k$ is measurable since $f$ is measurable. Now define a new simple function $\widetilde{s}$ by
+    \begin{align*}
+        \widetilde{s} = \sum^n_{k=1} \beta_k \chi_{F_k},
+    \end{align*}
+    and clearly, $0 \leq \widetilde{s} \leq f$. Note that $B_k = \{x \,:\, f(\phi(x)) \geq \beta_k\}$ and hence $\phi^{-1}(F_k) = B_k$. Then, by part \ref{problem5_part_a}, we have
+    \begin{align*}
+        \int_{\mathbb{R}^n} \overline{s}\,d\mu = t^n \int_{\mathbb{R}^n} \widetilde{s} \,d\mu,
+    \end{align*}
+    and taking supremum over all simple functions $\overline{s} \leq f \circ \phi$ implies that
+    \begin{align*}
+        \int_{\mathbb{R}^n} f \circ \phi \,d\mu = t^n \int_{\mathbb{R}^n} \widetilde{s} \,d\mu \leq t^n \int_{\mathbb{R}^n} f\,d\mu,
+    \end{align*}
+    where the last step comes from $0 \leq \widetilde{s} \leq f$. Thus, \eqref{problem5_1} holds for any integrable function.%https://math.stackexchange.com/questions/3738431/proof-of-the-change-of-variables-formula-without-using-the-monotone-convergence?answertab=votes#tab-top
+\end{enumerate}
+
+\end{proof}
 
 \medskip
 
@@ -5519,6 +5580,324 @@ Then we have
 and it follows that $\Omega f = 0$ a.e.
 \end{proof}
 
+\medskip
+
+\section{Functions of bounded variation}
+
+\begin{definition}
+Variation of a function $f: [a,b] \to \mathbb{R}$ is defined as 
+\begin{align*}
+    \bigvee^b_a f = \sup \sum^{n-1}_{i=1} \left|f(x_{i+1}) - f(x_i)\right|,
+\end{align*}
+where the supremum is taken over partitions
+\begin{align*}
+    a = x_0 \leq x_1 \leq \cdots \leq x_n = b.
+\end{align*}
+Also, $f$ has bounded variation if $\bigvee^b_a f < \infty$.
+\end{definition}
+
+\medskip
+
+\begin{example}
+Suppose $f$ is monotonic, then $f$ has bounded variation and 
+\begin{align*}
+    \bigvee^b_a f = \left|f(b) - f(a)\right|
+\end{align*}
+\end{example}
+
+\medskip
+
+\begin{lemma}\label{lemma_63}
+If $f: [a,b] \to \mathbb{R}$ has bounded variation and $a < c < b$, then 
+\begin{align*}
+    \bigvee^b_a f = \bigvee^c_a f + \bigvee^b_c f.
+\end{align*}
+\end{lemma}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Suppose there are partitions $\pi_1 = \{a_0, a_1, \cdots, a_n\}$ of $[a,c]$ and $\pi_2= \{b_0, b_1, \cdots, b_k\}$ of $[c,b]$ such that
+    \begin{align*}
+        \bigvee^c_a f = \sum^{n-1}_{i=1} \left|f(a_{i+1}) - f(a_i)\right|, \quad \bigvee^b_c f = \sum^{k-1}_{j=1} \left|f(b_{j+1}) - f(b_j)\right|.
+    \end{align*}
+    Clearly, $\pi_1 \bigcup \pi_2$ is also a partition of $[a,b]$. Hence,
+    \begin{align*}
+        \bigvee^c_a f + \bigvee^b_c f \leq \bigvee^b_a f.
+    \end{align*}
+    
+    \item For the other direction, let $\pi = \{x_0, x_1, \cdots, x_n\}$ be any partition of $[a,b]$, and there exists $0 \leq i \leq n$ such that $x_{i-1} \leq c \leq x_i$, and hence
+    \begin{align*}
+        \left|f(x_i) - f(x_{i-1})\right| \leq \left|f(x_i) - f(c)\right| + \left|f(c) - f(x_{i-1})\right|.
+    \end{align*}
+    Now, note that $\pi_1 = \{x_0, \cdots, x_{i-1}, c\}$ is a partition of $[a,c]$, and  similarly, $\pi_1 = \{c, x_i \cdots, x_n\}$ is a partition of $[b,c]$. Then, we have
+    \begin{align*}
+        \sum^{n-1}_{j=1} \left|f(x_{j+1}) - f(x_{j})\right| & \leq \sum^{n-1}_{j \neq i-1} \left|f(x_{j+1}) - f(x_{j})\right| + \left|f(x_i) - f(c)\right| + \left|f(c) - f(x_{i-1})\right| \\
+        & = \sum_{\pi_1} \left|f(x_{j+1}) - f(x_{j})\right| + \sum_{\pi_2} \left|f(x_{j+1}) - f(x_{j})\right| \\
+        & \leq \bigvee^c_a f + \bigvee^b_c f.
+    \end{align*}
+    Taking supremum on the left hand side gives the opposite inequality
+    \begin{align*}
+        \bigvee^b_a f \leq \bigvee^c_a f + \bigvee^b_c f.
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+A function $f: [a,b] \to \mathbb{R}$ has bounded variation if and only if it is the difference of two increasing functions.
+\end{theorem}
+\begin{proof}
+Note that the functions $x \mapsto \bigvee^x_a f$ and $x \mapsto \bigvee^x_a f - f(x)$ are increasing. Indeed, if $x < y$, then by Lemma \ref{lemma_63}, we have
+\begin{align*}
+    f(y) - f(x) \leq \bigvee^y_x f = \bigvee^y_a f - \bigvee^x_a f,
+\end{align*}
+and hence
+\begin{align*}
+    \bigvee^x_a f - f(x) \leq \bigvee^y_a f - f(y).
+\end{align*}
+Then, 
+\begin{align*}
+    f(x) = \bigvee^x_a f - \left(\bigvee^x_a f - f(x)\right).
+\end{align*}
+
+The other implication is obvious.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+If $f: [a,b] \to \mathbb{R}$ is a continuous function of bounded variation, then $x \mapsto \bigvee^x_a f$ is continuous.
+\end{exercise}
+
+\medskip
+
+\begin{corollary}
+A continuous function $f: [a,b] \to \mathbb{R}$ of bounded variation is the difference of two continuous increasing functions.
+\end{corollary}
+\begin{proof}
+It follows easily from the exercise above that $f$ can be written as
+\begin{align*}
+    f(x) = \bigvee^x_a f - \left(\bigvee^x_a f - f(x)\right).
+\end{align*}
+\end{proof}
+
+\medskip
+
+Consider a continuous curve $\varphi = (\varphi_1, \varphi_2, \cdots, \varphi_k): [a,b] \to \mathbb{R}^k$, then the length of curve is defined as
+\begin{align*}
+    l(\varphi) = \sup \sum^{n-1}_{i=1} \left|\varphi(x_{i+1}) - \varphi(x_i)\right|,
+\end{align*}
+where the supremum is taken over all partitions.
+
+\medskip
+
+\begin{definition}
+A curve $\varphi: [a,b] \to \mathbb{R}^k$ is rectifiable if $l(\varphi) < \infty$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+A curve $\varphi: [a,b] \to \mathbb{R}^k$ is rectifiable if and only if all components $\varphi_i$ are of bounded variation.
+\end{theorem}
+
+\medskip
+
+\begin{theorem}
+If functions $f, g: [a,b] \to \mathbb{R}$ have bounded variation, then $f \pm g$, $fg$ have bounded variation. Moreover, if $g \geq c > 0$ then $f/g$ has bounded variation.
+\end{theorem}
+
+\medskip
+
+\begin{proposition}\label{prop_62}
+If $f: [a,b] \to \mathbb{R}$ is monotonic, then the set of points where $f$ is not continuous at most countable.
+\end{proposition}
+\begin{proof}
+Without loss of generality, we can assume $f$ is increasing. For any $x$, the following limits $\lim_{t \to x^-} f(t), \lim_{t \to x^+} f(t)$ exist. If $f$ is discontinuous at $x$, then there is $r(x) \in \mathbb{Q}$ such that
+\begin{align*}
+    \lim_{t \to x^-} f(t) < r(x) < \lim_{t \to x^+} f(t).
+\end{align*}
+Also, if $f$ is discontinuous at $x_1$ and $x_2$, $x_1 \neq x_2$, then $r(x_1) \neq r(x_2)$. Let $E$ be the set of $x$ where $f$ is discontinuous, then $E \to \{r(x) \,:\, x \in E\}$ is one-to-one. Since $\{r(x) \,:\, x \in E\} \subset \mathbb{Q}$ is countable, so do $E$. 
+\end{proof}
+
+\medskip
+
+\begin{corollary}
+If $f$ is a function of bounded variation, then the set of points where $f$ is discontinuous is at most countable.
+\end{corollary}
+
+\medskip
+
+\begin{theorem}\label{theorem_610}
+Functions of bounded variation are differentiable almost everywhere.
+\end{theorem}
+
+We need several lemmas to prove this theorem.
+
+\medskip
+
+\begin{lemma}
+If $f: [a,b] \to \mathbb{R}$ is increasing, then 
+\begin{align}\label{lemma_64_equ1}
+    \lim_{h \to 0^+} \frac{f(x+h) - f(x)}{h} < \infty,
+\end{align}
+for almost every $x \in [a,b]$.
+\end{lemma}
+\begin{proof}
+Let $E \subset [a,b]$ be the set of points where \eqref{lemma_64_equ1} does not hold. We want to prove that $\mu(E) = 0$. Fix $K > 0$, for every $x \in E$, we can find arbitrary small $h > 0$ such that 
+\begin{align*}
+    \frac{f(x+h) - f(x)}{h} > K.
+\end{align*}
+Note that $[x,x+h]$ are one-dimensional closed balls and they form a Vitali covering of $E$. By the Vitali covering theorem \ref{theorem_55}, there is a family of pairwise disjoint balls $I_i = [x_i,x_i+h_i]$ such that 
+\begin{align*}
+    \mu\left(E \setminus \bigcup^\infty_{i=1} I_i\right) = 0.
+\end{align*}
+Also, we have
+\begin{align*}
+    \mu(E) \leq \sum^\infty_{i=1} \mu(I_i) = \sum^\infty_{i=1} h_i \leq \sum^\infty_{i=1} \frac{f(x_i+h_i) - f(x_i)}{K} \leq \frac{f(b) - f(a)}{K},
+\end{align*}
+and since $K$ can be arbitrary large, $\mu(E) = 0$.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+Dini derivatives are defined as
+\begin{align*}
+    D^+f(x) & = \limsup_{h \to 0^+} \frac{f(x+h) - f(x)}{h}, \quad D_+f(x) = \liminf_{h \to 0^+} \frac{f(x+h) - f(x)}{h}, \\
+    D^-f(x) & = \limsup_{h \to 0^-} \frac{f(x+h) - f(x)}{h}, \quad D^-f(x) = \liminf_{h \to 0^-} \frac{f(x+h) - f(x)}{h}.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{lemma}
+If $f: [a,b] \to \mathbb{R}$ is increasing, then $D^+f, D_+f, D^-f, D_-f < \infty$ a.e.
+\end{lemma}
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_610}]
+Without loss of generality, we can assume $f$ is increasing. It suffices to prove that $D^+f = D_+f = D^-f = D_-f$ almost everywhere. And this is equivalent to that \begin{align}\label{theorem_610_equ1}
+    D_- f \geq D^+ f, \quad D_+ f \geq D^- f,
+\end{align}
+almost everywhere. Indeed, \eqref{theorem_610_equ1} implies that
+\begin{align*}
+    D^+ f \geq D_+ f \geq D^- f \geq D_- f \geq D^+ f,
+\end{align*}
+and then the equality holds.
+
+Now we prove that $D_- f \geq D^+ f$ a.e. We need to prove that $\{x \,:\, D_- f(x) < D^+ f(x)\}$ has measure zero. Now let
+\begin{align*}
+    E(u,v) = \left\{x \,:\, D_- f(x) < u < v < D^+ f(x), u, v \in \mathbb{Q}\right\},
+\end{align*}
+and clearly,
+\begin{align*}
+    E = \bigcup_{0 < u < v} E(u,v).
+\end{align*}
+It remains to prove that $\mu(E(u,v)) = 0$. Let $U$ be any open set such that $E(u,v) \subset U$. Then for any $x \in E$, there exists $h > 0$ small enough such that $I = [x-h,x] \subset U$ and
+\begin{align*}
+    \frac{f(x-h) - f(x)}{-h} < u.
+\end{align*}
+Let 
+\begin{align*}
+    \bigvee_I f = \bigvee^x_{x-h} f,
+\end{align*}
+and since $f$ is increasing, we have
+\begin{align*}
+    \bigvee_I f = f(x) - f(x - h) < hu = u \mu(I).
+\end{align*}
+Intervals $I$ form a Vitali covering of $E(u,v)$, and by the Vitali covering theorem, there is a family of pairwise disjoint closed balls $I_i = [x_i - h_i, x_i]$ such that 
+\begin{align*}
+    \mu\left(E(u,v) \setminus \bigcup^\infty_{i=1} I_i \right) = 0.
+\end{align*}
+Hence,
+\begin{align*}
+    \sum^\infty_{i=1} \bigvee_{I_i} f \leq u \sum^\infty_{i=1} \mu(I_i) \leq u \mu(U).
+\end{align*}
+Let $V = \bigcup^\infty_{i=1} (x_i-h_i,x_i)$ and $F = E(u,v) \cap V$. Clearly, $\mu(E(u,v) \setminus V) = 0$ and then $\mu(E(u,v) \setminus F) = 0$. For every $x \in F$, there exists $h > 0$ arbitrary small such that $J = [x,x+h] \subset V$ such that 
+\begin{align*}
+    \frac{f(x+h) - f(x)}{h} > v.
+\end{align*}
+Similarly, we have
+\begin{align*}
+    \bigvee_J f > v \mu(J).
+\end{align*}
+And $J$ forms a Vitali covering of $F$, then again, there is a family of pairwise disjoint closed balls $J_i \subset V$ such that
+\begin{align*}
+    \mu\left(F \setminus \bigcup^\infty_{i=1} J_i\right) = 0,
+\end{align*}
+and
+\begin{align*}
+    \sum^\infty_{i=1} \bigvee_{J_i} f > v \sum^\infty_{i=1} \mu(J_i).
+\end{align*}
+
+Thus, we have\footnote{To see why $\sum^\infty_{i=1} \mu(J_i) \leq \sum^\infty_{i=1} \bigvee_{J_i} f$, let $A_j$ be closed intervals in $I_i$, then $\sum \bigvee_{A_j} f \leq \bigvee_{I_i} f$. Also, by the definition of $J_j$, $J_j \subset I_i$, then $\bigcup_j J_j \subset \bigcup_i I_i$.}
+\begin{align*}
+    v \mu(E(u,v)) = v \mu(F) \leq v \sum^\infty_{i=1} \mu(J_i) \leq \sum^\infty_{i=1} \bigvee_{J_i} f \leq u \mu(U),
+\end{align*}
+and $U$ is any open set such that $E(u,v) \subset U$, then taking infimum over such $U$ implies 
+\begin{align*}
+    v \mu(E(u,v)) \leq u \mu(E(u,v)).
+\end{align*}
+Since $u < v$, then we have $\mu(E(u,v)) = 0$.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+If $f: [a,b] \to \mathbb{R}$ has bounded variation, then the derivative $f' \in L^1(a,b)$. If in addition, $f$ is increasing, then
+\begin{align}\label{theorem_611_equ1}
+    \int^b_a f'(x)\,dx \leq f(b) - f(a).
+\end{align}
+\end{theorem}
+\begin{proof}
+We can assume that $f$ is increasing. Let $F(x) = \int^x_a f(t) \,dt$ and $F'(x) = f(x)$ at every point where $f$ is continuous. By Proposition \ref{prop_62}, $F' = f$ a.e. For any $\varepsilon > 0$, let $a_\varepsilon > a$ and $b_\varepsilon < b$ such that 
+$a_\varepsilon - a < \varepsilon$, $b - b_\varepsilon < \varepsilon$ and $F'(a_\varepsilon) = f(a_\varepsilon)$, $F'(b_\varepsilon) = f(b_\varepsilon)$. Also, by Theorem \ref{theorem_610}, 
+\begin{align*}
+    \lim_{h \to 0^+} \frac{f(x+h) - f(x)}{h} = f'(x),
+\end{align*}
+almost everywhere. Then, by Fatou's lemma, we have
+\begin{align*}
+    \int^{b_\varepsilon}_{a_\varepsilon} f'(x)\,dx & = \int^{b_\varepsilon}_{a_\varepsilon} \liminf_{h\to 0^+} \frac{f(x+h) - f(x)}{h}\,dx \\
+    & \leq \liminf_{h\to 0^+} \int^{b_\varepsilon}_{a_\varepsilon} \frac{f(x+h) - f(x)}{h}\,dx \\
+    & = \liminf_{h\to 0^+} \frac{1}{h} \left(\int^{b_\varepsilon+h}_{b_\varepsilon} f \,dx - \int^{a_\varepsilon+h}_{a_\varepsilon} f \,dx\right) \\
+    & = \liminf_{h\to 0^+} \left(\frac{F(b_\varepsilon+h) - f(b_\varepsilon)}{h}- \frac{F(a_\varepsilon+h) - f(a_\varepsilon)}{h}\right) \\
+    & = f(b_\varepsilon) - f(a_\varepsilon).
+\end{align*}And letting $\varepsilon \to 0$ yields the theorem.
+\end{proof}
+
+\medskip
+
+\begin{remark}
+In general, if $f$ is increasing, then we have no equality in \eqref{theorem_611_equ1}.
+\end{remark}
+
+\medskip
+
+\begin{remark}
+To see why 
+\begin{align*}
+    \int^{b_\varepsilon}_{a_\varepsilon} f(x+h) - f(x)\,dx =  \int^{b_\varepsilon+h}_{b_\varepsilon} f \,dx - \int^{a_\varepsilon+h}_{a_\varepsilon} f \,dx \,?
+\end{align*}
+Indeed,
+\begin{align*}
+    \int^{b_\varepsilon}_{a_\varepsilon} f(x+h) - f(x)\,dx = \int^{b_\varepsilon+h}_{a_\varepsilon+h} f(x) \,dx - \int^{b_\varepsilon}_{a_\varepsilon} f(x)\,dx = \int^{b_\varepsilon+h}_{b_\varepsilon} f \,dx - \int^{a_\varepsilon+h}_{a_\varepsilon} f \,dx.
+\end{align*}
+\end{remark}
+
+\medskip
+
+\begin{example}[The Cantor Staircase function]
+The function $f: [0,1] \to \mathbb{R}$ is continuous, increasing and $f(0) = 0, f(1) = 1$ such that $f$ is a constant in each interval of the complement of the Cantor set. Then, $f' = 0$ in the complement of the Cantor set, i.e. $f' = 0$ a.e. Hence,
+\begin{align*}
+    \int^1_0 f'(x) \,dx = 0 < 1 = f(1) - f(0).
+\end{align*}
+\end{example}
+
+\medskip
+
+
 
 
 
@@ -6566,18 +6945,124 @@ By the definition of upper integral, there exists a measurable function $\phi: X
 \end{enumerate}
 \end{proof}
 
+\medskip
+
+\begin{exercise}
+Prove that if  $f,f_k \in L^1(\mu)$, $f_k \to f$ a.e. and $\left\|f_k\right\|_1 \to \left\|f\right\|_1$, then $\left\|f_k - f\right\|_1 \to 0$. ({\bf Hint:} Mimic the proof of the dominated convergence theorem.)
+\end{exercise}
+\begin{proof}
+Since $\left|f - f_k\right| \leq \left|f\right| + \left|f_k\right|$, we have $\left|f\right| + \left|f_k\right| - \left|f - f_k\right| \geq 0$. By Fatou's lemma, we have
+\begin{align*}
+    0 \leq \int_X \liminf_{k\to\infty} (\left|f\right| + \left|f_k\right| - \left|f - f_k\right|) \,d\mu \leq \liminf_{k\to\infty} \int_X (\left|f\right| + \left|f_k\right| - \left|f - f_k\right|) \,d\mu,
+\end{align*}
+and since $f_k \to f$ a.e. and $\left\|f_k\right\|_1 \to \left\|f\right\|_1$, we have
+\begin{align*}
+    0 \leq \int_X 2 \left|f\right| \,d\mu & \leq \int_X \left|f\right|\,d\mu + \liminf_{k\to\infty} \int_X \left|f_k\right|\,d\mu + \liminf_{k\to\infty} \int_X -\left|f - f_k\right|\,d\mu \\
+    & \leq \int_X 2 \left|f\right|\,d\mu - \limsup_{k\to\infty} \int_X \left|f - f_k\right|\,d\mu.
+\end{align*}
+Since $\int_X 2 \left|f\right|\,d\mu$ is finite, we have
+\begin{align*}
+    \limsup_{k\to\infty} \int_X \left|f - f_k\right|\,d\mu \leq 0,
+\end{align*}
+which implies
+\begin{align*}
+    \lim_{k\to\infty} \int_X \left|f - f_k\right|\,d\mu = 0.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if
+\begin{align*}
+    \int_{\mathbb{R}^n} \left|\log \left|f_k\right|\right| \,d\mu \xrightarrow[]{k \to \infty} 0,
+\end{align*}
+then there is a subsequence $\{f_{k_i}\}$ such that $\left|f_{k_i}\right| \to 1$ a.e.
+\end{exercise}
+\begin{proof}
+Clearly, $\log \left|f_k\right| \xrightarrow[]{\mu} 0$. By Riesz theorem, there is a subsequence $\{\log \left|f_{n_k}\right|\}^\infty_{k=1}$ such that $\log \left|f_{n_k}\right| \xrightarrow[]{\mu} 0$ a.e. Then,
+\begin{align*}
+    \lim_{k\to\infty} \left|f_{n_k}\right| = \lim_{k\to\infty} e^{\log \left|f_{n_k}\right|} = 1,
+\end{align*}
+for almost every $x \in \mathbb{R}^n$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $f: \mathbb{R} \to \mathbb{R}$ is continuous, then
+\begin{align*}
+    \left\|f\right\|_2 \leq \liminf_{m \to \infty} \left(\frac{1}{m} \sum^\infty_{k = -\infty}  f\left(\frac{k}{m}\right)^2 \right)^{1/2}.
+\end{align*}
+({\bf Hint:} Use Fatou's lemma.)
+\end{exercise}
+\begin{proof}
+Define $f_m: \mathbb{R} \to \mathbb{R}$ by 
+\begin{align*}
+    f_m(x) = f\left(\frac{\floor*{xm}}{m}\right), \quad x \in \left[\frac{\floor*{xm}}{m}, \frac{\floor*{xm}+1}{m}\right),
+\end{align*}
+where $\floor*{x}$ denote the greatest integer that less than $x$. Then, $f_m$ is a step function that converges pointwise to $f$, since $f$ is continuous. Thus, by Fatou's lemma, we have
+\begin{align*}
+    \left\|f\right\|_2^2 = \int_X \left(\liminf_{m\to\infty} \left|f_m\right|^2 \right) \,d\mu \leq \liminf_{m\to\infty} \int_X \left|f_m\right|^2 \,d\mu = \liminf_{m\to\infty} \frac{1}{m} \sum^\infty_{k=-\infty} f\left(\frac{k}{m}\right)^2,
+\end{align*}
+which implies the inequality above.
+\end{proof}
+
+\medskip
+
+
+\section{Integration on Product Spaces}
+
+
+\medskip
+
+
+\section{$L^p$-space}
+
+\begin{exercise}
+Let $\tau_y f(x)=f(x+y)$. Prove that if $1\leq p<\infty$ and $f\in L^p(\mathbb{R}^n)$, then
+\begin{align*}
+    \lim_{\left|y\right| \to \infty} \left\|\tau_y f + f\right\|_p = 2^{1/p} \left\|f\right\|_p.
+\end{align*}
+({\bf Hint:} Compare with Lemma~93 in my notes.)
+\end{exercise}
+\begin{proof}
+
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $0 < \mu(X) < \infty$, then
+\begin{align*}
+    \left(\avint_X \left|f\right|^p \,d\mu \right)^{1/p} \leq \left(\avint_X \left|f\right|^q \,d\mu \right)^{1/q},
+\end{align*}
+for all $0 < p < q < \infty$.
+\end{exercise}
+\begin{proof}
+Recall Jensen's inequality:
+\begin{align*}
+    \varphi\left(\frac{1}{\mu(X)} \int_X f\,d\mu \right) \leq \frac{1}{\mu(X)} \int_X \varphi \circ f\,d\mu,
+\end{align*}
+where $\varphi$ is convex function. Take $\varphi = x^{q/p}$, since $p < q$, then $\varphi$ is convex. Hence,
+\begin{align*}
+    \left(\frac{1}{\mu(X)} \int_X \left|f\right|^p\,d\mu \right)^{q/p} \leq \frac{1}{\mu(X)} \int_X \left|f\right|^q\,d\mu,
+\end{align*}
+and taking $q$th root implies the result:
+\begin{align*}
+    \left(\frac{1}{\mu(X)} \int_X \left|f\right|^p\,d\mu \right)^{1/p} \leq \left(\frac{1}{\mu(X)} \int_X \left|f\right|^q\,d\mu\right)^{1/q}.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\section{Doubling and Hausdorff measures}
 
 
 
+\medskip
 
-
-
-
-
-
-
-
-
+\section{Differentiation}
 
 
 
