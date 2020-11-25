@@ -4458,7 +4458,7 @@ Suppose that $f$ is locally in $L^1(\mathbb{R}^n)$, and $g \in C_c(\mathbb{R}^n)
 
 \medskip
 
-\begin{remark}
+\begin{remark}\label{remark_45}
 We want to conclude that if $g \in C^\infty_0(\mathbb{R}^n)$, the class of compactly supported smooth functions and $f$ is locally in $L^1(\mathbb{R}^n)$, then $f*g \in C^\infty(\mathbb{R}^n)$ and $D^{\alpha}(f*g)(x) = \left(f*D^{\alpha}g\right)(x)$ for all $\alpha$. However, how do we know if such nonzero $g$ exists? Such function can be constructed explicitly.
 
 Let $\widetilde{\varphi}: \mathbb{R}^n \to \mathbb{R}$ be defined as
@@ -6140,6 +6140,144 @@ If $f:[a,b] \to \mathbb{R}$ is absolutely continuous, then
     \int^b_a \left|f'(x)\right| \,dx = \int_{\mathbb{R}} N(f,y) \,dy.
 \end{align*}
 \end{corollary}
+
+\medskip
+
+\section{The Rademacher and the Stepanov theorems}
+
+\begin{theorem}[{\bf Rademacher}]\label{theorem_617}
+If $f: \Omega \to \mathbb{R}$ is Lipschitz continuous, then $f$ is differentiable almost everywhere, i.e., partial derivatives of $f$ exist a.e. and the gradient
+\begin{align*}
+    \nabla f(x) = \left\langle \frac{\partial f}{\partial x_1}(x), \cdots, \frac{\partial f}{\partial x_n}(x) \right\rangle
+\end{align*}
+satisfies
+\begin{align*}
+    \lim_{y\to x} \frac{f(y) - \left\langle \nabla f(x), y - x \right\rangle - f(x)}{\left|y - x\right|} = 0,
+\end{align*}
+for almost every $x \in \Omega$, where $\left\langle \nabla f(x), y - x \right\rangle$ denotes the scalar product.
+\end{theorem}
+
+\medskip
+
+We need a lemma to prove this theorem.
+
+\medskip
+
+\begin{lemma}\label{lemma_67}
+If $f \in L^1_{\operatorname{loc}}(\Omega)$, $\Omega \subset \mathbb{R}^n$ is open, and
+\begin{align*}
+    \int_{\Omega} f\varphi \,dx = 0,
+\end{align*}
+for all $\varphi \in C^\infty_0(\Omega)$,\footnote{The class of compactly supported smooth functions, see Remark \ref{remark_45}.}then $f = 0$ a.e. in $\Omega$.
+\end{lemma}
+\begin{proof}
+Suppose to the contrary that $f \neq 0$ on a set of positive measure. We can assume that $f > 0$ on this set. Then there is a compact set $K \subset \Omega$ and for $\varepsilon > 0$ such that $f \geq \varepsilon$ on $K$. Let $G_i \subset \Omega$ be open set such that $G_1 \supset G_2 \supset \cdots \supset K$ and $\bigcap^\infty_{i=1} G_i = K$. Now define $\varphi_i \in C^\infty_0(G_i)$ such that $0 \leq \varphi_i \leq 0$ and $\varphi_i|_K = 1$. Since $\{G_i \setminus K\}$ is a decreasing sequence of sets and $\bigcap_i(G_i \setminus K) = \varnothing$, we have
+\begin{align*}
+    0 = \int_\Omega f \varphi_i \,dx \geq \varepsilon \mu(K) - \int_{G_i \setminus K} f \,dx \xrightarrow[]{i\to\infty} \varepsilon \mu(K),
+\end{align*}
+which is a contradiction.
+\end{proof}
+
+\medskip
+
+\begin{proof}[Proof of Theorem \ref{theorem_617}]
+By Fubini theorem and almost everywhere differentiability of Lipschitz function defined on one-dimensional interval, given unit vector $v \in S^{n-1}$, the directional derivative \begin{align*}
+    D_vf(x) = \dv[]{}{t} \Bigg|_{t=0} f(x + tv)
+\end{align*}
+exists for almost every $x \in \Omega$. Let $\varphi \in C^\infty_0(\Omega)$ and $h > 0$ small, then for $v \in S^{n-1}$, we have
+\begin{align*}
+    \int_{\Omega} \frac{f(x + hv) - f(x)}{h} \varphi(x) \,dx = - \int_{\Omega} \frac{\varphi(x - hv) - \varphi(x)}{-h} f(x) \,dx.
+\end{align*}
+Indeed, by change of variable $x + hv \mapsto x$, we have\footnote{Taking small $h$ can make sure that $x + hv \in \Omega$.}
+\begin{align*}
+    \int_{\Omega} f(x + hv) \varphi(x) \,dx = \int_{\Omega} f(x) \varphi(x-hv) \,dx.
+\end{align*}
+Also, note that
+\begin{align*}
+    \left|\frac{f(x + hv) - f(x)}{h}\right| \leq L_f, \quad \left|\frac{\varphi(x - hv) - \varphi(x)}{-h}\right| \leq L_\varphi,
+\end{align*}
+where $L_f$ and $L_\varphi$ are Lipschitz constant of $f$ and $\varphi$. Letting $h \to 0$, and by Lebesgue dominated convergence theorem, for all $v \in S^{n-1}$, we have
+\begin{align*}
+    \int_{\Omega} D_vf(x)\varphi(x) \,dx = - \int_{\Omega} D_v\varphi(x)f(x) \,dx.
+\end{align*}
+Now let $v = e_i$, then we have
+\begin{align*}
+    \int_{\Omega} \frac{\partial f}{\partial x_i}(x) \varphi(x) \,dx = - \int_{\Omega} \frac{\partial \varphi}{\partial x_i}(x) f(x) \,dx.
+\end{align*}
+
+We will prove that for almost every $x \in \Omega$, we have $D_vf(x) = \left\langle \nabla f(x), v \right\rangle$. Fix $v \in S^{n-1}$, since $\varphi$ is smooth, $\varphi$ is differentiable, and hence
+\begin{align*}
+    \int_{\Omega} D_vf(x)\varphi(x) \,dx & = - \int_{\Omega} D_v\varphi(x)f(x) \,dx \\
+    & = - \int_{\Omega} \left\langle \nabla \varphi(x), v \right\rangle f(x) \,dx \\
+    & = - \int_{\Omega} \sum^n_{i=1} \frac{\partial \varphi}{\partial x_i}(x) v_i f(x) \,dx \\
+    & = \int_{\Omega} \sum^n_{i=1} \frac{\partial f}{\partial x_i}(x) v_i \varphi(x) \,dx = \int_{\Omega} \left\langle \nabla f(x), v \right\rangle \varphi(x) \,dx,
+\end{align*}
+which implies 
+\begin{align*}
+    \int_{\Omega} \left(D_vf(x) - \left\langle \nabla f(x), v \right\rangle \right)\varphi(x) \,dx = 0.
+\end{align*}
+By Lemma \ref{lemma_67}, for all $v \in S^{n-1}$, $D_vf(x) = \left\langle \nabla f(x), v \right\rangle$ a.e.
+
+Let $\{v_i\}^\infty_{i=1} \subset S^{n-1}$ be a countable and dense subsets, and let
+\begin{align*}
+    A_k = \left\{x \in \Omega \,:\, \nabla f(x)\,\,\text{exists},\,\, D_{v_k}f(x)\,\,\text{exists},\,\, D_{v_k}f(x) = \left\langle \nabla f(x), v_k \right\rangle \right\}.
+\end{align*}
+Clearly, $\mu(\Omega \setminus A_k) = 0$. Define $A = \bigcap^\infty_{k=1} A_k$, and then $\mu(\Omega \setminus A) = 0$. For $x \in A$, and for any $k = 1,2,\cdots$, we have
+\begin{align*}
+    D_{v_k}f(x) = \left\langle \nabla f(x), v_k \right\rangle.
+\end{align*}
+Now, for $v \in S^{n-1}$, $h > 0$, define
+\begin{align*}
+    Q(x,h,v) = \frac{f(x+hv) - f(x)}{h} - \left\langle \nabla f(x), v \right\rangle.
+\end{align*}
+Then for any $k = 1,2,\cdots$, we have
+\begin{align}\label{theorem_617_equ1}
+    \lim_{h\to 0} Q(x,h,v_k) = 0.
+\end{align}
+
+Now it suffices to prove that if $x \in A$, for any $\varepsilon > 0$, there is $\delta > 0$ such that for all $v \in S^{n-1}$, if $0 < h < \delta$, $\left|Q(x,h,v)\right| < \varepsilon$. Indeed, this implies $f$ is differentiable on $A$. Note that
+\begin{align*}
+    \left|\frac{\partial f}{\partial x_i}\right| = \lim_{h\to 0} \left|\frac{f(x + he_i) - f(x)}{h}\right| \leq L_f,
+\end{align*}
+then $\left|\nabla f\right| \leq \sqrt{n} L_f$. For any $v, v' \in S^{n-1}$, we have
+\begin{align*}
+    \left|Q(x,v,h) - Q(x,v',h)\right| \leq \left(\sqrt{n} + 1\right) L_f \left|v - v'\right|.
+\end{align*}
+
+Since $\{v_i\}$ is a dense subset of $S^{n-1}$, then for any $\varepsilon > 0$, there is an integer $p$ such that for all $v \in S^{n-1}$, there is $1 \leq k \leq p$ and 
+\begin{align*}
+    \left|v - v_k\right| \leq \frac{\varepsilon}{2 \left(\sqrt{n} + 1\right) L_f}.
+\end{align*}
+By \eqref{theorem_617_equ1}, given $x \in A$, there is $\delta > 0$, such that if $0 < h < \delta$,
+\begin{align*}
+    \left|Q(x,v_i,h)\right| < \frac{\varepsilon}{2},
+\end{align*}
+for $i = 1, 2, \cdots, p$. Now, for any $v \in S^{n-1}$, if $0 < h < \delta$, for $k$ as before, we have
+\begin{align*}
+    \left|Q(x,v,h)\right| \leq \left|Q(x,v_k,h)\right| + \left|Q(x,v_k,h) - Q(x,v,h)\right| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{theorem}[{\bf Stepanov}]
+Let $\Omega \subset \mathbb{R}^n$ be open and $f: \Omega \to \mathbb{R}$ be a measurable function. Then, $f$ is differentiable at almost every point of the set
+\begin{align*}
+    \left\{x \in \Omega \,:\, \limsup_{y\to x} \frac{\left|f(y) - f(x)\right|}{\left|y - x\right|} < \infty\right\}.
+\end{align*}
+\end{theorem}
+
+\medskip
+
+\begin{corollary}
+Let $\Omega \subset \mathbb{R}^n$ be open and $f: \Omega \to \mathbb{R}$ be a measurable function. Then, $f$ is differentiable a.e. in $\Omega$ if and only if
+\begin{align*}
+    \limsup_{y\to x} \frac{\left|f(y) - f(x)\right|}{\left|y - x\right|} < \infty,
+\end{align*}
+for almost every $x \in \Omega$.
+\end{corollary}
+
+
 
 
 
