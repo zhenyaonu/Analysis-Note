@@ -1009,7 +1009,7 @@ $\mathcal{H}^s(E)$ is called ($s$-dimensional) Hausdorff measure and $\mathcal{H
 \begin{remark}
 For any $\varepsilon > 0$, $\mathcal{H}^s_{\varepsilon}(E) \leq \mathcal{H}^s(E)$ and if $s = 0$, $\mathcal{H}^0$ is the counting measure. In particular, Hausdorff $h$-content of $E$ is defined as:\textsuperscript{{\rm \ref{footnote_hausdorff_content}}}
 \begin{align*}
-    \mathcal{H}^n_{\infty}(E) = \inf \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\diam A_i\right)^s,
+    \mathcal{H}^s_{\infty}(E) = \inf \frac{\omega_s}{2^s} \sum^\infty_{i=1} \left(\diam A_i\right)^s,
 \end{align*}
 where the infimum is taken over all possible coverings
 \begin{align*}
@@ -2070,7 +2070,7 @@ Then, we have
 
 Now $F$ exists and by the claim, we have
 \begin{align*}
-    \mu(E) \leq \mu(F) \leq \omega_n \left(\frac{\diam F}{2}\right)^n \leq \frac{\omega_n}{2^n} (\diam E)^2,
+    \mu(E) \leq \mu(F) \leq \omega_n \left(\frac{\diam F}{2}\right)^n \leq \frac{\omega_n}{2^n} (\diam E)^n,
 \end{align*}
 which proves the theorem.
 \end{proof}
@@ -3823,9 +3823,9 @@ $L^p(\mu)$ is a Banach space, $1 \leq p \leq \infty$.
         \left\|f_{n_k} - f_{n_{k+1}}\right\|_p & < \frac{1}{2^k}.
     \end{align*}
 
-    Now let $g_k = \sum^k_{k=1} \left|f_{n_k} - f_{n_{k+1}}\right|$, and $g = \sum^\infty_{k=1} \left|f_{n_k} - f_{n_{k+1}}\right|$. By Minkowski's inequality \ref{theorem_43}, we have
+    Now let $g_k = \sum^k_{i=1} \left|f_{n_i} - f_{n_{i+1}}\right|$, and $g = \sum^\infty_{i=1} \left|f_{n_i} - f_{n_{i+1}}\right|$. By Minkowski's inequality \ref{theorem_43}, we have
     \begin{align*}
-        \left\|g_k\right\|_p \leq \sum^k_{k=1} \left\|f_{n_k} - f_{n_{k+1}}\right\|_p < 1.
+        \left\|g_k\right\|_p \leq \sum^k_{i=1} \left\|f_{n_i} - f_{n_{i+1}}\right\|_p < 1.
     \end{align*}
     By Fatou's lemma \ref{theorem_212}, we have
     \begin{align*}
@@ -4180,7 +4180,7 @@ and this means $f_x$ and $f^y$ are only defined on almost $x$ and $y$.
 
 \section{Convolutions}
 
-Recall that $\L_n$ is invariant under translations and under $x \mapsto -x$, this means for $f \in L^1(\mathbb{R}^n)$ and $y \in \mathbb{R}^n$,
+Note that $\L_n$ is invariant under translations and under $x \mapsto -x$, this means for $f \in L^1(\mathbb{R}^n)$ and $y \in \mathbb{R}^n$,
 \begin{align*}
     \int_{\mathbb{R}^n} f(x) \,dx = \int_{\mathbb{R}^n} f(x + y) \,dx = \int_{\mathbb{R}^n} f(-x) \,dx.
 \end{align*}
@@ -4192,12 +4192,27 @@ We prove this result directly from the definition of the Lebesgue measure and th
 
 \medskip
 
-\begin{exercise}
+\begin{lemma}\label{lemma_41}
+If $f \in L^1(\mathbb{R}^n)$ or $f \geq 0$ is measurable, then for any $x \in \mathbb{R}^n$ and $y \in \mathbb{R}^n$, we have
+\begin{align*}
+    \int_{\mathbb{R}^n} f(x) \,dx = \int_{\mathbb{R}^n} f(x + y) \,dx = \int_{\mathbb{R}^n} f(-x) \,dx.
+\end{align*}
+\end{lemma}
+\begin{proof}
+This follows from the definition of the integral and the fact that for any set $A \subset \mathbb{R}^n$, $\mu(A) = \mu(A + \{y\})$ and $\mu(A) = \mu(-A)$. In particular, 
+\begin{align*}
+    \int_{\mathbb{R}^n} f(x) \,dx = \int_{\mathbb{R}^n} f(x + y) \,dx \, \overset{x \mapsto -x}{=}\, \int_{\mathbb{R}^n} f(y - x) \,dx. 
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{lemma}\label{lemma_42}
 Prove directly from the definition of the Lebesgue measure and the definition of the integral that if $u \in L^1(\mathbb{R}^n)$ (with respect to the Lebesgue measure), then for every $t > 0$,
 \begin{align}\label{problem5_1}
     \int_{\mathbb{R}^n} u(x) = t^{-n} \int_{\mathbb{R}^n} u \left(\frac{x}{t}\right) \,dx.  
 \end{align}
-\end{exercise}
+\end{lemma}
 \begin{proof}
 Let $\phi: \mathbb{R}^n \to \mathbb{R}^n$ be defined by $\phi(x) = x/t, t > 0$.
 \begin{enumerate}[label=(\alph*)]
@@ -4225,7 +4240,7 @@ Let $\phi: \mathbb{R}^n \to \mathbb{R}^n$ be defined by $\phi(x) = x/t, t > 0$.
     \begin{align*}
         t^n \int_{\mathbb{R}^n} f\,d\mu \leq \int_{\mathbb{R}^n} f \circ \phi \,d\mu.
     \end{align*}
-    It suffices to prove the other direction. Let $\overline{s}$ be a simple function defined by
+    It suffices to prove the other direction \cite{41}. Let $\overline{s}$ be a simple function defined by
     \begin{align*}
         \overline{s} = \sum^n_{k=1} \beta_k \chi_{B_k},
     \end{align*}
@@ -4279,6 +4294,15 @@ To apply Fubini theorem, we first prove that the function $F$ defined by
 \end{align*}
 is measurable on $\mathbb{R}^{2n}$.
 
+\medskip
+\begin{lemma}
+The function $F$ defined by 
+\begin{align*}
+    F(x,y) = \left|f(x-y)g(y)\right|
+\end{align*}
+is measurable on $\mathbb{R}^{2n}$.
+\end{lemma}
+\begin{proof}
 First, we prove that $h(x,y) = f(x-y)$ is measurable. Let $g: \mathbb{R}^{2n} \to \mathbb{R}^{n}$ be defined as $g(x,y) = x - y$. Then, $h(x,y) = f \circ g(x,y)$. Clearly, $g$ is a continuous function, and hence a Borel mapping. Now let $E$ be a measurable set in $\mathbb{R}$, then it suffices to prove that $h^{-1}(E) = g^{-1} \circ f^{-1}(E)$ is a measurable set in $\mathbb{R}^{2n}$. Since $F = f^{-1}(E)$ is measurable, then it suffices to prove that $g^{-1}(F)$ is measurable whenever $F \subset \mathbb{R}^n$ is measurable. This is true when $F$ is Borel, since $g$ is continuous. Also, any measurable set can be written as a sum of a Borel set and a set of zero outer zero measure. 
     
 Let $E = \{x \in \mathbb{R}^n \,:\, f(x) < a\}$ for any $a \in \mathbb{R}$ and $\widetilde{E} = \{(x,y) \,:\, x - y \in E\}$. Clearly, $\widetilde{E} = g^{-1}(E)$. It remains to prove that for any $U \subset \mathbb{R}^n$, if $\mu(U) = 0$, then $\mu(\widetilde{U}) = 0$. Let $\widetilde{E}_k = \widetilde{E} \cap B_k$ and $B_k = \{(x,y) \,:\, \left|y\right| < k\}$. Let $U$ be open in $\mathbb{R}^n$, then we have
@@ -4294,6 +4318,9 @@ where $\widetilde{U}$ is defined like $\widetilde{E}$ before, and hence, by Fubi
 If $\mu(E) = 0$, then there is a sequence of open set $U_n$ such that $E \subset U_n$ and $\mu(U_n) \to 0$. Then we have $\widetilde{E}_k \subset \widetilde{U}_n \cap B_k$  and hence $\mu(\widetilde{U}_n \cap B_k) \to 0$ as $n \to \infty$ for every $k$. This proves $\mu(\widetilde{E}_k) = 0$, and hence $\mu(\widetilde{E}) = 0$. Now we proved that $g$ takes zero measure set into zero measure set. Hence, $h(x,y)$ is measurable.
 
 Second, we could easily see that $f(x-y)g(y)$ is a measurable function on $\mathbb{R}^{2n}$ and hence $\left|f(x-y)g(y)\right|$ is also measurable.
+\end{proof}
+
+\medskip
 
 Now by Fubini theorem \ref{theorem_37},
 \begin{align*}
@@ -4611,6 +4638,149 @@ Let $g \in C_c(\mathbb{R}^n)$, then $g_{\varepsilon}$ converges to $g$ in $L^p(\
 \end{proof}
 
 \medskip
+
+\section{Marcinkiewicz integral}
+
+Let's continue from Lemma \ref{lemma_42} and talk more about Marcinkiewicz integrals.
+
+\medskip
+
+\begin{theorem}\label{theorem_414}
+Let $\alpha > 0$. Then 
+\begin{align*}
+    \int_{B^n(0,1)} \frac{dx}{\left|x\right|^{\alpha}} < \infty,
+\end{align*}
+if and only if $\alpha < n$.
+\end{theorem}
+\begin{proof}
+Let  
+\begin{align*}
+    B^n_i \coloneqq \left\{x \in \mathbb{R}^n \,:\, \frac{1}{2^{i+1}} \leq \left|x\right| < \frac{1}{2^i}\right\},
+\end{align*}
+and clearly, $B^n(0,1) = \bigcup^\infty_{i=0} B^n_i$. For $x \in B^n_i$, we have
+\begin{align}\label{theorem_414_equ1}
+    2^{i\alpha} < \frac{1}{\left|x\right|^{\alpha}} \leq 2^{(i+1)\alpha}.
+\end{align}
+The volume of $B^n_i$ can be computed explicitly:
+\begin{align*}
+    \mu(B^n_i) = \omega_n \left(2^{-i}\right)^n - \omega_n \left(2^{-i-1}\right)^n = \omega_n \left(1 - 2^{-n}\right) 2^{-in}.
+\end{align*}
+Since $\omega_n \left(1 - 2^{-n}\right) = C_n$ is a constant depending on $n$, by \eqref{theorem_414_equ1}, we have
+\begin{align*}
+    C_n \sum^\infty_{i=0} 2^{i\alpha} 2^{-in} \leq \int_{B^n(0,1)} \frac{dx}{\left|x\right|^{\alpha}} \leq C_n \sum^\infty_{i=0} 2^{(i+1)\alpha} 2^{-in},
+\end{align*}
+and hence
+\begin{align*}
+    C_n \sum^\infty_{i=0} 2^{-i(n-\alpha)} \leq \int_{B^n(0,1)} \frac{dx}{\left|x\right|^{\alpha}} \leq C_n 2^{\alpha} \sum^\infty_{i=0} 2^{-i(n-\alpha)}.
+\end{align*}
+Observe that the series $\sum 2^{-i(n-\alpha)}$ converges if and only if $n - \alpha > 0$, hence we know the integral is finite if and only if $\alpha < n$.
+\end{proof}
+
+\medskip
+
+\begin{remark}
+With a similar argument, we can prove that for any $\varepsilon > 0$,
+\begin{align}\label{remark_46_equ1}
+    \int_{B^n(0,\varepsilon)} \frac{dx}{\left|x\right|^{\alpha}} < \infty,
+\end{align}
+if and only if $\alpha < n$.
+\end{remark}
+
+\medskip
+
+\begin{theorem}\label{theorem_415}
+Let $\varepsilon > 0$,$\alpha > 0$, and $x \in \mathbb{R}^n$. Then
+\begin{align*}
+    \int_{B^n(x,\varepsilon)} \frac{dz}{\left|x-z\right|^{\alpha}} < \infty,
+\end{align*}
+if and only if $\alpha < n$.
+\end{theorem}
+\begin{proof}
+We could use the similar argument in Theorem \ref{theorem_414} by taking balls centered at $x$. Instead, we prove this by change of variable and reduce it to \eqref{remark_46_equ1}. By Lemma \ref{lemma_41}, we have
+\begin{align*}
+    \int_{B^n(0,\varepsilon)} \frac{dz}{\left|z\right|^{\alpha}} = \int_{\mathbb{R}^n} \frac{\chi_{B^n(0,\varepsilon)}(z)}{\left|z\right|^{\alpha}}\,dz = \int_{\mathbb{R}^n} \frac{\chi_{B^n(0,\varepsilon)}(x - z)}{\left|x - z\right|^{\alpha}}\,dz.
+\end{align*}
+If $x - z \in B^n(0,\varepsilon)$, then $z \in B^n(x,\varepsilon)$. Hence,
+\begin{align*}
+    \int_{\mathbb{R}^n} \frac{\chi_{B^n(0,\varepsilon)}(x - z)}{\left|x - z\right|^{\alpha}}\,dz = \int_{\mathbb{R}^n} \frac{\chi_{B^n(x,\varepsilon)} (z)}{\left|x - z\right|^{\alpha}}\,dz = \int_{B^n(x,\varepsilon)} \frac{dz}{\left|x - z\right|^{\alpha}},
+\end{align*}
+and the rest follows from \eqref{remark_46_equ1}.
+\end{proof}
+
+\medskip
+
+\begin{theorem}\label{theorem_416}
+If $r > 0$, then
+\begin{align*}
+    \int_{\left|x\right| \geq r} \frac{dx}{\left|x\right|^{n+1}} = \frac{C(n)}{r},
+\end{align*}
+where $C(n)$ is a constant that depends on $n$ only. (Remember that you cannot use integration in the spherical coordinate system since it was not covered yet.)
+\end{theorem}
+\begin{proof}
+We will prove it without using integration in the spherical coordinate system since it was not covered yet. By Lemma \ref{lemma_42}, we have
+\begin{align*}
+    \int_{\left|x\right| \geq r} \frac{dx}{ \left|x\right|^{n+1}} = \int_{\mathbb{R}^n} \frac{\chi_{B(0,r)^c}(x)}{\left|x\right|^{n+1}} \,dx = r^n \int_{\mathbb{R}^n} \frac{\chi_{B(0,r)^c}(rx)}{\left|rx\right|^{n+1}} \,dx,
+\end{align*}
+where $B(0,r)^c$ is the complement of $B(0,r)$. If $rx \in B(0,r)^c$, then $\left|rx\right| \geq r$, and hence $\left|x\right| \geq 1$, which implies $x \in B(0,1)^c$. Then,
+\begin{align*}
+    r^n \int_{\mathbb{R}^n} \frac{\chi_{B(0,r)^c}(rx)}{\left|rx\right|^{n+1}} \,dx = r^n \int_{\mathbb{R}^n} \frac{\chi_{B(0,r)^c}(x)}{r^{n+1}\left|x\right|^{n+1}} \,dx = \frac{1}{r} \int_{\left|x\right|\geq 1} \frac{dx}{\left|x\right|^{n+1}}.
+\end{align*}
+It remains to prove that 
+\begin{align*}
+    C(n) \coloneqq \int_{\left|x\right|\geq 1} \frac{dx}{\left|x\right|^{n+1}} < \infty.
+\end{align*}
+We have
+\begin{align*}
+    \int_{\left|x\right|\geq 1} \frac{dx}{\left|x\right|^{n+1}} & = \sum^\infty_{k=0} \int_{B(0,2^{k+1}) \setminus B(0,2^k)} \frac{dx}{\left|x\right|^{n+1}} \\
+    & \leq \sum^\infty_{k=0} \frac{1}{2^{k(n+1)}} \mu\left(B(0,2^{k+1}) \setminus B(0,2^k)\right) \\
+    & = \sum^\infty_{k=0} \frac{1}{2^{k(n+1)}} \omega_n \left(2^{n(k+1)} - 2^{kn}\right) \\
+    & = \sum^\infty_{k=0} \frac{\omega_n (2^n - 1)}{2^k} < \infty,
+\end{align*}
+and the theorem follows.
+\end{proof}
+
+\medskip
+
+\begin{proof}[Second Proof of Theorem \ref{theorem_416}]
+Let $A_n(z)$ be the surface area of $\left|x\right| = z$, and $A_n(z) = C(n) z^{n-1}$ for some constant $C(n)$ which only depends on $n$. Considering integral with respect to the surface area implies
+\begin{align*}
+    \int_{\left|x\right| \geq r} \frac{dx}{\left|x\right|^{n+1}} = \int^\infty_r \frac{A_n(z)}{z^{n+1}} \,dz = C(n) \int^\infty_r \frac{z^{n-1}}{z^{n+1}} \,dz = \frac{C(n)}{r}.
+\end{align*}
+\end{proof}
+
+\medskip
+
+Consider now a closed set $F \subset \mathbb{R}^n$ and the distance function $\delta(z) = \dist (z,F)$.
+
+\medskip
+
+\begin{theorem}
+If $x \notin F$, then
+\begin{align*}
+    \int_{B(x,1)} \frac{\delta(z)}{\left|x-z\right|^{n+1}} \,dz = \infty.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $a = \dist (x,F)$ and there is $\varepsilon > 0$ such that $\varepsilon < a/2$. Then, $\delta(z) > a/2$ for $z \in B(x,\varepsilon)$, and hence by Theorem \ref{theorem_415}, we have
+\begin{align*}
+    \int_{B(x,1)} \frac{\delta(z)}{\left|x-z\right|^{n+1}} \,dz \geq \frac{a}{2} \int_{B(x,1)} \frac{dz}{\left|x-z\right|^{n+1}} = \infty.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+If $x \in \operatorname{int}(F)$, then
+\begin{align*}
+    \int_{B(0,1)} \frac{\delta(z)}{\left|x-z\right|^{n+1}} < \infty.
+\end{align*}
+\end{theorem}
+
+
+
+
+
+
 
 
 
@@ -5454,11 +5624,11 @@ since the second term integrates over $\{(x,t) \in \mathbb{R}^n \times [0,\infty
 ~\begin{enumerate}[label=(\alph*)]
     \item Let $E_t = \{x \,:\, Mf(x) > t\}$. For every $x \in E_t$, there exists $r_x > 0$ such that
     \begin{align*}
-        \avint_{B(x,r)} \left|f(y)\right| \,dy > t,
+        \avint_{B(x,r_x)} \left|f(y)\right| \,dy > t,
     \end{align*}
     which is equivalent to 
     \begin{align*}
-        \mu(B(x,r)) < t^{-1} \int_{B(x,r)} \left|f(y)\right| \,dy.
+        \mu(B(x,r_x)) < t^{-1} \int_{B(x,r_x)} \left|f(y)\right| \,dy.
     \end{align*}
     
     We claim that $\sup_{x \in E_t} r_x < \infty$.\footnote{Indeed, $\omega_n r_x^n = \mu(B(x,r)) < t^{-1} \left\|f\right\|_1$, and hence $r_x \leq \left(\left\|f\right\|_1/(t\omega_n)\right)^{1/n}$, where the right hand side does not depend on $x$.}Now consider the family $\{B(x,r_x)\}_{x \in E_t}$, and $5r$-covering lemma \ref{theorem_54} implies that 
@@ -5483,7 +5653,7 @@ since the second term integrates over $\{(x,t) \in \mathbb{R}^n \times [0,\infty
     \begin{align*}
         f_1 = f\chi_{\{\left|f\right| > t/2\}}, \quad f_2 = f\chi_{\{\left|f\right| \leq t/2\}}.
     \end{align*}
-    Clearly, $\left|f\right| \leq \left|f_1\right| + t/2$, and then we have $Mf \leq Mf_1 + t/2$. Note that if $Mf > t/2$, then $Mf_1 > t/2$, which implies
+    Clearly, $\left|f\right| \leq \left|f_1\right| + t/2$, and then we have $Mf \leq Mf_1 + t/2$. Note that if $Mf > t$, then $Mf_1 > t/2$, which implies
     \begin{align*}
         \left\{x \,:\, Mf(x) > t\right\} 
         \subset \left\{x \,:\, Mf_1(x) > \frac{t}{2}\right\}.
@@ -5901,7 +6071,7 @@ The function $f: [0,1] \to \mathbb{R}$ is continuous, increasing and $f(0) = 0, 
 \section{Absolutely continuous functions}
 
 \begin{definition}
-We say that $f:[a,b] \to \mathbb{R}$ is absolutely continuous if for every $\varepsilon > 0$, there exists $\delta > 0$ such that if $(x_1,x_1+h_1), \cdots, (x_k,x_k+h_k) \subset [a,b]$ are pairwise and $\sum^k_{i=1} h_i < \delta$, then 
+We say that $f:[a,b] \to \mathbb{R}$ is absolutely continuous if for every $\varepsilon > 0$, there exists $\delta > 0$ such that if $(x_1,x_1+h_1), \cdots, (x_k,x_k+h_k) \subset [a,b]$ are pairwise disjoint and $\sum^k_{i=1} h_i < \delta$, then 
 \begin{align*}
     \sum^k_{i=1} \left|f(x_i+h_i) - f(x_i)\right| < \varepsilon.
 \end{align*}
@@ -7392,12 +7562,49 @@ which implies the inequality above.
 
 \medskip
 
+\begin{exercise}\label{exercise_7222}
+Suppose that $f_n\to f$ in measure and $g_n\to g$ in measure. Show that $f_ng_n\to fg$ in measure if $\mu(X)<\infty$. Show that the claim is not necessarily true if $\mu(X)=\infty$.
+\end{exercise}
+\begin{proof}
+Since $\mu(X) < \infty$, note that the sets $G_m \coloneqq \{x \,:\, \left|f\right| > m\}$ are decreasing, then $\bigcap G_m = \{x \,:\, \left|f\right|  = \infty\}$ is a set of measure zero. Hence, there exists $M > 0$ such that $\mu(\{x \,:\, \left|f_n(x)\right| > M \}) < \varepsilon$ for all $n$ and $\mu(\{x \,:\, \left|g(x)\right| > M \}) < \varepsilon$. Now by $\left|f_ng_n - fg\right| \leq \left|f_n(g_n - g)\right| + \left|(f_n - f)g\right|$, we have
+\begin{align*}
+    \{\left|f_ng_n - fg\right| > \varepsilon \} \subset \left\{\left|f_n\right| \left|g_n - g\right| > \frac{\varepsilon}{2} \right\} \cup \left\{\left|g\right| \left|f_n - f\right| > \frac{\varepsilon}{2} \right\}.
+\end{align*}
+Now observe that
+\begin{align*}
+    \left\{\left|f_n\right| \left|g_n - g\right| > \frac{\varepsilon}{2} \right\} \subset \{\left|f_n(x)\right| > M \} \cup \left\{\left|g_n - g\right| > \frac{\varepsilon}{2M} \right\},
+\end{align*}
+and
+\begin{align*}
+    \left\{\left|g\right| \left|f_n - f\right| > \frac{\varepsilon}{2} \right\} \subset \{\left|g\right| > M \} \cup \left\{\left|f_n - f\right| > \frac{\varepsilon}{2M} \right\}.
+\end{align*}
+Thus, we have
+\begin{align*}
+    \mu\left(\{\left|(f_ng_n)(x) - (fg)(x)\right| > \varepsilon \} \right) & \leq \mu(\{\left|f_n(x)\right| > M \}) + \mu\left(\left\{\left|g_n(x) - g(x)\right| > \frac{\varepsilon}{2M}\right\}\right) \\
+    & + \mu\left(\left\{\left|f_n(x) - f(x)\right| > \frac{\varepsilon}{2M}\right\}\right) + \leq \mu(\{\left|g(x)\right| > M \}) < 4 \varepsilon,
+\end{align*}
+which implies that $f_ng_n \to fg$ in measure.
 
-\section{Integration on Product Spaces}
-
+For a counterexample when $\mu(X) = \infty$. Take $X = \mathbb{R}$, $\mu$ be the Lebesgue measure and $f = g = x^2$ unbounded. Let $f_n = g_n = f + 1/n$. Then for $x \in [n,\infty)$, we have 
+\begin{align*}
+    \left|f_n(x)g_n(x) - f(x)g(x)\right| \geq \frac{2x^2}{n} \geq 2n,
+\end{align*}
+and hence as $n \to \infty$,
+\begin{align*}
+    \mu(\{\left|f_n(x)g_n(x) - f(x)g(x)\right| \geq 1\}) \geq \mu([n,\infty)) \not\to 0.
+\end{align*}
+Thus, $f_ng_n \not\to fg$ in measure.
+\end{proof}
 
 \medskip
 
+\begin{proof}[Second Proof of Exercise \ref{exercise_7222}]
+Choose any increasing sequence $\{n_k\}$ of integers. Since $f_n \to f$ in measure, the same is true for $f_{n_k}$. By Riesz theorem, there is a subsequence $\left\{n_{k_m}\right\}$ such that $f_{n_{k_m}} \to f$ $\mu$-a.e. Then, since $g_n \to g$ in measure, so does $\left\{g_{n_{k_m}}\right\}$. Again, by Riesz theorem, there is a subsequence $\left\{n_{k_{m_j}}\right\}$ such that $g_{n_{k_{m_j}}} \to g$ $\mu$-a.e. Since $f_{n_{k_m}} \to f$ $\mu$-a.e., then the same is true for $\left\{f_{n_{k_{m_j}}}\right\}$.
+
+Now, $\left\{f_{n_{k_{m_j}}}\right\}$ and $\left\{g_{n_{k_{m_j}}}\right\}$ converge to $f$ and $g$ $\mu$-a.e., then $f_{n_{k_{m_j}}} g_{n_{k_{m_j}}} \to fg$ $\mu$-a.e. Since $\mu(X) < \infty$, then we have $f_{n_{k_{m_j}}} g_{n_{k_{m_j}}} \to fg$ in measure as well. And this implies $f_ng_n \to fg$ in measure.
+\end{proof}
+
+\medskip
 
 \section{$L^p$-space}
 
@@ -7406,7 +7613,6 @@ Let $\tau_y f(x)=f(x+y)$. Prove that if $1\leq p<\infty$ and $f\in L^p(\mathbb{R
 \begin{align*}
     \lim_{\left|y\right| \to \infty} \left\|\tau_y f + f\right\|_p = 2^{1/p} \left\|f\right\|_p.
 \end{align*}
-({\bf Hint:} Compare with Lemma~93 in my notes.)
 \end{exercise}
 \begin{proof}
 
@@ -7437,6 +7643,95 @@ and taking $q$th root implies the result:
 \end{proof}
 
 \medskip
+
+
+\section{Integration on Product Spaces}
+
+\medskip
+
+\begin{exercise}[Proposition 3.7 in \cite{38}]
+Prove that if $X$ is a compact metric space, then the metric space of continuous functions $C(X)$ is separable. ({\bf Hint:} {\em Use the Stone-Weierstrass theorem and distance functions $y\mapsto d(y_0,y)$.})
+\end{exercise}
+\begin{proof} 
+When $X$ consists of a singleton, then $C(X)$ is equal to $\mathbb{R}$ and hence separable. Now we assume $X$ has more than one points. Since $X$ is compact, then there is a sequence of ball $\{B_i\}$ whose centers $\{x_i\}$ form a dense set in $X$.\footnote{Indeed, this comes from Proposition 2.11 in \cite{39}: A closed set has the finite cover property if and only if it has the
+finite intersection property.
+\begin{enumerate}[label=(\alph*)]
+    \item A set $E \subset X$ satisfies the {\bf finite cover property} if whenever $\{G_\alpha\}$ is an open cover of $E$, there is a subcollection consisting of finitely many $G_{\alpha_1}, \cdots, G_{\alpha_K}$ such that $E \subset \bigcup^K_{i=1} G_{\alpha_i}$.
+    
+    \item A set $E$ satisfies the {\bf finite intersection property} if whenever $\{F_\alpha\}$ are relatively closed set in $E$ satisfying $\bigcap^K_{i=1} F_{\alpha_i} \neq \varnothing$ for any finite subcollection $\{F_{\alpha_i}\}$. 
+\end{enumerate}
+}Define $f_i(x) = d(x,x_i)$ and let $\mathcal{M} \subset C(X)$ consist of functions which are finite product of $f_i$'s. Now let
+\begin{align*}
+    \mathcal{A} = \left\{\sum^N_{k=1} a_kh_k \,:\, h_k \in \mathcal{M}, a_j \in \mathbb{Q}\right\}.
+\end{align*}
+It is easy to check that $\mathcal{A}$ is an algebra in $C(X)$. To verify separating points property, let $y_1$ and $y_2$ be two distinct points in $X$. The function $f(y) = d(y,x_1)$ satisfies $f(y_1) = 0$ and $f(y_2) \neq 0$. By density of $\{x_i\}$, we can find some $x_i$ close to $y_1$ such that the function $f_i(x) = d(x,x_i)$ separates $y_1$ and $y_2$. On the other hand, given any point $x_0$ we can fix another distinct point $y_0$ so that the function $d(x,y_0)$ is nonvanishing at $x_0$. By density of $\{x_i\}$ again, there is some $x_j$ close to $y_0$ such that $f_j(x_0) \neq 0$.  By the Stone-Weierstrass theorem, $\mathcal{A}$ is dense in $C(X)$.
+
+It remains to prove that $\mathcal{A}$ is countable. Let $\mathcal{A}_n$ be the subset of $\mathcal{A}$ which only contains finitely many functions $f_1, \cdots, f_n$. We have $\mathcal{A} = \bigcup_n \mathcal{A}_n$, so it suffices to prove that each $\mathcal{A}_n$ is countable. Each function in $\mathcal{A}_n$ is composed of finitely many terms of the form $f_{n_1}^{a_1} \cdots f_{n_k}^{a_k}, n_j \in \{1,\cdots,n\}$. Let $\mathcal{A}_n^m \subset \mathcal{A}_n$ consists of all those functions whose degree is less than or equal to $m$. It is clear $\mathcal{A}_n^m$ is countable, so is $\mathcal{A}_n = \bigcup_m \mathcal{A}_n^m$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $f:\mathbb{R}^n\to [0,\infty)$ is Lebesgue measurable, then the set
+$$
+U_f = \{(x,y) \in \mathbb{R}^n \times \mathbb{R} \,:\, x \in \mathbb{R}^n, 0 \leq y\leq f(x)\} \subset \mathbb{R}^{n+1}
+$$
+is Lebesgue measurable and
+$$
+\mathcal{L}_{n+1}(U_f)=\int_{\mathbb{R}^n} f \,d\mathcal{L}_n.
+$$
+\end{exercise}
+\begin{proof}
+Let $s: \mathbb{R}^n \to [0,\infty]$ be a simple function, defined as
+\begin{align*}
+    s(x) = \sum^n_{i=1} \alpha_i \chi_{A_i}(x).
+\end{align*}
+Clearly, the set 
+\begin{align*}
+    U_s = \bigcup^n_{i=1} A_i \times [0,\alpha_i]
+\end{align*}
+is measurable. Let $\{s_n\}$ be a sequence of nonnegative simple functions that converges to $f$ pointwisely. Since each $U_{s_n}$ is measurable, then the set
+\begin{align*}
+    U_f = \bigcup^\infty_{n=1} U_{s_n}
+\end{align*}
+is also measurable.
+
+Observe that
+\begin{align*}
+    \int_{\mathbb{R}^{n+1}} \chi_{U_f}\,d\mathcal{L}_{n+1} = \mathcal{L}_{n+1} (U_f),
+\end{align*}
+and $\chi_{U_f}(x,y) = \chi_{[0,f(x)]}(y)$. By the Fubini theorem, we have
+\begin{align*}
+    \mathcal{L}_{n+1} (U_f) & = \int_{\mathbb{R}^{n+1}} \chi_{U_f}\,d\mathcal{L}_{n+1} = \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}} \chi_{[0,f(x)]}(y) \,d\mathcal{L}\right) \,d\mathcal{L}_n = \int_{\mathbb{R}^n} f(x) \,d\mathcal{L}_n.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Show an example that the Fubini theorem is not true if the measures are not $\sigma$-finite.
+\end{exercise}
+\begin{proof}\cite{40}
+Let $\left([0,1], \mathfrak{B}([0,1]), \mu\right)$ and $\left([0,1], \mathcal{P}([0,1]), \lambda\right)$ be measurable spaces with the Lebesgue measure $\mu$ and the counting measure $\lambda$ respectively, and the counting measure is not $\sigma$-finite.
+
+Consider the set $D = \left\{(x,x) \,:\, x \in [0,1] \right\}$, which is a closed subset of $[0,1] \times [0,1]$. Hence, 
+\begin{align*}
+    D \in \mathfrak{B}([0,1] \times [0,1]) = \mathfrak{B}([0,1]) \times \mathfrak{B}([0,1]) \subset \mathfrak{B}([0,1]) \times \mathcal{P}([0,1]).
+\end{align*}
+Therefore, $\chi_{D}$ is measurable. However,
+\begin{align*}
+    \int_{[0,1]} \left(\int_{[0,1]} \chi_D(x,y) \,d\lambda \right) \,d\mu & = \int_{[0,1]} \left(\int_{[0,1]} \chi_{\{x\}}(y) \,d\lambda \right) \,d\mu \\
+    & = \int_{[0,1]} \lambda(\{x\}) \,d\mu = \int_{[0,1]} 1 \,d\mu \\
+    & = \mu([0,1]) = 1,
+\end{align*}
+and
+\begin{align*}
+    \int_{[0,1]} \left(\int_{[0,1]} \chi_D(x,y) \,d\mu \right) \,d\lambda & = \int_{[0,1]} \left(\int_{[0,1]} \chi_{\{y\}}(x) \,d\mu \right) \,d\lambda \\
+    & = \int_{[0,1]} \mu(\{y\}) \,d\lambda = \int_{[0,1]} 0 \,d\lambda = 0,
+\end{align*}
+which implies the Fubini theorem fails when the measure is not $\sigma$-finite.
+\end{proof}
+
 
 \section{Doubling and Hausdorff measures}
 
