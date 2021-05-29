@@ -6449,15 +6449,66 @@ for almost every $x \in \Omega$.
 
 
 
+\chapter{Complex Numbers and Functions}
+
+\section{Definition}
+
+\begin{definition}\label{def_71}
+The complex number can be identifies as a pair $(a,b) \in \mathbb{R}^2$, then real number $a$ can be written as $a \coloneqq (a,0)$. Hence $1 = (1,0)$ and $i = (0,1)$. And we can write any complex number $(a,b)$ as $(a,b) = a + bi$.
+
+Now we can define addition as
+\begin{align*}
+    (a + bi) + (c + di) = (a + c) + (b + d)i,
+\end{align*}
+which is addition of vectors in $\mathbb{R}^2$. Also, we can define multiplication with the rule that $i^2 = -1$, 
+\begin{align*}
+    (a + bi) \cdot (c + di) = (ac - bd) + (ad + bc)i.
+\end{align*}
+If $\alpha = a + bi$, We define the complex conjugate $\overline{\alpha}$ of $\alpha$ as $\overline{\alpha} = a - bi$. Note that
+\begin{align*}
+    \alpha \overline{\alpha} = (a + bi) \cdot (a - bi) = a^2 + b^2.
+\end{align*}
+Now if $c + di \neq 0 = 0 + 0i$, we can define division by
+\begin{align*}
+    \frac{a + bi}{c + di} = \frac{(a + bi) (c - di)}{(c + di) (c - di)} = \frac{(ac + bd) + (bc - ad)i}{c^2 + d^2} = \frac{ac + bd}{c^2 + d^2} + \frac{bc - ad}{c^2 + d^2}i.
+\end{align*}
+Then if $\alpha = a + bi \neq 0$, then it has an inverse 
+\begin{align*}
+    \lambda = \frac{a - bi}{a^2 + b^2}.
+\end{align*}
+\end{definition}
+
+\begin{remark}
+Complex numbers form a field denoted by $\mathbb{C}$, and hence $\mathbb{C} = \mathbb{R}^2$ with the operations defined as above.
+\end{remark}
 
 
+\medskip
 
+\begin{definition}
+Now we define the absolute value of a complex number $z = a + bi$ by $\left|z\right| = \sqrt{a^2 + b^2} = z \overline{z}$. Also, $a$ is called the real part of $z$, denoted by $\Re(z)$ and $b$ is called the imaginary part of $z$, denoted by $\Im(z)$.
+\end{definition}
 
+\medskip
 
+\begin{theorem}[{\bf Basic Properties}]
+Let $z, z_1, z_2$ be complex numbers, then
+\begin{align*}
+    \overline{z_1 z_2} = \overline{z_1} \cdot \overline{z_2}, \quad \overline{z_1 \pm z_2} = \overline{z_1} \pm \overline{z_2}, \quad \overline{\overline{z}} = z, \quad \overline{\frac{z_1}{z_2}} = \frac{\overline{z_1}}{\overline{z_2}}.
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is trivial by Definition \ref{def_71}.
+\end{proof}
 
+\medskip
 
-
-
+\begin{theorem}
+Let $z_1, z_2$ be complex numbers, then 
+\begin{align*}
+    \left|z_1 z_2\right| = \left|z_1\right| \cdot \left|z_2\right|, \quad \left|\frac{z_1}{z_2}\right| = \frac{\left|z_1\right|}{\left|z_2\right|}, \quad \left|z_1 + z_2\right| \leq \left|z_1\right| + \left|z_2\right|.
+\end{align*}
+\end{theorem}
 
 
 
