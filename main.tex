@@ -6510,6 +6510,207 @@ Let $z_1, z_2$ be complex numbers, then
 \end{align*}
 \end{theorem}
 
+\section{Polar Form}
+
+Complex numbers can also be written in the {\it Polar form}: if $z \in \mathbb{C}$, then we have
+\begin{align*}
+    z = \left|z\right| \left(\cos \alpha + i \sin \alpha\right) = \left|z\right| e^{i \alpha},
+\end{align*}
+where $\alpha = \arg z$ is called the {\it argument} of $z$. If $\alpha$ is an argument of $z$, then $\alpha + 2k\pi, k \in \mathbb{Z}$ is also an argument of $z$, that is, $\arg$ is a multiple valued function. If $0 \leq \alpha < 2\pi$, then this unique argument is denoted by $\operatorname{Arg} z$, and it is called the {\it principle value} of the argument. 
+
+\medskip
+
+\begin{theorem}
+Let $\alpha, \beta$ be two real numbers, then $e^{i\alpha + i \beta} = e^{i\alpha} e^{i\beta}$.
+\end{theorem}
+\begin{proof}
+By definition, we have
+\begin{align*}
+    e^{i\alpha + i \beta} = e^{i(\alpha + \beta)} = \cos(\alpha + \beta) + i \sin(\alpha + \beta),
+\end{align*}
+and using the formulas for $\sin(\alpha \pm \beta)$ and $\cos(\alpha \pm \beta)$ gives
+\begin{align*}
+    \cos(\alpha + \beta) + i \sin(\alpha + \beta) = \left(\cos \alpha + i \sin \alpha\right) \left(\cos \beta + i \sin \beta\right),
+\end{align*}
+which implies the theorem.
+\end{proof}
+
+\medskip
+
+\begin{corollary}
+Similarly, we have
+\begin{align*}
+    \frac{e^{i\alpha}}{e^{i\beta}} = e^{i(\alpha - \beta)}.
+\end{align*}
+\end{corollary}
+\begin{proof}
+We have
+\begin{align*}
+    \frac{e^{i\alpha}}{e^{i\beta}} = \frac{\cos \alpha + i \sin \alpha}{\cos \beta + i \sin \beta} = \cos(\alpha - \beta) + i \sin(\alpha - \beta) = e^{i(\alpha - \beta)}.
+\end{align*}
+\end{proof}
+
+\medskip
+
+With these results, we can know how to multiply complex numbers geometrically, which is a direct result of the above theorem.
+
+\medskip
+
+\begin{theorem}
+Let $z_1 = \left|z_1\right| \left(\cos \alpha + i \sin \alpha\right)$ and $z_2 = \left|z_2\right| \left(\cos \beta + i \sin \beta\right)$, then 
+\begin{align*}
+    z_1 z_2 = \left|z_1\right| \left|z_2\right| \left(\cos (\alpha + \beta) + i \sin (\alpha + \beta)\right).
+\end{align*}
+\end{theorem}
+
+\begin{remark}
+Note that $\arg z_1 z_2 = \arg z_1 + \arg z_2$, but in general $\operatorname{Arg} z_1 z_2 \neq \operatorname{Arg} z_1 + \operatorname{Arg} z_2$.
+\end{remark}
+
+\medskip
+
+\begin{theorem}[{\bf De Moivre's formula}]
+$\left(\cos \alpha + i \sin \alpha\right)^n = \cos (n\alpha) + i \sin (n\alpha)$.
+\end{theorem}
+
+\begin{remark}
+If $z \neq 0$, then there are exactly $n$ distinct roots of the equations $w^n = z$, namely
+\begin{align*}
+    w_k = \left|z\right|^{1/k} \left(\cos \frac{\operatorname{Arg} z + 2k\pi}{n} + i \sin \frac{\operatorname{Arg} z + 2k\pi}{n} \right), k = 0,1,\cdots,n-1,
+\end{align*}
+and each root is called $n$-th root of $z$. And the $n$-th roots of unity are 
+\begin{align*}
+    \cos \frac{2k\pi}{n} + i \sin \frac{2k\pi}{n}, k = 0,1,\cdots,n-1,
+\end{align*}
+or 
+\begin{align*}
+    w_k = \zeta^k = \left(\cos \frac{2\pi}{n} + i \sin \frac{2\pi}{n}\right)^k, 
+\end{align*}
+where $\zeta = \cos (2\pi/n) + i \sin (2\pi/n) = e^{2\pi i/n}$.
+\end{remark}
+
+\medskip
+
+\section{Riemann Sphere}
+
+In real analysis, we always add $+\infty$ and $-\infty$ to the set of real number, that is $\overline{\mathbb{R}} = \mathbb{R} \cup \{-\infty, +\infty\}$. However, in complex analysis, we just add one point at infinity, $\overline{\mathbb{C}} = \mathbb{C} \cup \{\infty\}$. And $\overline{\mathbb{C}}$ is called {\it Riemann sphere} because of the following interpretation\footnote{Picture source: \url{https://people.math.gatech.edu/~mccuan/courses/6321/notes/lecture3d.pdf}}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{p75}
+    \caption{stereographic projection from north pole to plane $z = 0$.}
+    \label{fig:plot_1}
+\end{figure}
+The top red dot is North Pole $N$, and let $\pi: S\setminus\{N\} \to \mathbb{C}$ be the stereographic projection defined as in the picture, where $S$ is a the sphere of the ball. Then $\pi$ is a homeomorphism, it allows to identify $\mathbb{C}$ with $S\setminus\{N\} \to \mathbb{C}$, and hence we can identify $\overline{\mathbb{C}}$ with $S$. Note that if $x_n \to N$ in $S$, then $\left|\pi(x_n)\right| \to \infty$, which means $\pi(x_n) \to \infty$. Also, basis of neighborhood of $\infty$ will be set 
+\begin{align*}
+    \left\{z \in \mathbb{C} \,:\, \left|z\right| > r\right\} \cup \{\infty\}. 
+\end{align*}
+
+\medskip
+
+\section{Complex Derivatives}
+
+\begin{definition}\label{def_73}
+Let $\Omega \subset \mathbb{C}$ be an open set and let $f: \Omega \to \mathbb{C}$ be function. For $z_0 \in \Omega$, we define the (complex) derivative of $f$ at $z_0$ as the limit
+\begin{align*}
+    f'(z_0) = \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0},
+\end{align*}
+provided the limit exists.
+\end{definition}
+
+\medskip
+
+\begin{definition}
+We say that $f$ is holomorphic in $\Omega$ if $f'(z)$ exists and $f'(z) \in \mathbb{C}$ for all $z \in \Omega$. The space of all holomorphic functions in $\Omega$ is denoted by $H(\Omega)$.
+\end{definition}
+
+\medskip
+
+Next results are easy to prove just as in Mathematical Analysis. 
+
+\medskip
+
+\begin{theorem}[{\bf Basis properties}]
+$(f \pm g)' = f' \pm g'$, $(zf)' = z f'$, $(fg)' = f'g + fg'$, 
+\begin{align*}
+    \left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2},
+\end{align*}
+if $g \neq 0$, and $(f \circ g)' = (f' \circ g)g'$.
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+If a function $f: \mathbb{C} \to \mathbb{C}$ is holomorphic in $\mathbb{C}$, then it is called an entire function.
+\end{definition}
+
+\medskip
+
+
+\section{Cauchy-Riemann Equations}
+
+Let $\Omega \subset \mathbb{C}$ be an open set and let $f: \mathbb{C} \ni \Omega \to \mathbb{C}$ be function, and $f$ can be regarded as a "real" function $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$. Now recall that $f$ is differentiable in the real sense of $z_0 \in \Omega$ if there is a linear map $L: \mathbb{R}^2 \to \mathbb{R}^2$ such that
+\begin{align*}
+    \lim_{z\to 0} \frac{\left|f(z_0 + z) - f(z_0) - Lz\right|}{\left|z\right|} = 0,
+\end{align*}
+where $z \in \mathbb{R}^2$ is a vector. Then we call $L$ the derivative of $f$ at $z_0$ and denote it by $Df(z_0)$. Next we will show that if $f$ is complex differentiable at $z_0 \in \Omega$, then $f$ is also  differentiable in the real sense.
+
+Recall in Definition \ref{def_73}, if $f$ is complex differentiable at $z_0 \in \Omega$, this means
+\begin{align*}
+    \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0} = f'(z_0) \in \mathbb{C},
+\end{align*}
+and this condition is equivalent to the following
+\begin{align*}
+    \lim_{z\to 0} \frac{\left|f(z_0 + z) - f(z_0) - f'(z_0)z\right|}{\left|z\right|} = 0.
+\end{align*}
+The complex multiplication $\mathbb{C} \ni z \mapsto f'(z_0)z \in \mathbb{C}$ with identification $\mathbb{C} = \mathbb{R}^2$ defines a linear map $\mathbb{R}^2 \ni z \mapsto f'(z_0)z \in \mathbb{R}^2$. Therefore, if $f$ is complex differentiable at $z_0 \in \Omega$, then it is real differentiable at $z_0$ and there is a $2 \times 2$ real matrix $Df(z_0)$ such that $Df(z_0) z = f'(z_0) z$, where in the left hand side, it is the multiplication of a $2 \times 2$ matrix by a vector in $\mathbb{R}^2$ and in the right hand side, it is the multiplication of complex numbers. 
+
+On the other hand, if $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$ is real differentiable and there is $z_1 \in \mathbb{C}$ such that $Df(z_0) z = z_1 z$, then $f: \mathbb{C} \ni \Omega \to \mathbb{C}$ is complex differentiable in the complex sense and $f'(z_0) = z_1$. 
+
+Now we proved that $f: \mathbb{C} \ni \Omega \to \mathbb{C}$ is complex differentiable if and only if it is real differentiable as a mapping $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$ and there is $z_1 \in \mathbb{C}$ such that $Df(z_0) z = z_1 z$. Then $Df'(z_0) = z_1$.
+
+We need to characterize that all linear mappings $A: \mathbb{R}^2 \to \mathbb{R}^2$ that with the identification $\mathbb{C} = \mathbb{R}^2$ can be represented as $Az = z_1 z$ for some $z_1 \in \mathbb{C}$. Let $z_1 = (a,b)$ or $z_1 = a + bi$ and consider a linear map $A: \mathbb{R}^2 \to \mathbb{R}^2$, such that $Az = z_1 z$. Suppose $z = x + yi$, then
+\begin{align*}
+    z_1 z = (ax - by) + (ay + bx)i = (ax - by, ay + bx) = \begin{pmatrix}
+    a & -b \\ b & a \end{pmatrix} \begin{pmatrix}
+    x \\ y \end{pmatrix}.
+\end{align*}
+On the other hand, if $A = \begin{pmatrix} \alpha & \beta \\ \gamma & \delta \end{pmatrix}$ with $\alpha = \delta, \beta = - \gamma$, then $Az = z_1 z$, where $z_1 = \alpha + i \gamma$. So far we proved the following proposition.
+
+\medskip
+
+\begin{proposition}
+A linear transformation $A: \mathbb{R}^2 \to \mathbb{R}^2$ with the matrix form $A = \begin{pmatrix} \alpha & \beta \\ \gamma & \delta \end{pmatrix}$ can be represented as a complex multiplication (with the identification $\mathbb{C} = \mathbb{R}^2$) $Az = z_1 z$ for some $z_1 \in \mathbb{C}$ if and only if $\alpha = \delta, \beta = - \gamma$. Then, $z_1 = \alpha + i \gamma$. 
+\end{proposition}
+
+\medskip
+
+Also, we proved that $f: \mathbb{C} \ni \Omega \to \mathbb{C}$ is complex differentiable if and only if $f$ is real differentiable as $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$ and the real derivative of $f = u + iv$
+\begin{align*}
+    Df(z_0) = \begin{pmatrix} u_x(z_0) & u_y(z_0) \\ v_x(z_0) & v_y(z_0) \end{pmatrix}
+\end{align*}
+can be represented as a multiplication by a complex number, i.e, 
+\begin{align}\label{equ_71}
+    u_x(z_0) = v_y(z_0), \quad u_y(z_0) = - v_x(z_0).
+\end{align}
+And \eqref{equ_71} is call {\it Cauchy-Riemann equations}. Then 
+\begin{align*}
+    Df(z_0) z = \left(u_x(z_0) + i v_x(z_0)\right) z,
+\end{align*}
+and hence $f'(z_0) = u_x(z_0) + i v_x(z_0)$. Above results can be summarized as below.
+
+\medskip
+
+\begin{theorem}
+A function $f = u + iv: \mathbb{C} \ni \Omega \to \mathbb{C}$ is complex differentiable at $z_0$ if and only if it is real differentiable at $z_0$ and the Cauchy-Riemann equations
+\begin{align*}
+    u_x(z_0) = v_y(z_0), \quad u_y(z_0) = - v_x(z_0)
+\end{align*}
+are satisfied. Then, $f'(z_0) = u_x(z_0) + i v_x(z_0)$.
+\end{theorem}
+
+
+
+
 
 
 
