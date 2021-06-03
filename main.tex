@@ -6598,7 +6598,7 @@ In real analysis, we always add $+\infty$ and $-\infty$ to the set of real numbe
     \centering
     \includegraphics[width=0.6\textwidth]{p75}
     \caption{stereographic projection from north pole to plane $z = 0$.}
-    \label{fig:plot_1}
+    \label{fig:stereographic_projection}
 \end{figure}
 The top red dot is North Pole $N$, and let $\pi: S\setminus\{N\} \to \mathbb{C}$ be the stereographic projection defined as in the picture, where $S$ is a the sphere of the ball. Then $\pi$ is a homeomorphism, it allows to identify $\mathbb{C}$ with $S\setminus\{N\} \to \mathbb{C}$, and hence we can identify $\overline{\mathbb{C}}$ with $S$. Note that if $x_n \to N$ in $S$, then $\left|\pi(x_n)\right| \to \infty$, which means $\pi(x_n) \to \infty$. Also, basis of neighborhood of $\infty$ will be set 
 \begin{align*}
@@ -6648,7 +6648,7 @@ If a function $f: \mathbb{C} \to \mathbb{C}$ is holomorphic in $\mathbb{C}$, the
 
 \section{Cauchy-Riemann Equations}
 
-Let $\Omega \subset \mathbb{C}$ be an open set and let $f: \mathbb{C} \ni \Omega \to \mathbb{C}$ be function, and $f$ can be regarded as a "real" function $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$. Now recall that $f$ is differentiable in the real sense of $z_0 \in \Omega$ if there is a linear map $L: \mathbb{R}^2 \to \mathbb{R}^2$ such that
+Let $\Omega \subset \mathbb{C}$ be an open set and let $f: \mathbb{C} \supset \Omega \to \mathbb{C}$ be function, and $f$ can be regarded as a "real" function $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$. Now recall that $f$ is differentiable in the real sense of $z_0 \in \Omega$ if there is a linear map $L: \mathbb{R}^2 \to \mathbb{R}^2$ such that
 \begin{align*}
     \lim_{z\to 0} \frac{\left|f(z_0 + z) - f(z_0) - Lz\right|}{\left|z\right|} = 0,
 \end{align*}
@@ -6664,9 +6664,9 @@ and this condition is equivalent to the following
 \end{align*}
 The complex multiplication $\mathbb{C} \ni z \mapsto f'(z_0)z \in \mathbb{C}$ with identification $\mathbb{C} = \mathbb{R}^2$ defines a linear map $\mathbb{R}^2 \ni z \mapsto f'(z_0)z \in \mathbb{R}^2$. Therefore, if $f$ is complex differentiable at $z_0 \in \Omega$, then it is real differentiable at $z_0$ and there is a $2 \times 2$ real matrix $Df(z_0)$ such that $Df(z_0) z = f'(z_0) z$, where in the left hand side, it is the multiplication of a $2 \times 2$ matrix by a vector in $\mathbb{R}^2$ and in the right hand side, it is the multiplication of complex numbers. 
 
-On the other hand, if $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$ is real differentiable and there is $z_1 \in \mathbb{C}$ such that $Df(z_0) z = z_1 z$, then $f: \mathbb{C} \ni \Omega \to \mathbb{C}$ is complex differentiable in the complex sense and $f'(z_0) = z_1$. 
+On the other hand, if $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$ is real differentiable and there is $z_1 \in \mathbb{C}$ such that $Df(z_0) z = z_1 z$, then $f: \mathbb{C} \supset \Omega \to \mathbb{C}$ is complex differentiable in the complex sense and $f'(z_0) = z_1$. 
 
-Now we proved that $f: \mathbb{C} \ni \Omega \to \mathbb{C}$ is complex differentiable if and only if it is real differentiable as a mapping $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$ and there is $z_1 \in \mathbb{C}$ such that $Df(z_0) z = z_1 z$. Then $Df'(z_0) = z_1$.
+Now we proved that $f: \mathbb{C} \supset \Omega \to \mathbb{C}$ is complex differentiable if and only if it is real differentiable as a mapping $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$ and there is $z_1 \in \mathbb{C}$ such that $Df(z_0) z = z_1 z$. Then $Df'(z_0) = z_1$.
 
 We need to characterize that all linear mappings $A: \mathbb{R}^2 \to \mathbb{R}^2$ that with the identification $\mathbb{C} = \mathbb{R}^2$ can be represented as $Az = z_1 z$ for some $z_1 \in \mathbb{C}$. Let $z_1 = (a,b)$ or $z_1 = a + bi$ and consider a linear map $A: \mathbb{R}^2 \to \mathbb{R}^2$, such that $Az = z_1 z$. Suppose $z = x + yi$, then
 \begin{align*}
@@ -6684,13 +6684,13 @@ A linear transformation $A: \mathbb{R}^2 \to \mathbb{R}^2$ with the matrix form 
 
 \medskip
 
-Also, we proved that $f: \mathbb{C} \ni \Omega \to \mathbb{C}$ is complex differentiable if and only if $f$ is real differentiable as $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$ and the real derivative of $f = u + iv$
+Also, we proved that $f: \mathbb{C} \supset \Omega \to \mathbb{C}$ is complex differentiable if and only if $f$ is real differentiable as $f: \mathbb{R}^2 \supset \Omega \to \mathbb{R}^2$ and the real derivative of $f = u + iv$
 \begin{align*}
     Df(z_0) = \begin{pmatrix} u_x(z_0) & u_y(z_0) \\ v_x(z_0) & v_y(z_0) \end{pmatrix}
 \end{align*}
 can be represented as a multiplication by a complex number, i.e, 
 \begin{align}\label{equ_71}
-    u_x(z_0) = v_y(z_0), \quad u_y(z_0) = - v_x(z_0).
+    u_x(z_0) = v_y(z_0), \qquad u_y(z_0) = - v_x(z_0).
 \end{align}
 And \eqref{equ_71} is call {\it Cauchy-Riemann equations}. Then 
 \begin{align*}
@@ -6701,17 +6701,242 @@ and hence $f'(z_0) = u_x(z_0) + i v_x(z_0)$. Above results can be summarized as 
 \medskip
 
 \begin{theorem}
-A function $f = u + iv: \mathbb{C} \ni \Omega \to \mathbb{C}$ is complex differentiable at $z_0$ if and only if it is real differentiable at $z_0$ and the Cauchy-Riemann equations
+A function $f = u + iv: \mathbb{C} \supset \Omega \to \mathbb{C}$ is complex differentiable at $z_0$ if and only if it is real differentiable at $z_0$ and the Cauchy-Riemann equations
 \begin{align*}
-    u_x(z_0) = v_y(z_0), \quad u_y(z_0) = - v_x(z_0)
+    u_x(z_0) = v_y(z_0), \qquad u_y(z_0) = - v_x(z_0)
 \end{align*}
 are satisfied. Then, $f'(z_0) = u_x(z_0) + i v_x(z_0)$.
 \end{theorem}
 
+\medskip
+
+\begin{proof}[Another approach to Cauchy-Riemann equations]
+We introduce the following notations
+\begin{align*}
+    \frac{\partial}{\partial z} = \frac{1}{2} \left(\frac{\partial}{\partial x} - i \frac{\partial}{\partial y}\right), \qquad \frac{\partial}{\partial \overline{z}} = \frac{1}{2} \left(\frac{\partial}{\partial x} + i \frac{\partial}{\partial y}\right).
+\end{align*}
+Now we assume $f: \mathbb{C} \supset \Omega \to \mathbb{C}$ is real differentiable, and it is obvious that\footnote{Indeed, if $f = u + iv$, then 
+\begin{align*}
+    Df(z_0) z = \begin{pmatrix} u_x(z_0) & u_y(z_0) \\ v_x(z_0) & v_y(z_0) \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \left(u_x(z_0)y + u_y(z_0)y\right) + i \left(v_x(z_0)x + v_y(z_0)y\right).
+\end{align*}
+On the other hand, we have
+\begin{align*}
+    \frac{\partial f}{\partial z}(z_0) z + \frac{\partial f}{\partial \overline{z}}(z_0) \overline{z} & = \frac{1}{2} \left[(u_x(z_0) + i v_x(z_0)) - i(u_y(z_0 + i v_y(z_0))\right] (x + iy) \\
+    & + \frac{1}{2} \left[(u_x(z_0) + i v_x(z_0)) + i(u_y(z_0 + i v_y(z_0))\right] (x - iy) \\
+    & = \left(u_x(z_0)y + u_y(z_0)y\right) + i \left(v_x(z_0)x + v_y(z_0)y\right).
+\end{align*}
+}
+\begin{align}\label{equ_72}
+    Df(z_0) z = \frac{\partial f}{\partial z}(z_0) z + \frac{\partial f}{\partial \overline{z}}(z_0) \overline{z}.
+\end{align}
+We already know that $f$ is complex differentiable if and only if $f$ is real differentiable and $Df(z_0)z = z_1 z$ for some $z_1 \in \mathbb{C}$. Then we have
+\begin{align*}
+    z_1 z = \frac{\partial f}{\partial z}(z_0) z + \frac{\partial f}{\partial \overline{z}}(z_0) \overline{z},
+\end{align*}
+and hence
+\begin{align*}
+    \left(z_1 - \frac{\partial f}{\partial z}(z_0)\right) z = \frac{\partial f}{\partial \overline{z}}(z_0) \overline{z}.
+\end{align*}
+Taking $z = 1$ yields $z_1 - \frac{\partial f}{\partial z}(z_0) = \frac{\partial f}{\partial \overline{z}}(z_0)$, and taking $z = i$ yields $z_1 - \frac{\partial f}{\partial z}(z_0) = - \frac{\partial f}{\partial \overline{z}}(z_0)$, and hence $\frac{\partial f}{\partial \overline{z}}(z_0) = 0$. By \eqref{equ_72}, we have
+\begin{align*}
+    Df(z_0) z = \frac{\partial f}{\partial z}(z_0) z,
+\end{align*}
+and then $f'(z_0) = \frac{\partial f}{\partial z}(z_0)$.
+
+On the other hand, if $\frac{\partial f}{\partial \overline{z}}(z_0) = 0$, then $f$ is complex differentiable with $f'(z_0) = \frac{\partial f}{\partial z}(z_0)$. Above results can be summarized as below.
+
+\begin{theorem}
+A function $f = u + iv: \mathbb{C} \supset \Omega \to \mathbb{C}$ is complex differentiable at $z_0$ if and only if it is real differentiable at $z_0$ and 
+\begin{align}\label{th_78_equ1}
+    \frac{\partial f}{\partial \overline{z}}(z_0) = 0.
+\end{align}
+Moreover, $f'(z_0) = \frac{\partial f}{\partial z}(z_0)$.
+\end{theorem}
+
+\begin{remark}
+In fact, \eqref{th_78_equ1} is equivalent to the Cauchy-Riemann equations \eqref{equ_71}. Indeed, if $f = u + iv$, then 
+\begin{align*}
+    \frac{\partial f}{\partial \overline{z}}(z_0) & = \frac{1}{2} \left(\frac{\partial}{\partial x} + i \frac{\partial}{\partial y}\right)(u(z_0) + iv(z_0)) \\
+    & = \frac{1}{2}\left(u_x(z_0) - v_y(z_0)\right) + \frac{i}{2}\left(u_y(z_0) - v_x(z_0)\right),
+\end{align*}
+and hence $u_x(z_0) - v_y(z_0) = 0, u_y(z_0) - v_x(z_0) = 0$.  
+\end{remark}
+\end{proof}
+
+\medskip
+
+\section{Conformal Mappings}
+
+Suppose that $f: \mathbb{C} \supset \Omega \to \mathbb{C}$ is complex differentiable at $z_0$ and $f'(z_0) \neq 0$. Consider two smooth curves $\gamma_1, \gamma_2$ that intersect at $z_0$:\footnote{Picture sources: \url{https://math.mit.edu/~jorloff/18.04/notes/topic10.pdf}}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{conformal_map.png}
+    \caption{two smooth curves $\gamma_1, \gamma_2$ that intersect at $z_0$.}
+    \label{fig:two_curve}
+\end{figure}
+Let $z_1 = \gamma_1'(t_0)$ and $z_2 = \gamma_2'(t_0)$, then we have $(f \circ \gamma_1)'(t_0) = Df(z_0) z_1 = f'(z_0) z_1$ and $(f \circ \gamma_2)'(t_0) = Df(z_0) z_2 = f'(z_0) z_2$. Then we can immediately see that both $f'(z_0) z_1$ and $f'(z_0) z_2$ are obtained from $z_1$ and $z_2$ by rotation by angle $\operatorname{Arg} f'(z_0)$ (counterclockwise) and by stretching by a factor $\left|f'(z_0)\right|$. Therefore $\angle (z_1, z_2) = \angle (f'(z_0) z_1, f'(z_0) z_2)$, which means $f$ preserves angles and orientation between curves.
+
+Also, suppose $f$ maps a unit ball $B$ centered at the origin to its image and we have $Df(z_0) z = f'(z_0) z$, then 
+\begin{align*}
+    \left|\det Df(z_0) \right| = \frac{\operatorname{Area} (Df(z_0)(B))}{\operatorname{Area}(B)} = \frac{\pi \left|f'(z_0)\right|^2}{\pi} = \left|f'(z_0)\right|^2,
+\end{align*}
+and since $\det Df(z_0) > 0$ as the mapping preserves orientation, we have $\det Df(z_0) = \left|f'(z_0)\right|^2$. Note that this can be shown directly from the Cauchy-Riemann equations. Above results can be summarized as below.
+
+\medskip
+
+\begin{theorem}
+Assume that $f: \mathbb{C} \supset \Omega \to \mathbb{C}$ is real differentiable and $\det Df \neq 0$, then the following conditions are equivalent:
+\begin{enumerate}[label=(\alph*)]
+    \item $f$ preserves angle and orientation.\label{th_79_a}
+    
+    \item $f$ is complex differentiable. \label{th_79_b}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We already proved the implication \ref{th_79_b} $\Rightarrow$ \ref{th_79_a}. It remains to prove that \ref{th_79_a} $\Rightarrow$ \ref{th_79_b}. 
+
+Consider $z_1 = (1,0)^T = 1, z_2 = (0,1)^T = i$ and let $z_0 = (0,0)$, then the angle between $z_1$ and $z_2$ is $\pi/2$. Also, $Df(z_0) z_1$ and $Df(z_0) z_2$ have the same length since $\left|z_1\right| = \left|z_2\right|$ and $f$ preserves angle and orientation. Denote this length by $\lambda$. This means that $Df(z_0) z_1$ and $Df(z_0) z_2$ are both obtained from $1$ and $i$ by stretching by $\lambda$ and rotation by the same angle $\alpha$, and hence
+\begin{align*}
+    Df(z_0) z_1 = \lambda (\cos \alpha + i \sin \alpha) 1, \\
+    Df(z_0) z_2 = \lambda (\cos \alpha + i \sin \alpha) i.
+\end{align*}
+Hence
+\begin{align*}
+    Df(z_0) \begin{pmatrix} x \\ y \end{pmatrix} = \lambda (\cos \alpha + i \sin \alpha) (x + iy),
+\end{align*}
+for any vector $z = x + iy$, and then $f$ is complex differentiable. Moreover, we have
+\begin{align*}
+    f'(z_0) = \lambda (\cos \alpha + i \sin \alpha).
+\end{align*}
+\end{proof}
 
 
+\medskip
+
+\chapter{Power Series}
 
 
+\section{Function Series}
+
+\begin{definition}
+Consider the series of functions
+\begin{align}\label{def_81_equ1}
+    \sum^\infty_{n=1} f_n = f_1 + f_2 + f_3 + \cdots,
+\end{align}
+where $f_n: \mathbb{C} \supset A \to \mathbb{C}$ are complex valued functions ($A$ may not be open). We say that the series converges pointwise if for any $z \in A$, 
+\begin{align*}
+    \sum^\infty_{n=1} f_n(z)
+\end{align*}
+converges as a series of numbers in $\mathbb{C}$. Denote the sum by
+\begin{align*}
+    g(z) \coloneqq \sum^\infty_{n=1} f_n(z),
+\end{align*}
+we say that \eqref{def_81_equ1} converges uniformly if 
+\begin{align*}
+    \lim_{k \to \infty} \sup_{z \in A} \left|g(z) - \sum^k_{n=1} f_n(z)\right| = 0.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{theorem}[{\bf Weierstrass $M$-test}]
+If $\left|f_n(z)\right| \leq a_n$ for all $z \in A$ and all $n = 1,2,3,\cdots$, and if $\sum^\infty_{n=1} a_n < \infty$, then $\sum^\infty_{n=1} f_n$ converges uniformly on $A$.
+\end{theorem}
+
+\medskip
+
+\begin{theorem}\label{th_82}
+If a series $\sum^\infty_{n=1} f_n$ of continuous functions converges uniformly on $A$ to a function $g = \sum^\infty_{n=1} f_n$, then $g$ is continuous.
+\end{theorem}
+
+\begin{remark}
+Proof of these two theorems are similar to that in Mathematical Analysis.
+\end{remark}
+
+\medskip
+
+\section{Power Series}
+
+\begin{definition}
+Series of the form 
+\begin{align}\label{def_82_equ1}
+    \sum^\infty_{n=0} a_n z^n
+\end{align}
+are called power series. Similar to power series of real numbers, there is $R \in [0,\infty]$ such that \eqref{def_82_equ1} converges if $\left|z\right| < R$ and \eqref{def_82_equ1} diverges if $\left|z\right| > R$. $R$ is called the radius of convergence, and the disc $D(0,R) = \{z \in \mathbb{C} \,:\, \left|z\right| < R\}$ is called the disc of convergence. 
+\end{definition}
+
+\begin{remark}
+Note that no conclusion can be said about the convergence of  \eqref{def_82_equ1} for $\left|z\right| = R$ in general.
+\end{remark}
+
+\medskip
+
+\begin{proposition}
+If $R > 0$ is the radius of convergence of \eqref{def_82_equ1} and $0 < \rho < R$, then the series converges uniformly in disc $\overline{D}(0,\rho) = \{z \in \mathbb{C} \,:\, \left|z\right| \leq \rho\}$. 
+\end{proposition}
+
+\begin{remark}
+By Theorem \ref{th_82}, \eqref{def_82_equ1} defines a continuous function inside the disc of convergence. 
+\end{remark}
+
+\medskip
+
+Similar to Mathematical Analysis, we have the following theorem.
+
+\medskip
+
+\begin{theorem}[{\bf Cauchy-Hadamard}]\label{th_83}
+The radius of convergence of 
+\begin{align}\label{th_83_equ1}
+    \sum^\infty_{n=0} a_n z^n
+\end{align}
+equals
+\begin{align*}
+    R = \frac{1}{\lambda}, \quad \lambda = \limsup_{n\to\infty} \sqrt[n]{\left|a_n\right|}.
+\end{align*}
+If $\lambda = 0$, $R = \infty$, and if $\lambda = \infty$, $R = 0$.
+\end{theorem}
+\begin{proof}
+Let $0 < \left|z\right| < R = 1/\lambda$, and note that here $\lambda < \infty$. Then there is $\gamma$ such that $1/\left|z\right| > \gamma > \lambda = \limsup_{n\to\infty} \sqrt[n]{\left|a_n\right|}$. Then there is $N > 0$ such that for all $n \geq N$,
+\begin{align*}
+    \frac{1}{\left|z\right|} > \gamma > \sqrt[n]{\left|a_n\right|}.
+\end{align*}
+Hence we have $\gamma^n \left|z\right|^n \geq \left|a_n\right| \left|z\right|^n$ for all $n \geq N$, which implies 
+\begin{align*}
+    \sum^\infty_{n=N} \left|a_n z\right|^n \leq \sum^\infty_{n=N} (\gamma\left| z\right|)^n < \infty,
+\end{align*}
+where the second inequality comes from the convergence of geometric series and the fact that $\gamma\left| z\right| < 1$. Thus, \eqref{th_83_equ1} converges.
+
+Suppose now that $\left|z\right| > R$, and note that here $\lambda > 0$. Then there is $\delta$ such that $1/\left|z\right| < \delta < \lambda$ and hence there is a subsequence $n_1 < n_2 < n_3 < \cdots$ such that $\delta < \sqrt[n_k]{\left|a_{n_k}\right|}$. Then we have 
+\begin{align*}
+    \left|z\right|^{n_k} \left|a_{n_k}\right| > (\delta \left|z\right|)^{n_k} \xrightarrow[]{n_k \to \infty} \infty,
+\end{align*}
+since $\delta \left|z\right| > 1$. Thus, \eqref{th_83_equ1} diverges.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+The power series
+\begin{align}\label{th_84_equ1}
+    \sum^\infty_{n=0} a_n z^n
+\end{align}
+has the same radius of convergence $R$ as the series
+\begin{align}
+    \sum^\infty_{n=1} n a_n z^{n-1}.
+\end{align}
+Moreover, if $R > 0$, \eqref{th_84_equ1} defines a holomorphic function in $D(0,R)$ and 
+\begin{align*}
+    \left(\sum^\infty_{n=0} a_n z^n\right)' = \sum^\infty_{n=1} n a_n z^{n-1}.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Equality of the radius of convergence follows from Cauchy-Hadamard theorem \ref{th_83}, since
+\begin{align*}
+    \limusp_{n\to\infty} \sqrt[n]{\left|a_n\right|} = \limusp_{n\to\infty} \sqrt[n]{(n + 1)\left|a_{n+1}\right|}.
+\end{align*}
+
+\end{proof}
 
 
 
