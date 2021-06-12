@@ -6625,7 +6625,7 @@ We say that $f$ is holomorphic in $\Omega$ if $f'(z)$ exists and $f'(z) \in \mat
 
 \medskip
 
-Next results are easy to prove just as in Mathematical Analysis. 
+Next results are easy to prove just as in mathematical analysis. 
 
 \medskip
 
@@ -6639,7 +6639,7 @@ if $g \neq 0$, and $(f \circ g)' = (f' \circ g)g'$.
 
 \medskip
 
-\begin{definition}
+\begin{definition}\label{def_75}
 If a function $f: \mathbb{C} \to \mathbb{C}$ is holomorphic in $\mathbb{C}$, then it is called an entire function.
 \end{definition}
 
@@ -6839,7 +6839,7 @@ we say that \eqref{def_81_equ1} converges uniformly if
 
 \medskip
 
-\begin{theorem}[{\bf Weierstrass $M$-test}]
+\begin{theorem}[{\bf Weierstrass $M$-test}]\label{th_81}
 If $\left|f_n(z)\right| \leq a_n$ for all $z \in A$ and all $n = 1,2,3,\cdots$, and if $\sum^\infty_{n=1} a_n < \infty$, then $\sum^\infty_{n=1} f_n$ converges uniformly on $A$.
 \end{theorem}
 
@@ -6850,7 +6850,7 @@ If a series $\sum^\infty_{n=1} f_n$ of continuous functions converges uniformly 
 \end{theorem}
 
 \begin{remark}
-Proof of these two theorems are similar to that in Mathematical Analysis.
+Proof of these two theorems are similar to that in mathematical analysis.
 \end{remark}
 
 \medskip
@@ -6881,7 +6881,7 @@ By Theorem \ref{th_82}, \eqref{def_82_equ1} defines a continuous function inside
 
 \medskip
 
-Similar to Mathematical Analysis, we have the following theorem.
+Similar to mathematical analysis, we have the following theorem.
 
 \medskip
 
@@ -6922,7 +6922,7 @@ The power series
     \sum^\infty_{n=0} a_n z^n
 \end{align}
 has the same radius of convergence $R$ as the series
-\begin{align}
+\begin{align}\label{th_84_equ2}
     \sum^\infty_{n=1} n a_n z^{n-1}.
 \end{align}
 Moreover, if $R > 0$, \eqref{th_84_equ1} defines a holomorphic function in $D(0,R)$ and 
@@ -6933,10 +6933,173 @@ Moreover, if $R > 0$, \eqref{th_84_equ1} defines a holomorphic function in $D(0,
 \begin{proof}
 Equality of the radius of convergence follows from Cauchy-Hadamard theorem \ref{th_83}, since
 \begin{align*}
-    \limusp_{n\to\infty} \sqrt[n]{\left|a_n\right|} = \limusp_{n\to\infty} \sqrt[n]{(n + 1)\left|a_{n+1}\right|}.
+    \limsup_{n\to\infty} \sqrt[n]{\left|a_n\right|} = \limsup_{n\to\infty} \sqrt[n]{(n + 1)\left|a_{n+1}\right|}.
 \end{align*}
-
+Suppose $R > 0$ and $\left|z_0\right| \leq R$, then $\left|z_0\right| < \rho < R$ for some $\rho$. If $z \neq z_0$ and $\left|z\right| \leq \rho$, then we have
+\begin{align}\label{th_84_equ3}
+    \frac{f(z) - f(z_0)}{z - z_0} = \sum^\infty_{n=0} a_n \frac{z^n - z_0^n}{a - z_0} = \sum^\infty_{n=1} a_n \left(z^{n-1} + z_0 z^{n-2} + \cdots + z_0^{n-2} z + z_0^{n-1}\right),
+\end{align}
+and since
+\begin{align*}
+    \left|a_n \left(z^{n-1} + z_0 z^{n-2} + \cdots + z_0^{n-2} z + z_0^{n-1}\right)\right| \leq n \left|a_n\right| \rho^{n-1},
+\end{align*}
+and \eqref{th_84_equ2} has the radius of convergence $R > \rho$, we have $\sum n \left|a_n\right| \rho^{n-1} < \infty$. By Weierstrass $M$-test (Theorem \ref{th_81}) and Theorem \ref{th_82}, \eqref{th_84_equ3} is continuous in $\overline{D}(0,\rho)$. Let $G(z)$ denote the right hand side of \eqref{th_84_equ3}, and in particular, $G$ is continuous at $z_0$. By continuity, we have
+\begin{align*}
+    \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0} = \lim_{z \to z_0} G(z) = G(z_0) = \sum^\infty_{n=1} n a_n z_0^{n-1},
+\end{align*}
+and since the left hand side is equal to $f'(z_0)$, the proof is complete.
 \end{proof}
+
+\medskip
+
+Let's recall Abel theorem from the mathematical analysis.
+
+\medskip
+
+\begin{theorem}[{\bf Abel}]\label{th_85}
+If $0 < R < \infty$ is the radius of convergence of the series
+\begin{align*}
+    f(x) = \sum^\infty_{n=0} c_n x^n,
+\end{align*}
+and the series converges at $x = R$ (or at $x = -R$), then the function $f:(-R,R] \to \mathbb{R}$ is left continuous at $x = R$ (or $f:[-R,R) \to \mathbb{R}$ is right continuous at $x = -R$). In other words,
+\begin{align*}
+    \sum^\infty_{n=0} c_n R^n = \lim_{x \to R^-} \sum^\infty_{n=0} c_n x^n, \quad \text{or} \quad \sum^\infty_{n=0} c_n (-R)^n = \lim_{x \to -R^+} \sum^\infty_{n=0} c_n x^n.
+\end{align*}
+\end{theorem}
+
+\medskip
+
+Now we will formulate the counterpart of this theorem for power series in the complex case.
+
+\medskip
+
+\begin{theorem}[{\bf Abel}]\label{th_86}
+If $0 < R < \infty$ is the radius of convergence of the series
+\begin{align*}
+    f(x) = \sum^\infty_{n=0} c_n z^n,
+\end{align*}
+and the series $f(z_0)$ converges for some $z_0, \left|z_0\right| = R$. Now we fixed arbitrary angle at $z_0$ formed by two chords, denoted by the area by $K$, then we have
+\begin{align*}
+    \lim_{K \ni z \to z_0} f(z) = f(z_0).
+\end{align*}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=2.5]
+        \draw (0,0) circle (0.5cm);
+        \draw[-] (-0.3535,-0.3535)node[left]{$z_0$} -- (0.3535,-0.3535);
+        \draw[-] (-0.3535,-0.3535) -- (0,0.5);
+        \filldraw (0.15,0) circle (0pt) node {$K$};
+    \end{tikzpicture}
+    \caption{The area $K$ formed by two chords at $z_0$ by arbitrary angle.}
+    \label{fig:chords}
+\end{figure}
+\end{theorem}
+
+
+\medskip
+
+Next, we discuss some basic properties about some holomorphic functions, such as $e^z$, $\sin z$ and $\cos z$. First, recall Cauchy theorem in mathematical analysis.
+
+\medskip
+
+\begin{theorem}[{\bf Cauchy}]\label{th_87}
+If the series $\sum^\infty_{n=0} a_n$ converges absolutely and the series $\sum^\infty_{n=0} b_n$ converges, then
+\begin{align*}
+    \left(\sum^\infty_{n=0} a_n\right) \left(\sum^\infty_{n=0} b_n\right) = \sum^\infty_{n=0} c_n,
+\end{align*}
+where 
+\begin{align*}
+    c_n = \sum^n_{k=0} a_k b_{n-k}.
+\end{align*}
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+Now we define 
+\begin{align*}
+    e^z = \sum^\infty_{n=0} \frac{z^n}{n!}.
+\end{align*}
+Note that the radius of convergence $R = \infty$, then $e^z$ is an entire function by Definition \ref{def_75}.
+\end{definition}
+
+\medskip
+
+\begin{proposition}
+~\begin{enumerate}[label=(\alph*)]
+    \item $e^{z_1} e^{z_2} = e^{z_1 + z_2}$. \label{prop_82_a}
+    
+    \item $e^z \neq 0$ for all $z$. \label{prop_82_b}
+    
+    \item $\overline{e^z} = e^{\overline{z}}$ for all $z$.
+    
+    \item $\left(e^z\right)' = e^z$ for all $z$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Since $e^{z_1}$ and $e^{z_2}$ converges absolutely, by Theorem \ref{th_87}, we have
+\begin{align*}
+    e^{z_1} e^{z_2} & = \left(\sum^\infty_{n=0} \frac{z_1^n}{n!}\right) \left(\sum^\infty_{n=0} \frac{z_2^n}{n!}\right) = \sum^\infty_{n=0} \sum^n_{k=0} \frac{z_1^k}{k!} \frac{z_2^{n-k}}{(n-k)!} \\
+    & = \sum^\infty_{n=0} \frac{1}{n!} \sum^n_{k=0} \frac{n!}{k!(n-k)!} z_1^k z_2^{n-k} = \sum^\infty_{n=0} \frac{(z_1 + z_1)^n}{n!} = e^{z_1 + z_2},
+\end{align*}
+which proves \ref{prop_82_a}. Also, since $e^z e^{-z} = e^0 = 1$, $e^z$ cannot be equal to $0$, which implies \ref{prop_82_b}. The rest is obvious.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+We define
+\begin{align*}
+    \cos z = \sum^\infty_{n=0} (-1)^n \frac{z^{2n}}{(2n)!}, \qquad \sin z = \sum^\infty_{n=0} (-1)^n \frac{z^{2n+1}}{(2n+1)!}.
+\end{align*}
+Note that the radius of convergence $R = \infty$, then $\cos z, \sin z$ are entire functions.
+\end{definition}
+
+\medskip
+
+\begin{proposition}
+~\begin{enumerate}[label=(\alph*)]
+    \item $\cos (-z) = \cos z, \sin (-z) = \sin z$.
+    
+    \item $\sin' z = \cos z, \cos'z = - \sin z$.
+    
+    \item $e^{iz} = \cos z + i \sin z, e^{-iz} = \cos z - i \sin z$.
+    
+    \item Euler's formula:
+    \begin{align*}
+        \cos z = \frac{e^{iz} + e^{-iz}}{2}, \qquad \sin z = \frac{e^{iz} - e^{-iz}}{2i}.
+    \end{align*}
+    
+    \item $\sin^2 z + \cos ^2 z = 1$. 
+    
+    \item If $z = x + iy$, then $e^z = e^x e^{iy} = e^x \left(\cos y + i \sin y\right)$.
+    
+    \item $e^z = 1$ if and only if $z = 2k\pi i, k \in \mathbb{Z}$. 
+    
+    \item $e^{z_1} = e^{z_2}$ if and only if $z_2 = z_1 + 2k\pi i, k \in \mathbb{Z}$. Hence, $e^z$ is $2\pi i$ periodic.
+    
+    \item $\cos z = 0$ if and only if $z = (2k+1)\pi/2$, and $\sin z = 0$ if and only if $z = k\pi, k \in \mathbb{Z}$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We have
+\begin{align*}
+    e^{iz} = \sum^\infty_{n=0} \frac{(iz)^n}{n!} = \sum^\infty_{n=0} \frac{(iz)^{2n}}{(2n)!} + \sum^\infty_{n=0} \frac{(iz)^{2n+1}}{(2n+1)!} = \cos z + i \sin z,
+\end{align*}
+and the rest is obvious.
+\end{proof}
+
+\begin{remark}
+Note that 
+\begin{align*}
+    \cos i = \frac{e^{-1} + e}{2} > 1, \qquad \left|\sin i\right| = \left|\frac{e^{-1} - e}{2i}\right| > 1,
+\end{align*}
+despite that fact that $\sin^2 z + \cos ^2 z = 1$.
+\end{remark}
+
+\medskip
+
+
 
 
 
