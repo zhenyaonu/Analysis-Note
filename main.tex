@@ -6777,9 +6777,9 @@ Suppose that $f: \mathbb{C} \supset \Omega \to \mathbb{C}$ is complex differenti
 Let $z_1 = \gamma_1'(t_0)$ and $z_2 = \gamma_2'(t_0)$, then we have $(f \circ \gamma_1)'(t_0) = Df(z_0) z_1 = f'(z_0) z_1$ and $(f \circ \gamma_2)'(t_0) = Df(z_0) z_2 = f'(z_0) z_2$. Then we can immediately see that both $f'(z_0) z_1$ and $f'(z_0) z_2$ are obtained from $z_1$ and $z_2$ by rotation by angle $\operatorname{Arg} f'(z_0)$ (counterclockwise) and by stretching by a factor $\left|f'(z_0)\right|$. Therefore $\angle (z_1, z_2) = \angle (f'(z_0) z_1, f'(z_0) z_2)$, which means $f$ preserves angles and orientation between curves.
 
 Also, suppose $f$ maps a unit ball $B$ centered at the origin to its image and we have $Df(z_0) z = f'(z_0) z$, then 
-\begin{align*}
+\begin{align}\label{sec_76_equ1}
     \left|\det Df(z_0) \right| = \frac{\operatorname{Area} (Df(z_0)(B))}{\operatorname{Area}(B)} = \frac{\pi \left|f'(z_0)\right|^2}{\pi} = \left|f'(z_0)\right|^2,
-\end{align*}
+\end{align}
 and since $\det Df(z_0) > 0$ as the mapping preserves orientation, we have $\det Df(z_0) = \left|f'(z_0)\right|^2$. Note that this can be shown directly from the Cauchy-Riemann equations. Above results can be summarized as below.
 
 \medskip
@@ -7099,8 +7099,221 @@ despite that fact that $\sin^2 z + \cos ^2 z = 1$.
 
 \medskip
 
+\section{Logarithm}
+
+Next, we will talk about logarithm function. If $t > 0$, then there exists $x \in \mathbb{R}$ such that $e^x = t$, then we write $x = \log t$. Now let's discuss logarithm function in complex case.
+
+\medskip
+
+\begin{definition}
+If $a \in \mathbb{C}\setminus\{0\}$, then any number $z \in \mathbb{C}$ such that $e^z = a$ is called a logarithm of $a$ and is denoted by $\log a$.
+\end{definition}
+
+\medskip
+
+Now suppose $z = x + iy$, then $e^z = e^x e^{iy} = a = \left|a\right| e^{i \arg a}$, and hence we must have
+\begin{align*}
+    e^x = \left|a\right|, \qquad e^{iy} = e^{i \arg a},
+\end{align*}
+which implies that $x = \log \left|a\right|$ and $y = \arg a$. Thus, the general solution $z = \log \left|a\right| + i \arg a$. Now, consider
+\begin{align*}
+    \log a = \log \left|a\right| + i \arg a = \log \left|a\right| + i \operatorname{Arg} a + 2k\pi i, k \in \mathbb{Z},
+\end{align*}
+and we define $\operatorname{Log} a = \log \left|a\right| + i \operatorname{Arg} a$, and call it the {\it principle value} of the logarithm $\log a$. 
+
+\medskip
+
+\begin{example}
+$\operatorname{Log} i = \log \left|i\right| + i\operatorname{Arg} i = i\pi/2$ and $\log i = i(2k + 1/2)\pi, k \in \mathbb{Z}$.
+\end{example}
+
+\medskip
+
+Now we discuss the derivative of the logarithm. Consider $e^z$ for $z \in S = \{z \,:\, 0 < \Im z < 2\pi\}$. If $e^{z_1} = e^{z_2}$, we have $z_1 = z_2 + 2k\pi i$, and hence $e^z$ is one-to-on in $S$. Since $\left(e^z\right)' = e^z \neq 0$, the Jacobian of the mapping $z \mapsto e^z$ is not zero (see also \eqref{sec_76_equ1}). And this implies that $e^z$ is a diffeomorphism in $S$. What is the image of $e^z$? 
+
+Consider $z = x + iy \in S$, for fixed $x = c_1$ but $y$ varies from $0$ to $2\pi$, the point is on the vertical line $x = c_1, y \in (0,2\pi)$ is mapped by $e^z$ to the point $w = e^{c_1} e^{iy}$. Notice that  geometrically the line is mapped around the circle except the point $e^{c_1}$: \footnote{Picture source: \url{https://faculty.etsu.edu/gardnerr/5337/notes/Chapter2-14.pdf}}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{logarithm_image.jpg}
+    \caption{$w = e^z$, with $x$ fixed and $y \in (0,2\pi)$.}
+    \label{fig:logarithm_1}
+\end{figure}
+Now if we let $x$ be any value in $\mathbb{R}$, then the image of $e^z, z \in S$ is $\mathbb{C} \setminus \mathbb{R}_{+}$, shown as below\footnote{Picture source: \url{https://ocw.mit.edu/courses/mathematics/18-04-complex-variables-with-applications-spring-2018/lecture-notes/MIT18_04S18_topic1.pdf}}, and clearly $e^z$ is a conformal diffeomorphism, since it preserves angles and orientations.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{logarithm_image2.png}
+    \caption{$w = e^z$ with $x \in \mathbb{R}$ and $y \in (0,2\pi)$.}
+    \label{fig:logarithm_2}
+\end{figure}
+Note that in the Figure \ref{fig:logarithm_2}, $\mathbb{R}_{+} = \{x \,:\, x \geq 0\}$ is not included in the image. It follows that the principle value of the logarithm gives $\operatorname{Log} : \mathbb{C} \setminus \mathbb{R}_{+} \to S$, the inverse diffeomorphism. Now we claim that this function $\operatorname{Log} z$ is complex differentiable, since $e^z$ preserves angles and orientations and so do its inverse diffeomorphism. Hence we have 
+\begin{align*}
+    e^{\operatorname{Log} z} = z,
+\end{align*}
+which implies that
+\begin{align*}
+    1 = \left(e^{\operatorname{Log} z}\right) = \underbrace{e^{\operatorname{Log} z}}_{z} \left(\operatorname{Log} z\right)',
+\end{align*}
+and we have $\left(\operatorname{Log} z\right)' = 1/z$. 
+
+\medskip
+
+\begin{theorem}
+The function $\operatorname{Log} z$ is holomorphioc in $\mathbb{C} \setminus \mathbb{R}_+$ and it is a diffeomorphism that maps $\mathbb{C} \setminus \mathbb{R}_+$ onto $S = \{z \,:\, 0 < \Im z < 2\pi\}$. Moreover, $\left(\operatorname{Log} z\right)' = 1/z$.
+\end{theorem}
+
+\medskip
+
+By the same argument as above, $\log z = \operatorname{Log} z + i \arg z, -\pi < \arg < \pi$ is a holomorphic diffeomorphism that maps $\mathbb{C} \setminus \mathbb{R}_-$ onto $\widetilde{S} = \{z \,:\, -\pi < \Im z < \pi\}$. Similarly, $\left(\operatorname{Log} z\right)' = 1/z$ in this case.
+
+Now we will show how to expand the function $\operatorname{Log} z$ as a power series. The mapping $z \mapsto 1 - z$ maps the disk $D(0,1)$ onto $D(1,1) \subset \mathbb{C} \setminus \mathbb{R}_-$, so the function $\log (1 - z)$ is holomorphic in $D(0,1)$. Then we have
+\begin{align*}
+    \left(\log (1 - z)\right)' = \frac{-1}{1 - z} = - \sum^\infty_{n=0} z^n = \left(- \sum^\infty_{n=1} \frac{z^n}{n}\right)',
+\end{align*}
+and hence 
+\begin{align*}
+    \log (1 - z) = - \sum^\infty_{n=1} \frac{z^n}{n} + c,
+\end{align*}
+for some constant $c$. When $z = 0$, $\log (1 - z) = \operatorname{Log} 1 + i \arg 1 = 0$ and $\sum^\infty_{n=1} \frac{z^n}{n} = 0$, and this implies $c = 0$. Thus, 
+\begin{align*}
+    \log (1 - z) = - \sum^\infty_{n=1} \frac{z^n}{n}, \quad \left|z\right| < 1,
+\end{align*}
+provided the function $\log z$ is defined as $\log z = \operatorname{Log} z + i \arg z, -\pi < \arg < \pi$. 
+
+\medskip
 
 
+\begin{definition}
+For $a, b \in \mathbb{C}, a \neq 0$, we can define $a^b = e^{b \log a} = e^{b(\operatorname{Log} a + 2k\pi i)}, k\in \mathbb{Z}$. And we call $e^{b\operatorname{Log} a}$ the principle value of $a^b$. 
+\end{definition}
+
+\medskip
+
+\begin{example}
+For $b = 1/n$, we have 
+\begin{align*}
+    a^{1/n} & = e^{1/n(\operatorname{Log}\left|a\right| + (\operatorname{Arg} a + 2k\pi)i)} = e^{\operatorname{Log}\left|a\right|/n} e^{i(\operatorname{Arg} a + 2k\pi)/n} \\
+    & = \sqrt[n]{\left|a\right|} \left(\cos\left(\frac{\operatorname{Arg} a + 2k\pi}{n}\right) + i \sin\left(\frac{\operatorname{Arg} a + 2k\pi}{n}\right)\right),
+\end{align*}
+and there are $n$ distinct values for $k = 0,1,\cdots,n-1$, which are called complex $n$th roots of $a$.
+\end{example}
+
+\medskip
+
+\begin{example}
+Recall $\log i = i(2k + 1/2)\pi, k \in \mathbb{Z}$, we have
+\begin{align*}
+    i^i = e^{l \log i} = e^{-(2k + 1/2)\pi}, \quad k \in \mathbb{Z},
+\end{align*}
+hence there are infinitely many distinct values. And the principle value of $i^i$ is $e^{-\pi/2}$.
+\end{example}
+
+\medskip
+
+Now we discuss the branch of the logarithm function. Let $E \subset \mathbb{C} \setminus \{0\}$. Every function $l(z)$ that is continuous in $E$ and
+\begin{align*}
+    e^{l(z)} = z,
+\end{align*}
+for all $z \in E$, is called a {\it branch} of the logarithm.
+
+\medskip
+
+\begin{example}
+~\begin{enumerate}[label=(\alph*)]
+    \item The principle value of the logarithm $\operatorname{Log}: \mathbb{C} \setminus \mathbb{R}_+ \to S = \{z \,:\, 0 < \Im z < 2\pi\}$ is a branch.
+    
+    \item The function $\log z = \operatorname{Log}\left|z\right| + i \arg z, -\pi < \arg z < \pi$ is also a branch.
+\end{enumerate}
+\end{example}
+
+\begin{remark}
+A branch of $\log z$ does not exist for some $E$. For example, if $E$ contains $\left|z\right| = r$, then there is no branch of $\log z$ in $E$. Suppose to the contrary, $l(z)$ is a branch in $E$. For $\left|z\right| = r$, $\log z = \operatorname{Log} z + i \arg z$ and then $l(z) = \operatorname{Log} z + i a(z)$, where $a(z)$ is a continuous branch of $\arg z$. However, $a(z)$ cannot be continuous on $\left|z\right| = r$, contradiction.
+\end{remark}
+
+\medskip
+
+\begin{proposition}
+~\begin{enumerate}[label=(\alph*)]
+    \item If in a connected set there is a branch of the $\log z$, then there are infinitely many branches and they differ by a multiplicity of $2\pi$.
+    
+    \item A branch of the logarithm is a one-to-one function. Indeed, suppose $\log z_1 = \log z_2$, then we have $z_1 = e^{\log z_1} = e^{\log z_2} = z_2$.
+    
+    \item If there is a branch of logarithm in a set $E$, then it is the inverse function to $e^z$ defined in $E' = \log(E)$.
+\end{enumerate}
+\end{proposition}
+
+\medskip
+
+Now we talk about the branch of the power functions. Let $\mu \in \mathbb{C}$. Suppose there is a branch of $\log z$ in $E$. Then, 
+\begin{align*}
+    z^\mu \coloneqq e^{\mu \log z},
+\end{align*}
+where $\log z$ is an arbitrary branch of logarithm in $E$. Then $z \mapsto z^\mu$ is a branch of the power function defined in $E$. 
+
+\medskip
+
+\section{Holomorphic Functions}
+
+Suppose $f: \Omega \to \overline{\mathbb{C}}, \Omega \subset \mathbb{C}$ is continuous. What does it mean that $f$ is holomorphic at $z_0$ or at $\infty$? The idea is to represent $\overline{\mathbb{C}}$ as a smooth manifold (sphere) equipped with a complex structure and then $\infty \in \overline{\mathbb{C}}$ is a point on this smooth manifold.  
+
+Two mappings that parametrize $\overline{\mathbb{C}} = \mathbb{C} \cup \{\infty\}$: 
+\begin{align*}
+    I: & \mathbb{C} \to \mathbb{C}\setminus \{\infty\}, \quad I(z) = z, \\
+    P: & \mathbb{C} \to \mathbb{C}\setminus \{0\}, \quad P(z) = 1/z, P(0) = \infty,
+\end{align*}
+are homeomorphisms between $\mathbb{C}$ and open subsets of $\overline{\mathbb{C}}$.
+
+Now assume $f:\Omega \to \overline{\mathbb{C}}, \Omega \subset \overline{\mathbb{C}}$ is continuous in a neighborhood $\Omega$ of $z_0 \in \overline{\mathbb{C}}$. Let $\phi, \psi \in \{I,P\}$ be parametrizations such that $z_0 \in \phi(\mathbb{C}), f(z_0) \in \psi(\mathbb{C})$. Then,
+\begin{align*}
+    \psi^{-1} \circ f \circ \phi: \mathbb{C} \supset G \to \mathbb{C}
+\end{align*}
+is a complex valued function defined in an open neighborhood $G$ of $\phi^{-1}(z_0)$. Clearly, 
+\begin{align*}
+    G = \phi^{-1}(\Omega \cap \psi(\mathbb{C})).
+\end{align*}
+
+\medskip
+
+\begin{definition}
+We say that $f$ is holomorphic at $z_0 \in \overline{\mathbb{C}}$ if there are parametrizations $\phi, \psi$ as above such that $\psi^{-1} \circ f \circ \phi$ is complex differentiable at $\phi^{-1}(z_0)$.
+\end{definition}
+
+\begin{remark}
+In general, $\phi, \psi$ are not necessarily unique. Suppose $z_0 \in \mathbb{C}$ and $f(z_0) \in \mathbb{C}$, we can take $\phi = \psi  = I$, then $\psi^{-1} \circ f \circ \phi = f$ in a neighborhood of $\phi^{-1}(z_0) = z_0$. So $f$ is holomorphic in the sense of the above definition if and only if $f$ is complex differentiable at $z_0$.
+\end{remark}
+
+\medskip
+
+Suppose $f: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is continuous on the Reimann sphere. The question is how do we check if $f$ is holomorphic at $z_0 \in \overline{\mathbb{C}}$?
+\begin{enumerate}[label=(\alph*)]
+    \item If $z_0 \neq \infty, f(z_0) \neq \infty$, then $f$ is holomorphic at $z_0$ if and only if $f$ is complex differentiable at $z_0$.
+    
+    \item If $z_0 = \infty, f(z_0) \neq \infty$, then we take $\phi = P, \psi = I$, and hence
+    \begin{align*}
+        g(z) \coloneqq \psi^{-1} \circ f \circ \phi = \begin{cases}
+            f(1/z), & z \neq 0, \\
+            f(\infty), & z = 0.
+        \end{cases}
+    \end{align*}
+    Hence, $f$ is holomorphic at $z_0 = \infty$ if and only if $g$ is complex differentiable at $z = 0$.
+    
+    \item If $z_0 \neq \infty, f(z_0) = \infty$, then $f$ is holomorphic at $z_0 = \infty$ if and only if
+    \begin{align*}
+        g(z) = \begin{cases}
+            1/f(z), & z \neq z_0, \\
+            0, & z = z_0,
+        \end{cases}
+    \end{align*}
+    is complex differentiable at $z_0$. Here we take $\phi = I$, since we need $z_0 \in \phi(\mathbb{C})$, and hence $\phi^{-1}(z_0) = z_0$. Also, we take $\psi = P$, since we need $\infty = f(z_0) \in \psi(\mathbb{C})$.
+    
+    \item If $z_0 = \infty, f(z_0) = \infty$, then $f$ is holomorphic at $z_0 = \infty$ if and only if
+    \begin{align*}
+        g(z) = \begin{cases}
+            1/f(1/z), & z \neq 0, \\
+            0, & z = 0,
+        \end{cases}
+    \end{align*}
+    is complex differentiable at $0$.
+\end{enumerate}
 
 
 
