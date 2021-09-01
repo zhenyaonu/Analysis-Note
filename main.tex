@@ -7285,7 +7285,7 @@ In general, $\phi, \psi$ are not necessarily unique. Suppose $z_0 \in \mathbb{C}
 
 Suppose $f: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is continuous on the Reimann sphere. The question is how do we check if $f$ is holomorphic at $z_0 \in \overline{\mathbb{C}}$?
 \begin{enumerate}[label=(\alph*)]
-    \item If $z_0 \neq \infty, f(z_0) \neq \infty$, then $f$ is holomorphic at $z_0$ if and only if $f$ is complex differentiable at $z_0$.
+    \item If $z_0 \neq \infty, f(z_0) \neq \infty$, then $f$ is holomorphic at $z_0$ if and only if $f$ is complex differentiable at $z_0$. \label{holo_a}
     
     \item If $z_0 = \infty, f(z_0) \neq \infty$, then we take $\phi = P, \psi = I$, and hence
     \begin{align*}
@@ -7294,7 +7294,7 @@ Suppose $f: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is continuous on th
             f(\infty), & z = 0.
         \end{cases}
     \end{align*}
-    Hence, $f$ is holomorphic at $z_0 = \infty$ if and only if $g$ is complex differentiable at $z = 0$.
+    Hence, $f$ is holomorphic at $z_0 = \infty$ if and only if $g$ is complex differentiable at $z = 0$. \label{holo_b}
     
     \item If $z_0 \neq \infty, f(z_0) = \infty$, then $f$ is holomorphic at $z_0 = \infty$ if and only if
     \begin{align*}
@@ -7303,7 +7303,7 @@ Suppose $f: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is continuous on th
             0, & z = z_0,
         \end{cases}
     \end{align*}
-    is complex differentiable at $z_0$. Here we take $\phi = I$, since we need $z_0 \in \phi(\mathbb{C})$, and hence $\phi^{-1}(z_0) = z_0$. Also, we take $\psi = P$, since we need $\infty = f(z_0) \in \psi(\mathbb{C})$.
+    is complex differentiable at $z_0$. Here we take $\phi = I$, since we need $z_0 \in \phi(\mathbb{C})$, and hence $\phi^{-1}(z_0) = z_0$. Also, we take $\psi = P$, since we need $\infty = f(z_0) \in \psi(\mathbb{C})$. \label{holo_c}
     
     \item If $z_0 = \infty, f(z_0) = \infty$, then $f$ is holomorphic at $z_0 = \infty$ if and only if
     \begin{align*}
@@ -7312,7 +7312,7 @@ Suppose $f: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is continuous on th
             0, & z = 0,
         \end{cases}
     \end{align*}
-    is complex differentiable at $0$.
+    is complex differentiable at $0$. \label{holo_d}
 \end{enumerate}
 
 \medskip
@@ -7349,12 +7349,161 @@ and
 \end{align*}
 Hence $W: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is a continuous function. Clearly, $W$ is holomorphic on $\mathbb{C} \setminus \{w_1, \cdots, w_n\}$. We need to prove that $W$ is complex differentiable at $w_i, i = 1, \cdots, n$ and at $\infty$.
 
-
+To prove the differentiablility at $w_i$, we need to prove the differentiablility of
+\begin{align*}
+    \frac{1}{W(z)} = \frac{1}{A} \frac{(z - w_1) \cdots (z - w_n)}{(z - z_1) \cdots (z - z_k)}
+\end{align*}
+at $w_i$ (see Case \ref{holo_c} above), and it is obvious, since $w_i$ does not appear in the denominator and hence $1/W(z)$ is a smooth function in a neighborhood of $w_i$. It remains to prove that $W$ is holomorphic at $z = \infty$ (see Case \ref{holo_b} or \ref{holo_d}). We need to prove that 
+\begin{align*}
+    W\left(\frac{1}{z}\right) = A \frac{(1/z - z_1) \cdots (1/z - z_k)}{(1/z - w_1) \cdots (1/z - w_n)}
+\end{align*}
+is holomorphic at $0$. And $z \mapsto W(1/z)$ is a rational function, and hence it is holomorphic at any finite point. In particular, it is holomorphic at $z = 0$.
 \end{proof}
 
 \begin{remark}
 We will prove later that if $f: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is holomorphic on $\overline{\mathbb{C}}$, then $f$ is a rational function.
 \end{remark}
+
+\medskip
+
+\section{Fractional Linear Transformations}
+
+Fractional linear transformations is a transformation of the form
+\begin{align*}
+    L(z) = \frac{az + b}{cz + d},
+\end{align*}
+where $ad - bc \neq 0$. 
+
+\medskip
+
+\begin{theorem}
+Fractional linear transformation is the one-to-one holomorphic transformation of $\overline{\mathbb{C}}$ onto $\overline{\mathbb{C}}$.
+\end{theorem}
+\begin{proof}
+Any fractional linear transformation $L: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is holomorphic since it is rations function. Also, $L$ is one-to-one and onto since $L$ has the inverse transformation.
+\end{proof}
+
+\medskip
+
+Fractional linear transformations form a group: if $L_1$ and $L_2$ are fractional linear transformations, then $L_1 \circ L_2$ and $L_1^{-1}$ are also fractional linear transformations. Observe that coefficients $a,b,c,d$ are not uniquely determined, since 
+\begin{align*}
+    \frac{az + b}{cz + d} = \frac{(Aa)z + (Ab)}{(Ac)z + (Ad)},
+\end{align*}
+if $A \neq 0$. By taking a suitable $A$, we may further assume that
+\begin{align*}
+    \det \begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix} = ad - bc = 1.
+\end{align*}
+Let $SL(2, \mathbb{C})$ denote the group of all $2 \times 2$ complex matrices with determinant $1$. Let
+\begin{align*}
+    \mathbb{Z}_2 = \left\{\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}\right\},
+\end{align*}
+and then $\mathbb{Z}_2$ is a subgroup of $SL(2, \mathbb{C})$. We set $PSL(2, \mathbb{C}) = SL(2, \mathbb{C})/\mathbb{Z}_2$.
+
+\medskip
+
+\begin{theorem}
+The mapping
+\begin{align*}
+    SL(2, \mathbb{C}) \ni \begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix} \xlongrightarrow[]{\phi} \frac{az + b}{cz + d}
+\end{align*}
+is a group homomorphism\footnote{A {\it homomorphism} is a map between two algebraic structures of the same type, that preserves the operations of the structures. This means a map $f:A \to B$ between two sets $A$, $B$ equipped with the same structure such that, if $\cdot$ is an operation of the structure, then $f(x \cdot y) = f(x) \cdot f(y)$ for all $x,y \in A$\cite{42}.}of $SL(2, \mathbb{C})$ onto the group of fractional linear transformations. The kernel of this homomorphism is $\mathbb{Z}_2$ and therefore the group of fractional linear transformations is isomorphic to $PSL(2, \mathbb{C})$.
+\end{theorem}
+\begin{proof}
+To see $\phi$ is a homomorphism, observe that
+\begin{enumerate}[label=(\alph*)]
+    \item $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \to z$, so the group identity of $SL(2, \mathbb{C})$ is mapped onto the identity transformation.
+    
+    \item Let $A_1 = \begin{pmatrix}
+        a_1 & b_1 \\
+        c_1 & d_1
+    \end{pmatrix}$ and $A_2 = \begin{pmatrix}
+        a_2 & b_2 \\
+        c_2 & d_2
+    \end{pmatrix}$, then we have 
+    \begin{align*}
+        A_1 \circ A_2 = \begin{pmatrix}
+        a_1a_2 + b_1c_2 & a_1b_2 + b_1b_2 \\
+        c_1a_2 + d_1c_2 & c_1b_2 + d_1d_2
+    \end{pmatrix}.
+    \end{align*}
+    On the other, 
+    \begin{align*}
+        \phi(A_1) = \frac{a_1 z + b_1}{c_1 z + d_1}, \quad = \phi(A_2) = \frac{a_2 z + b_2}{c_2 z + d_2},
+    \end{align*}
+    and 
+    \begin{align*}
+        \phi(A_1 \circ A_2) = \frac{(a_1a_2 + b_1c_2) z + (a_1b_2 + b_1b_2)}{(c_1a_2 + d_1c_2) z + (c_1b_2 + d_1d_2)}.
+    \end{align*}
+    It is easy to check $\phi(A_1) \circ \phi(A_2) = \phi(A_1 \circ A_2)$.
+\end{enumerate}
+Hence $\phi$ is a homomorphism. Suppose $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \ker(\phi)$, then it is easy to see that 
+\begin{align*}
+    \begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \quad \text{or} \,\, \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}.
+\end{align*}
+The proof is complete.
+\end{proof}
+
+\medskip
+
+One can prove that the stereographic projection maps circles on the sphere onto circles or lines the plane. Lines on the plane are images of circles passing through the north pole. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{PolarStereoProj.png}\includegraphics[width=0.5\textwidth]{CartesianStereoProj.png}
+    \caption{Stereographic projections.}
+    \label{fig:Stereo_proj}
+\end{figure}
+Circles on $\overline{\mathbb{C}}$ are circles or lines on $\mathbb{C}$, where lines on $\mathbb{C}$ are circles on $\overline{\mathbb{C}}$ passing through $\infty$. 
+
+\medskip
+
+\begin{theorem}
+A fractional linear transformation maps circles on $\overline{\mathbb{C}}$ onto circles on $\overline{\mathbb{C}}$.
+\end{theorem}
+\begin{proof}
+Every fractional linear transformation has form
+\begin{align*}
+    L(z) = \frac{az + b}{cz + d},
+\end{align*}
+which is a composition of the following:
+\begin{enumerate}[label=(\alph*)]
+    \item translation $z \mapsto z + b$, 
+    
+    \item rotation $z \mapsto \alpha z, \left|\alpha\right| = 1$,
+    
+    \item dilation $ \mapsto rz, r > 0$, 
+    
+    \item inversion $z \mapsto 1/z$.
+\end{enumerate}
+This is obvious if $c = 0$ and when $c \neq 0$, it follows from the formula
+\begin{align*}
+    \frac{az + b}{cz + d} = \frac{a}{c} + \frac{\lambda}{cz + d},
+\end{align*}
+where $\lambda = (bc - ad)/c$. Also, translation, rotation and dilation preserve circles and lines. It remains to prove that the inversion transforms circles on $\overline{\mathbb{C}}$ onto circles on $\overline{\mathbb{C}}$. 
+
+Note that every line or circle on $\overline{\mathbb{C}}$ is a set of points satisfying 
+\begin{align}\label{th_812_equ1}
+    \alpha z \overline{z} + \beta z + \overline{\beta} \overline{z} + \gamma = 0,
+\end{align}
+where $\alpha, \gamma \in \mathbb{R}$, $\beta \in \mathbb{C}$ and $\beta \overline{\beta} > \alpha \gamma$. If $\alpha = 0$, then \eqref{th_812_equ1} is a line. If $\alpha \neq 0$, then it is a circle. Note that the inversion transforms \eqref{th_812_equ1} into
+\begin{align*}
+    \alpha \frac{1}{z} \frac{1}{\overline{z}} + \beta \frac{1}{z} + \overline{\beta} \frac{1}{\overline{z}} + \gamma = 0,
+\end{align*}
+which is equivalent to
+\begin{align}\label{th_812_equ2}
+    \gamma z \overline{z} + \overline{\beta} z + \beta \overline{z} + \alpha = 0,
+\end{align}
+and this is an equation of the same type of \eqref{th_812_equ1}, hence it describes a circle on $\overline{\mathbb{C}}$.
+\end{proof}
+
 
 
 
