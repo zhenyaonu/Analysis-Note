@@ -7315,6 +7315,46 @@ Suppose $f: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is continuous on th
     is complex differentiable at $0$.
 \end{enumerate}
 
+\medskip
+
+\begin{definition}
+Functions of the form
+\begin{align*}
+    W(z) = \frac{P(z)}{Q(z)},
+\end{align*}
+where $P,Q$ are complex polynomials, are called rational functions.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+Rational functions define holomorphic functions on the Riemann sphere.
+\end{theorem}
+\begin{proof}
+Let
+\begin{align*}
+    W(z) = \frac{P(z)}{Q(z)} = A \frac{(z - z_1) \cdots (z - z_k)}{(z - w_1) \cdots (z - w_n)},
+\end{align*}
+and we can assume $A \neq 0$ and $z_i \neq w_j$ for all $i,j$. Clearly, $W$ is defined on $\mathbb{C} \setminus \{w_1, \cdots, w_n\}$. We can define
+\begin{align*}
+    W(w_i) \coloneqq \lim_{z \to w_i} W(z) = \infty, \quad 1 \leq i \leq n,
+\end{align*}
+and 
+\begin{align*}
+    W(\infty) \coloneqq \lim_{z \to \infty} W(z) = \begin{cases}
+        A, & k = n, \\
+        \infty, & k > n, \\
+        0, & k < n.
+    \end{cases}
+\end{align*}
+Hence $W: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is a continuous function. Clearly, $W$ is holomorphic on $\mathbb{C} \setminus \{w_1, \cdots, w_n\}$. We need to prove that $W$ is complex differentiable at $w_i, i = 1, \cdots, n$ and at $\infty$.
+
+
+\end{proof}
+
+\begin{remark}
+We will prove later that if $f: \overline{\mathbb{C}} \to \overline{\mathbb{C}}$ is holomorphic on $\overline{\mathbb{C}}$, then $f$ is a rational function.
+\end{remark}
 
 
 
