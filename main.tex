@@ -6757,9 +6757,9 @@ Moreover, $f'(z_0) = \frac{\partial f}{\partial z}(z_0)$.
 In fact, \eqref{th_78_equ1} is equivalent to the Cauchy-Riemann equations \eqref{equ_71}. Indeed, if $f = u + iv$, then 
 \begin{align*}
     \frac{\partial f}{\partial \overline{z}}(z_0) & = \frac{1}{2} \left(\frac{\partial}{\partial x} + i \frac{\partial}{\partial y}\right)(u(z_0) + iv(z_0)) \\
-    & = \frac{1}{2}\left(u_x(z_0) - v_y(z_0)\right) + \frac{i}{2}\left(u_y(z_0) - v_x(z_0)\right),
+    & = \frac{1}{2}\left(u_x(z_0) - v_y(z_0)\right) + \frac{i}{2}\left(u_y(z_0) + v_x(z_0)\right),
 \end{align*}
-and hence $u_x(z_0) - v_y(z_0) = 0, u_y(z_0) - v_x(z_0) = 0$.  
+and hence $u_x(z_0) - v_y(z_0) = 0, u_y(z_0) + v_x(z_0) = 0$.  
 \end{remark}
 \end{proof}
 
@@ -7129,7 +7129,7 @@ $\operatorname{Log} i = \log \left|i\right| + i\operatorname{Arg} i = i\pi/2$ an
 
 \medskip
 
-Now we discuss the derivative of the logarithm. Consider $e^z$ for $z \in S = \{z \,:\, 0 < \Im z < 2\pi\}$. If $e^{z_1} = e^{z_2}$, we have $z_1 = z_2 + 2k\pi i$, and hence $e^z$ is one-to-on in $S$. Since $\left(e^z\right)' = e^z \neq 0$, the Jacobian of the mapping $z \mapsto e^z$ is not zero (see also \eqref{sec_76_equ1}). And this implies that $e^z$ is a diffeomorphism in $S$. What is the image of $e^z$? 
+Now we discuss the derivative of the logarithm. Consider $e^z$ for $z \in S = \{z \,:\, 0 < \Im z < 2\pi\}$. If $e^{z_1} = e^{z_2}$, we have $z_1 = z_2 + 2k\pi i$, and hence $e^z$ is one-to-one in $S$. Since $\left(e^z\right)' = e^z \neq 0$, the Jacobian of the mapping $z \mapsto e^z$ is not zero (see also \eqref{sec_76_equ1}). And this implies that $e^z$ is a diffeomorphism in $S$. What is the image of $e^z$? 
 
 Consider $z = x + iy \in S$, for fixed $x = c_1$ but $y$ varies from $0$ to $2\pi$, the point is on the vertical line $x = c_1, y \in (0,2\pi)$ is mapped by $e^z$ to the point $w = e^{c_1} e^{iy}$. Notice that  geometrically the line is mapped around the circle except the point $e^{c_1}$: \footnote{Picture source: \url{https://faculty.etsu.edu/gardnerr/5337/notes/Chapter2-14.pdf}}
 \begin{figure}[H]
