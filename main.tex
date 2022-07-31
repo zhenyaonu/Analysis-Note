@@ -6600,7 +6600,7 @@ In real analysis, we always add $+\infty$ and $-\infty$ to the set of real numbe
     \caption{stereographic projection from north pole to plane $z = 0$.}
     \label{fig:stereographic_projection}
 \end{figure}
-The top red dot is North Pole $N$, and let $\pi: S\setminus\{N\} \to \mathbb{C}$ be the stereographic projection defined as in the picture, where $S$ is a the sphere of the ball. Then $\pi$ is a homeomorphism, it allows to identify $\mathbb{C}$ with $S\setminus\{N\} \to \mathbb{C}$, and hence we can identify $\overline{\mathbb{C}}$ with $S$. Note that if $x_n \to N$ in $S$, then $\left|\pi(x_n)\right| \to \infty$, which means $\pi(x_n) \to \infty$. Also, basis of neighborhood of $\infty$ will be set 
+The top red dot is North Pole, denoted by $N$, and let $\pi: S\setminus\{N\} \to \mathbb{C}$ be the stereographic projection defined as in the picture, where $S$ is a the sphere of the ball. Then $\pi$ is a homeomorphism, it allows to identify $\mathbb{C}$ with $S\setminus\{N\} \to \mathbb{C}$, and hence we can identify $\overline{\mathbb{C}}$ with $S$. Note that if $x_n \to N$ in $S$, then $\left|\pi(x_n)\right| \to \infty$, which means $\pi(x_n) \to \infty$. Also, basis of neighborhood of $\infty$ will be set 
 \begin{align*}
     \left\{z \in \mathbb{C} \,:\, \left|z\right| > r\right\} \cup \{\infty\}. 
 \end{align*}
@@ -6619,7 +6619,7 @@ provided the limit exists.
 
 \medskip
 
-\begin{definition}
+\begin{definition}\label{def_74}
 We say that $f$ is holomorphic in $\Omega$ if $f'(z)$ exists and $f'(z) \in \mathbb{C}$ for all $z \in \Omega$. The space of all holomorphic functions in $\Omega$ is denoted by $H(\Omega)$.
 \end{definition}
 
@@ -6781,6 +6781,12 @@ Also, suppose $f$ maps a unit ball $B$ centered at the origin to its image and w
     \left|\det Df(z_0) \right| = \frac{\operatorname{Area} (Df(z_0)(B))}{\operatorname{Area}(B)} = \frac{\pi \left|f'(z_0)\right|^2}{\pi} = \left|f'(z_0)\right|^2,
 \end{align}
 and since $\det Df(z_0) > 0$ as the mapping preserves orientation, we have $\det Df(z_0) = \left|f'(z_0)\right|^2$. Note that this can be shown directly from the Cauchy-Riemann equations. Above results can be summarized as below.
+
+\medskip
+
+\begin{definition}
+Let $U$ and $V$ be open subsets of $\mathbb{R}^n$ (in our case, $\mathbb{C}$ can be categorized as $\mathbb{R}^2$). A function $f: U \to V$ is called conformal at a point $u \in U$ is it preserves angels between directed curves through $u$, as well as preserving orientation.
+\end{definition}
 
 \medskip
 
@@ -7129,7 +7135,7 @@ $\operatorname{Log} i = \log \left|i\right| + i\operatorname{Arg} i = i\pi/2$ an
 
 \medskip
 
-Now we discuss the derivative of the logarithm. Consider $e^z$ for $z \in S = \{z \,:\, 0 < \Im z < 2\pi\}$. If $e^{z_1} = e^{z_2}$, we have $z_1 = z_2 + 2k\pi i$, and hence $e^z$ is one-to-one in $S$. Since $\left(e^z\right)' = e^z \neq 0$, the Jacobian of the mapping $z \mapsto e^z$ is not zero (see also \eqref{sec_76_equ1}). And this implies that $e^z$ is a diffeomorphism in $S$. What is the image of $e^z$? 
+Now we discuss the derivative of the logarithm. Consider $e^z$ for $z \in S = \{z \,:\, 0 < \Im z < 2\pi\}$. If $e^{z_1} = e^{z_2}$, we have $z_1 = z_2 + 2k\pi i$, and hence $e^z$ is one-to-one in $S$. Since $\left(e^z\right)' = e^z \neq 0$, the Jacobian of the mapping $z \mapsto e^z$ is not zero (see also \eqref{sec_76_equ1}). And this implies that $e^z$ is a diffeomorphism\footnote{A differential map $f:M \to N$ is called a diffeomorphism if it is a bijection and its inverse $f^{-1}: N \to M$ is differentiable as well. \label{rem_67}} in $S$. What is the image of $e^z$? 
 
 Consider $z = x + iy \in S$, for fixed $x = c_1$ but $y$ varies from $0$ to $2\pi$, the point is on the vertical line $x = c_1, y \in (0,2\pi)$ is mapped by $e^z$ to the point $w = e^{c_1} e^{iy}$. Notice that  geometrically the line is mapped around the circle except the point $e^{c_1}$: \footnote{Picture source: \url{https://faculty.etsu.edu/gardnerr/5337/notes/Chapter2-14.pdf}}
 \begin{figure}[H]
@@ -7434,7 +7440,7 @@ To see $\phi$ is a homomorphism, observe that
     \end{align*}
     On the other, 
     \begin{align*}
-        \phi(A_1) = \frac{a_1 z + b_1}{c_1 z + d_1}, \quad = \phi(A_2) = \frac{a_2 z + b_2}{c_2 z + d_2},
+        \phi(A_1) = \frac{a_1 z + b_1}{c_1 z + d_1}, \quad \phi(A_2) = \frac{a_2 z + b_2}{c_2 z + d_2},
     \end{align*}
     and 
     \begin{align*}
@@ -7503,6 +7509,116 @@ which is equivalent to
 \end{align}
 and this is an equation of the same type of \eqref{th_812_equ1}, hence it describes a circle on $\overline{\mathbb{C}}$. 
 \end{proof}
+
+\medskip
+
+Next, let's discuss the symmetry with respect to a circle. Let $\Gamma$ be a circle on the Riemann sphere $\overline{\mathbb{C}}$, i.e., a circle or line in $\mathbb{C}$. The symmetric point of $z \in \overline{\mathbb{C}}$ is denoted by $z^*$, and it is simple when $\Gamma$ is a line. In the case of $\Gamma$ being a circle, points $z$ and $z^*$ are symmetric if they are on the same, half line starting at the center $z_0$ of the line and 
+\begin{align*}
+    \left|z - z_0\right| \left|z^* - z_0\right| = R^2.
+\end{align*}
+
+\medskip
+
+\begin{lemma}
+Points $z$ and $z^*$ are symmetric with respect to a circle $\Gamma$ in $\overline{\mathbb{C}}$ if and only if every circle on $\overline{\mathbb{C}}$ passing through $z$ and $z^*$ is orthogonal to $\Gamma$.
+\end{lemma}
+
+\medskip
+
+\begin{theorem}
+If $L$ is a fractional linear transformation, $\Gamma$ is a circle on $\overline{\mathbb{C}}$ and $z, z^*$ are symmetric with respect to $\Gamma$, then $L(z)$ and $L(z^*)$ are symmetric with respect to $L(\Gamma)$.
+\end{theorem}
+\begin{proof}
+$L$ is conformal. Indeed, we have
+\begin{align*}
+    \left(\frac{az + b}{cz + d}\right)' = \frac{a(cz + d) - (az + b)c}{(cz + d)^2} = \frac{ad - bc}{(cz + d)^2} \neq 0.
+\end{align*}
+Then, $L$ preserves angles between curves, and hence it maps circles orthogonal to $\Gamma$ to circles orthogonal to $L(\Gamma)$. 
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+For every distinct points $z_1, z_2, z_3 \in \overline{\mathbb{C}}$ and distinct points $w_1, w_2, w_3 \in \overline{\mathbb{C}}$, there is exactly one fractional linear transformation such that $L(z_i) = w_i, i = 1,2,3$.
+\end{theorem}
+\begin{proof}
+For existence, let
+\begin{align*}
+    L_1(z) = \frac{z - z_1}{z - z_2} \frac{z_3 - z_2}{z_3 - z_1},
+\end{align*}
+and then $L_1$ is a fractional linear transformation and
+\begin{align*}
+    L_1(z_1) = 0, \quad L_1(z_2) = \infty, \quad L_1(z_3) = 1.
+\end{align*}
+Similarly, we construct the fractional linear transformation $L_2$ such that
+\begin{align*}
+    L_2(w_1) = 0, \quad L_2(w_2) = \infty, \quad L_2(w_3) = 1.
+\end{align*}
+Now, we take $L = L_2^{-1} \circ L_1$, then 
+\begin{align*}
+    L(z_1) = w_1, \quad L(z_2) = w_2, \quad L(z_3) = w_3.
+\end{align*}
+
+For uniqueness, let $\lambda$ be a fractional linear transformation such that $\lambda(z_i) = w_i, i = 1,2,3$. Consider $\mu = L_2 \circ \lambda \circ L_1^{-1}$, then we have 
+\begin{align*}
+    \mu(0) = 0, \quad \mu(\infty) = \infty, \quad \mu(1) = 1.
+\end{align*}
+It is easy to see that $\mu(z) = z$ (considering $3$ equations for $a,b,c,d$ in the for $\mu = \frac{az + b}{cz + d}$ and the condition $ad - bc = 1$). Hence, $\mu$ is the identity, and therefore, $\lambda = L_2^{-1} \circ L_1$.
+\end{proof}
+
+\medskip
+
+\begin{remark}
+Three points on $\overline{\mathbb{C}}$ uniquely determine a circle on $\overline{\mathbb{C}}$.
+\end{remark}
+
+\medskip
+
+\begin{corollary}
+Every circle on $\overline{\mathbb{C}}$ can be mapped onto another circle on $\overline{\mathbb{C}}$ by a fractional linear transformation.
+\end{corollary}
+\begin{remark}
+This fractional linear transformation is not unique, since we can choose different three points on circles.
+\end{remark}
+
+\medskip
+
+\begin{example}
+Find all fractional linear transformations $L$ such that $L(D(0,1)) = D(0,1)$.
+\end{example}
+\begin{proof}
+Let $a, \left|a\right| < 1$ be such that $L(a) = 0$. then 
+\begin{align*}
+    a^* = \frac{1}{\bar{a}}.
+\end{align*}
+Therefore, $L$ must be of the form
+\begin{align*}
+    L(z) = k \frac{z - a}{z - 1/\bar{a}} = k_1 \frac{z - a}{1 - \bar{a} z},
+\end{align*}
+where $k$ is some constant and $k_1 = - \bar{a} k$. Indeed, in order to make sure $L$ maps circle to circle, we can let $L(1/\bar{a}) = \infty$. 
+
+Now, we have $\left|L(1)\right| = 1$ since the circle under $L$ is preserved. Then,
+\begin{align*}
+    1 = \left|L(1)\right| = \left|k_1\right| \left|\frac{1 - a}{1 - \bar{a}}\right| = \left|k_1\right|,
+\end{align*}
+which implies $k_1 = e^{i\theta}$ for some $\theta \in \mathbb{R}$. Thus, $L$ is of form
+\begin{align*}
+    L(z) = e^{i\theta} \frac{z - a}{1 - \bar{a}z}.
+\end{align*}
+\end{proof}
+
+\medskip
+Later we will prove the following theorem.
+
+\medskip
+
+\begin{theorem}
+If $f: D(0,1) \to D(0,1)$ is a holomorphic diffeomorphism (see Definition \ref{def_74} and Footnote \ref{rem_67}) of $D(0,1)$ onto $D(0,1)$, then $f$ is a fractional linear transformation of the form
+\begin{align*}
+    f(z) = e^{i\theta} \frac{z - a}{1 - \bar{a}z}.
+\end{align*}
+\end{theorem}
+
 
 
 
