@@ -7619,6 +7619,205 @@ If $f: D(0,1) \to D(0,1)$ is a holomorphic diffeomorphism (see Definition \ref{d
 \end{align*}
 \end{theorem}
 
+\medskip
+
+
+\chapter{Integrals}
+
+\section{Line Integrals}
+
+\begin{definition}
+A curve is a continuous mapping $\gamma: [a,b] \to \mathbb{C}$. A curve is closed if $\gamma(a) = \gamma(b)$. A Jordan curve is a closed curve without self-intersections, that is $\gamma$ is one-to-one on $[a,b)$. We often identity a Jordan curve with its image $\Gamma = \gamma([a,b])$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}[Jordan]
+A Jordan curve $\Gamma$ divides $\mathbb{C}$ into two disjoint domains: $\Omega$ bounded and $\Omega'$ unbounded, and $\Gamma$ is the common boundary of $\Omega$ and $\Omega'$. Any curve connecting $z \in \Omega$ to $z' \in \Omega'$ intersects with $\Gamma$.
+\end{theorem}
+
+\medskip
+
+\begin{definition}
+A piecewise smooth curve is a continusou curve $\gamma: [a,b] \to \mathbb{C}$ such that for some partition $a = t_0 < t_1 < \cdots < t_n = b$, the curves $\gamma|_{[t_i, t_{i+1}]}: [t_i, t_{i+1}] \to \mathbb{C}$ are of class $C^1$ and $\gamma'(t) \neq 0$ for all $t \in [t_i, t_{i+1}]$ (at the endpoints, we consider one sided derivatives).
+
+If $\gamma$ is a piecewise smooth Jordan curve, then it divides $\mathbb{C}$ into a bounded domain $\Omega$ and unbounded domain $\Omega'$, where $\Omega$ is called the interior of $\gamma$. We say that $\gamma$ is positively oriented if the pairs of the vectors $\left(\overrightarrow{u}, \overrightarrow{\gamma'} \right)$ is a positively oriented basis of $\mathbb{R}^2$ (counterclockwise), where $\overrightarrow{u}$ is outer normal vector to $\Omega$ and $\overrightarrow{\gamma'}$ is the tangent vector. 
+\end{definition}
+
+\medskip
+
+\begin{example}
+Let $\gamma(t) = a + r e^{it}, t \in [0, 2\pi]$, which is a positively oriented curve with $D(a,r)$ as the interior.  
+\end{example}
+
+\medskip
+
+\begin{definition}
+Let $\gamma: [a,b] \to \mathbb{C}$ be a piecewise smooth curve and let $f$ be a continuous function defined on $\Gamma = \gamma([a,b])$. We define the integral by
+\begin{align*}
+    \int_{\gamma} f(z) \,dz = \int^b_a f(\gamma(t)) \gamma'(t) \,dt. 
+\end{align*}
+\end{definition}
+
+\medskip
+
+Let $f = u + iv$, $\gamma = x + iy$. Then we have
+\begin{align*}
+    \int_{\gamma} f(z) \,dz & = \int^b_a \left(u(\gamma(t)) + iv(\gamma(t))\right) \left(x'(t) + iy'(t)\right) \,dt \\
+    & = \int^b_a \left(u(\gamma(t)) x'(t) - v(\gamma(t)) y'(t) \right) \,dt + i \int^b_a \left(v(\gamma(t)) x'(t) + u(\gamma(t)) y'(t) \right) \,dt \\
+    & = \int_{\gamma} u \,dx - v \,dy + i \int_{\gamma} v \,dx + u \,dy.
+\end{align*}
+The same result can be obtained by the following formal calculation with $dz = dx + idy$:
+\begin{align*}
+    \int_{\gamma} f \,dz = \int_{\gamma} (u + iv) (dx + i dy) = \int_{\gamma} u \,dx - v \,dy + i \int_{\gamma} v \,dx + u \,dy.
+\end{align*}
+
+\medskip
+
+\begin{definition}
+The length of a curve $\gamma: [a,b] \to \mathbb{C}$ with finite number of self-intersections is given by
+\begin{align*}
+    l(\gamma) = \int^b_a \left|\gamma'(t)\right| \,dt.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{lemma}\label{lemma_91}
+If $\gamma: [a,b] \to \mathbb{C}$ has finite number of self-intersections, then 
+\begin{align*}
+    \left|\int_{\gamma} f(z) \,dz\right| \leq l(\gamma) \sup_{\Gamma} \left|f\right|.
+\end{align*}
+\end{lemma}
+\begin{proof}
+We have
+\begin{align*}
+    \left|\int_{\gamma} f(z) \,dz\right| = \left|\int^b_a f(\gamma(t)) \gamma'(t) \,dt\right| \leq \int^b_a \left|f(\gamma(t))\right| \left|\gamma'(t)\right| \,dt \leq \sup_{\Gamma} \left|f\right| \int^b_a \left|\gamma'(t)\right| \,dt. 
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+If $f(z) = \sum^\infty_{n=0} f_n(z)$ is a uniformly convergent series of continuous functions on $\Gamma = \gamma([a,b])$, then
+\begin{align*}
+    \int_{\gamma} f(z) \,dz = \sum^\infty_{n=0} \int_{\gamma} f_n(z) \,dz.
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is obvious that $f$ is continuous, then $\int_{\gamma} f(z) \,dz$ is well defined. We need to show that
+\begin{align*}
+    \lim_{k \to \infty} \int_{\gamma} f(z) \,dz - \sum^k_{n=0} \int_{\gamma} f_n(z) \,dz = 0.
+\end{align*}
+By Lemma \ref{lemma_91} and the uniform convergence, we have
+\begin{align*}
+    \left|\int_{\gamma} f(z) \,dz - \sum^k_{n=0} \int_{\gamma} f_n(z) \,dz \right| = \left|\int_{\gamma} \left(f(z) - \sum^k_{n=0} \int_{\gamma} f_n(z) \right) \,dz\right| \leq l(\gamma) \underbrace{\sup_{\Gamma} \left|f(z) - \sum^k_{n=0} \int_{\gamma} f_n(z) \right|}_{\xrightarrow[]{k \to \infty} 0},
+\end{align*}
+and the theorem follows.
+\end{proof}
+
+\medskip
+
+\begin{example}\label{example_92}
+Consider $\gamma(t) = a + r e^{it}, t \in [0,2\pi]$, then 
+\begin{align*}
+    \int_{\gamma} (z - a)^n \,dz = \begin{cases}
+        0, & n \neq -1, \\
+        2 \pi i, & n = -1.
+    \end{cases}
+\end{align*}
+\end{example}
+\begin{proof}
+We have
+\begin{align*}
+    \int_{\gamma} (z - a)^n \,dz & = \int^{2\pi}_0 \left(re^{it}\right)^n \left(ir e^{it}\right) \,dt = i r^{n+1} \int^{2\pi}_0 e^{i(n+1)t} \,dt \\
+    & = \begin{cases}
+        i \int^{2\pi}_0 e^0 \,dt = 2 \pi i, & n = -1, \\
+        i r^{n+1} \frac{e^{i(n+1)t}}{i(n+1)}\Bigg|^{2\pi}_0 = 0, & n \neq -1.
+    \end{cases}
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+The integral $\int_{\gamma} f(z) \,dz$ does not depend on a parameterization of $\gamma$ as long as a new parameterization has the same orientation as $\gamma$. More precisely, for $\gamma:[a,b] \to \mathbb{C}$, if $\varphi:[c,d] \to [a,b]$ satisfy $\varphi(c) = a, \varphi(d) = b$ and is of class $C^1$, then
+\begin{align*}
+    \int_{\gamma} f(z) \,dz = \int_{\gamma_1} f(z) \,dz,
+\end{align*}
+where $\gamma_1 = \gamma \circ \varphi$. 
+\end{theorem}
+\begin{remark}
+$\varphi$ does not need to be monotone, as long as it has the same starting and finishing points as $\gamma$.
+\end{remark}
+\begin{proof}
+Let $G: [a,b] \to \mathbb{C}$ be such that $G'(t) = f(\gamma(t)) \gamma'(t)$. We have 
+\begin{align*}
+    \int_{\gamma} f(z) \,dz & = \int^b_a  f(\gamma(t)) \gamma'(t) \,dz = \int^b_a G'(t) \,dz = G(b) - G(a) = G(\varphi(d) - G(\varphi(c)) \\
+    & = \int^d_c \dv{}{t} G(\varphi(t)) \,dt = \int^d_c G'(\varphi(t)) \varphi'(t) \,dt = \int^d_c f(\gamma(\varphi(t))) \gamma'(\varphi(t)) \varphi'(t) \,dt \\
+    & = \int^d_c f(\gamma_1(t)) \gamma_1'(t) \,dt = \int_{\gamma_1} f(z) \,dz,
+\end{align*}
+where the last equality comes from the definition of the line integral.
+\end{proof}
+
+\medskip
+
+\section{Antiderivative}
+
+\begin{definition}
+Let $f: \Omega \to \mathbb{C}$ be a function defined on a domain $\Omega \subset \mathbb{C}$. Any holomorphic function $F \in H(\Omega)$ such that $F'(t) = f(t)$ for all $t \in \Omega$ is called an antiderivative of $f$. 
+
+If $\gamma: [a,b] \to \mathbb{C}$ is a curve, then the points $z_0 = \gamma(a)$ and $z_1 = \gamma(b)$ are called the beginning and the end of the curve $\gamma$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+If a continuous function $f: \Omega \to \mathbb{C}$, where $\Omega \subset \mathbb{C}$ is open, has antiderivative $F \in H(\Omega)$, then the integral $\int_{\gamma} f(z) \,dz$ along a curve $\gamma$ that is contained in $\Omega$ depends only on the position of the endpoints $z_0, z_1$ and it does not depend on a particular choice of $\gamma$.
+
+More precisely, 
+\begin{align*}
+    \int_{\gamma} f(z) \,dz = F(z_1) - F(z_0).
+\end{align*}
+In particular, if $\gamma$ is closed inside $\Omega$, then $\int_{\gamma} f(z) \,dz = 0$.
+\end{theorem}
+
+\begin{remark}
+It is reasonable to write in the situation described above
+\begin{align*}
+    \int_{\gamma} f(z) \,dz = \int^{z_1}_{z_0} f(z) \,dz.
+\end{align*}
+\end{remark}
+
+\begin{proof}
+Let $\Phi(t) = F(\gamma(t))$, then $\Phi'(t) = F'(\gamma(t)) \gamma'(t) = f(\gamma(t)) \gamma'(t)$. Then, we have
+\begin{align*}
+    \int_{\gamma} f(z) \,dz & = \int^b_a f(\gamma(t)) \gamma'(t) \,dt = \int^b_a \Phi'(t) \,dt = \Phi(b) - \Phi(a) \\
+    & = F(\gamma(b)) - F(\gamma(a)) = F(z_1) - F(z_0).
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{example}
+In Example \ref{example_92}, we already proved that if $\gamma = a  + e^{it},t \in [0,2\pi]$, then 
+\begin{align*}
+    \int_{\gamma} (z - a)^n \,dz = \begin{cases}
+        0, & n \neq -1, \\
+        2 \pi i, & n = -1.
+    \end{cases}
+\end{align*}
+
+Now, let $\gamma$ be any closed curve that does not pass through $a$, then for $n \neq -1$, we have
+\begin{align*}
+    \int_{\gamma} (z - a)^n \,dz = 0.
+\end{align*}
+Indeed, $(z - a)^{n + 1}/(n + 1)$ is an antiderivative of $(z - a)^n$ in $\mathbb{C} \setminus \{a\}$. 
+\end{example}
+
+
+
+
 
 
 
